@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 56 56">
+  <g id="icon_function_record_off" transform="translate(-748 -72)">
+    <rect id="長方形_6502" data-name="長方形 6502" width="56" height="56" transform="translate(748 72)" fill="#374bba" opacity="0"/>
+    <g id="_0618_Receipt" data-name="0618_Receipt" transform="translate(777.455 101.217)">
+      <g id="_06_Payment" data-name="06_Payment" transform="translate(-15.455 -18.217)">
+        <g id="_0618_Receipt-2" data-name="0618_Receipt">
+          <path id="パス_27962" data-name="パス 27962" d="M22.17.5V7.634l7.24.1Z" transform="translate(-2.042 -0.046)" fill="#fff"/>
+          <path id="パス_27963" data-name="パス 27963" d="M27.717,10.312h-8.95A1.362,1.362,0,0,1,17.4,8.95V0H1.362A1.362,1.362,0,0,0,0,1.362V31.717a1.362,1.362,0,0,0,1.362,1.362H26.7a1.362,1.362,0,0,0,1.362-1.362v-21.4ZM8.323,7.243l1.464,3.425,1.463-3.425h1.8l-1.831,3.73h1.612V11.98H10.662v.938h2.173v1.006H10.662v2.114H8.911V13.924H6.738V12.918H8.911V11.98H6.738V10.973h1.6L6.506,7.243ZM21.269,25.592H6.514V24.119H21.269Zm0-5.331H6.514V18.788H21.269Zm0-5.66H15.281V13.128h5.988Z" fill="#fff"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,16 @@
+
+-- ins_datetime, upd_datetime, status, send_flg, upd_user, upd_system
+\set cmn_set ' \'now\', \'now\', \'0\', \'0\', \'999999\', \'2\' '
+
+--  企業マスタセット
+\set insert_field 'ins_datetime, upd_datetime, status, send_flg, upd_user, upd_system, comp_cd'
+
+INSERT INTO c_comp_mst (:insert_field) SELECT :cmn_set, :COMP WHERE NOT EXISTS (SELECT comp_cd FROM c_comp_mst WHERE comp_cd = :COMP);
+
+
+-- 店舗マスタセット
+\set insert_field 'ins_datetime, upd_datetime, status, send_flg, upd_user, upd_system, comp_cd, stre_cd'
+
+INSERT INTO c_stre_mst (:insert_field) SELECT :cmn_set, :COMP, :STRE WHERE NOT EXISTS (SELECT stre_cd FROM c_stre_mst WHERE comp_cd = :COMP AND stre_cd = :STRE);
+
+

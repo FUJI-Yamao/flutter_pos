@@ -1,0 +1,25 @@
+-- トリガーキー割り当てマスタ
+
+BEGIN;
+TRUNCATE p_trigger_key_mst;
+
+\set insert_field 'proc, win_name, trigger_key, call_type, target_code, ins_datetime, upd_datetime, status, send_flg, upd_user, upd_system'
+
+--             ins_datetime, upd_datetime, status, send_flg, upd_user, upd_system
+\set cmn_set ' \'now\', \'now\', \'0\', \'0\', \'999999\', \'2\' '
+\set sub_query 'SELECT * FROM p_trigger_key_mst WHERE '
+
+--[for mainmenu]
+insert into p_trigger_key_mst (:insert_field) SELECT 'syst', 'mainmenu', '3752', '1', '26112', :cmn_set WHERE NOT EXISTS (:sub_query proc = 'syst' AND win_name = 'mainmenu' AND trigger_key = '3752');
+insert into p_trigger_key_mst (:insert_field) SELECT 'syst', 'mainmenu', '0337520893', '1', '119', :cmn_set WHERE NOT EXISTS (:sub_query proc = 'syst' AND win_name = 'mainmenu' AND trigger_key = '0337520893');
+insert into p_trigger_key_mst (:insert_field) SELECT 'syst', 'mainmenu', '9999', '1', '120', :cmn_set WHERE NOT EXISTS (:sub_query proc = 'syst' AND win_name = 'mainmenu' AND trigger_key = '9999');
+
+--[for favorite]
+insert into p_trigger_key_mst (:insert_field) SELECT 'syst', 'favorite', '3752', '1', '26112', :cmn_set WHERE NOT EXISTS (:sub_query proc = 'syst' AND win_name = 'favorite' AND trigger_key = '3752');
+insert into p_trigger_key_mst (:insert_field) SELECT 'syst', 'favorite', '0337520893', '1', '119', :cmn_set WHERE NOT EXISTS (:sub_query proc = 'syst' AND win_name = 'favorite' AND trigger_key = '0337520893');
+insert into p_trigger_key_mst (:insert_field) SELECT 'syst', 'favorite', '9999', '1', '120', :cmn_set WHERE NOT EXISTS (:sub_query proc = 'syst' AND win_name = 'favorite' AND trigger_key = '9999');
+
+--[for mainmenu]
+insert into p_trigger_key_mst (:insert_field) SELECT 'pmod', 'presetmain', '3752', '1', '311', :cmn_set WHERE NOT EXISTS (:sub_query proc = 'pmod' AND win_name = 'presetmain' AND trigger_key = '3752');
+
+COMMIT;

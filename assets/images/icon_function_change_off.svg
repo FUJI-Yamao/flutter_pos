@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 56 56">
+  <g id="icon_function_change_off" transform="translate(-538 -72)">
+    <rect id="長方形_6501" data-name="長方形 6501" width="56" height="56" transform="translate(538 72)" fill="#374bba" opacity="0"/>
+    <g id="グループ_15576" data-name="グループ 15576" transform="translate(-113.422 50.748)">
+      <path id="パス_27968" data-name="パス 27968" d="M35.369.115A16.539,16.539,0,1,0,51.909,16.654,16.541,16.541,0,0,0,35.369.115Zm0,30.147A13.608,13.608,0,1,1,48.977,16.654,13.623,13.623,0,0,1,35.368,30.262Z" transform="translate(643.594 32.137)" fill="#fff"/>
+      <g id="グループ_15572" data-name="グループ 15572" transform="translate(666.473 36.302)">
+        <path id="パス_27973" data-name="パス 27973" d="M34.939,3.736A12.489,12.489,0,1,0,47.43,16.225,12.49,12.49,0,0,0,34.939,3.736Zm4.378,11.928v1.5H36.244v1.4h3.073v1.5H36.244v3.148H33.768V20.061H30.7v-1.5h3.073v-1.4H30.7v-1.5h2.261l-2.59-5.556h2.57l2.07,5.1,2.069-5.1h2.551l-2.59,5.556Z" transform="translate(-22.45 -3.736)" fill="#fff"/>
+      </g>
+    </g>
+  </g>
+</svg>

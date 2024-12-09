@@ -1,0 +1,42 @@
+-- 承認キーグループマスタ
+
+BEGIN;
+TRUNCATE c_recog_grp_mst;
+
+\set insert_field 'recog_grp_cd, recog_sub_grp_cd, page, posi, recog_flg, ins_datetime, upd_datetime, status, send_flg, upd_user,   upd_system'
+
+-- ins_datetime, upd_datetime, status, send_flg, upd_user, upd_system
+\set cmn_set ' \'now\', \'now\', \'0\', \'0\', \'999999\', \'2\' '
+
+-- 承認キー(1ページ)の判断
+\set sub_query 'SELECT * FROM c_recog_grp_mst WHERE recog_grp_cd = '101' AND recog_sub_grp_cd = '1' AND page = '1' '
+insert into c_recog_grp_mst (:insert_field) SELECT '1', '1', '1', '1', '1', :cmn_set WHERE NOT EXISTS (:sub_query AND posi = '1');
+
+-- 承認キー(4ページ)の判断
+\set sub_query 'SELECT * FROM c_recog_grp_mst WHERE recog_grp_cd = '10' AND recog_sub_grp_cd = '1' AND page = '4' '
+insert into c_recog_grp_mst (:insert_field) SELECT '10', '1', '4', '11', '1', :cmn_set WHERE NOT EXISTS (:sub_query AND posi = '11');
+
+-- 承認キー(5ページ)の判断
+\set sub_query 'SELECT * FROM c_recog_grp_mst WHERE recog_grp_cd = '101' AND recog_sub_grp_cd = '1' AND page = '5' '
+insert into c_recog_grp_mst (:insert_field) SELECT '101', '1', '5', '2', '1', :cmn_set WHERE NOT EXISTS (:sub_query AND posi = '2');
+
+-- 承認キー(3ページ)の判断：顧客明細仕様
+\set sub_query 'SELECT * FROM c_recog_grp_mst WHERE recog_grp_cd = '21' AND recog_sub_grp_cd = '1' AND page = '3' '
+insert into c_recog_grp_mst (:insert_field) SELECT '21', '1', '3', '10', '1', :cmn_set WHERE NOT EXISTS (:sub_query AND posi = '10');
+
+-- 承認キー(1ページ)の判断：顧客仕様
+\set sub_query 'SELECT * FROM c_recog_grp_mst WHERE recog_grp_cd = '41' AND recog_sub_grp_cd = '1' AND page = '1' '
+insert into c_recog_grp_mst (:insert_field) SELECT '41', '1', '1', '1', '1', :cmn_set WHERE NOT EXISTS (:sub_query AND posi = '1');
+-- 承認キー(7ページ)の判断：ダイレクト顧客仕様が無効
+\set sub_query 'SELECT * FROM c_recog_grp_mst WHERE recog_grp_cd = '41' AND recog_sub_grp_cd = '1' AND page = '7' '
+insert into c_recog_grp_mst (:insert_field) SELECT '41', '2', '7', '12', '0', :cmn_set WHERE NOT EXISTS (:sub_query AND posi = '12');
+
+-- 承認キー(17ページ)の判断：特定WS仕様が有効
+\set sub_query 'SELECT * FROM c_recog_grp_mst WHERE recog_grp_cd = '51' AND recog_sub_grp_cd = '1' AND page = '17' '
+insert into c_recog_grp_mst (:insert_field) SELECT '51', '1', '17', '15', '1', :cmn_set WHERE NOT EXISTS (:sub_query AND posi = '15');
+
+-- 承認キー(18ページ)の判断：TS設定個別変更仕様が有効
+\set sub_query 'SELECT * FROM c_recog_grp_mst WHERE recog_grp_cd = '61' AND recog_sub_grp_cd = '1' AND page = '18' '
+insert into c_recog_grp_mst (:insert_field) SELECT '61', '1', '18', '11', '1', :cmn_set WHERE NOT EXISTS (:sub_query AND posi = '11');
+
+COMMIT;

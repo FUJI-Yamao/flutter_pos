@@ -1,0 +1,44 @@
+-- c_liqrtax_mst
+
+\set insert_field 'comp_cd, ins_datetime, upd_datetime, status, send_flg, upd_user, upd_system, liqrtax_cd, liqrtax_name, liqrtax_rate, liqrtax_alc, liqrtax_add, liqrtax_add_amt, liqrtax_odd_flg'
+
+-- comp_cd, ins_datetime, upd_datetime, status, send_flg, upd_user, upd_system
+\set cmn_set ' :COMP, \'now\', \'now\', \'0\', \'0\', \'999999\', \'2\' '
+
+\set sub_query 'SELECT liqrtax_cd FROM c_liqrtax_mst WHERE comp_cd = :COMP '
+
+
+-- c_liqrtax_mst
+insert into c_liqrtax_mst (:insert_field) SELECT :cmn_set, '100', E'発泡性酒類（基本税率）', '200000', '0', '0', '0', '2' WHERE NOT EXISTS (:sub_query AND liqrtax_cd = '100');
+insert into c_liqrtax_mst (:insert_field) SELECT :cmn_set, '110', E'ビール', '200000', '0', '0', '0', '2' WHERE NOT EXISTS (:sub_query AND liqrtax_cd = '110');
+insert into c_liqrtax_mst (:insert_field) SELECT :cmn_set, '120', E'発泡酒（麦芽50%以上又は10度以上)', '200000', '0', '0', '0', '2' WHERE NOT EXISTS (:sub_query AND liqrtax_cd = '120');
+insert into c_liqrtax_mst (:insert_field) SELECT :cmn_set, '121', E'発泡酒（麦芽25%以上)', '167125', '0', '0', '0', '2' WHERE NOT EXISTS (:sub_query AND liqrtax_cd = '121');
+insert into c_liqrtax_mst (:insert_field) SELECT :cmn_set, '122', E'発泡酒（麦芽25%未満)', '134250', '0', '0', '0', '2' WHERE NOT EXISTS (:sub_query AND liqrtax_cd = '122');
+insert into c_liqrtax_mst (:insert_field) SELECT :cmn_set, '130', E'その他の発泡性酒類（10度未満）', '108000', '0', '0', '0', '2' WHERE NOT EXISTS (:sub_query AND liqrtax_cd = '130');
+insert into c_liqrtax_mst (:insert_field) SELECT :cmn_set, '132', E'その他の発泡性酒類（苦味料なし）', '80000', '0', '0', '0', '2' WHERE NOT EXISTS (:sub_query AND liqrtax_cd = '132');
+insert into c_liqrtax_mst (:insert_field) SELECT :cmn_set, '200', E'醸造酒類（基本税率）', '120000', '0', '0', '0', '2' WHERE NOT EXISTS (:sub_query AND liqrtax_cd = '200');
+insert into c_liqrtax_mst (:insert_field) SELECT :cmn_set, '210', E'清酒', '110000', '0', '0', '0', '2' WHERE NOT EXISTS (:sub_query AND liqrtax_cd = '210');
+insert into c_liqrtax_mst (:insert_field) SELECT :cmn_set, '220', E'果実酒', '90000', '0', '0', '0', '2' WHERE NOT EXISTS (:sub_query AND liqrtax_cd = '220');
+insert into c_liqrtax_mst (:insert_field) SELECT :cmn_set, '230', E'その他の醸造酒', '120000', '0', '0', '0', '2' WHERE NOT EXISTS (:sub_query AND liqrtax_cd = '230');
+insert into c_liqrtax_mst (:insert_field) SELECT :cmn_set, '300', E'蒸留酒類（基本税率）', '200000', '20', '1', '10000', '2' WHERE NOT EXISTS (:sub_query AND liqrtax_cd = '300');
+insert into c_liqrtax_mst (:insert_field) SELECT :cmn_set, '310', E'連続式蒸留焼酎', '200000', '20', '1', '10000', '2' WHERE NOT EXISTS (:sub_query AND liqrtax_cd = '310');
+insert into c_liqrtax_mst (:insert_field) SELECT :cmn_set, '320', E'単式蒸留焼酎', '200000', '20', '1', '10000', '2' WHERE NOT EXISTS (:sub_query AND liqrtax_cd = '320');
+insert into c_liqrtax_mst (:insert_field) SELECT :cmn_set, '330', E'原料用アルコール', '200000', '20', '1', '10000', '2' WHERE NOT EXISTS (:sub_query AND liqrtax_cd = '330');
+insert into c_liqrtax_mst (:insert_field) SELECT :cmn_set, '340', E'ウイスキー', '370000', '37', '1', '10000', '2' WHERE NOT EXISTS (:sub_query AND liqrtax_cd = '340');
+insert into c_liqrtax_mst (:insert_field) SELECT :cmn_set, '350', E'ブランデー', '370000', '37', '1', '10000', '2' WHERE NOT EXISTS (:sub_query AND liqrtax_cd = '350');
+insert into c_liqrtax_mst (:insert_field) SELECT :cmn_set, '360', E'スピリッツ', '370000', '37', '1', '10000', '2' WHERE NOT EXISTS (:sub_query AND liqrtax_cd = '360');
+insert into c_liqrtax_mst (:insert_field) SELECT :cmn_set, '400', E'混成酒類（基本税率）', '200000', '20', '1', '10000', '2' WHERE NOT EXISTS (:sub_query AND liqrtax_cd = '400');
+insert into c_liqrtax_mst (:insert_field) SELECT :cmn_set, '410', E'合成清酒', '100000', '0', '0', '0', '2' WHERE NOT EXISTS (:sub_query AND liqrtax_cd = '410');
+insert into c_liqrtax_mst (:insert_field) SELECT :cmn_set, '420', E'みりん', '20000', '0', '0', '0', '2' WHERE NOT EXISTS (:sub_query AND liqrtax_cd = '420');
+insert into c_liqrtax_mst (:insert_field) SELECT :cmn_set, '430', E'甘味果実酒', '120000', '12', '1', '10000', '2' WHERE NOT EXISTS (:sub_query AND liqrtax_cd = '430');
+insert into c_liqrtax_mst (:insert_field) SELECT :cmn_set, '440', E'リキュール', '120000', '12', '1', '10000', '2' WHERE NOT EXISTS (:sub_query AND liqrtax_cd = '440');
+insert into c_liqrtax_mst (:insert_field) SELECT :cmn_set, '450', E'粉末酒', '390000', '0', '0', '0', '2' WHERE NOT EXISTS (:sub_query AND liqrtax_cd = '450');
+insert into c_liqrtax_mst (:insert_field) SELECT :cmn_set, '460', E'雑酒(みりん類似)', '20000', '0', '0', '0', '2' WHERE NOT EXISTS (:sub_query AND liqrtax_cd = '460');
+insert into c_liqrtax_mst (:insert_field) SELECT :cmn_set, '461', E'雑酒', '200000', '20', '1', '10000', '2' WHERE NOT EXISTS (:sub_query AND liqrtax_cd = '461');
+
+insert into c_liqrtax_mst (:insert_field) SELECT :cmn_set, '5000', E'(2関係)連続式蒸留焼酎', '80000', '8', '1', '10000', '2' WHERE NOT EXISTS (:sub_query AND liqrtax_cd = '5000');
+insert into c_liqrtax_mst (:insert_field) SELECT :cmn_set, '5010', E'(2関係)単式蒸留焼酎', '80000', '8', '1', '10000', '2' WHERE NOT EXISTS (:sub_query AND liqrtax_cd = '5010');
+insert into c_liqrtax_mst (:insert_field) SELECT :cmn_set, '5020', E'(2関係)ウイスキー', '80000', '8', '1', '10000', '2' WHERE NOT EXISTS (:sub_query AND liqrtax_cd = '5020');
+insert into c_liqrtax_mst (:insert_field) SELECT :cmn_set, '5030', E'(2関係)ブランデー', '80000', '8', '1', '10000', '2' WHERE NOT EXISTS (:sub_query AND liqrtax_cd = '5030');
+insert into c_liqrtax_mst (:insert_field) SELECT :cmn_set, '5040', E'(2関係)スピリッツ', '80000', '8', '1', '10000', '2' WHERE NOT EXISTS (:sub_query AND liqrtax_cd = '5040');
+insert into c_liqrtax_mst (:insert_field) SELECT :cmn_set, '5050', E'(2関係)リキュール', '80000', '8', '1', '10000', '2' WHERE NOT EXISTS (:sub_query AND liqrtax_cd = '5050');

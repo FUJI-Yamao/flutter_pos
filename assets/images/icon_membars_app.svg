@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="152" height="112" viewBox="0 0 152 112">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="長方形_8744" data-name="長方形 8744" width="44.684" height="80" fill="#8096af"/>
+    </clipPath>
+  </defs>
+  <g id="icon_membars_app" transform="translate(-232 -208)">
+    <rect id="長方形_7035" data-name="長方形 7035" width="152" height="112" transform="translate(232 208)" fill="#727981" opacity="0"/>
+    <g id="グループ_19267" data-name="グループ 19267" transform="translate(286 224)">
+      <g id="グループ_19266" data-name="グループ 19266" clip-path="url(#clip-path)">
+        <path id="パス_28845" data-name="パス 28845" d="M41.891,0H2.793A2.792,2.792,0,0,0,0,2.793V77.207A2.792,2.792,0,0,0,2.793,80h39.1a2.793,2.793,0,0,0,2.793-2.793V2.793A2.793,2.793,0,0,0,41.891,0M18.345,3.932h7.993a.7.7,0,0,1,0,1.4H18.345a.7.7,0,0,1,0-1.4m23.546,66.2H2.793V8.928h39.1Z" fill="#8096af"/>
+        <path id="パス_28846" data-name="パス 28846" d="M9.255,36.881h2.684V26H9.255c-.371,0-.671.212-.671.474v9.932c0,.261.3.473.671.473" fill="#8096af"/>
+        <path id="パス_28847" data-name="パス 28847" d="M35.428,26H32.744V36.882h2.684c.371,0,.671-.212.671-.474V26.476c0-.261-.3-.473-.671-.473" fill="#8096af"/>
+        <rect id="長方形_8740" data-name="長方形 8740" width="4.027" height="10.879" transform="translate(18.651 26.003)" fill="#8096af"/>
+        <rect id="長方形_8741" data-name="長方形 8741" width="1.342" height="10.879" transform="translate(14.624 26.003)" fill="#8096af"/>
+        <rect id="長方形_8742" data-name="長方形 8742" width="1.342" height="10.879" transform="translate(28.718 26.003)" fill="#8096af"/>
+        <rect id="長方形_8743" data-name="長方形 8743" width="1.342" height="10.879" transform="translate(24.691 26.003)" fill="#8096af"/>
+      </g>
+    </g>
+  </g>
+</svg>

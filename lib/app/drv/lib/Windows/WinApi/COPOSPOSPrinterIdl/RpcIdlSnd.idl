@@ -1,0 +1,26 @@
+[
+    uuid(3a532c83-fbb9-b73b-9d3f-4f19eea1dc20),
+    version(1.0)
+]
+interface RpcIdlSnd
+{
+    typedef [context_handle] void* CONTEXT_HANDLE_SND;
+
+    typedef struct PTR_DATA_SND
+    {
+        unsigned long ptrCmd;
+        [string] const char* logoPath;
+        [string] const char* textData;
+        [string] const char* bcData;
+    } PTR_DATA_SND;
+
+    CONTEXT_HANDLE_SND OpenSnd(
+        [in] handle_t hBinding,
+        [in, ptr] PTR_DATA_SND* ppData);
+
+    void PtrDataSnd(
+        [in] CONTEXT_HANDLE_SND hContext);
+
+    void CloseSnd(
+        [in, out] CONTEXT_HANDLE_SND* phContext);
+}

@@ -1,0 +1,29 @@
+-- c_payoperator_mst
+
+\set insert_field 'comp_cd, stre_cd, ins_datetime, upd_datetime, status, send_flg, upd_user, upd_system, payopera_typ, payopera_cd, name, short_name, misc_cd, showorder'
+
+-- comp_cd, stre_cd, ins_datetime, upd_datetime, status, send_flg, upd_user, upd_system
+\set cmn_set ' :COMP, :STRE, \'now\', \'now\', \'0\', \'0\', \'999999\', \'2\' '
+
+\set sub_query 'SELECT payopera_cd FROM c_payoperator_mst WHERE comp_cd = :COMP AND stre_cd = :STRE '
+
+-- insert into c_payoperator_mst (:insert_field) SELECT :cmn_set, '1', '0', E'LINE Pay', 'LINE', '0', '1' WHERE NOT EXISTS (:sub_query AND payopera_typ = '1' AND payopera_cd = '0');
+-- insert into c_payoperator_mst (:insert_field) SELECT :cmn_set, '2', '0', E'PayPay', 'PayPa', '0', '2' WHERE NOT EXISTS (:sub_query AND payopera_typ = '2' AND payopera_cd = '0');
+-- insert into c_payoperator_mst (:insert_field) SELECT :cmn_set, '3', '0', E'楽天ペイ', '楽天ペイ', '0', '3' WHERE NOT EXISTS (:sub_query AND payopera_typ = '3' AND payopera_cd = '0');
+-- insert into c_payoperator_mst (:insert_field) SELECT :cmn_set, '4', '0', E'メルペイ', 'メルペイ', '0', '4' WHERE NOT EXISTS (:sub_query AND payopera_typ = '4' AND payopera_cd = '0');
+-- insert into c_payoperator_mst (:insert_field) SELECT :cmn_set, '5', '0', E'au PAY', 'au PA', '0', '5' WHERE NOT EXISTS (:sub_query AND payopera_typ = '5' AND payopera_cd = '0');
+-- insert into c_payoperator_mst (:insert_field) SELECT :cmn_set, '6', '0', E'd払い', 'd払い', '0', '6' WHERE NOT EXISTS (:sub_query AND payopera_typ = '6' AND payopera_cd = '0');
+-- insert into c_payoperator_mst (:insert_field) SELECT :cmn_set, '8', '0', E'J-Coin PAY', 'JCoin', '0', '7' WHERE NOT EXISTS (:sub_query AND payopera_typ = '8' AND payopera_cd = '0');
+-- insert into c_payoperator_mst (:insert_field) SELECT :cmn_set, '9', '0', E'BankPay', 'Bank', '0', '8' WHERE NOT EXISTS (:sub_query AND payopera_typ = '9' AND payopera_cd = '0');
+-- insert into c_payoperator_mst (:insert_field) SELECT :cmn_set, '10', '0', E'銀行Pay', 'ゆうちょ', '0', '9' WHERE NOT EXISTS (:sub_query AND payopera_typ = '10' AND payopera_cd = '0');
+-- insert into c_payoperator_mst (:insert_field) SELECT :cmn_set, '11', '0', E'銀行Pay', 'ハマpay', '0', '10' WHERE NOT EXISTS (:sub_query AND payopera_typ = '11' AND payopera_cd = '0');
+-- insert into c_payoperator_mst (:insert_field) SELECT :cmn_set, '12', '0', E'銀行Pay', 'OKI P', '0', '11' WHERE NOT EXISTS (:sub_query AND payopera_typ = '12' AND payopera_cd = '0');
+-- insert into c_payoperator_mst (:insert_field) SELECT :cmn_set, '13', '0', E'銀行Pay', '福岡銀行', '0', '12' WHERE NOT EXISTS (:sub_query AND payopera_typ = '13' AND payopera_cd = '0');
+-- insert into c_payoperator_mst (:insert_field) SELECT :cmn_set, '14', '0', E'銀行Pay', '熊本銀行', '0', '13' WHERE NOT EXISTS (:sub_query AND payopera_typ = '14' AND payopera_cd = '0');
+-- insert into c_payoperator_mst (:insert_field) SELECT :cmn_set, '15', '0', E'銀行Pay', '親和銀行', '0', '14' WHERE NOT EXISTS (:sub_query AND payopera_typ = '15' AND payopera_cd = '0');
+-- insert into c_payoperator_mst (:insert_field) SELECT :cmn_set, '16', '0', E'銀行Pay', '北海道銀行', '0', '15' WHERE NOT EXISTS (:sub_query AND payopera_typ = '16' AND payopera_cd = '0');
+-- insert into c_payoperator_mst (:insert_field) SELECT :cmn_set, '17', '0', E'銀行Pay', '北陸銀行', '0', '16' WHERE NOT EXISTS (:sub_query AND payopera_typ = '17' AND payopera_cd = '0');
+-- insert into c_payoperator_mst (:insert_field) SELECT :cmn_set, '18', '0', E'銀行Pay', 'こいpay', '0', '17' WHERE NOT EXISTS (:sub_query AND payopera_typ = '18' AND payopera_cd = '0');
+-- insert into c_payoperator_mst (:insert_field) SELECT :cmn_set, '22', '0', E'QUOカードPay', 'QUO', '0', '18' WHERE NOT EXISTS (:sub_query AND payopera_typ = '22' AND payopera_cd = '0');
+-- insert into c_payoperator_mst (:insert_field) SELECT :cmn_set, '40', '0', E'Smart Code', 'Smart', '0', '19' WHERE NOT EXISTS (:sub_query AND payopera_typ = '40' AND payopera_cd = '0');
+

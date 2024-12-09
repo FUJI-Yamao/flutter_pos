@@ -1,0 +1,75 @@
+-- c_stropncls_mst
+
+\set insert_field 'comp_cd, stre_cd, stropncls_grp, ins_datetime, upd_datetime, status, send_flg, upd_user, upd_system, stropncls_cd, stropncls_data, data_typ'
+
+-- comp_cd, stre_cd, stropncls_grp, ins_datetime, upd_datetime, status, send_flg, upd_user, upd_system
+\set cmn_set ' :COMP, :STRE, :GRP, \'now\', \'now\', \'0\', \'0\', \'999999\', \'2\' '
+
+\set sub_query 'SELECT stropncls_cd FROM c_stropncls_mst WHERE comp_cd = :COMP AND stre_cd = :STRE AND stropncls_grp = :GRP'
+
+--グループ１（自動開閉店しない）
+INSERT INTO c_stropncls_mst (:insert_field) SELECT :cmn_set, '1', '0', '0' WHERE NOT EXISTS (:sub_query AND stropncls_cd = '1');
+INSERT INTO c_stropncls_mst (:insert_field) SELECT :cmn_set, '100', '0', '0' WHERE NOT EXISTS (:sub_query AND stropncls_cd = '100');
+INSERT INTO c_stropncls_mst (:insert_field) SELECT :cmn_set, '200', '0', '0' WHERE NOT EXISTS (:sub_query AND stropncls_cd = '200');
+INSERT INTO c_stropncls_mst (:insert_field) SELECT :cmn_set, '300', '0', '0' WHERE NOT EXISTS (:sub_query AND stropncls_cd = '300');
+INSERT INTO c_stropncls_mst (:insert_field) SELECT :cmn_set, '400', '0', '0' WHERE NOT EXISTS (:sub_query AND stropncls_cd = '400');
+INSERT INTO c_stropncls_mst (:insert_field) SELECT :cmn_set, '500', '0', '0' WHERE NOT EXISTS (:sub_query AND stropncls_cd = '500');
+INSERT INTO c_stropncls_mst (:insert_field) SELECT :cmn_set, '600', '0', '0' WHERE NOT EXISTS (:sub_query AND stropncls_cd = '600');
+INSERT INTO c_stropncls_mst (:insert_field) SELECT :cmn_set, '700', '1', '0' WHERE NOT EXISTS (:sub_query AND stropncls_cd = '700');
+INSERT INTO c_stropncls_mst (:insert_field) SELECT :cmn_set, '800', '0', '0' WHERE NOT EXISTS (:sub_query AND stropncls_cd = '800');
+INSERT INTO c_stropncls_mst (:insert_field) SELECT :cmn_set, '810', '0', '0' WHERE NOT EXISTS (:sub_query AND stropncls_cd = '810');
+INSERT INTO c_stropncls_mst (:insert_field) SELECT :cmn_set, '900', '1', '0' WHERE NOT EXISTS (:sub_query AND stropncls_cd = '900');
+INSERT INTO c_stropncls_mst (:insert_field) SELECT :cmn_set, '1000', '0', '0' WHERE NOT EXISTS (:sub_query AND stropncls_cd = '1000');
+INSERT INTO c_stropncls_mst (:insert_field) SELECT :cmn_set, '1100', '1', '0' WHERE NOT EXISTS (:sub_query AND stropncls_cd = '1100');
+INSERT INTO c_stropncls_mst (:insert_field) SELECT :cmn_set, '1200', '1', '0' WHERE NOT EXISTS (:sub_query AND stropncls_cd = '1200');
+INSERT INTO c_stropncls_mst (:insert_field) SELECT :cmn_set, '1250', '0', '0' WHERE NOT EXISTS (:sub_query AND stropncls_cd = '1250');
+INSERT INTO c_stropncls_mst (:insert_field) SELECT :cmn_set, '1300', '0', '0' WHERE NOT EXISTS (:sub_query AND stropncls_cd = '1300');
+INSERT INTO c_stropncls_mst (:insert_field) SELECT :cmn_set, '1400', '0', '0' WHERE NOT EXISTS (:sub_query AND stropncls_cd = '1400');
+INSERT INTO c_stropncls_mst (:insert_field) SELECT :cmn_set, '1500', '0', '0' WHERE NOT EXISTS (:sub_query AND stropncls_cd = '1500');
+INSERT INTO c_stropncls_mst (:insert_field) SELECT :cmn_set, '1600', '0', '0' WHERE NOT EXISTS (:sub_query AND stropncls_cd = '1600');
+INSERT INTO c_stropncls_mst (:insert_field) SELECT :cmn_set, '1700', '0', '0' WHERE NOT EXISTS (:sub_query AND stropncls_cd = '1700');
+INSERT INTO c_stropncls_mst (:insert_field) SELECT :cmn_set, '1800', '0', '0' WHERE NOT EXISTS (:sub_query AND stropncls_cd = '1800');
+INSERT INTO c_stropncls_mst (:insert_field) SELECT :cmn_set, '1900', '0', '0' WHERE NOT EXISTS (:sub_query AND stropncls_cd = '1900');
+INSERT INTO c_stropncls_mst (:insert_field) SELECT :cmn_set, '2000', '0', '0' WHERE NOT EXISTS (:sub_query AND stropncls_cd = '2000');
+INSERT INTO c_stropncls_mst (:insert_field) SELECT :cmn_set, '2100', '0', '0' WHERE NOT EXISTS (:sub_query AND stropncls_cd = '2100');
+INSERT INTO c_stropncls_mst (:insert_field) SELECT :cmn_set, '2200', '0', '0' WHERE NOT EXISTS (:sub_query AND stropncls_cd = '2200');
+INSERT INTO c_stropncls_mst (:insert_field) SELECT :cmn_set, '2300', '0', '0' WHERE NOT EXISTS (:sub_query AND stropncls_cd = '2300');
+INSERT INTO c_stropncls_mst (:insert_field) SELECT :cmn_set, '2350', '0', '0' WHERE NOT EXISTS (:sub_query AND stropncls_cd = '2350');
+INSERT INTO c_stropncls_mst (:insert_field) SELECT :cmn_set, '2370', '0', '0' WHERE NOT EXISTS (:sub_query AND stropncls_cd = '2370');
+INSERT INTO c_stropncls_mst (:insert_field) SELECT :cmn_set, '2371', '1', '0' WHERE NOT EXISTS (:sub_query AND stropncls_cd = '2371');
+INSERT INTO c_stropncls_mst (:insert_field) SELECT :cmn_set, '2372', '1', '0' WHERE NOT EXISTS (:sub_query AND stropncls_cd = '2372');
+INSERT INTO c_stropncls_mst (:insert_field) SELECT :cmn_set, '2400', '0', '0' WHERE NOT EXISTS (:sub_query AND stropncls_cd = '2400');
+INSERT INTO c_stropncls_mst (:insert_field) SELECT :cmn_set, '2500', '1', '0' WHERE NOT EXISTS (:sub_query AND stropncls_cd = '2500');
+INSERT INTO c_stropncls_mst (:insert_field) SELECT :cmn_set, '2600', '0', '0' WHERE NOT EXISTS (:sub_query AND stropncls_cd = '2600');
+INSERT INTO c_stropncls_mst (:insert_field) SELECT :cmn_set, '2700', '0', '0' WHERE NOT EXISTS (:sub_query AND stropncls_cd = '2700');
+INSERT INTO c_stropncls_mst (:insert_field) SELECT :cmn_set, '2800', '0', '0' WHERE NOT EXISTS (:sub_query AND stropncls_cd = '2800');
+INSERT INTO c_stropncls_mst (:insert_field) SELECT :cmn_set, '2900', '0', '0' WHERE NOT EXISTS (:sub_query AND stropncls_cd = '2900');
+INSERT INTO c_stropncls_mst (:insert_field) SELECT :cmn_set, '3000', '0', '0' WHERE NOT EXISTS (:sub_query AND stropncls_cd = '3000');
+INSERT INTO c_stropncls_mst (:insert_field) SELECT :cmn_set, '3100', '0', '0' WHERE NOT EXISTS (:sub_query AND stropncls_cd = '3100');
+INSERT INTO c_stropncls_mst (:insert_field) SELECT :cmn_set, '3150', '0', '0' WHERE NOT EXISTS (:sub_query AND stropncls_cd = '3150');
+INSERT INTO c_stropncls_mst (:insert_field) SELECT :cmn_set, '3200', '0', '0' WHERE NOT EXISTS (:sub_query AND stropncls_cd = '3200');
+INSERT INTO c_stropncls_mst (:insert_field) SELECT :cmn_set, '3300', '1', '0' WHERE NOT EXISTS (:sub_query AND stropncls_cd = '3300');
+INSERT INTO c_stropncls_mst (:insert_field) SELECT :cmn_set, '3400', '0', '0' WHERE NOT EXISTS (:sub_query AND stropncls_cd = '3400');
+INSERT INTO c_stropncls_mst (:insert_field) SELECT :cmn_set, '3500', '0', '0' WHERE NOT EXISTS (:sub_query AND stropncls_cd = '3500');
+INSERT INTO c_stropncls_mst (:insert_field) SELECT :cmn_set, '3550', '0', '0' WHERE NOT EXISTS (:sub_query AND stropncls_cd = '3550');
+INSERT INTO c_stropncls_mst (:insert_field) SELECT :cmn_set, '3600', '1', '0' WHERE NOT EXISTS (:sub_query AND stropncls_cd = '3600');
+INSERT INTO c_stropncls_mst (:insert_field) SELECT :cmn_set, '3650', '0', '0' WHERE NOT EXISTS (:sub_query AND stropncls_cd = '3650');
+INSERT INTO c_stropncls_mst (:insert_field) SELECT :cmn_set, '3700', '0', '0' WHERE NOT EXISTS (:sub_query AND stropncls_cd = '3700');
+INSERT INTO c_stropncls_mst (:insert_field) SELECT :cmn_set, '3800', '0', '0' WHERE NOT EXISTS (:sub_query AND stropncls_cd = '3800');
+INSERT INTO c_stropncls_mst (:insert_field) SELECT :cmn_set, '3900', '0', '0' WHERE NOT EXISTS (:sub_query AND stropncls_cd = '3900');
+INSERT INTO c_stropncls_mst (:insert_field) SELECT :cmn_set, '4000', '0', '0' WHERE NOT EXISTS (:sub_query AND stropncls_cd = '4000');
+INSERT INTO c_stropncls_mst (:insert_field) SELECT :cmn_set, '4100', '0', '0' WHERE NOT EXISTS (:sub_query AND stropncls_cd = '4100');
+INSERT INTO c_stropncls_mst (:insert_field) SELECT :cmn_set, '4200', '0', '0' WHERE NOT EXISTS (:sub_query AND stropncls_cd = '4200');
+INSERT INTO c_stropncls_mst (:insert_field) SELECT :cmn_set, '4300', '0', '0' WHERE NOT EXISTS (:sub_query AND stropncls_cd = '4300');
+INSERT INTO c_stropncls_mst (:insert_field) SELECT :cmn_set, '4400', '0', '0' WHERE NOT EXISTS (:sub_query AND stropncls_cd = '4400');
+INSERT INTO c_stropncls_mst (:insert_field) SELECT :cmn_set, '4500', '0', '0' WHERE NOT EXISTS (:sub_query AND stropncls_cd = '4500');
+INSERT INTO c_stropncls_mst (:insert_field) SELECT :cmn_set, '4600', '0', '0' WHERE NOT EXISTS (:sub_query AND stropncls_cd = '4600');
+INSERT INTO c_stropncls_mst (:insert_field) SELECT :cmn_set, '4700', '0', '0' WHERE NOT EXISTS (:sub_query AND stropncls_cd = '4700');
+INSERT INTO c_stropncls_mst (:insert_field) SELECT :cmn_set, '4800', '0', '0' WHERE NOT EXISTS (:sub_query AND stropncls_cd = '4800');
+INSERT INTO c_stropncls_mst (:insert_field) SELECT :cmn_set, '4900', '1', '0' WHERE NOT EXISTS (:sub_query AND stropncls_cd = '4900');
+INSERT INTO c_stropncls_mst (:insert_field) SELECT :cmn_set, '5000', '0', '0' WHERE NOT EXISTS (:sub_query AND stropncls_cd = '5000');
+
+
+INSERT INTO c_stropncls_mst (:insert_field) SELECT :cmn_set, '10000', '0', '0' WHERE NOT EXISTS (:sub_query AND stropncls_cd = '10000');
+INSERT INTO c_stropncls_mst (:insert_field) SELECT :cmn_set, '20000', '1', '0' WHERE NOT EXISTS (:sub_query AND stropncls_cd = '20000');
+INSERT INTO c_stropncls_mst (:insert_field) SELECT :cmn_set, '21000', '0', '0' WHERE NOT EXISTS (:sub_query AND stropncls_cd = '21000');

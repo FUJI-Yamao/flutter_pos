@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="80" height="48" viewBox="0 0 80 48">
+  <g id="icon_coupon" transform="translate(-656 -184)">
+    <rect id="長方形_6864" data-name="長方形 6864" width="80" height="48" transform="translate(656 184)" fill="gray" opacity="0"/>
+    <g id="グループ_16534" data-name="グループ 16534" transform="translate(18894 -3634.158)">
+      <path id="パス_28185" data-name="パス 28185" d="M23.727,24.506v9.915h32.2l9.8-8.086V16.421h-32.2Z" transform="translate(-18232 3822.558)" fill="#727981"/>
+      <path id="パス_28186" data-name="パス 28186" d="M23.727,16.421v4.23l5.252-4.23Z" transform="translate(-18232 3822.558)" fill="#727981"/>
+      <path id="パス_28187" data-name="パス 28187" d="M65.727,34.421v-4.23l-5.252,4.23Z" transform="translate(-18232 3822.558)" fill="#727981"/>
+      <path id="パス_28188" data-name="パス 28188" d="M20.727,37.421h48v-24h-48Zm46-11.91v9.91h-44v-20h44Z" transform="translate(-18232 3822.558)" fill="#727981"/>
+      <path id="パス_28189" data-name="パス 28189" d="M38.47,5.6H9.531L3,9.761v9.678L9.531,23.6h9.195V11.378L45,11.392V9.761Z" transform="translate(-18232 3822.558)" fill="#727981"/>
+      <path id="パス_28190" data-name="パス 28190" d="M0,2.6v24H18.726v-2H2V4.6H46v6.793h2V2.6Z" transform="translate(-18232 3822.558)" fill="#727981"/>
+    </g>
+  </g>
+</svg>

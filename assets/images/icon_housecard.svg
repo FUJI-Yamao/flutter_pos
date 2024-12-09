@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="152" height="112" viewBox="0 0 152 112">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="長方形_8749" data-name="長方形 8749" width="72" height="45" fill="#727981"/>
+    </clipPath>
+  </defs>
+  <g id="icon_housecard" transform="translate(-436 -320)">
+    <rect id="長方形_7035" data-name="長方形 7035" width="152" height="112" transform="translate(436 320)" fill="#727981" opacity="0.001"/>
+    <g id="グループ_19279" data-name="グループ 19279" transform="translate(476 354)">
+      <g id="グループ_19278" data-name="グループ 19278" clip-path="url(#clip-path)">
+        <path id="パス_28854" data-name="パス 28854" d="M69,0H3A3,3,0,0,0,0,3V42a3,3,0,0,0,3,3H69a3,3,0,0,0,3-3V3a3,3,0,0,0-3-3M19.818,33.806H9.318v-3h10.5Zm1.5-10.626a1.5,1.5,0,0,1-1.5,1.5h-9a1.5,1.5,0,0,1-1.5-1.5v-6.6a1.5,1.5,0,0,1,1.5-1.5h9a1.5,1.5,0,0,1,1.5,1.5ZM34.106,33.806h-10.5v-3h10.5Zm14.288,0h-10.5v-3h10.5Zm14.288,0h-10.5v-3h10.5Z" fill="#727981"/>
+      </g>
+    </g>
+  </g>
+</svg>

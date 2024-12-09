@@ -1,0 +1,25 @@
+[
+    uuid(55ba470e-e2cc-4039-26ad-97b38e354bf7),
+    version(1.0)
+]
+interface RpcIdl
+{
+    typedef [context_handle] void* CONTEXT_HANDLE;
+
+    typedef struct SCAN_DATA
+    {
+        [string] const char* scanData;
+        [string] const char* scanType;
+        [string] const char* scanLabel;
+    } SCAN_DATA;
+
+    CONTEXT_HANDLE Open(
+        [in] handle_t hBinding,
+        [in, ptr] SCAN_DATA* psData);
+
+    void ScanData(
+        [in] CONTEXT_HANDLE hContext);
+
+    void Close(
+        [in, out] CONTEXT_HANDLE* phContext);
+}

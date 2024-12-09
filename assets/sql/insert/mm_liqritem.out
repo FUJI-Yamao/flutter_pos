@@ -1,0 +1,68 @@
+-- c_liqritem_mst
+
+\set insert_field 'comp_cd, ins_datetime, upd_datetime, status, send_flg, upd_user, upd_system, liqritem_cd, liqritem_name1, liqritem_name2, liqritem_name3, powliqr_flg'
+
+-- comp_cd, ins_datetime, upd_datetime, status, send_flg, upd_user, upd_system
+\set cmn_set ' :COMP, \'now\', \'now\', \'0\', \'0\', \'999999\', \'2\' '
+
+\set sub_query 'SELECT liqritem_cd FROM c_liqritem_mst WHERE comp_cd = :COMP '
+
+-- c_liqritem_mst
+insert into c_liqritem_mst (:insert_field) SELECT :cmn_set, '110', E'清酒', E'', E'', '0' WHERE NOT EXISTS (:sub_query AND liqritem_cd = '110');
+insert into c_liqritem_mst (:insert_field) SELECT :cmn_set, '115', E'清酒（発泡）', E'', E'', '0' WHERE NOT EXISTS (:sub_query AND liqritem_cd = '115');
+insert into c_liqritem_mst (:insert_field) SELECT :cmn_set, '117', E'清酒（発泡（本則））', E'', E'', '0' WHERE NOT EXISTS (:sub_query AND liqritem_cd = '117');
+insert into c_liqritem_mst (:insert_field) SELECT :cmn_set, '150', E'合成清酒', E'', E'', '0' WHERE NOT EXISTS (:sub_query AND liqritem_cd = '150');
+insert into c_liqritem_mst (:insert_field) SELECT :cmn_set, '152', E'合成清酒（措置法）', E'', E'', '0' WHERE NOT EXISTS (:sub_query AND liqritem_cd = '152');
+insert into c_liqritem_mst (:insert_field) SELECT :cmn_set, '155', E'合成清酒（発泡）', E'', E'', '0' WHERE NOT EXISTS (:sub_query AND liqritem_cd = '155');
+insert into c_liqritem_mst (:insert_field) SELECT :cmn_set, '157', E'合成清酒（発泡（本則））', E'', E'', '0' WHERE NOT EXISTS (:sub_query AND liqritem_cd = '157');
+insert into c_liqritem_mst (:insert_field) SELECT :cmn_set, '210', E'連続式蒸留焼酎', E'', E'', '0' WHERE NOT EXISTS (:sub_query AND liqritem_cd = '210');
+insert into c_liqritem_mst (:insert_field) SELECT :cmn_set, '215', E'連続式蒸留焼酎（発泡）', E'', E'', '0' WHERE NOT EXISTS (:sub_query AND liqritem_cd = '215');
+insert into c_liqritem_mst (:insert_field) SELECT :cmn_set, '217', E'連続式蒸留焼酎（発泡（本則））', E'', E'', '0' WHERE NOT EXISTS (:sub_query AND liqritem_cd = '217');
+insert into c_liqritem_mst (:insert_field) SELECT :cmn_set, '250', E'単式蒸留焼酎', E'', E'', '0' WHERE NOT EXISTS (:sub_query AND liqritem_cd = '250');
+insert into c_liqritem_mst (:insert_field) SELECT :cmn_set, '255', E'単式蒸留焼酎（発泡）', E'', E'', '0' WHERE NOT EXISTS (:sub_query AND liqritem_cd = '255');
+insert into c_liqritem_mst (:insert_field) SELECT :cmn_set, '257', E'単式蒸留焼酎（発泡（本則））', E'', E'', '0' WHERE NOT EXISTS (:sub_query AND liqritem_cd = '257');
+insert into c_liqritem_mst (:insert_field) SELECT :cmn_set, '310', E'みりん', E'', E'', '0' WHERE NOT EXISTS (:sub_query AND liqritem_cd = '310');
+insert into c_liqritem_mst (:insert_field) SELECT :cmn_set, '311', E'みりん（措置法１）', E'', E'', '0' WHERE NOT EXISTS (:sub_query AND liqritem_cd = '311');
+insert into c_liqritem_mst (:insert_field) SELECT :cmn_set, '312', E'みりん（措置法２）', E'', E'', '0' WHERE NOT EXISTS (:sub_query AND liqritem_cd = '312');
+insert into c_liqritem_mst (:insert_field) SELECT :cmn_set, '313', E'みりん（措置法３）', E'', E'', '0' WHERE NOT EXISTS (:sub_query AND liqritem_cd = '313');
+insert into c_liqritem_mst (:insert_field) SELECT :cmn_set, '315', E'みりん（発泡）', E'', E'', '0' WHERE NOT EXISTS (:sub_query AND liqritem_cd = '315');
+insert into c_liqritem_mst (:insert_field) SELECT :cmn_set, '317', E'みりん（発泡（本則））', E'', E'', '0' WHERE NOT EXISTS (:sub_query AND liqritem_cd = '317');
+insert into c_liqritem_mst (:insert_field) SELECT :cmn_set, '350', E'ビール', E'', E'', '0' WHERE NOT EXISTS (:sub_query AND liqritem_cd = '350');
+insert into c_liqritem_mst (:insert_field) SELECT :cmn_set, '410', E'果実酒', E'', E'', '0' WHERE NOT EXISTS (:sub_query AND liqritem_cd = '410');
+insert into c_liqritem_mst (:insert_field) SELECT :cmn_set, '415', E'果実酒（発泡）', E'', E'', '0' WHERE NOT EXISTS (:sub_query AND liqritem_cd = '415');
+insert into c_liqritem_mst (:insert_field) SELECT :cmn_set, '417', E'果実酒（発泡（本則））', E'', E'', '0' WHERE NOT EXISTS (:sub_query AND liqritem_cd = '417');
+insert into c_liqritem_mst (:insert_field) SELECT :cmn_set, '450', E'甘味果実酒', E'', E'', '0' WHERE NOT EXISTS (:sub_query AND liqritem_cd = '450');
+insert into c_liqritem_mst (:insert_field) SELECT :cmn_set, '455', E'甘味果実酒（発泡）', E'', E'', '0' WHERE NOT EXISTS (:sub_query AND liqritem_cd = '455');
+insert into c_liqritem_mst (:insert_field) SELECT :cmn_set, '457', E'甘味果実酒（発泡（本則））', E'', E'', '0' WHERE NOT EXISTS (:sub_query AND liqritem_cd = '457');
+insert into c_liqritem_mst (:insert_field) SELECT :cmn_set, '510', E'ウイスキー', E'', E'', '0' WHERE NOT EXISTS (:sub_query AND liqritem_cd = '510');
+insert into c_liqritem_mst (:insert_field) SELECT :cmn_set, '515', E'ウイスキー（発泡）', E'', E'', '0' WHERE NOT EXISTS (:sub_query AND liqritem_cd = '515');
+insert into c_liqritem_mst (:insert_field) SELECT :cmn_set, '517', E'ウイスキー（発泡（本則））', E'', E'', '0' WHERE NOT EXISTS (:sub_query AND liqritem_cd = '517');
+insert into c_liqritem_mst (:insert_field) SELECT :cmn_set, '550', E'ブランデー', E'', E'', '0' WHERE NOT EXISTS (:sub_query AND liqritem_cd = '550');
+insert into c_liqritem_mst (:insert_field) SELECT :cmn_set, '555', E'ブランデー（発泡）', E'', E'', '0' WHERE NOT EXISTS (:sub_query AND liqritem_cd = '555');
+insert into c_liqritem_mst (:insert_field) SELECT :cmn_set, '557', E'ブランデー（発泡（本則））', E'', E'', '0' WHERE NOT EXISTS (:sub_query AND liqritem_cd = '557');
+insert into c_liqritem_mst (:insert_field) SELECT :cmn_set, '570', E'原料用アルコール', E'', E'', '0' WHERE NOT EXISTS (:sub_query AND liqritem_cd = '570');
+insert into c_liqritem_mst (:insert_field) SELECT :cmn_set, '581', E'発泡酒(１)（麦芽比率50％以上又はアルコール分10度以上）', E'', E'', '0' WHERE NOT EXISTS (:sub_query AND liqritem_cd = '581');
+insert into c_liqritem_mst (:insert_field) SELECT :cmn_set, '582', E'発泡酒(２)（麦芽比率25％以上50％未満）', E'', E'', '0' WHERE NOT EXISTS (:sub_query AND liqritem_cd = '582');
+insert into c_liqritem_mst (:insert_field) SELECT :cmn_set, '583', E'発泡酒(３)（その他）', E'', E'', '0' WHERE NOT EXISTS (:sub_query AND liqritem_cd = '583');
+insert into c_liqritem_mst (:insert_field) SELECT :cmn_set, '591', E'その他の醸造酒', E'', E'', '0' WHERE NOT EXISTS (:sub_query AND liqritem_cd = '591');
+insert into c_liqritem_mst (:insert_field) SELECT :cmn_set, '595', E'その他の醸造酒（発泡）', E'', E'', '0' WHERE NOT EXISTS (:sub_query AND liqritem_cd = '595');
+insert into c_liqritem_mst (:insert_field) SELECT :cmn_set, '597', E'その他の醸造酒（発泡（本則））', E'', E'', '0' WHERE NOT EXISTS (:sub_query AND liqritem_cd = '597');
+insert into c_liqritem_mst (:insert_field) SELECT :cmn_set, '610', E'スピリッツ', E'', E'', '0' WHERE NOT EXISTS (:sub_query AND liqritem_cd = '610');
+insert into c_liqritem_mst (:insert_field) SELECT :cmn_set, '615', E'スピリッツ（発泡）', E'', E'', '0' WHERE NOT EXISTS (:sub_query AND liqritem_cd = '615');
+insert into c_liqritem_mst (:insert_field) SELECT :cmn_set, '617', E'スピリッツ（発泡（本則））', E'', E'', '0' WHERE NOT EXISTS (:sub_query AND liqritem_cd = '617');
+insert into c_liqritem_mst (:insert_field) SELECT :cmn_set, '710', E'リキュール', E'', E'', '0' WHERE NOT EXISTS (:sub_query AND liqritem_cd = '710');
+insert into c_liqritem_mst (:insert_field) SELECT :cmn_set, '715', E'リキュール（発泡）', E'', E'', '0' WHERE NOT EXISTS (:sub_query AND liqritem_cd = '715');
+insert into c_liqritem_mst (:insert_field) SELECT :cmn_set, '717', E'リキュール（発泡（本則））', E'', E'', '0' WHERE NOT EXISTS (:sub_query AND liqritem_cd = '717');
+insert into c_liqritem_mst (:insert_field) SELECT :cmn_set, '820', E'粉末酒', E'', E'', '1' WHERE NOT EXISTS (:sub_query AND liqritem_cd = '820');
+insert into c_liqritem_mst (:insert_field) SELECT :cmn_set, '830', E'その他の雑酒', E'', E'', '0' WHERE NOT EXISTS (:sub_query AND liqritem_cd = '830');
+insert into c_liqritem_mst (:insert_field) SELECT :cmn_set, '831', E'その他の雑酒（みりん類似）', E'', E'', '0' WHERE NOT EXISTS (:sub_query AND liqritem_cd = '831');
+insert into c_liqritem_mst (:insert_field) SELECT :cmn_set, '833', E'その他の雑酒（みりん類似・措置法適用分１）', E'', E'', '0' WHERE NOT EXISTS (:sub_query AND liqritem_cd = '833');
+insert into c_liqritem_mst (:insert_field) SELECT :cmn_set, '834', E'その他の雑酒（みりん類似・措置法適用分２）', E'', E'', '0' WHERE NOT EXISTS (:sub_query AND liqritem_cd = '834');
+insert into c_liqritem_mst (:insert_field) SELECT :cmn_set, '838', E'その他の雑酒（みりん類似・措置法適用分３）', E'', E'', '0' WHERE NOT EXISTS (:sub_query AND liqritem_cd = '838');
+insert into c_liqritem_mst (:insert_field) SELECT :cmn_set, '832', E'その他の雑酒（その他のもの）', E'', E'', '0' WHERE NOT EXISTS (:sub_query AND liqritem_cd = '832');
+insert into c_liqritem_mst (:insert_field) SELECT :cmn_set, '837', E'その他の雑酒（その他のもの・発泡）', E'', E'', '0' WHERE NOT EXISTS (:sub_query AND liqritem_cd = '837');
+insert into c_liqritem_mst (:insert_field) SELECT :cmn_set, '850', E'雑酒', E'', E'', '0' WHERE NOT EXISTS (:sub_query AND liqritem_cd = '850');
+insert into c_liqritem_mst (:insert_field) SELECT :cmn_set, '852', E'雑酒（みりん類似）', E'', E'', '0' WHERE NOT EXISTS (:sub_query AND liqritem_cd = '852');
+insert into c_liqritem_mst (:insert_field) SELECT :cmn_set, '855', E'雑酒（発泡）', E'', E'', '0' WHERE NOT EXISTS (:sub_query AND liqritem_cd = '855');
+insert into c_liqritem_mst (:insert_field) SELECT :cmn_set, '857', E'雑酒（発泡（本則））', E'', E'', '0' WHERE NOT EXISTS (:sub_query AND liqritem_cd = '857');
+insert into c_liqritem_mst (:insert_field) SELECT :cmn_set, '000', E'全酒類', E'', E'', '0' WHERE NOT EXISTS (:sub_query AND liqritem_cd = '000');

@@ -1,0 +1,82 @@
+
+
+
+\set insert_field 'comp_cd, stre_cd, ins_datetime, upd_datetime, status, send_flg, upd_user, upd_system, menu_grp_cd, menu_object'
+
+-- comp_cd, stre_cd, ins_datetime, upd_datetime, status, send_flg, upd_user, upd_system
+\set cmn_set ' :COMP, :STRE, \'now\', \'now\', \'0\', \'0\', \'999999\', \'2\' '
+
+\set sub_query 'SELECT menu_grp_cd FROM c_pos_menu_mst WHERE comp_cd = :COMP AND stre_cd = :STRE AND menu_grp_cd = 1 '
+
+
+                                                   -- menu_grp_cd, menu_object
+INSERT INTO c_pos_menu_mst (:insert_field) SELECT :cmn_set, 1, '
+{
+  "groups": [
+    {
+      "name": "モードの選択",
+      "items": [
+        {
+          "path": "/register",
+          "icons": "barcode_reader",
+          "title": "登録・会計",
+          "subtitle": "商品の登録・会計をする"
+        },
+        {
+          "path": "/tranining",
+          "icons": "shield_moon_outlined",
+          "title": "訓練モード",
+          "subtitle": "売り上げずに商品の登録・会計をする"
+        },
+        {
+          "path": "/mode_change",
+          "icons": "mode_change",
+          "title": "モード切替",
+          "subtitle": "通常／対面、フルセルフ、精算機の切替"
+        }
+      ]
+    },
+    {
+      "name": "レジ締めの業務",
+      "items": [
+        {
+          "path": "/storeclose",
+          "icons": "remove_shopping_cart_outlined",
+          "title": "閉設",
+          "subtitle": "1日の売り上げを確認して集計する"
+        },
+        {
+          "path": "/batchReportOutput",
+          "icons": "receipt_long_outlined",
+          "title": "予約レポートの出力",
+          "subtitle": "予約レポートを出力する"
+        }
+      ]
+    },
+    {
+      "name": "その他のメニュー",
+      "items": [
+        {
+          "path": "/tmpstorecloseut1",
+          "icons": "storefront",
+          "title": "UT1閉設",
+          "subtitle": "UT1を閉設する"
+        },
+        {
+          "path": "/sound_setting",
+          "icons": "volume_up",
+          "title": "音の設定",
+          "subtitle": "音量の変更や音声の設定"
+        },
+        {
+          "path": "/testsetting",
+          "icons": "settings_applications",
+          "title": "設定(テスト用)",
+          "subtitle": "テスト用の設定"
+        }
+      ]
+    }
+  ]
+}
+'  WHERE NOT EXISTS (:sub_query) ;
+

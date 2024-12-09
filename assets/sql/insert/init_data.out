@@ -1,0 +1,54 @@
+
+\set insert_field  'ins_datetime, comp_cd, stre_cd, table_name, mode, mac_flg, data1, data2'
+
+-- region webapi用追加
+insert into c_histlog_mst (:insert_field) values ('2022-11-29 09:00:00', 1, 1, 'table_name0', 0, 0%3, 'sample data0', 'sample data0');
+insert into c_histlog_mst (:insert_field) values ('2022-11-29 09:00:00', 1, 1, 'table_name1', 1, 1%3, 'sample data1', 'sample data1');
+insert into c_histlog_mst (:insert_field) values ('2022-11-29 09:00:00', 1, 1, 'table_name2', 2, 2%3, 'sample data2', 'sample data2');
+insert into c_histlog_mst (:insert_field) values ('2022-11-29 09:00:00', 1, 1, 'table_name3', 3, 3%3, 'sample data3', 'sample data3');
+insert into c_histlog_mst (:insert_field) values ('2022-11-29 09:00:00', 1, 1, 'table_name4', 4, 4%3, 'sample data4', 'sample data4');
+
+--endregion
+
+-- region 初期データ 2
+insert into c_preset_img_mst values (:COMP,101,0,0,'item1',0,0,0,0,'','2022-10-31 15:00','2022-10-31 15:00',0,1,999999,32767);
+insert into c_preset_img_mst values (:COMP,102,0,0,'item2',0,0,0,0,'','2022-10-31 15:00','2022-10-31 15:00',0,1,999999,32767);
+insert into c_preset_img_mst values (:COMP,103,0,0,'item3',0,0,0,0,'','2022-10-31 15:00','2022-10-31 15:00',0,1,999999,32767);
+
+insert into c_preset_img_mst values (:COMP,201,0,0,'item201',0,0,0,0,'','2022-10-31 15:00','2022-10-31 15:00',0,1,999999,32767);
+insert into c_preset_img_mst values (:COMP,202,0,0,'item203',0,0,0,0,'','2022-10-31 15:00','2022-10-31 15:00',0,1,999999,32767);
+insert into c_preset_img_mst values (:COMP,204,0,0,'item204',0,0,0,0,'','2022-10-31 15:00','2022-10-31 15:00',0,1,999999,32767);
+insert into c_preset_img_mst values (:COMP,401,0,0,'item401',0,0,0,0,'','2022-10-31 15:00','2022-10-31 15:00',0,1,999999,32767);
+insert into c_preset_img_mst values (:COMP,402,0,0,'item402',0,0,0,0,'','2022-10-31 15:00','2022-10-31 15:00',0,1,999999,32767);
+insert into c_preset_img_mst values (:COMP,403,0,0,'item403',0,0,0,0,'','2022-10-31 15:00','2022-10-31 15:00',0,1,999999,32767);
+insert into c_preset_img_mst values (:COMP,404,0,0,'item404',0,0,0,0,'','2022-10-31 15:00','2022-10-31 15:00',0,1,999999,32767);
+
+insert into c_preset_img_mst values (:COMP,501,0,0,'test_item501',0,0,0,0,'','2022-10-31 15:00','2022-10-31 15:00',0,1,999999,32767);
+insert into c_preset_img_mst values (:COMP,502,0,0,'test_item502',0,0,0,0,'','2022-10-31 15:00','2022-10-31 15:00',0,1,999999,32767);
+insert into c_preset_img_mst values (:COMP,503,0,0,'test_item503',0,0,0,0,'','2022-10-31 15:00','2022-10-31 15:00',0,1,999999,32767);
+insert into c_preset_img_mst values (:COMP,504,0,0,'test_item504',0,0,0,0,'','2022-10-31 15:00','2022-10-31 15:00',0,1,999999,32767);
+insert into c_preset_img_mst values (:COMP,505,0,0,'test_item505',0,0,0,0,'','2022-10-31 15:00','2022-10-31 15:00',0,1,999999,32767);
+
+insert into c_preset_img_mst values (:COMP,601,0,0,'test_item601',0,0,0,0,'','2022-10-31 15:00','2022-10-31 15:00',0,1,999999,32767);
+insert into c_preset_img_mst values (:COMP,602,0,0,'test_item602',0,0,0,0,'','2022-10-31 15:00','2022-10-31 15:00',0,1,999999,32767);
+insert into c_preset_img_mst values (:COMP,603,0,0,'test_item603',0,0,0,0,'','2022-10-31 15:00','2022-10-31 15:00',0,1,999999,32767);
+insert into c_preset_img_mst values (:COMP,604,0,0,'test_item604',0,0,0,0,'','2022-10-31 15:00','2022-10-31 15:00',0,1,999999,32767);
+
+insert into c_preset_img_mst values (:COMP,701,0,0,'test_item701',0,0,0,0,'','2022-10-31 15:00','2022-10-31 15:00',0,1,999999,32767);
+insert into c_preset_img_mst values (:COMP,702,0,0,'test_item702',0,0,0,0,'','2022-10-31 15:00','2022-10-31 15:00',0,1,999999,32767);
+insert into c_preset_img_mst values (:COMP,703,0,0,'test_item703',0,0,0,0,'','2022-10-31 15:00','2022-10-31 15:00',0,1,999999,32767);
+insert into c_preset_img_mst values (:COMP,704,0,0,'test_item704',0,0,0,0,'','2022-10-31 15:00','2022-10-31 15:00',0,1,999999,32767);
+
+insert into c_preset_img_mst values (:COMP,801,0,0,'test_item801',0,0,0,0,'','2022-10-31 15:00','2022-10-31 15:00',0,1,999999,32767);
+insert into c_preset_img_mst values (:COMP,802,0,0,'test_item802',0,0,0,0,'','2022-10-31 15:00','2022-10-31 15:00',0,1,999999,32767);
+insert into c_preset_img_mst values (:COMP,803,0,0,'test_item803',0,0,0,0,'','2022-10-31 15:00','2022-10-31 15:00',0,1,999999,32767);
+insert into c_preset_img_mst values (:COMP,804,0,0,'test_item804',0,0,0,0,'','2022-10-31 15:00','2022-10-31 15:00',0,1,999999,32767);
+
+insert into c_preset_img_mst values (:COMP,901,0,0,'test_item901',0,0,0,0,'','2022-10-31 15:00','2022-10-31 15:00',0,1,999999,32767);
+insert into c_preset_img_mst values (:COMP,902,0,0,'test_item902',0,0,0,0,'','2022-10-31 15:00','2022-10-31 15:00',0,1,999999,32767);
+insert into c_preset_img_mst values (:COMP,903,0,0,'test_item903',0,0,0,0,'','2022-10-31 15:00','2022-10-31 15:00',0,1,999999,32767);
+insert into c_preset_img_mst values (:COMP,904,0,0,'test_item904',0,0,0,0,'','2022-10-31 15:00','2022-10-31 15:00',0,1,999999,32767);
+
+--endregion
+
+

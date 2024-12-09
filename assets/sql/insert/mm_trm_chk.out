@@ -1,0 +1,65 @@
+-- ターミナルチェックマスタ
+
+BEGIN;
+TRUNCATE c_trm_chk_mst;
+
+\set insert_field 'trm_chk_grp_cd, trm_cd, trm_data, trm_chk_eq_flg '
+\set sub_query 'SELECT * FROM c_trm_chk_mst WHERE '
+INSERT INTO c_trm_chk_mst (:insert_field) SELECT '1', '42', '1.00', '0' WHERE NOT EXISTS (:sub_query trm_chk_grp_cd = '1' AND trm_cd = '42');
+INSERT INTO c_trm_chk_mst (:insert_field) SELECT '2', '42', '2.00', '0' WHERE NOT EXISTS (:sub_query trm_chk_grp_cd = '2' AND trm_cd = '42');
+INSERT INTO c_trm_chk_mst (:insert_field) SELECT '3', '195', '1.00', '0' WHERE NOT EXISTS (:sub_query trm_chk_grp_cd = '3' AND trm_cd = '195');
+INSERT INTO c_trm_chk_mst (:insert_field) SELECT '4', '127', '0.00', '0' WHERE NOT EXISTS (:sub_query trm_chk_grp_cd = '4' AND trm_cd = '127');
+INSERT INTO c_trm_chk_mst (:insert_field) SELECT '5', '127', '1.00', '0' WHERE NOT EXISTS (:sub_query trm_chk_grp_cd = '5' AND trm_cd = '127');
+INSERT INTO c_trm_chk_mst (:insert_field) SELECT '6', '594', '0.00', '0' WHERE NOT EXISTS (:sub_query trm_chk_grp_cd = '6' AND trm_cd = '594');
+INSERT INTO c_trm_chk_mst (:insert_field) SELECT '7', '594', '1.00', '0' WHERE NOT EXISTS (:sub_query trm_chk_grp_cd = '7' AND trm_cd = '594');
+INSERT INTO c_trm_chk_mst (:insert_field) SELECT '8', '533', '0.00', '0' WHERE NOT EXISTS (:sub_query trm_chk_grp_cd = '8' AND trm_cd = '533');
+INSERT INTO c_trm_chk_mst (:insert_field) SELECT '9', '533', '1.00', '0' WHERE NOT EXISTS (:sub_query trm_chk_grp_cd = '9' AND trm_cd = '533');
+INSERT INTO c_trm_chk_mst (:insert_field) SELECT '10', '75', '0.00', '0' WHERE NOT EXISTS (:sub_query trm_chk_grp_cd = '10' AND trm_cd = '75'); -- 案分
+INSERT INTO c_trm_chk_mst (:insert_field) SELECT '11', '75', '0.00', '1' WHERE NOT EXISTS (:sub_query trm_chk_grp_cd = '11' AND trm_cd = '75'); -- 非案分
+INSERT INTO c_trm_chk_mst (:insert_field) SELECT '12', '567', '0.00', '0' WHERE NOT EXISTS (:sub_query trm_chk_grp_cd = '12' AND trm_cd = '567');
+INSERT INTO c_trm_chk_mst (:insert_field) SELECT '13', '567', '0.00', '1' WHERE NOT EXISTS (:sub_query trm_chk_grp_cd = '13' AND trm_cd = '567');
+INSERT INTO c_trm_chk_mst (:insert_field) SELECT '14', '218', '0.00', '0' WHERE NOT EXISTS (:sub_query trm_chk_grp_cd = '14' AND trm_cd = '218');
+INSERT INTO c_trm_chk_mst (:insert_field) SELECT '15', '218', '0.00', '1' WHERE NOT EXISTS (:sub_query trm_chk_grp_cd = '15' AND trm_cd = '218');
+INSERT INTO c_trm_chk_mst (:insert_field) SELECT '16', '369', '0.00', '0' WHERE NOT EXISTS (:sub_query trm_chk_grp_cd = '16' AND trm_cd = '369');
+INSERT INTO c_trm_chk_mst (:insert_field) SELECT '17', '369', '0.00', '1' WHERE NOT EXISTS (:sub_query trm_chk_grp_cd = '17' AND trm_cd = '369');
+-- ターミナル590は、コープさっぽろ特注(cm_RainbowCard_system)のため削除された
+-- INSERT INTO c_trm_chk_mst (:insert_field) SELECT '18', '590', '0.00', '0' WHERE NOT EXISTS (:sub_query trm_chk_grp_cd = '18' AND trm_cd = '590');
+-- INSERT INTO c_trm_chk_mst (:insert_field) SELECT '19', '590', '0.00', '1' WHERE NOT EXISTS (:sub_query trm_chk_grp_cd = '19' AND trm_cd = '590');
+INSERT INTO c_trm_chk_mst (:insert_field) SELECT '20', '602', '0.00', '0' WHERE NOT EXISTS (:sub_query trm_chk_grp_cd = '20' AND trm_cd = '602');
+INSERT INTO c_trm_chk_mst (:insert_field) SELECT '21', '602', '0.00', '1' WHERE NOT EXISTS (:sub_query trm_chk_grp_cd = '21' AND trm_cd = '602');
+INSERT INTO c_trm_chk_mst (:insert_field) SELECT '22', '603', '0.00', '0' WHERE NOT EXISTS (:sub_query trm_chk_grp_cd = '22' AND trm_cd = '603');
+INSERT INTO c_trm_chk_mst (:insert_field) SELECT '23', '603', '0.00', '1' WHERE NOT EXISTS (:sub_query trm_chk_grp_cd = '23' AND trm_cd = '603');
+INSERT INTO c_trm_chk_mst (:insert_field) SELECT '24', '604', '0.00', '0' WHERE NOT EXISTS (:sub_query trm_chk_grp_cd = '24' AND trm_cd = '604');
+INSERT INTO c_trm_chk_mst (:insert_field) SELECT '25', '604', '0.00', '1' WHERE NOT EXISTS (:sub_query trm_chk_grp_cd = '25' AND trm_cd = '604');
+INSERT INTO c_trm_chk_mst (:insert_field) SELECT '26', '605', '0.00', '0' WHERE NOT EXISTS (:sub_query trm_chk_grp_cd = '26' AND trm_cd = '605');
+INSERT INTO c_trm_chk_mst (:insert_field) SELECT '27', '605', '0.00', '1' WHERE NOT EXISTS (:sub_query trm_chk_grp_cd = '27' AND trm_cd = '605');
+INSERT INTO c_trm_chk_mst (:insert_field) SELECT '28', '533', '0.00', '0' WHERE NOT EXISTS (:sub_query trm_chk_grp_cd = '28' AND trm_cd = '533');
+INSERT INTO c_trm_chk_mst (:insert_field) SELECT '28', '567', '0.00', '0' WHERE NOT EXISTS (:sub_query trm_chk_grp_cd = '28' AND trm_cd = '567');
+INSERT INTO c_trm_chk_mst (:insert_field) SELECT '29', '75', '0.00', '0' WHERE NOT EXISTS (:sub_query trm_chk_grp_cd = '29' AND trm_cd = '75');
+INSERT INTO c_trm_chk_mst (:insert_field) SELECT '29', '218', '0.00', '0' WHERE NOT EXISTS (:sub_query trm_chk_grp_cd = '29' AND trm_cd = '218');
+INSERT INTO c_trm_chk_mst (:insert_field) SELECT '30', '75', '0.00', '1' WHERE NOT EXISTS (:sub_query trm_chk_grp_cd = '30' AND trm_cd = '75');
+INSERT INTO c_trm_chk_mst (:insert_field) SELECT '30', '218', '0.00', '0' WHERE NOT EXISTS (:sub_query trm_chk_grp_cd = '30' AND trm_cd = '218');
+INSERT INTO c_trm_chk_mst (:insert_field) SELECT '31', '289', '0.00', '0' WHERE NOT EXISTS (:sub_query trm_chk_grp_cd = '31' AND trm_cd = '289');
+INSERT INTO c_trm_chk_mst (:insert_field) SELECT '32', '691', '0.00', '1' WHERE NOT EXISTS (:sub_query trm_chk_grp_cd = '32' AND trm_cd = '691');
+INSERT INTO c_trm_chk_mst (:insert_field) SELECT '33', '42', '0.00', '1' WHERE NOT EXISTS (:sub_query trm_chk_grp_cd = '33' AND trm_cd = '42');
+INSERT INTO c_trm_chk_mst (:insert_field) SELECT '34', '1145', '0.00', '0' WHERE NOT EXISTS (:sub_query trm_chk_grp_cd = '34' AND trm_cd = '1145');
+INSERT INTO c_trm_chk_mst (:insert_field) SELECT '35', '1145', '0.00', '1' WHERE NOT EXISTS (:sub_query trm_chk_grp_cd = '35' AND trm_cd = '1145');
+INSERT INTO c_trm_chk_mst (:insert_field) SELECT '36', '603', '0.00', '0' WHERE NOT EXISTS (:sub_query trm_chk_grp_cd = '36' AND trm_cd = '603');
+INSERT INTO c_trm_chk_mst (:insert_field) SELECT '37', '603', '0.00', '1' WHERE NOT EXISTS (:sub_query trm_chk_grp_cd = '37' AND trm_cd = '603');
+INSERT INTO c_trm_chk_mst (:insert_field) SELECT '37', '1145', '0.00', '1' WHERE NOT EXISTS (:sub_query trm_chk_grp_cd = '37' AND trm_cd = '1145');
+INSERT INTO c_trm_chk_mst (:insert_field) SELECT '38', '603', '2.00', '0' WHERE NOT EXISTS (:sub_query trm_chk_grp_cd = '38' AND trm_cd = '603');
+INSERT INTO c_trm_chk_mst (:insert_field) SELECT '39', '603', '3.00', '0' WHERE NOT EXISTS (:sub_query trm_chk_grp_cd = '39' AND trm_cd = '603');
+INSERT INTO c_trm_chk_mst (:insert_field) SELECT '40', '766', '0.00', '0' WHERE NOT EXISTS (:sub_query trm_chk_grp_cd = '40' AND trm_cd = '766');
+INSERT INTO c_trm_chk_mst (:insert_field) SELECT '41', '289', '0.00', '1' WHERE NOT EXISTS (:sub_query trm_chk_grp_cd = '41' AND trm_cd = '289');
+INSERT INTO c_trm_chk_mst (:insert_field) SELECT '41', '602', '0.00', '1' WHERE NOT EXISTS (:sub_query trm_chk_grp_cd = '41' AND trm_cd = '602');
+INSERT INTO c_trm_chk_mst (:insert_field) SELECT '42', '444', '0.00', '1' WHERE NOT EXISTS (:sub_query trm_chk_grp_cd = '42' AND trm_cd = '444');
+INSERT INTO c_trm_chk_mst (:insert_field) SELECT '43', '75', '0.00', '0' WHERE NOT EXISTS (:sub_query trm_chk_grp_cd = '43' AND trm_cd = '75');
+INSERT INTO c_trm_chk_mst (:insert_field) SELECT '43', '444', '0.00', '1' WHERE NOT EXISTS (:sub_query trm_chk_grp_cd = '43' AND trm_cd = '444');
+INSERT INTO c_trm_chk_mst (:insert_field) SELECT '44', '75', '0.00', '1' WHERE NOT EXISTS (:sub_query trm_chk_grp_cd = '44' AND trm_cd = '75');
+INSERT INTO c_trm_chk_mst (:insert_field) SELECT '44', '444', '0.00', '1' WHERE NOT EXISTS (:sub_query trm_chk_grp_cd = '44' AND trm_cd = '444');
+INSERT INTO c_trm_chk_mst (:insert_field) SELECT '45', '1197', '0.00', '0' WHERE NOT EXISTS (:sub_query trm_chk_grp_cd = '45' AND trm_cd = '1197'); -- 粗利印字：する
+INSERT INTO c_trm_chk_mst (:insert_field) SELECT '46', '247', '0.00', '0' WHERE NOT EXISTS (:sub_query trm_chk_grp_cd = '46' AND trm_cd = '247'); -- 会員売上金額印字：税込合計
+INSERT INTO c_trm_chk_mst (:insert_field) SELECT '47', '247', '0.00', '1' WHERE NOT EXISTS (:sub_query trm_chk_grp_cd = '47' AND trm_cd = '247'); -- 会員売上金額印字：純売上金額
+INSERT INTO c_trm_chk_mst (:insert_field) SELECT '48', '1355', '0.00', '0' WHERE NOT EXISTS (:sub_query trm_chk_grp_cd = '48' AND trm_cd = '1355'); -- 過不足印字：する
+
+COMMIT;

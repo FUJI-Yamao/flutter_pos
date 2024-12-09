@@ -1,0 +1,12 @@
+-- 初期値用ファイル(バージョンアップでは反映されない)
+
+\set insert_field 'comp_cd, stre_cd, ins_datetime, upd_datetime, status, send_flg, upd_user, upd_system, staff_cd, name, passwd, auth_lvl, svr_auth_lvl, nochk_overlap '
+
+-- comp_cd, stre_cd, ins_datetime, upd_datetime, status, send_flg, upd_user, upd_system, nochk_overlap
+\set cmn_set ' :COMP, :STRE, \'now\', \'now\', \'0\', \'0\', \'999999\', \'2\' '
+
+\set sub_query 'SELECT * FROM c_staff_mst WHERE comp_cd = :COMP AND stre_cd = :STRE '
+
+-- c_staff_mst
+INSERT INTO c_staff_mst (:insert_field) SELECT :cmn_set, '999999', 'ﾒﾝﾃﾅﾝｽ', '12345678', '999', '999', '1' WHERE NOT EXISTS (:sub_query AND staff_cd = '999999');
+

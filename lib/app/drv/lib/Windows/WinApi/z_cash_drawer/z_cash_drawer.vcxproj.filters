@@ -1,0 +1,398 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ソース ファイル">
+      <UniqueIdentifier>{e75ebb83-159b-4352-81f5-4f2890035ab2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="インターフェース">
+      <UniqueIdentifier>{ccfff8ec-be34-4753-8aed-cca997c6e198}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Opos">
+      <UniqueIdentifier>{36cc27c1-5414-442b-9024-7283adcf603c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="OposSystem">
+      <UniqueIdentifier>{d2a37c74-b065-4b57-8d59-53e2e9d615d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="COpos">
+      <UniqueIdentifier>{1e02c350-bb11-47f2-be9e-fd61e1b2dd93}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Opos\Opos.h">
+      <Filter>Opos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Opos\OposBacc.h">
+      <Filter>Opos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Opos\OposBb.h">
+      <Filter>Opos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Opos\OposBdsp.h">
+      <Filter>Opos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Opos\OposBelt.h">
+      <Filter>Opos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Opos\OposBio.h">
+      <Filter>Opos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Opos\OposCacc.h">
+      <Filter>Opos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Opos\OposCash.h">
+      <Filter>Opos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Opos\OposCat.h">
+      <Filter>Opos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Opos\OposChan.h">
+      <Filter>Opos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Opos\OposChk.h">
+      <Filter>Opos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Opos\OposCoin.h">
+      <Filter>Opos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Opos\OposDisp.h">
+      <Filter>Opos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Opos\OposDmon.h">
+      <Filter>Opos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Opos\OposEj.h">
+      <Filter>Opos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Opos\OposEvrw.h">
+      <Filter>Opos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Opos\OposFptr.h">
+      <Filter>Opos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Opos\OposGate.h">
+      <Filter>Opos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Opos\OposGctl.h">
+      <Filter>Opos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Opos\OposGdsp.h">
+      <Filter>Opos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Opos\OposImg.h">
+      <Filter>Opos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Opos\OposIrcg.h">
+      <Filter>Opos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Opos\OposItem.h">
+      <Filter>Opos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Opos\OposKbd.h">
+      <Filter>Opos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Opos\OposLgt.h">
+      <Filter>Opos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Opos\OposLock.h">
+      <Filter>Opos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Opos\OposMicr.h">
+      <Filter>Opos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Opos\OposMotion.h">
+      <Filter>Opos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Opos\OposMsr.h">
+      <Filter>Opos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Opos\OposPcrw.h">
+      <Filter>Opos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Opos\OposPpad.h">
+      <Filter>Opos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Opos\OposPtr.h">
+      <Filter>Opos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Opos\OposPwr.h">
+      <Filter>Opos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Opos\OposRfid.h">
+      <Filter>Opos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Opos\OposRod.h">
+      <Filter>Opos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Opos\OposScal.h">
+      <Filter>Opos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Opos\OposScan.h">
+      <Filter>Opos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Opos\OposScrw.h">
+      <Filter>Opos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Opos\OposSig.h">
+      <Filter>Opos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Opos\OposSpch.h">
+      <Filter>Opos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Opos\OposSply.h">
+      <Filter>Opos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Opos\OposSrec.h">
+      <Filter>Opos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Opos\OposStat.h">
+      <Filter>Opos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Opos\OposTone.h">
+      <Filter>Opos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Opos\OposTot.h">
+      <Filter>Opos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Opos\OposVcap.h">
+      <Filter>Opos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Opos\OposVrcg.h">
+      <Filter>Opos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\OposSystem\NonCopyable.h">
+      <Filter>OposSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\OposSystem\OposDebug.h">
+      <Filter>OposSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\OposSystem\OposDefs.h">
+      <Filter>OposSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\OposSystem\Singleton.h">
+      <Filter>OposSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\OposSystem\stdafx.h">
+      <Filter>OposSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\OposSystem\TaskManager.h">
+      <Filter>OposSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\COpos\COposDrw.h">
+      <Filter>COpos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\COPOSDrawerIdl\RpcIdlRcv.h">
+      <Filter>インターフェース</Filter>
+    </ClInclude>
+    <ClInclude Include="..\COPOSDrawerIdl\RpcIdlSnd.h">
+      <Filter>インターフェース</Filter>
+    </ClInclude>
+    <ClInclude Include="framework.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="..\zCashDrawer\CashDrawerAPI.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="..\zCashDrawer\CashDrawerControl.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="..\zCashDrawer\RpcManager.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="..\zCashDrawer\RpcUser.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="..\OposSystem\Console.h">
+      <Filter>OposSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\OposSystem\IRpc.h">
+      <Filter>OposSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\OposSystem\RemoteProc.h">
+      <Filter>OposSystem</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\OposSystem\OposDebug.cpp">
+      <Filter>OposSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\OposSystem\Singleton.cpp">
+      <Filter>OposSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\OposSystem\TaskManager.cpp">
+      <Filter>OposSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\COPOSDrawerIdl\RpcIdlRcv_s.c">
+      <Filter>インターフェース</Filter>
+    </ClCompile>
+    <ClCompile Include="..\COPOSDrawerIdl\RpcIdlSnd_c.c">
+      <Filter>インターフェース</Filter>
+    </ClCompile>
+    <ClCompile Include="dllmain.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="..\zCashDrawer\CashDrawerAPI.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="..\zCashDrawer\CashDrawerControl.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="..\zCashDrawer\RpcManager.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="..\zCashDrawer\RpcUser.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="..\OposSystem\RemoteProc.cpp">
+      <Filter>OposSystem</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Opos\Opos.hi">
+      <Filter>Opos</Filter>
+    </None>
+    <None Include="..\Opos\OposAll.bas">
+      <Filter>Opos</Filter>
+    </None>
+    <None Include="..\Opos\OposBacc.hi">
+      <Filter>Opos</Filter>
+    </None>
+    <None Include="..\Opos\OposBb.hi">
+      <Filter>Opos</Filter>
+    </None>
+    <None Include="..\Opos\OposBdsp.hi">
+      <Filter>Opos</Filter>
+    </None>
+    <None Include="..\Opos\OposBelt.hi">
+      <Filter>Opos</Filter>
+    </None>
+    <None Include="..\Opos\OposBio.hi">
+      <Filter>Opos</Filter>
+    </None>
+    <None Include="..\Opos\OposCacc.hi">
+      <Filter>Opos</Filter>
+    </None>
+    <None Include="..\Opos\OposCash.hi">
+      <Filter>Opos</Filter>
+    </None>
+    <None Include="..\Opos\OposCat.hi">
+      <Filter>Opos</Filter>
+    </None>
+    <None Include="..\Opos\OposChan.hi">
+      <Filter>Opos</Filter>
+    </None>
+    <None Include="..\Opos\OposChk.hi">
+      <Filter>Opos</Filter>
+    </None>
+    <None Include="..\Opos\OposCoin.hi">
+      <Filter>Opos</Filter>
+    </None>
+    <None Include="..\Opos\OposDisp.hi">
+      <Filter>Opos</Filter>
+    </None>
+    <None Include="..\Opos\OposDmon.hi">
+      <Filter>Opos</Filter>
+    </None>
+    <None Include="..\Opos\OposEj.hi">
+      <Filter>Opos</Filter>
+    </None>
+    <None Include="..\Opos\OposEvrw.hi">
+      <Filter>Opos</Filter>
+    </None>
+    <None Include="..\Opos\OposFptr.hi">
+      <Filter>Opos</Filter>
+    </None>
+    <None Include="..\Opos\OposGate.hi">
+      <Filter>Opos</Filter>
+    </None>
+    <None Include="..\Opos\OposGctl.hi">
+      <Filter>Opos</Filter>
+    </None>
+    <None Include="..\Opos\OposGdsp.hi">
+      <Filter>Opos</Filter>
+    </None>
+    <None Include="..\Opos\OposImg.hi">
+      <Filter>Opos</Filter>
+    </None>
+    <None Include="..\Opos\OposIrcg.hi">
+      <Filter>Opos</Filter>
+    </None>
+    <None Include="..\Opos\OposItem.hi">
+      <Filter>Opos</Filter>
+    </None>
+    <None Include="..\Opos\OposKbd.hi">
+      <Filter>Opos</Filter>
+    </None>
+    <None Include="..\Opos\OposLgt.hi">
+      <Filter>Opos</Filter>
+    </None>
+    <None Include="..\Opos\OposLock.hi">
+      <Filter>Opos</Filter>
+    </None>
+    <None Include="..\Opos\OposMicr.hi">
+      <Filter>Opos</Filter>
+    </None>
+    <None Include="..\Opos\OposMotion.hi">
+      <Filter>Opos</Filter>
+    </None>
+    <None Include="..\Opos\OposMsr.hi">
+      <Filter>Opos</Filter>
+    </None>
+    <None Include="..\Opos\OposPcrw.hi">
+      <Filter>Opos</Filter>
+    </None>
+    <None Include="..\Opos\OposPpad.hi">
+      <Filter>Opos</Filter>
+    </None>
+    <None Include="..\Opos\OposPtr.hi">
+      <Filter>Opos</Filter>
+    </None>
+    <None Include="..\Opos\OposPwr.hi">
+      <Filter>Opos</Filter>
+    </None>
+    <None Include="..\Opos\OposRfid.hi">
+      <Filter>Opos</Filter>
+    </None>
+    <None Include="..\Opos\OposRod.hi">
+      <Filter>Opos</Filter>
+    </None>
+    <None Include="..\Opos\OposScal.hi">
+      <Filter>Opos</Filter>
+    </None>
+    <None Include="..\Opos\OposScan.hi">
+      <Filter>Opos</Filter>
+    </None>
+    <None Include="..\Opos\OposScrw.hi">
+      <Filter>Opos</Filter>
+    </None>
+    <None Include="..\Opos\OposSig.hi">
+      <Filter>Opos</Filter>
+    </None>
+    <None Include="..\Opos\OposSpch.hi">
+      <Filter>Opos</Filter>
+    </None>
+    <None Include="..\Opos\OposSply.hi">
+      <Filter>Opos</Filter>
+    </None>
+    <None Include="..\Opos\OposSrec.hi">
+      <Filter>Opos</Filter>
+    </None>
+    <None Include="..\Opos\OposTone.hi">
+      <Filter>Opos</Filter>
+    </None>
+    <None Include="..\Opos\OposTot.hi">
+      <Filter>Opos</Filter>
+    </None>
+    <None Include="..\Opos\OposVcap.hi">
+      <Filter>Opos</Filter>
+    </None>
+    <None Include="..\Opos\OposVrcg.hi">
+      <Filter>Opos</Filter>
+    </None>
+  </ItemGroup>
+</Project>

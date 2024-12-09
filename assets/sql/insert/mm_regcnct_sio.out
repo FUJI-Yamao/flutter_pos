@@ -1,0 +1,17 @@
+-- SIOキー設定で使用
+-- psql -U postgres tpr_db -f ｍｍ_regcnct_sio.out -v COMP=1 -v STRE=1 -v MACNO=1
+
+\set insert_field 'comp_cd, stre_cd, mac_no, ins_datetime, upd_datetime, status, send_flg, upd_user, upd_system, com_port_no, cnct_kind, cnct_grp, sio_rate, sio_stop, sio_record, sio_parity, qcjc_flg'
+
+-- comp_cd, stre_cd, mac_no, ins_datetime, upd_datetime, status, send_flg, upd_user, upd_system
+\set cmn_set ' :COMP, :STRE, :MACNO, \'now\', \'now\', \'0\', \'0\', \'999999\', \'2\' '
+
+\set sub_query 'select com_port_no FROM c_regcnct_sio_mst WHERE comp_cd = :COMP AND stre_cd = :STRE AND mac_no=:MACNO'
+
+
+-- 通常
+--         com_port_no, cnct_kind, cnct_grp, sio_rate, sio_stop, sio_record, sio_parity, qcjc_flg
+insert into c_regcnct_sio_mst (:insert_field) SELECT :cmn_set, '1', '0', '0', '-1', '-1', '-1', '-1', '0' WHERE NOT EXISTS (:sub_query AND com_port_no = '1');
+insert into c_regcnct_sio_mst (:insert_field) SELECT :cmn_set, '2', '0', '0', '-1', '-1', '-1', '-1', '0' WHERE NOT EXISTS (:sub_query AND com_port_no = '2');
+insert into c_regcnct_sio_mst (:insert_field) SELECT :cmn_set, '3', '0', '0', '-1', '-1', '-1', '-1', '0' WHERE NOT EXISTS (:sub_query AND com_port_no = '3');
+insert into c_regcnct_sio_mst (:insert_field) SELECT :cmn_set, '4', '0', '0', '-1', '-1', '-1', '-1', '0' WHERE NOT EXISTS (:sub_query AND com_port_no = '4');

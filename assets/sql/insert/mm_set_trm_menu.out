@@ -1,0 +1,93 @@
+--
+-- mm_set_trm_menu.out
+--
+-- Author   : Web Series
+-- Start    : 16.01.08  : H.Nakamura  : First Edition
+-- Ready    : 16.01.08  : H.Nakamura
+-- Modified : 23.04.21
+-- *--------------------------------------------------------------------*
+-- *       COPYRIGHT(C) 2015 TERAOKA SEIKO CO., LTD
+-- *--------------------------------------------------------------------*/
+
+BEGIN;
+DELETE FROM c_trm_menu_mst WHERE comp_cd = :COMP AND stre_cd = :STRE;
+
+\set insert_field_set 'comp_cd, stre_cd, ins_datetime, upd_datetime, status, send_flg, upd_user, upd_system, menu_kind, trm_btn_max, trm_menu, trm_quick, trm_title, trm_page, trm_btn_pos, trm_tag, trm_btn_name, trm_btn_color, cust_disp_flg'
+-- comp_cd, stre_cd, ins_datetime, upd_datetime, status, send_flg, upd_user, upd_system
+\set cmn_set ' :COMP, :STRE, \'now\', \'now\', \'0\', \'0\', \'999999\', \'2\' '
+
+\set sub_query_1 'SELECT * FROM c_trm_menu_mst WHERE comp_cd = :COMP AND stre_cd = :STRE AND menu_kind = '0' '
+\set sub_query_2 'SELECT * FROM c_trm_menu_mst WHERE comp_cd = :COMP AND stre_cd = :STRE AND menu_kind = '2' '
+
+--                              menu_kind, trm_btn_max, trm_menu, trm_quick, trm_title, trm_page, trm_btn_pos, trm_tag, trm_btn_name, trm_btn_color, cust_disp_flg
+INSERT INTO c_trm_menu_mst (:insert_field_set) SELECT :cmn_set, '0', '0', '2', '0', 'ターミナル設定', '1', '2', '0', 'ターミナル設定一覧', '5', '0' WHERE NOT EXISTS (:sub_query_1 AND trm_page = '1' AND trm_btn_pos = '2');
+
+-- comp_cd, stre_cd, ins_datetime, upd_datetime, status, send_flg, upd_user, upd_system, menu_kind, trm_btn_max, trm_menu, trm_quick, trm_title,
+\set cmn_set ' :COMP, :STRE, \'now\', \'now\', \'0\', \'0\', \'999999\', \'2\', \'2\', \'1\', \'0\', \'0\', \'ターミナル設定一覧\' '
+
+INSERT INTO c_trm_menu_mst (:insert_field_set) SELECT :cmn_set, '1', '1', '2', E'登録オペレーション', '5', '0' WHERE NOT EXISTS (:sub_query_2 AND trm_page = '1' AND trm_btn_pos = '1');
+INSERT INTO c_trm_menu_mst (:insert_field_set) SELECT :cmn_set, '1', '2', '16', E'表示', '5', '0' WHERE NOT EXISTS (:sub_query_2 AND trm_page = '1' AND trm_btn_pos = '2');
+INSERT INTO c_trm_menu_mst (:insert_field_set) SELECT :cmn_set, '1', '3', '17', E'訂正／訓練', '5', '0' WHERE NOT EXISTS (:sub_query_2 AND trm_page = '1' AND trm_btn_pos = '3');
+INSERT INTO c_trm_menu_mst (:insert_field_set) SELECT :cmn_set, '1', '4', '49', E'返品／返瓶', '5', '0' WHERE NOT EXISTS (:sub_query_2 AND trm_page = '1' AND trm_btn_pos = '4');
+INSERT INTO c_trm_menu_mst (:insert_field_set) SELECT :cmn_set, '1', '5', '26', E'品券／会計', '5', '0' WHERE NOT EXISTS (:sub_query_2 AND trm_page = '1' AND trm_btn_pos = '5');
+INSERT INTO c_trm_menu_mst (:insert_field_set) SELECT :cmn_set, '1', '6', '59', E'価格確認', '5', '0' WHERE NOT EXISTS (:sub_query_2 AND trm_page = '1' AND trm_btn_pos = '6');
+INSERT INTO c_trm_menu_mst (:insert_field_set) SELECT :cmn_set, '1', '7', '19', E'ドロアー', '5', '0' WHERE NOT EXISTS (:sub_query_2 AND trm_page = '1' AND trm_btn_pos = '7');
+INSERT INTO c_trm_menu_mst (:insert_field_set) SELECT :cmn_set, '1', '8', '7', E'釣銭機／釣札機', '5', '0' WHERE NOT EXISTS (:sub_query_2 AND trm_page = '1' AND trm_btn_pos = '8');
+INSERT INTO c_trm_menu_mst (:insert_field_set) SELECT :cmn_set, '1', '9', '5', E'レシート印字', '5', '0' WHERE NOT EXISTS (:sub_query_2 AND trm_page = '1' AND trm_btn_pos = '9');
+INSERT INTO c_trm_menu_mst (:insert_field_set) SELECT :cmn_set, '1', '10', '29', E'レポート印字', '5', '0' WHERE NOT EXISTS (:sub_query_2 AND trm_page = '1' AND trm_btn_pos = '10');
+INSERT INTO c_trm_menu_mst (:insert_field_set) SELECT :cmn_set, '1', '11', '21', E'領収書', '5', '0' WHERE NOT EXISTS (:sub_query_2 AND trm_page = '1' AND trm_btn_pos = '11');
+INSERT INTO c_trm_menu_mst (:insert_field_set) SELECT :cmn_set, '1', '12', '62', E'記録確認\n電子ジャーナル', '5', '0' WHERE NOT EXISTS (:sub_query_2 AND trm_page = '1' AND trm_btn_pos = '12');
+INSERT INTO c_trm_menu_mst (:insert_field_set) SELECT :cmn_set, '1', '16', '65', E'ＭＳ関連', '5', '0' WHERE NOT EXISTS (:sub_query_2 AND trm_page = '1' AND trm_btn_pos = '16');
+INSERT INTO c_trm_menu_mst (:insert_field_set) SELECT :cmn_set, '1', '17', '3', E'動作環境', '5', '0' WHERE NOT EXISTS (:sub_query_2 AND trm_page = '1' AND trm_btn_pos = '17');
+INSERT INTO c_trm_menu_mst (:insert_field_set) SELECT :cmn_set, '1', '18', '22', E'開設', '5', '0' WHERE NOT EXISTS (:sub_query_2 AND trm_page = '1' AND trm_btn_pos = '18');
+INSERT INTO c_trm_menu_mst (:insert_field_set) SELECT :cmn_set, '1', '19', '23', E'閉設', '5', '0' WHERE NOT EXISTS (:sub_query_2 AND trm_page = '1' AND trm_btn_pos = '19');
+INSERT INTO c_trm_menu_mst (:insert_field_set) SELECT :cmn_set, '1', '20', '60', E'テキストデータ', '5', '0' WHERE NOT EXISTS (:sub_query_2 AND trm_page = '1' AND trm_btn_pos = '20');
+INSERT INTO c_trm_menu_mst (:insert_field_set) SELECT :cmn_set, '1', '21', '47', E'バーコード', '5', '0' WHERE NOT EXISTS (:sub_query_2 AND trm_page = '1' AND trm_btn_pos = '21');
+INSERT INTO c_trm_menu_mst (:insert_field_set) SELECT :cmn_set, '1', '22', '44', E'パスワード', '5', '0' WHERE NOT EXISTS (:sub_query_2 AND trm_page = '1' AND trm_btn_pos = '22');
+INSERT INTO c_trm_menu_mst (:insert_field_set) SELECT :cmn_set, '1', '23', '68', E'免税関連', '5', '0' WHERE NOT EXISTS (:sub_query_2 AND trm_page = '1' AND trm_btn_pos = '23');
+INSERT INTO c_trm_menu_mst (:insert_field_set) SELECT :cmn_set, '1', '24', '4', E'オープン／クローズ\n従業員', '5', '0' WHERE NOT EXISTS (:sub_query_2 AND trm_page = '1' AND trm_btn_pos = '24');
+INSERT INTO c_trm_menu_mst (:insert_field_set) SELECT :cmn_set, '1', '25', '6', E'計算', '5', '0' WHERE NOT EXISTS (:sub_query_2 AND trm_page = '1' AND trm_btn_pos = '25');
+INSERT INTO c_trm_menu_mst (:insert_field_set) SELECT :cmn_set, '1', '26', '31', E'売価変更', '5', '0' WHERE NOT EXISTS (:sub_query_2 AND trm_page = '1' AND trm_btn_pos = '26');
+INSERT INTO c_trm_menu_mst (:insert_field_set) SELECT :cmn_set, '1', '27', '32', E'特売', '5', '0' WHERE NOT EXISTS (:sub_query_2 AND trm_page = '1' AND trm_btn_pos = '27');
+INSERT INTO c_trm_menu_mst (:insert_field_set) SELECT :cmn_set, '1', '28', '34', E'ミックスマッチ\nセットマッチ', '5', '0' WHERE NOT EXISTS (:sub_query_2 AND trm_page = '1' AND trm_btn_pos = '28');
+INSERT INTO c_trm_menu_mst (:insert_field_set) SELECT :cmn_set, '1', '29', '30', E'値下\n分類値下', '5', '0' WHERE NOT EXISTS (:sub_query_2 AND trm_page = '1' AND trm_btn_pos = '29');
+INSERT INTO c_trm_menu_mst (:insert_field_set) SELECT :cmn_set, '1', '30', '33', E'会員売価', '5', '0' WHERE NOT EXISTS (:sub_query_2 AND trm_page = '1' AND trm_btn_pos = '30');
+INSERT INTO c_trm_menu_mst (:insert_field_set) SELECT :cmn_set, '1', '31', '25', E'税金', '5', '0' WHERE NOT EXISTS (:sub_query_2 AND trm_page = '1' AND trm_btn_pos = '31');
+INSERT INTO c_trm_menu_mst (:insert_field_set) SELECT :cmn_set, '1', '32', '48', E'実績', '5', '0' WHERE NOT EXISTS (:sub_query_2 AND trm_page = '1' AND trm_btn_pos = '32');
+INSERT INTO c_trm_menu_mst (:insert_field_set) SELECT :cmn_set, '2', '1', '9', E'会員サービス\n（共通）', '5', '0' WHERE NOT EXISTS (:sub_query_2 AND trm_page = '2' AND trm_btn_pos = '1');
+INSERT INTO c_trm_menu_mst (:insert_field_set) SELECT :cmn_set, '2', '2', '13', E'会員印字・表示\n（共通）', '5', '0' WHERE NOT EXISTS (:sub_query_2 AND trm_page = '2' AND trm_btn_pos = '2');
+INSERT INTO c_trm_menu_mst (:insert_field_set) SELECT :cmn_set, '2', '5', '33', E'会員売価', '5', '0' WHERE NOT EXISTS (:sub_query_2 AND trm_page = '2' AND trm_btn_pos = '5');
+INSERT INTO c_trm_menu_mst (:insert_field_set) SELECT :cmn_set, '2', '6', '54', E'記念日表示', '5', '0' WHERE NOT EXISTS (:sub_query_2 AND trm_page = '2' AND trm_btn_pos = '6');
+INSERT INTO c_trm_menu_mst (:insert_field_set) SELECT :cmn_set, '2', '7', '37', E'会員明細', '5', '0' WHERE NOT EXISTS (:sub_query_2 AND trm_page = '2' AND trm_btn_pos = '7');
+INSERT INTO c_trm_menu_mst (:insert_field_set) SELECT :cmn_set, '2', '9', '10', E'会員サービス\n（ポイント）', '5', '0' WHERE NOT EXISTS (:sub_query_2 AND trm_page = '2' AND trm_btn_pos = '9');
+INSERT INTO c_trm_menu_mst (:insert_field_set) SELECT :cmn_set, '2', '10', '14', E'会員印字・表示\n（ポイント）', '5', '0' WHERE NOT EXISTS (:sub_query_2 AND trm_page = '2' AND trm_btn_pos = '10');
+INSERT INTO c_trm_menu_mst (:insert_field_set) SELECT :cmn_set, '2', '11', '15', E'本日対象区分\n（ポイント）', '5', '0' WHERE NOT EXISTS (:sub_query_2 AND trm_page = '2' AND trm_btn_pos = '11');
+INSERT INTO c_trm_menu_mst (:insert_field_set) SELECT :cmn_set, '2', '13', '36', E'割戻ﾎﾟｲﾝﾄ', '5', '0' WHERE NOT EXISTS (:sub_query_2 AND trm_page = '2' AND trm_btn_pos = '13');
+INSERT INTO c_trm_menu_mst (:insert_field_set) SELECT :cmn_set, '2', '14', '39', E'チケット', '5', '0' WHERE NOT EXISTS (:sub_query_2 AND trm_page = '2' AND trm_btn_pos = '14');
+INSERT INTO c_trm_menu_mst (:insert_field_set) SELECT :cmn_set, '2', '21', '58', E'ロイヤリティ\nプロモーション', '5', '0' WHERE NOT EXISTS (:sub_query_2 AND trm_page = '2' AND trm_btn_pos = '21');
+INSERT INTO c_trm_menu_mst (:insert_field_set) SELECT :cmn_set, '2', '22', '70', E'楽天ポイント関連', '5', '0' WHERE NOT EXISTS (:sub_query_2 AND trm_page = '2' AND trm_btn_pos = '22');
+INSERT INTO c_trm_menu_mst (:insert_field_set) SELECT :cmn_set, '2', '25', '12', E'会員カード関連', '5', '0' WHERE NOT EXISTS (:sub_query_2 AND trm_page = '2' AND trm_btn_pos = '25');
+INSERT INTO c_trm_menu_mst (:insert_field_set) SELECT :cmn_set, '2', '26', '66', E'ｄポイント関連', '5', '0' WHERE NOT EXISTS (:sub_query_2 AND trm_page = '2' AND trm_btn_pos = '26');
+INSERT INTO c_trm_menu_mst (:insert_field_set) SELECT :cmn_set, '2', '27', '67', E'本日対象区分\n（ｄポイント）', '5', '0' WHERE NOT EXISTS (:sub_query_2 AND trm_page = '2' AND trm_btn_pos = '27');
+INSERT INTO c_trm_menu_mst (:insert_field_set) SELECT :cmn_set, '2', '29', '55', E'リライトカード', '5', '0' WHERE NOT EXISTS (:sub_query_2 AND trm_page = '2' AND trm_btn_pos = '29');
+INSERT INTO c_trm_menu_mst (:insert_field_set) SELECT :cmn_set, '2', '30', '71', E'Ｔポイント関連', '5', '0' WHERE NOT EXISTS (:sub_query_2 AND trm_page = '2' AND trm_btn_pos = '30');
+INSERT INTO c_trm_menu_mst (:insert_field_set) SELECT :cmn_set, '3', '1', '56', E'スピードセルフ', '5', '0' WHERE NOT EXISTS (:sub_query_2 AND trm_page = '3' AND trm_btn_pos = '1');
+INSERT INTO c_trm_menu_mst (:insert_field_set) SELECT :cmn_set, '3', '2', '57', E'キャッシュ\nリサイクル', '5', '0' WHERE NOT EXISTS (:sub_query_2 AND trm_page = '3' AND trm_btn_pos = '2');
+INSERT INTO c_trm_menu_mst (:insert_field_set) SELECT :cmn_set, '3', '3', '50', E'対面セルフ', '5', '0' WHERE NOT EXISTS (:sub_query_2 AND trm_page = '3' AND trm_btn_pos = '3');
+INSERT INTO c_trm_menu_mst (:insert_field_set) SELECT :cmn_set, '3', '4', '40', E'セルフ', '5', '0' WHERE NOT EXISTS (:sub_query_2 AND trm_page = '3' AND trm_btn_pos = '4');
+INSERT INTO c_trm_menu_mst (:insert_field_set) SELECT :cmn_set, '3', '6', '45', E'プロモーション', '5', '0' WHERE NOT EXISTS (:sub_query_2 AND trm_page = '3' AND trm_btn_pos = '6');
+INSERT INTO c_trm_menu_mst (:insert_field_set) SELECT :cmn_set, '3', '9', '8', E'クレジット', '5', '0' WHERE NOT EXISTS (:sub_query_2 AND trm_page = '3' AND trm_btn_pos = '9');
+INSERT INTO c_trm_menu_mst (:insert_field_set) SELECT :cmn_set, '3', '10', '51', E'電子マネー', '5', '0' WHERE NOT EXISTS (:sub_query_2 AND trm_page = '3' AND trm_btn_pos = '10');
+INSERT INTO c_trm_menu_mst (:insert_field_set) SELECT :cmn_set, '3', '11', '52', E'磁気カード', '5', '0' WHERE NOT EXISTS (:sub_query_2 AND trm_page = '3' AND trm_btn_pos = '11');
+INSERT INTO c_trm_menu_mst (:insert_field_set) SELECT :cmn_set, '3', '13', '38', E'秤接続', '5', '0' WHERE NOT EXISTS (:sub_query_2 AND trm_page = '3' AND trm_btn_pos = '13');
+INSERT INTO c_trm_menu_mst (:insert_field_set) SELECT :cmn_set, '3', '14', '41', E'生産者', '5', '0' WHERE NOT EXISTS (:sub_query_2 AND trm_page = '3' AND trm_btn_pos = '14');
+INSERT INTO c_trm_menu_mst (:insert_field_set) SELECT :cmn_set, '3', '15', '42', E'棚札', '5', '0' WHERE NOT EXISTS (:sub_query_2 AND trm_page = '3' AND trm_btn_pos = '15');
+INSERT INTO c_trm_menu_mst (:insert_field_set) SELECT :cmn_set, '3', '17', '53', E'予約', '5', '0' WHERE NOT EXISTS (:sub_query_2 AND trm_page = '3' AND trm_btn_pos = '17');
+INSERT INTO c_trm_menu_mst (:insert_field_set) SELECT :cmn_set, '3', '18', '61', E'Wiz', '5', '0' WHERE NOT EXISTS (:sub_query_2 AND trm_page = '3' AND trm_btn_pos = '18');
+INSERT INTO c_trm_menu_mst (:insert_field_set) SELECT :cmn_set, '3', '26', '28', E'netDoA', '5', '0' WHERE NOT EXISTS (:sub_query_2 AND trm_page = '3' AND trm_btn_pos = '26');
+INSERT INTO c_trm_menu_mst (:insert_field_set) SELECT :cmn_set, '3', '27', '46', E'通信設定', '5', '0' WHERE NOT EXISTS (:sub_query_2 AND trm_page = '3' AND trm_btn_pos = '27');
+INSERT INTO c_trm_menu_mst (:insert_field_set) SELECT :cmn_set, '3', '28', '43', E'モバイルPOS', '5', '0' WHERE NOT EXISTS (:sub_query_2 AND trm_page = '3' AND trm_btn_pos = '28');
+INSERT INTO c_trm_menu_mst (:insert_field_set) SELECT :cmn_set, '3', '29', '69', E'AirPOS', '5', '0' WHERE NOT EXISTS (:sub_query_2 AND trm_page = '3' AND trm_btn_pos = '29');
+INSERT INTO c_trm_menu_mst (:insert_field_set) SELECT :cmn_set, '3', '32', '72', E'ＲＭ関連', '5', '0' WHERE NOT EXISTS (:sub_query_2 AND trm_page = '3' AND trm_btn_pos = '32');
+
+COMMIT;

@@ -1,0 +1,16 @@
+-- 初期値用ファイル(バージョンアップでは反映されない)
+
+\set insert_field 'comp_cd, ins_datetime, upd_datetime, status, send_flg, upd_user, upd_system, instre_flg, format_no, format_typ, cls_code ' 
+
+-- comp_cd, ins_datetime, upd_datetime, status, send_flg, upd_user, upd_system
+\set cmn_set ' :COMP, \'now\', \'now\', \'0\', \'0\', \'999999\', \'2\' '
+
+\set sub_query 'SELECT * FROM c_instre_mst WHERE comp_cd = :COMP '
+
+
+-- 13桁NON-PLU
+INSERT INTO c_instre_mst (:insert_field) SELECT :cmn_set, '02', '1', '1', '0'  WHERE NOT EXISTS (:sub_query AND instre_flg = '02' AND format_no = '1' AND format_typ = '1');
+-- 8桁NON-PLU
+INSERT INTO c_instre_mst (:insert_field) SELECT :cmn_set, '2', '12', '2', '0'  WHERE NOT EXISTS (:sub_query AND instre_flg = '2' AND format_no = '12' AND format_typ = '2');
+
+

@@ -1,0 +1,40 @@
+-- 初期値用ファイル(バージョンアップでは反映されない)
+
+\set insert_field 'comp_cd, stre_cd, cls_flg, tax_cd1, tax_cd2, tax_cd3, tax_cd4, name, short_name, kana_name, margin_flg, regsale_flg, clothdeal_flg, dfltcls_cd, msg_name, pop_msg, nonact_flg, max_prc, min_prc, cost_per, loss_per, rbtpremium_per, prc_chg_flg, rbttarget_flg, stl_dsc_flg, labeldept_cd, multprc_flg, multprc_per, sch_flg, stlplus_flg, pctr_tckt_flg, clothing_flg, spclsdsc_flg, bdl_dsc_flg, self_alert_flg, chg_ckt_flg, self_weight_flg, msg_flg, pop_msg_flg, itemstock_flg, orderpatrn_flg, orderbook_flg, safestock_per, autoorder_typ, casecntup_typ, producer_cd, cust_dtl_flg, coupon_flg, kitchen_prn_flg, pricing_flg, user_val_1, user_val_2, user_val_3, user_val_4, user_val_5, ins_datetime, upd_datetime, status, send_flg, upd_user, upd_system, dpnt_rbttarget_flg, dpnt_usetarget_flg,  cls_typ, lrgcls_cd, mdlcls_cd, smlcls_cd, tnycls_cd, plu_cd'
+
+--comp_cd, stre_cd, cls_flg, tax_cd1, tax_cd2, tax_cd3, tax_cd4, name, short_name, kana_name,
+\set cmn_set1 ' :COMP, :STRE, \'1\', \'1\', \'0\', \'0\', \'0\', \'その他\', \'\', \'\''
+
+--margin_flg, regsale_flg, clothdeal_flg, dfltcls_cd, msg_name, pop_msg, nonact_flg, max_prc, min_prc, cost_per,
+\set cmn_set2 ' \'0\', \'0\', \'0\', \'999999\', \'\', \'\', \'2\', \'0\', \'0\', \'0.00\''
+
+--loss_per, rbtpremium_per, prc_chg_flg, rbttarget_flg, stl_dsc_flg, labeldept_cd, multprc_flg, multprc_per, sch_flg, stlplus_flg,
+\set cmn_set3 ' \'0.00\', \'1.00\', \'2\', \'2\', \'0\', \'0\', \'2\', \'0.00\', \'0\', \'0\''
+
+--pctr_tckt_flg, clothing_flg, spclsdsc_flg, bdl_dsc_flg, self_alert_flg, chg_ckt_flg, self_weight_flg, msg_flg, pop_msg_flg, itemstock_flg,
+\set cmn_set4 ' \'2\', \'2\', \'1\', \'1\', \'0\', \'0\', \'1\',  \'2\', \'2\', \'0\''
+
+--orderpatrn_flg, orderbook_flg, safestock_per, autoorder_typ, casecntup_typ, producer_cd, cust_dtl_flg, coupon_flg, kitchen_prn_flg, pricing_flg,
+\set cmn_set5 ' \'0\', \'0\', \'0\', \'0\', \'0\', \'0\', \'0\', \'2\', \'0\', \'0\''
+
+--user_val_1, user_val_2, user_val_3, user_val_4, user_val_5, ins_datetime, upd_datetime, status, send_flg, upd_user, upd_system, dpnt_rbttarget_flg, dpnt_usetarget_flg,
+\set cmn_set6 ' \'0\', \'0\', \'0\', \'0\', \'0\', \'now\', \'now\', \'0\', \'0\', \'999999\', \'2\', \'1\', \'1\''
+
+\set sub_query 'SELECT * FROM c_cls_mst WHERE comp_cd = :COMP AND stre_cd = :STRE '
+
+-- 大分類
+INSERT INTO c_cls_mst (:insert_field) SELECT :cmn_set1, :cmn_set2, :cmn_set3, :cmn_set4, :cmn_set5, :cmn_set6, '1', '999999', '0', '0', '0', '' 
+ WHERE NOT EXISTS (:sub_query AND cls_typ = 1 AND lrgcls_cd = 999999 AND mdlcls_cd = 0 AND smlcls_cd = 0 AND tnycls_cd = 0);
+
+-- 中分類
+INSERT INTO c_cls_mst (:insert_field) SELECT :cmn_set1, :cmn_set2, :cmn_set3, :cmn_set4, :cmn_set5, :cmn_set6, '2', '999999', '999999', '0', '0', '' 
+ WHERE NOT EXISTS (:sub_query AND cls_typ = 2 AND lrgcls_cd = 999999 AND mdlcls_cd = 999999 AND smlcls_cd = 0 AND tnycls_cd = 0);
+
+-- 小分類
+INSERT INTO c_cls_mst (:insert_field) SELECT :cmn_set1, :cmn_set2, :cmn_set3, :cmn_set4, :cmn_set5, :cmn_set6, '3', '999999', '999999', '999999', '0', '' 
+ WHERE NOT EXISTS (:sub_query AND cls_typ = 3 AND lrgcls_cd = 999999 AND mdlcls_cd = 999999 AND smlcls_cd = 999999 AND tnycls_cd = 0);
+
+-- クラス
+INSERT INTO c_cls_mst (:insert_field) SELECT :cmn_set1, :cmn_set2, :cmn_set3, :cmn_set4, :cmn_set5, :cmn_set6, '4', '999999', '999999', '999999', '999999', '' 
+ WHERE NOT EXISTS (:sub_query AND cls_typ = 4 AND lrgcls_cd = 999999 AND mdlcls_cd = 999999 AND smlcls_cd = 999999 AND tnycls_cd = 999999);
+

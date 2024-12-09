@@ -1,0 +1,5509 @@
+﻿-- V0.015
+-- Project Name : WebSeries
+-- Date/Time    : 2017/01/19
+-- Author       : K.Sho
+-- RDBMS Type   : PostgreSQL
+
+-- 01
+-- 企業マスタ
+drop table if exists c_comp_mst cascade;
+
+create table c_comp_mst (
+  comp_cd NUMERIC(9)
+  , comp_typ SMALLINT default 0 not null
+  , rtr_id NUMERIC(9) default 0 not null
+  , name VARCHAR(25)
+  , short_name VARCHAR(5)
+  , kana_name VARCHAR(25)
+  , post_no VARCHAR(7)
+  , adress1 VARCHAR(50)
+  , adress2 VARCHAR(50)
+  , adress3 VARCHAR(50)
+  , telno1 VARCHAR(25)
+  , telno2 VARCHAR(25)
+  , srch_telno1 VARCHAR(20)
+  , srch_telno2 VARCHAR(20)
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_comp_mst_PKC primary key (comp_cd)
+) ;
+
+-- 店舗マスタ
+drop table if exists c_stre_mst cascade;
+
+create table c_stre_mst (
+  stre_cd NUMERIC(9)
+  , comp_cd NUMERIC(9)
+  , zone_cd NUMERIC(9) default 0 not null
+  , bsct_cd NUMERIC(9) default 0 not null
+  , name VARCHAR(25)
+  , short_name VARCHAR(5)
+  , kana_name VARCHAR(25)
+  , post_no VARCHAR(7)
+  , adress1 VARCHAR(50)
+  , adress2 VARCHAR(50)
+  , adress3 VARCHAR(50)
+  , telno1 VARCHAR(25)
+  , telno2 VARCHAR(25)
+  , srch_telno1 VARCHAR(20)
+  , srch_telno2 VARCHAR(20)
+  , ip_addr VARCHAR(50)
+  , trends_typ SMALLINT default 0 not null
+  , stre_typ SMALLINT default 0 not null
+  , flg_shp SMALLINT default 0 not null
+  , business_typ1 SMALLINT default 0 not null
+  , business_typ2 SMALLINT default 0 not null
+  , chain_other_flg SMALLINT default 0 not null
+  , locate_typ SMALLINT default 0 not null
+  , openclose_flg SMALLINT default 0 not null
+  , opentime TIMESTAMP
+  , closetime TIMESTAMP
+  , floorspace NUMERIC(7,2) default 0 not null
+  , today TIMESTAMP
+  , bfrday TIMESTAMP
+  , twodaybfr TIMESTAMP
+  , nextday TIMESTAMP
+  , sysflg_base SMALLINT default 0 not null
+  , sysflg_sale SMALLINT default 0 not null
+  , sysflg_purchs SMALLINT default 0 not null
+  , sysflg_order SMALLINT default 0 not null
+  , sysflg_invtry SMALLINT default 0 not null
+  , sysflg_cust SMALLINT default 0 not null
+  , sysflg_poppy SMALLINT default 0 not null
+  , sysflg_elslbl SMALLINT default 0 not null
+  , sysflg_fresh SMALLINT default 0 not null
+  , sysflg_wdslbl SMALLINT default 0 not null
+  , sysflg_24hour SMALLINT default 0 not null
+  , showorder SMALLINT default 0 not null
+  , opendate TIMESTAMP
+  , stre_ver_flg SMALLINT default 0 not null
+  , sunday_off_flg SMALLINT default 0 not null
+  , monday_off_flg SMALLINT default 0 not null
+  , tuesday_off_flg SMALLINT default 0 not null
+  , wednesday_off_flg SMALLINT default 0 not null
+  , thursday_off_flg SMALLINT default 0 not null
+  , friday_off_flg SMALLINT default 0 not null
+  , saturday_off_flg SMALLINT default 0 not null
+  , itemstock_flg SMALLINT default 0 not null
+  , wait_time VARCHAR(4)
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , entry_no VARCHAR(32)
+  , constraint c_stre_mst_PKC primary key (stre_cd,comp_cd)
+) ;
+
+-- 店舗通信マスタ
+drop table if exists c_connect_mst cascade;
+
+create table c_connect_mst (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , connect_cd NUMERIC(9)
+  , connect_typ SMALLINT default 0 not null
+  , name VARCHAR(25)
+  , short_name VARCHAR(5)
+  , kana_name VARCHAR(25)
+  , host_name VARCHAR(25)
+  , opentime TIMESTAMP
+  , closetime TIMESTAMP
+  , format_typ SMALLINT default 0 not null
+  , network_typ SMALLINT default 0 not null
+  , telno1 VARCHAR(25)
+  , telno2 VARCHAR(25)
+  , srch_telno1 VARCHAR(20)
+  , srch_telno2 VARCHAR(20)
+  , ip_addr VARCHAR(50)
+  , retry_cnt SMALLINT default 0 not null
+  , retry_time SMALLINT default 0 not null
+  , time_out SMALLINT default 0 not null
+  , ftp_put_dir varchar(100)
+  , ftp_get_dir varchar(100)
+  , connect_time1 SMALLINT default 0 not null
+  , connect_time2 SMALLINT default 0 not null
+  , cnt_usr VARCHAR(20)
+  , cnt_pwd VARCHAR(20)
+  , wait_time1 SMALLINT default 0 not null
+  , wait_time2 SMALLINT default 0 not null
+  , cnt_interval1 SMALLINT default 0 not null
+  , cnt_interval2 SMALLINT default 0 not null
+  , stre_chk_dgt SMALLINT default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_connect_mst_PKC primary key (comp_cd,stre_cd,connect_cd)
+) ;
+
+-- 分類マスタ
+drop table if exists c_cls_mst cascade;
+
+create table c_cls_mst (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , cls_typ SMALLINT
+  , lrgcls_cd NUMERIC(9)
+  , mdlcls_cd NUMERIC(9)
+  , smlcls_cd NUMERIC(9)
+  , tnycls_cd NUMERIC(9)
+  , plu_cd VARCHAR(20)
+  , cls_flg SMALLINT default 0 not null
+  , tax_cd1 SMALLINT default 0 not null
+  , tax_cd2 SMALLINT default 0 not null
+  , tax_cd3 SMALLINT default 0 not null
+  , tax_cd4 SMALLINT default 0 not null
+  , name VARCHAR(25)
+  , short_name VARCHAR(5)
+  , kana_name VARCHAR(25)
+  , margin_flg SMALLINT default 0 not null
+  , regsale_flg SMALLINT default 0 not null
+  , clothdeal_flg SMALLINT default 0 not null
+  , dfltcls_cd NUMERIC(9) default 0 not null
+  , msg_name VARCHAR(25)
+  , pop_msg VARCHAR(25)
+  , nonact_flg SMALLINT default 0 not null
+  , max_prc NUMERIC(7) default 0 not null
+  , min_prc NUMERIC(7) default 0 not null
+  , cost_per NUMERIC(5,2) default 0 not null
+  , loss_per NUMERIC(5,2) default 0 not null
+  , rbtpremium_per NUMERIC(5,2) default 1.00 not null
+  , prc_chg_flg SMALLINT default 0 not null
+  , rbttarget_flg SMALLINT default 0 not null
+  , stl_dsc_flg SMALLINT default 0 not null
+  , labeldept_cd NUMERIC(9) default 0 not null
+  , multprc_flg SMALLINT default 0 not null
+  , multprc_per NUMERIC(5,2) default 0 not null
+  , sch_flg SMALLINT default 0 not null
+  , stlplus_flg SMALLINT default 0 not null
+  , pctr_tckt_flg SMALLINT default 0 not null
+  , clothing_flg SMALLINT default 0 not null
+  , spclsdsc_flg SMALLINT default 0 not null
+  , bdl_dsc_flg SMALLINT default 0 not null
+  , self_alert_flg SMALLINT default 0 not null
+  , chg_ckt_flg SMALLINT default 0 not null
+  , self_weight_flg SMALLINT default 0 not null
+  , msg_flg SMALLINT default 0 not null
+  , pop_msg_flg SMALLINT default 0 not null
+  , itemstock_flg SMALLINT default 0 not null
+  , orderpatrn_flg SMALLINT default 0 not null
+  , orderbook_flg SMALLINT default 0 not null
+  , safestock_per NUMERIC(5,2) default 0 not null
+  , autoorder_typ SMALLINT default 0 not null
+  , casecntup_typ SMALLINT default 0 not null
+  , producer_cd NUMERIC(9) default 0 not null
+  , cust_dtl_flg SMALLINT default 0 not null
+  , coupon_flg SMALLINT default 0 not null
+  , kitchen_prn_flg SMALLINT default 0 not null
+  , pricing_flg SMALLINT default 0 not null
+  , user_val_1 NUMERIC(9) default 0 not null
+  , user_val_2 NUMERIC(9) default 0 not null
+  , user_val_3 NUMERIC(9) default 0 not null
+  , user_val_4 NUMERIC(9) default 0 not null
+  , user_val_5 NUMERIC(9) default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , tax_exemption_flg SMALLINT default 0 not null
+  , dpnt_rbttarget_flg SMALLINT default 0 not null
+  , dpnt_usetarget_flg SMALLINT default 0 not null
+  , constraint c_cls_mst_PKC primary key (comp_cd,stre_cd,cls_typ,lrgcls_cd,mdlcls_cd,smlcls_cd,tnycls_cd)
+) ;
+
+-- 分類グループマスタ
+drop table if exists c_grp_mst cascade;
+
+create table c_grp_mst (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , cls_grp_cd NUMERIC(9)
+  , mdl_smlcls_cd NUMERIC(9)
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_grp_mst_PKC primary key (comp_cd,stre_cd,cls_grp_cd,mdl_smlcls_cd)
+) ;
+
+-- 郵便番号マスタ
+drop table if exists c_zipcode_mst cascade;
+drop sequence if exists c_zipcode_mst_s0;
+
+create sequence c_zipcode_mst_s0 cycle;
+create table c_zipcode_mst (
+  serial_no NUMERIC(9) default nextval('c_zipcode_mst_s0')
+  , post_no VARCHAR(7)
+  , address1 VARCHAR(20)
+  , address2 VARCHAR(20)
+  , address3 VARCHAR(40)
+  , kana_address1 VARCHAR(40)
+  , kana_address2 VARCHAR(40)
+  , kana_address3 VARCHAR(80)
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_zipcode_mst_PKC primary key (serial_no)
+) ;
+
+-- 税金テーブルマスタ
+drop table if exists c_tax_mst cascade;
+
+create table c_tax_mst (
+  comp_cd NUMERIC(9)
+  , tax_cd SMALLINT
+  , tax_name VARCHAR(5)
+  , tax_typ SMALLINT default 0 not null
+  , odd_flg SMALLINT default 0 not null
+  , tax_per NUMERIC(5,2) default 0 not null
+  , mov_cd SMALLINT default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_tax_mst_PKC primary key (comp_cd,tax_cd)
+) ;
+
+-- カレンダーマスタ
+drop table if exists c_caldr_mst cascade;
+
+create table c_caldr_mst (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , caldr_date TIMESTAMP
+  , dayoff_flg SMALLINT default 0 not null
+  , comment1 VARCHAR(50)
+  , comment2 VARCHAR(50)
+  , am_weather SMALLINT default 0 not null
+  , pm_weather SMALLINT default 0 not null
+  , min_temp NUMERIC(5,2) default 0 not null
+  , max_temp NUMERIC(5,2) default 0 not null
+  , close_flg SMALLINT default 0 not null
+  , open_rslt SMALLINT default 0 not null
+  , close_rslt SMALLINT default 0 not null
+  , rsrv_cust NUMERIC(8) default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_caldr_mst_PKC primary key (comp_cd,stre_cd,caldr_date)
+) ;
+
+-- 祝日マスタ
+drop table if exists s_nathldy_mst cascade;
+
+create table s_nathldy_mst (
+  caldr_date TIMESTAMP
+  , comment1 VARCHAR(50)
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint s_nathldy_mst_PKC primary key (caldr_date)
+) ;
+
+
+-- 02
+-- 商品マスタ
+drop table if exists c_plu_mst cascade;
+
+create table c_plu_mst (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , plu_cd VARCHAR(20)
+  , lrgcls_cd NUMERIC(9) default 0 not null
+  , mdlcls_cd NUMERIC(9) default 0 not null
+  , smlcls_cd NUMERIC(9) default 0 not null
+  , tnycls_cd NUMERIC(9) default 0 not null
+  , eos_cd VARCHAR(20)
+  , bar_typ SMALLINT default 0 not null
+  , item_typ SMALLINT default 0 not null
+  , item_name VARCHAR(50)
+  , pos_name VARCHAR(50)
+  , list_typcapa VARCHAR(50)
+  , list_prc NUMERIC(9) default 0 not null
+  , instruct_prc NUMERIC(9) default 0 not null
+  , pos_prc NUMERIC(9) default 0 not null
+  , cust_prc NUMERIC(9) default 0 not null
+  , cost_prc NUMERIC(11,2) default 0 not null
+  , chk_amt NUMERIC(9) default 0 not null
+  , tax_cd_1 SMALLINT default 0 not null
+  , tax_cd_2 SMALLINT default 0 not null
+  , tax_cd_3 SMALLINT default 0 not null
+  , tax_cd_4 SMALLINT default 0 not null
+  , cost_tax_cd SMALLINT default 0 not null
+  , cost_per NUMERIC(5,2) default 0 not null
+  , rbtpremium_per NUMERIC(5,2) default 1.00 not null
+  , nonact_flg SMALLINT default 0 not null
+  , prc_chg_flg SMALLINT default 0 not null
+  , rbttarget_flg SMALLINT default 0 not null
+  , stl_dsc_flg SMALLINT default 0 not null
+  , weight_cnt SMALLINT default 0 not null
+  , plu_tare SMALLINT default 0 not null
+  , self_cnt_flg SMALLINT default 0 not null
+  , guara_month SMALLINT default 0 not null
+  , multprc_flg SMALLINT default 0 not null
+  , multprc_per NUMERIC(5,2) default 0 not null
+  , weight_flg SMALLINT default 0 not null
+  , mbrdsc_flg SMALLINT default 0 not null
+  , mbrdsc_prc NUMERIC(7) default 0 not null
+  , mny_tckt_flg SMALLINT default 0 not null
+  , stlplus_flg SMALLINT default 0 not null
+  , prom_tckt_no NUMERIC(6) default 0 not null
+  , weight NUMERIC(6) default 0 not null
+  , pctr_tckt_flg SMALLINT default 0 not null
+  , btl_prc NUMERIC(7) default 0 not null
+  , clsdsc_flg SMALLINT default 0 not null
+  , cpn_flg SMALLINT default 0 not null
+  , cpn_prc NUMERIC(7) default 0 not null
+  , plu_cd_flg SMALLINT default 0 not null
+  , self_alert_flg SMALLINT default 0 not null
+  , chg_ckt_flg SMALLINT default 0 not null
+  , self_weight_flg SMALLINT default 0 not null
+  , msg_name VARCHAR(50)
+  , msg_flg SMALLINT default 0 not null
+  , msg_name_cd NUMERIC(9) default 0 not null
+  , pop_msg VARCHAR(50)
+  , pop_msg_flg SMALLINT default 0 not null
+  , pop_msg_cd NUMERIC(9) default 0 not null
+  , liqrcls_cd NUMERIC(6) default 0 not null
+  , liqr_typcapa NUMERIC(7) default 0 not null
+  , alcohol_per NUMERIC(5,2) default 0 not null
+  , liqrtax_cd NUMERIC(6) default 0 not null
+  , use1_start_date TIMESTAMP
+  , use2_start_date TIMESTAMP
+  , prc_exe_flg SMALLINT default 0 not null
+  , tmp_exe_flg SMALLINT default 0 not null
+  , cust_dtl_flg SMALLINT default 0 not null
+  , tax_exemption_flg SMALLINT default 0 not null
+  , point_add NUMERIC(7) default 0 not null
+  , coupon_flg SMALLINT default 0 not null
+  , kitchen_prn_flg SMALLINT default 0 not null
+  , pricing_flg SMALLINT default 0 not null
+  , bc_tckt_cnt SMALLINT default 0 not null
+  , last_sale_datetime TIMESTAMP
+  , maker_cd NUMERIC(9) default 0 not null
+  , user_val_1 NUMERIC(9) default 0 not null
+  , user_val_2 NUMERIC(9) default 0 not null
+  , user_val_3 NUMERIC(9) default 0 not null
+  , user_val_4 NUMERIC(9) default 0 not null
+  , user_val_5 NUMERIC(9) default 0 not null
+  , user_val_6 VARCHAR(20)
+  , prc_upd_system SMALLINT default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , cust_prc2 NUMERIC(9) default 0 not null
+  , mbrdsc_prc2 NUMERIC(7) default 0 not null
+  , producer_cd NUMERIC(9) default 0 not null
+  , certificate_typ SMALLINT default 0 not null
+  , kind_cd SMALLINT default 0 not null
+  , div_cd SMALLINT default 0 not null
+  , sub1_lrg_cd NUMERIC(9) default 0 not null
+  , sub1_mdl_cd NUMERIC(9) default 0 not null
+  , sub1_sml_cd NUMERIC(9) default 0 not null
+  , sub2_lrg_cd NUMERIC(9) default 0 not null
+  , sub2_mdl_cd NUMERIC(9) default 0 not null
+  , sub2_sml_cd NUMERIC(9) default 0 not null
+  , disc_cd NUMERIC(9) default 0 not null
+  , typ_no VARCHAR(100)
+  , dlug_flg SMALLINT default 0 not null
+  , otc_flg SMALLINT default 0 not null
+  , item_flg1 SMALLINT default 0 not null
+  , item_flg2 SMALLINT default 0 not null
+  , item_flg3 SMALLINT default 0 not null
+  , item_flg4 SMALLINT default 0 not null
+  , item_flg5 SMALLINT default 0 not null
+  , item_flg6 SMALLINT default 0 not null
+  , item_flg7 SMALLINT default 0 not null
+  , item_flg8 SMALLINT default 0 not null
+  , item_flg9 SMALLINT default 0 not null
+  , item_flg10 SMALLINT default 0 not null
+  , dpnt_rbttarget_flg SMALLINT default 0 not null
+  , dpnt_usetarget_flg SMALLINT default 0 not null
+  , constraint c_plu_mst_PKC primary key (comp_cd,stre_cd,plu_cd)
+) ;
+
+-- スキャニングＰＬＵテーブル
+drop table if exists c_scanplu_mst cascade;
+
+create table c_scanplu_mst (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , sku_cd VARCHAR(20)
+  , plu_cd VARCHAR(20)
+  , ins_datetime timestamp
+  , upd_datetime timestamp
+  , status smallint default 0 not null
+  , send_flg smallint default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_scanplu_mst_PKC primary key (comp_cd,stre_cd,sku_cd)
+) ;
+
+-- セット商品マスタ
+drop table if exists c_setitem_mst cascade;
+
+create table c_setitem_mst (
+  comp_cd NUMERIC(9)
+  , setplu_cd VARCHAR(20)
+  , plu_cd VARCHAR(20)
+  , item_qty NUMERIC(3) default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_setitem_mst_PKC primary key (comp_cd,setplu_cd,plu_cd)
+) ;
+
+-- ケース商品マスタ
+drop table if exists c_caseitem_mst cascade;
+
+create table c_caseitem_mst (
+  comp_cd NUMERIC(9)
+  , caseitem_cd VARCHAR(20)
+  , plu_cd VARCHAR(20)
+  , item_qty NUMERIC(3) default 0 not null
+  , val_prc NUMERIC(7) default 0 not null
+  , case_typ SMALLINT default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_caseitem_mst_PKC primary key (comp_cd,caseitem_cd)
+) ;
+
+-- 属性マスタ
+drop table if exists c_attrib_mst cascade;
+
+create table c_attrib_mst (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , attrib_cd NUMERIC(9)
+  , name VARCHAR(25)
+  , short_name VARCHAR(5)
+  , hq_send_flg SMALLINT default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_attrib_mst_PKC primary key (comp_cd,stre_cd,attrib_cd)
+) ;
+
+-- 属性商品マスタ
+drop table if exists c_attribitem_mst cascade;
+
+create table c_attribitem_mst (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , attrib_cd NUMERIC(9)
+  , plu_cd VARCHAR(20)
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_attribitem_mst_PKC primary key (comp_cd,stre_cd,attrib_cd,plu_cd)
+) ;
+
+-- 酒類分類マスタ
+drop table if exists c_liqrcls_mst cascade;
+
+create table c_liqrcls_mst (
+  comp_cd NUMERIC(9)
+  , liqrcls_cd SMALLINT
+  , liqrcls_name VARCHAR(25)
+  , prn_order SMALLINT default 0 not null
+  , odd_flg SMALLINT default 0 not null
+  , vcnmng SMALLINT default 0 not null
+  , amt_prn SMALLINT default 0 not null
+  , amtclr_flg SMALLINT default 0 not null
+  , powliqr_flg SMALLINT default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_liqrcls_mst_PKC primary key (comp_cd,liqrcls_cd)
+) ;
+
+-- 産地・メーカーマスタ
+drop table if exists c_maker_mst cascade;
+
+create table c_maker_mst (
+  comp_cd NUMERIC(9)
+  , maker_cd NUMERIC(9)
+  , parentmaker_cd NUMERIC(9)
+  , name VARCHAR(25)
+  , short_name VARCHAR(5)
+  , kana_name VARCHAR(25)
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_maker_mst_PKC primary key (comp_cd,maker_cd,parentmaker_cd)
+) ;
+
+-- 生産者品目マスタ
+drop table if exists c_producer_mst cascade;
+
+create table c_producer_mst (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , producer_cd NUMERIC(9)
+  , name VARCHAR(25)
+  , short_name VARCHAR(5)
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , tax_cd SMALLINT default 0 not null
+  , producer_misc_1 SMALLINT default 0 not null
+  , producer_misc_2 SMALLINT default 0 not null
+  , producer_misc_3 SMALLINT default 0 not null
+  , producer_misc_4 SMALLINT default 0 not null
+  , producer_misc_5 SMALLINT default 0 not null
+  , constraint c_producer_mst_PKC primary key (comp_cd,stre_cd,producer_cd)
+) ;
+
+
+-- 03
+-- レジ情報マスタ
+drop table if exists c_reginfo_mst cascade;
+
+create table c_reginfo_mst (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , mac_no NUMERIC(9)
+  , mac_typ SMALLINT default 0 not null
+  , mac_addr VARCHAR(20)
+  , ip_addr VARCHAR(50)
+  , brdcast_addr VARCHAR(50)
+  , ip_addr2 VARCHAR(50)
+  , brdcast_addr2 VARCHAR(50)
+  , org_mac_no NUMERIC(9) default 0 not null
+  , crdt_trm_cd VARCHAR(20)
+  , set_owner_flg SMALLINT default 0 not null
+  , mac_role1 SMALLINT default 0 not null
+  , mac_role2 SMALLINT default 0 not null
+  , mac_role3 SMALLINT default 0 not null
+  , pbchg_flg SMALLINT default 0 not null
+  , auto_opn_cshr_cd NUMERIC(10) default 0 not null
+  , auto_opn_chkr_cd NUMERIC(10) default 0 not null
+  , auto_cls_cshr_cd NUMERIC(10) default 0 not null
+  , start_datetime TIMESTAMP
+  , end_datetime TIMESTAMP
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , mac_name VARCHAR(20)
+  , constraint c_reginfo_mst_PKC primary key (comp_cd,stre_cd,mac_no)
+) ;
+
+-- レジ開閉店情報マスタ
+drop table if exists c_openclose_mst cascade;
+
+create table c_openclose_mst (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , mac_no NUMERIC(9)
+  , sale_date TIMESTAMP
+  , open_flg SMALLINT default 0 not null
+  , close_flg SMALLINT default 0 not null
+  , not_update_flg SMALLINT default 0 not null
+  , log_not_sndflg SMALLINT default 0 not null
+  , custlog_not_sndflg SMALLINT default 0 not null
+  , custlog_not_delflg SMALLINT default 0 not null
+  , stepup_flg SMALLINT default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , pos_ver VARCHAR(50)
+  , pos_sub_ver VARCHAR(50)
+  , recal_flg SMALLINT default 0 not null
+  , constraint c_openclose_mst_PKC primary key (comp_cd,stre_cd,mac_no,sale_date)
+) ;
+
+-- レジ接続機器SIO情報マスタ
+drop table if exists c_regcnct_sio_mst cascade;
+
+create table c_regcnct_sio_mst (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , mac_no NUMERIC(9)
+  , com_port_no SMALLINT
+  , cnct_kind SMALLINT default 0 not null
+  , cnct_grp SMALLINT default 0 not null
+  , sio_rate SMALLINT default 0 not null
+  , sio_stop SMALLINT default 0 not null
+  , sio_record SMALLINT default 0 not null
+  , sio_parity SMALLINT default 0 not null
+  , qcjc_flg SMALLINT default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_regcnct_sio_mst_PKC primary key (comp_cd,stre_cd,mac_no,com_port_no)
+) ;
+
+-- SIO情報マスタ
+drop table if exists c_sio_mst cascade;
+
+create table c_sio_mst (
+  cnct_kind SMALLINT
+  , cnct_grp SMALLINT default 0 not null
+  , drv_sec_name VARCHAR(32) not null
+  , sio_image_cd NUMERIC(9) default 0 not null
+  , sio_rate SMALLINT default 0 not null
+  , sio_stop SMALLINT default 0 not null
+  , sio_record SMALLINT default 0 not null
+  , sio_parity SMALLINT default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_sio_mst_PKC primary key (cnct_kind)
+) ;
+
+-- レジ情報グループ管理マスタ
+drop table if exists c_reginfo_grp_mst cascade;
+
+create table c_reginfo_grp_mst (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , mac_no NUMERIC(9)
+  , grp_typ SMALLINT
+  , grp_cd NUMERIC(9) default 0
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_reginfo_grp_mst_PKC primary key (comp_cd,stre_cd,mac_no,grp_typ)
+) ;
+
+-- イメージマスタ
+drop table if exists c_img_mst cascade;
+
+create table c_img_mst (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , img_grp_cd NUMERIC(9)
+  , img_cd NUMERIC(9)
+  , img_data VARCHAR(32)
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_img_mst_PKC primary key (comp_cd,stre_cd,img_grp_cd,img_cd)
+) ;
+
+-- プリセットキーマスタ
+drop table if exists c_preset_mst cascade;
+
+create table c_preset_mst (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , preset_grp_cd NUMERIC(9)
+  , preset_cd NUMERIC(9)
+  , preset_no SMALLINT
+  , presetcolor SMALLINT default 0 not null
+  , ky_cd SMALLINT default 0 not null
+  , ky_plu_cd VARCHAR(20)
+  , ky_smlcls_cd NUMERIC(9) default 0 not null
+  , ky_size_flg SMALLINT default 0 not null
+  , ky_status SMALLINT default 0 not null
+  , ky_name VARCHAR(100)
+  , img_num NUMERIC(9) default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_preset_mst_PKC primary key (comp_cd,stre_cd,preset_grp_cd,preset_cd,preset_no)
+) ;
+
+-- 画像プリセットマスタ
+drop table if exists c_preset_img_mst cascade;
+
+create table c_preset_img_mst (
+  comp_cd NUMERIC(9)
+  , img_num NUMERIC(9)
+  , cls_cd NUMERIC(9) default 0 not null
+  , typ SMALLINT default 0 not null
+  , name VARCHAR(50)
+  , size1 SMALLINT default 0 not null
+  , size2 SMALLINT default 0 not null
+  , color SMALLINT default 0 not null
+  , contrast SMALLINT default 0 not null
+  , memo VARCHAR(50)
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_preset_img_mst_PKC primary key (comp_cd,img_num)
+) ;
+
+-- 共通コントロールマスタ
+drop table if exists c_ctrl_mst cascade;
+
+create table c_ctrl_mst (
+  comp_cd NUMERIC(9)
+  , ctrl_cd NUMERIC(9)
+  , ctrl_data NUMERIC(14,2) default 0 not null
+  , data_typ SMALLINT default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_ctrl_mst_PKC primary key (comp_cd,ctrl_cd)
+) ;
+
+-- 共通コントロール設定マスタ
+drop table if exists c_ctrl_set_mst cascade;
+
+create table c_ctrl_set_mst (
+  ctrl_cd NUMERIC(9)
+  , ctrl_name VARCHAR(100)
+  , ctrl_dsp_cond SMALLINT default 0 not null
+  , ctrl_inp_cond SMALLINT default 0 not null
+  , ctrl_limit_max NUMERIC(14,2) default 0 not null
+  , ctrl_limit_min NUMERIC(14,2) default 0 not null
+  , ctrl_digits SMALLINT default 0 not null
+  , ctrl_zero_typ SMALLINT default 0 not null
+  , ctrl_btn_color SMALLINT default 0 not null
+  , ctrl_info_comment TEXT
+  , ctrl_info_pic SMALLINT default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_ctrl_set_mst_PKC primary key (ctrl_cd)
+) ;
+
+-- 共通コントロールサブマスタ
+drop table if exists c_ctrl_sub_mst cascade;
+
+create table c_ctrl_sub_mst (
+  ctrl_cd NUMERIC(9)
+  , ctrl_ordr SMALLINT
+  , ctrl_data NUMERIC(14,2) default 0 not null
+  , img_cd NUMERIC(9) default 0 not null
+  , ctrl_comment VARCHAR(50)
+  , ctrl_btn_color SMALLINT default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_ctrl_sub_mst_PKC primary key (ctrl_cd,ctrl_ordr)
+) ;
+
+-- ターミナルマスタ
+drop table if exists c_trm_mst cascade;
+
+create table c_trm_mst (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , trm_grp_cd NUMERIC(9)
+  , trm_cd NUMERIC(9)
+  , trm_data NUMERIC(14,2) default 0 not null
+  , trm_data_typ SMALLINT default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_trm_mst_PKC primary key (comp_cd,stre_cd,trm_grp_cd,trm_cd)
+) ;
+
+-- ターミナル設定マスタ
+drop table if exists c_trm_set_mst cascade;
+
+create table c_trm_set_mst (
+  trm_cd NUMERIC(9)
+  , trm_name VARCHAR(100)
+  , trm_dsp_cond SMALLINT default 0 not null
+  , trm_inp_cond SMALLINT default 0 not null
+  , trm_limit_max NUMERIC(14,2) default 0 not null
+  , trm_limit_min NUMERIC(14,2) default 0 not null
+  , trm_digits SMALLINT default 0 not null
+  , trm_zero_typ SMALLINT default 0 not null
+  , trm_btn_color SMALLINT default 0 not null
+  , trm_info_comment TEXT
+  , trm_info_pic SMALLINT default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_trm_set_mst_PKC primary key (trm_cd)
+) ;
+
+-- ターミナルサブマスタ
+drop table if exists c_trm_sub_mst cascade;
+
+create table c_trm_sub_mst (
+  trm_cd NUMERIC(9)
+  , trm_ordr SMALLINT
+  , trm_data NUMERIC(14,2) default 0 not null
+  , fnc_cd NUMERIC(9) default 0 not null
+  , img_cd NUMERIC(9) default 0 not null
+  , trm_comment VARCHAR(50)
+  , trm_btn_color SMALLINT default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_trm_sub_mst_PKC primary key (trm_cd,trm_ordr)
+) ;
+
+-- ターミナルメニューマスタ
+drop table if exists c_trm_menu_mst cascade;
+
+create table c_trm_menu_mst (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , menu_kind SMALLINT
+  , trm_title VARCHAR(50)
+  , trm_btn_max SMALLINT default 0 not null
+  , trm_page SMALLINT
+  , trm_btn_pos SMALLINT
+  , trm_btn_name VARCHAR(50)
+  , trm_btn_color SMALLINT default 0 not null
+  , trm_menu SMALLINT default 0 not null
+  , trm_tag SMALLINT default 0 not null
+  , trm_quick SMALLINT default 0 not null
+  , cust_disp_flg SMALLINT default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_trm_menu_mst_PKC primary key (comp_cd,stre_cd,menu_kind,trm_page,trm_btn_pos)
+) ;
+
+-- ターミナルタググループマスタ
+drop table if exists c_trm_tag_grp_mst cascade;
+
+create table c_trm_tag_grp_mst (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , trm_tag SMALLINT
+  , trm_ordr SMALLINT
+  , trm_cd NUMERIC(9)
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_trm_tag_grp_mst_PKC primary key (comp_cd,stre_cd,trm_tag,trm_ordr,trm_cd)
+) ;
+
+-- ファンクションキーマスタ
+drop table if exists c_keyfnc_mst cascade;
+
+create table c_keyfnc_mst (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , kopt_grp_cd NUMERIC(9)
+  , fnc_cd SMALLINT
+  , fnc_name VARCHAR(25)
+  , fnc_comment TEXT
+  , fnc_disp_flg SMALLINT default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , ext_preset_disp SMALLINT default 0 not null
+  , constraint c_keyfnc_mst_PKC primary key (comp_cd,stre_cd,kopt_grp_cd,fnc_cd)
+) ;
+
+-- キーオプションマスタ
+drop table if exists c_keyopt_mst cascade;
+
+create table c_keyopt_mst (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , kopt_grp_cd NUMERIC(9)
+  , fnc_cd SMALLINT
+  , kopt_cd SMALLINT
+  , kopt_data NUMERIC(9) default 0 not null
+  , kopt_str_data VARCHAR(20)
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_keyopt_mst_PKC primary key (comp_cd,stre_cd,kopt_grp_cd,fnc_cd,kopt_cd)
+) ;
+
+-- キー種別マスタ
+drop table if exists c_keykind_mst cascade;
+
+create table c_keykind_mst (
+  key_kind_cd SMALLINT
+  , kind_name VARCHAR(25)
+  , constraint c_keykind_mst_PKC primary key (key_kind_cd)
+) ;
+
+-- キー種別管理マスタ
+drop table if exists c_keykind_grp_mst cascade;
+
+create table c_keykind_grp_mst (
+  key_kind_cd SMALLINT
+  , fnc_cd SMALLINT
+  , ref_fnc_cd SMALLINT not null
+  , constraint c_keykind_grp_mst_PKC primary key (key_kind_cd,fnc_cd)
+) ;
+
+-- キーオプション設定マスタ
+drop table if exists c_keyopt_set_mst cascade;
+
+create table c_keyopt_set_mst (
+  ref_fnc_cd SMALLINT
+  , kopt_cd SMALLINT
+  , kopt_name VARCHAR(100)
+  , kopt_dsp_cond SMALLINT default 0 not null
+  , kopt_inp_cond SMALLINT default 0 not null
+  , kopt_limit_max NUMERIC(9) default 0 not null
+  , kopt_limit_min NUMERIC(9) default 0 not null
+  , kopt_digits SMALLINT default 0 not null
+  , kopt_zero_typ SMALLINT default 0 not null
+  , kopt_btn_color SMALLINT default 0 not null
+  , kopt_info_comment TEXT
+  , kopt_info_pic SMALLINT default 0 not null
+  , kopt_div_kind_cd SMALLINT default 0 not null
+  , constraint c_keyopt_set_mst_PKC primary key (ref_fnc_cd,kopt_cd)
+) ;
+
+-- キーオプションサブマスタ
+drop table if exists c_keyopt_sub_mst cascade;
+
+create table c_keyopt_sub_mst (
+  ref_fnc_cd SMALLINT
+  , kopt_cd SMALLINT
+  , koptsub_ordr SMALLINT
+  , koptsub_data NUMERIC(9) default 0 not null
+  , fnc_cd NUMERIC(9) default 0 not null
+  , img_cd NUMERIC(9) default 0 not null
+  , koptsub_comment VARCHAR(50)
+  , koptsub_btn_color SMALLINT default 0 not null
+  , constraint c_keyopt_sub_mst_PKC primary key (ref_fnc_cd,kopt_cd,koptsub_ordr)
+) ;
+
+-- 区分マスタ
+drop table if exists c_divide_mst cascade;
+
+create table c_divide_mst (
+  comp_cd NUMERIC(9)
+  , kind_cd SMALLINT
+  , div_cd SMALLINT
+  , name VARCHAR(25)
+  , short_name VARCHAR(5)
+  , exp_cd1 SMALLINT not null
+  , exp_cd2 SMALLINT not null
+  , exp_data VARCHAR(20)
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , exp_amt NUMERIC(9) default 0 not null
+  , constraint c_divide_mst_PKC primary key (comp_cd,kind_cd,div_cd)
+) ;
+
+-- 仮登録ログ
+drop table if exists c_tmp_log cascade;
+
+create table c_tmp_log (
+  serial_no NUMERIC(43)
+  , seq_no SMALLINT default 0
+  , comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , mac_no NUMERIC(9) default 0 not null
+  , cshr_cd NUMERIC(10) default 0 not null
+  , plu_cd VARCHAR(20)
+  , lrgcls_cd NUMERIC(9) default 0 not null
+  , mdlcls_cd NUMERIC(9) default 0 not null
+  , smlcls_cd NUMERIC(9) default 0 not null
+  , dflttnycls_cd NUMERIC(9) default 0 not null
+  , u_prc NUMERIC(9) default 0 not null
+  , item_name VARCHAR(50)
+  , tran_flg SMALLINT default 0 not null
+  , sub_tran_flg SMALLINT default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_tmp_log_PKC primary key (serial_no,seq_no,comp_cd,stre_cd)
+) ;
+
+-- 売価変更マスタ
+drop table if exists c_prcchg_mst cascade;
+
+create table c_prcchg_mst (
+  serial_no NUMERIC(43)
+  , seq_no SMALLINT default 0
+  , comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , plu_cd VARCHAR(20)
+  , pos_prc NUMERIC(9) default 0 not null
+  , cust_prc NUMERIC(9) default 0 not null
+  , mac_no NUMERIC(9) default 0 not null
+  , staff_cd NUMERIC(10) default 0 not null
+  , maker_cd NUMERIC(9) default 0 not null
+  , tran_flg SMALLINT default 0 not null
+  , sub_tran_flg SMALLINT default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_prcchg_mst_PKC primary key (serial_no,seq_no,comp_cd,stre_cd)
+) ;
+
+-- 予約レポートマスタ
+drop table if exists c_batrepo_mst cascade;
+
+create table c_batrepo_mst (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , batch_grp_cd NUMERIC(9)
+  , batch_no NUMERIC(4)
+  , report_ordr SMALLINT
+  , batch_flg SMALLINT default 0 not null
+  , batch_name VARCHAR(20)
+  , batch_report_no NUMERIC(9) default 0 not null
+  , condi_typ1 NUMERIC(6) default 0 not null
+  , condi_typ2 NUMERIC(6) default 0 not null
+  , condi_typ3 NUMERIC(6) default 0 not null
+  , condi_typ4 NUMERIC(6) default 0 not null
+  , condi_typ5 NUMERIC(6) default 0 not null
+  , condi_typ6 NUMERIC(6) default 0 not null
+  , condi_typ7 NUMERIC(6) default 0 not null
+  , condi_typ8 NUMERIC(6) default 0 not null
+  , condi_typ9 NUMERIC(6) default 0 not null
+  , out_dvc_flg SMALLINT default 0 not null
+  , batch_flg2 SMALLINT default 0 not null
+  , condi_start1 NUMERIC(13) default 0 not null
+  , condi_end1 NUMERIC(13) default 0 not null
+  , condi_start2 NUMERIC(13) default 0 not null
+  , condi_end2 NUMERIC(13) default 0 not null
+  , condi_start3 NUMERIC(13) default 0 not null
+  , condi_end3 NUMERIC(13) default 0 not null
+  , condi_start4 NUMERIC(13) default 0 not null
+  , condi_end4 NUMERIC(13) default 0 not null
+  , condi_start5 NUMERIC(13) default 0 not null
+  , condi_end5 NUMERIC(13) default 0 not null
+  , condi_start6 NUMERIC(13) default 0 not null
+  , condi_end6 NUMERIC(13) default 0 not null
+  , condi_start7 NUMERIC(13) default 0 not null
+  , condi_end7 NUMERIC(13) default 0 not null
+  , condi_start8 NUMERIC(13) default 0 not null
+  , condi_end8 NUMERIC(13) default 0 not null
+  , condi_start9 NUMERIC(13) default 0 not null
+  , condi_end9 NUMERIC(13) default 0 not null
+  , sel_mac_type SMALLINT default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_batrepo_mst_PKC primary key (comp_cd,stre_cd,batch_grp_cd,batch_no,report_ordr)
+) ;
+
+-- レポートカウンタ
+drop table if exists c_report_cnt cascade;
+
+create table c_report_cnt (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , mac_no NUMERIC(9)
+  , report_cnt_cd NUMERIC(4)
+  , settle_cnt NUMERIC(4) default 0 not null
+  , bfr_datetime TIMESTAMP
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_report_cnt_PKC primary key (comp_cd,stre_cd,mac_no,report_cnt_cd)
+) ;
+
+-- レジメモマスタ
+drop table if exists c_memo_mst cascade;
+
+create table c_memo_mst (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , img_cd SMALLINT
+  , color SMALLINT default 0 not null
+  , memo1 VARCHAR(16)
+  , memo2 VARCHAR(16)
+  , memo3 VARCHAR(16)
+  , memo4 VARCHAR(16)
+  , memo5 VARCHAR(16)
+  , memo6 VARCHAR(16)
+  , memo7 VARCHAR(16)
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , title VARCHAR(16)
+  , img_name VARCHAR(256)
+  , stop_flg SMALLINT default 0 not null
+  , read_flg SMALLINT default 0 not null
+  , renew_flg SMALLINT default 0 not null
+  , constraint c_memo_mst_PKC primary key (comp_cd,stre_cd,img_cd)
+) ;
+
+-- レジメモ連絡先マスタ
+drop table if exists c_memosnd_mst cascade;
+
+create table c_memosnd_mst (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , img_cd SMALLINT
+  , ecr_no NUMERIC(9)
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_memosnd_mst_PKC primary key (comp_cd,stre_cd,img_cd,ecr_no)
+) ;
+
+-- 承認キーグループマスタ
+drop table if exists c_recog_grp_mst cascade;
+
+create table c_recog_grp_mst (
+  recog_grp_cd NUMERIC(9)
+  , recog_sub_grp_cd NUMERIC(9)
+  , page SMALLINT
+  , posi SMALLINT
+  , recog_flg SMALLINT default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_recog_grp_mst_PKC primary key (recog_grp_cd,recog_sub_grp_cd,page,posi)
+) ;
+
+-- 承認キーマスタ
+drop table if exists p_recog_mst cascade;
+
+create table p_recog_mst (
+  page SMALLINT
+  , posi SMALLINT
+  , recog_name VARCHAR(50)
+  , recog_set_flg SMALLINT default 0 not null
+  , constraint p_recog_mst_PKC primary key (page,posi)
+) ;
+
+-- 承認キー情報マスタ
+drop table if exists c_recoginfo_mst cascade;
+
+create table c_recoginfo_mst (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , mac_no NUMERIC(9)
+  , page NUMERIC(9)
+  , password VARCHAR(20)
+  , fcode VARCHAR(20)
+  , qcjc_type VARCHAR(20)
+  , emergency_type VARCHAR(20)
+  , emergency_date TIMESTAMP
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_recoginfo_mst_PKC primary key (comp_cd,stre_cd,mac_no,page)
+) ;
+
+-- 帳票マスタ
+drop table if exists c_report_mst cascade;
+
+create table c_report_mst (
+  code NUMERIC(9) not null
+  , prn_ordr NUMERIC(9) not null
+  , srch_ordr NUMERIC(9) default 0 not null
+  , grp_cd NUMERIC(9) not null
+  , sub_grp_cd NUMERIC(9) default 0 not null
+  , left_offset SMALLINT default 0 not null
+  , typ SMALLINT default 0 not null
+  , val_kind SMALLINT default 0 not null
+  , val_calc SMALLINT default 0 not null
+  , val_mark SMALLINT default 0 not null
+  , fmt_typ SMALLINT default 0 not null
+  , img_cd NUMERIC(9) default 0 not null
+  , field1 VARCHAR(1024)
+  , field2 VARCHAR(1024)
+  , field3 VARCHAR(1024)
+  , condi1 VARCHAR(1024)
+  , condi2 VARCHAR(1024)
+  , condi3 VARCHAR(1024)
+  , repo_sql_cd NUMERIC(9) default 0 not null
+  , recog_grp_cd NUMERIC(9) default 0 not null
+  , trm_chk_grp_cd NUMERIC(9) default 0 not null
+  , judge VARCHAR(512)
+  , printer_no SMALLINT default 0 not null
+  , constraint c_report_mst_PKC primary key (code,prn_ordr)
+) ;
+
+-- メニューオブジェクト割当マスタ
+drop table if exists c_menu_obj_mst cascade;
+
+create table c_menu_obj_mst (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , proc VARCHAR(32)
+  , win_name VARCHAR(32)
+  , page SMALLINT
+  , btn_pos_x SMALLINT
+  , btn_pos_y SMALLINT
+  , btn_width SMALLINT default 0 not null
+  , btn_height SMALLINT default 0 not null
+  , object_div SMALLINT default 0 not null
+  , appl_grp_cd NUMERIC(9) default 0 not null
+  , btn_color SMALLINT default 0 not null
+  , img_name VARCHAR(50)
+  , pass_chk_flg SMALLINT default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_menu_obj_mst_PKC primary key (comp_cd,stre_cd,proc,win_name,page,btn_pos_x,btn_pos_y)
+) ;
+
+-- トリガーキー割当マスタ
+drop table if exists p_trigger_key_mst cascade;
+
+create table p_trigger_key_mst (
+  proc VARCHAR(32)
+  , win_name VARCHAR(32)
+  , trigger_key VARCHAR(32)
+  , call_type SMALLINT default 0 not null
+  , target_code NUMERIC(9) default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint p_trigger_key_mst_PKC primary key (proc,win_name,trigger_key)
+) ;
+
+-- ファイル初期・リクエストマスタ
+drop table if exists c_finit_mst cascade;
+
+create table c_finit_mst (
+  finit_grp_cd NUMERIC(9)
+  , finit_cd NUMERIC(9)
+  , set_tbl_name VARCHAR(50) not null
+  , set_tbl_typ SMALLINT not null
+  , finit_dsp_chk_div SMALLINT default 0 not null
+  , freq_dsp_chk_div SMALLINT default 0 not null
+  , freq_ope_mode SMALLINT default 0 not null
+  , offline_chk_flg SMALLINT default 1 not null
+  , seq_name VARCHAR(128)
+  , freq_csrv_cnct_skip SMALLINT default 1 not null
+  , freq_csrc_cust_real_skip SMALLINT default 1 not null
+  , freq_csrv_cnct_key VARCHAR(128)
+  , freq_csrv_del_oth_stre SMALLINT default 0 not null
+  , svr_div SMALLINT default 0 not null
+  , default_file_name VARCHAR(256)
+  , rmst_freq_dsp_chk_div SMALLINT default 0 not null
+  , constraint c_finit_mst_PKC primary key (finit_grp_cd,finit_cd)
+) ;
+
+-- ファイル初期・リクエストグループマスタ
+drop table if exists c_finit_grp_mst cascade;
+
+create table c_finit_grp_mst (
+  finit_grp_cd NUMERIC(9)
+  , finit_grp_name VARCHAR(25) not null
+  , constraint c_finit_grp_mst_PKC primary key (finit_grp_cd)
+) ;
+
+-- テーブル名管理マスタ
+drop table if exists c_set_tbl_name_mst cascade;
+
+create table c_set_tbl_name_mst (
+  set_tbl_name VARCHAR(50)
+  , disp_name VARCHAR(25) not null
+  , constraint c_set_tbl_name_mst_PKC primary key (set_tbl_name)
+) ;
+
+-- アプリグループマスタ
+drop table if exists c_appl_grp_mst cascade;
+
+create table c_appl_grp_mst (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , appl_grp_cd NUMERIC(9)
+  , appl_name VARCHAR(25)
+  , cond_con_typ VARCHAR(20)
+  , cond_trm_cd NUMERIC(9) default 0 not null
+  , recog_grp_cd NUMERIC(9) default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , menu_chk_flg SMALLINT default 0 not null
+  , flg_1 SMALLINT default 0 not null
+  , flg_2 SMALLINT default 0 not null
+  , flg_3 SMALLINT default 0 not null
+  , flg_4 SMALLINT default 0 not null
+  , constraint c_appl_grp_mst_PKC primary key (comp_cd,stre_cd,appl_grp_cd)
+) ;
+
+-- アプリマスタ
+drop table if exists p_appl_mst cascade;
+
+create table p_appl_mst (
+  appl_grp_cd NUMERIC(9)
+  , appl_cd NUMERIC(9)
+  , call_type SMALLINT default 0 not null
+  , name VARCHAR(32)
+  , position VARCHAR(128)
+  , param1 VARCHAR(128)
+  , param2 VARCHAR(128)
+  , param3 VARCHAR(128)
+  , param4 VARCHAR(128)
+  , param5 VARCHAR(128)
+  , recog_grp_cd NUMERIC(9) default 0 not null
+  , pause_flg SMALLINT default 0 not null
+  , constraint p_appl_mst_PKC primary key (appl_grp_cd,appl_cd)
+) ;
+
+-- ダイアログマスタ
+drop table if exists c_dialog_mst cascade;
+
+create table c_dialog_mst (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , dialog_cd NUMERIC(9)
+  , title_img_cd NUMERIC(9) default 0 not null
+  , title_col SMALLINT default 0 not null
+  , title_siz SMALLINT default 0 not null
+  , message1 VARCHAR(25)
+  , message1_col SMALLINT default 0 not null
+  , message1_siz SMALLINT default 0 not null
+  , message2 VARCHAR(25)
+  , message2_col SMALLINT default 0 not null
+  , message2_siz SMALLINT default 0 not null
+  , message3 VARCHAR(25)
+  , message3_col SMALLINT default 0 not null
+  , message3_siz SMALLINT default 0 not null
+  , message4 VARCHAR(25)
+  , message4_col SMALLINT default 0 not null
+  , message4_siz SMALLINT default 0 not null
+  , message5 VARCHAR(25)
+  , message5_col SMALLINT default 0 not null
+  , message5_siz SMALLINT default 0 not null
+  , dialog_typ SMALLINT default 0 not null
+  , dialog_img_cd SMALLINT default 0 not null
+  , dialog_icon_cd SMALLINT default 0 not null
+  , dialog_sound_cd SMALLINT default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_dialog_mst_PKC primary key (comp_cd,stre_cd,dialog_cd)
+) ;
+
+-- ダイアログマスタ(英語)
+drop table if exists c_dialog_ex_mst cascade;
+
+create table c_dialog_ex_mst (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , dialog_cd NUMERIC(9)
+  , title_img_cd NUMERIC(9) default 0 not null
+  , title_col SMALLINT default 0 not null
+  , title_siz SMALLINT default 0 not null
+  , message1 VARCHAR(50)
+  , message1_col SMALLINT default 0 not null
+  , message1_siz SMALLINT default 0 not null
+  , message2 VARCHAR(50)
+  , message2_col SMALLINT default 0 not null
+  , message2_siz SMALLINT default 0 not null
+  , message3 VARCHAR(50)
+  , message3_col SMALLINT default 0 not null
+  , message3_siz SMALLINT default 0 not null
+  , message4 VARCHAR(50)
+  , message4_col SMALLINT default 0 not null
+  , message4_siz SMALLINT default 0 not null
+  , message5 VARCHAR(50)
+  , message5_col SMALLINT default 0 not null
+  , message5_siz SMALLINT default 0 not null
+  , dialog_typ SMALLINT default 0 not null
+  , dialog_img_cd SMALLINT default 0 not null
+  , dialog_icon_cd SMALLINT default 0 not null
+  , dialog_sound_cd SMALLINT default 0 not null
+  , btn1_msg VARCHAR(20)
+  , btn2_msg VARCHAR(20)
+  , btn3_msg VARCHAR(20)
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_dialog_ex_mst_PKC primary key (comp_cd,stre_cd,dialog_cd)
+) ;
+
+-- プロモーションスケジュールマスタ
+drop table if exists p_promsch_mst cascade;
+
+create table p_promsch_mst (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , plan_cd VARCHAR(20)
+  , prom_cd NUMERIC(9)
+  , prom_typ SMALLINT not null
+  , sch_typ SMALLINT default 0 not null
+  , prom_name VARCHAR(50)
+  , reward_val NUMERIC(9) default 0 not null
+  , item_cd VARCHAR(20)
+  , lrgcls_cd NUMERIC(9) default 0
+  , mdlcls_cd NUMERIC(9) default 0
+  , smlcls_cd NUMERIC(9) default 0
+  , tnycls_cd NUMERIC(9) default 0
+  , dsc_val NUMERIC(9) default 0 not null
+  , cost NUMERIC(10,2) default 0 not null
+  , cost_per NUMERIC(5,2) default 0 not null
+  , cust_dsc_val NUMERIC(9) default 0 not null
+  , form_qty1 NUMERIC(5) default 0 not null
+  , form_qty2 NUMERIC(5) default 0 not null
+  , form_qty3 NUMERIC(5) default 0 not null
+  , form_qty4 NUMERIC(5) default 0 not null
+  , form_qty5 NUMERIC(5) default 0 not null
+  , form_prc1 NUMERIC(9) default 0 not null
+  , form_prc2 NUMERIC(9) default 0 not null
+  , form_prc3 NUMERIC(9) default 0 not null
+  , form_prc4 NUMERIC(9) default 0 not null
+  , form_prc5 NUMERIC(9) default 0 not null
+  , cust_form_prc1 NUMERIC(9) default 0 not null
+  , cust_form_prc2 NUMERIC(9) default 0 not null
+  , cust_form_prc3 NUMERIC(9) default 0 not null
+  , cust_form_prc4 NUMERIC(9) default 0 not null
+  , cust_form_prc5 NUMERIC(9) default 0 not null
+  , av_prc NUMERIC(9) default 0 not null
+  , cust_av_prc NUMERIC(9) default 0 not null
+  , avprc_adpt_flg SMALLINT default 0 not null
+  , avprc_util_flg SMALLINT default 0 not null
+  , low_limit NUMERIC(9) default 0 not null
+  , svs_typ SMALLINT default 0 not null
+  , dsc_typ SMALLINT default 0 not null
+  , rec_limit NUMERIC(5) default 0 not null
+  , rec_buy_limit NUMERIC(5) default 0 not null
+  , start_datetime TIMESTAMP
+  , end_datetime TIMESTAMP
+  , timesch_flg SMALLINT default 0 not null
+  , sun_flg SMALLINT default 0 not null
+  , mon_flg SMALLINT default 0 not null
+  , tue_flg SMALLINT default 0 not null
+  , wed_flg SMALLINT default 0 not null
+  , thu_flg SMALLINT default 0 not null
+  , fri_flg SMALLINT default 0 not null
+  , sat_flg SMALLINT default 0 not null
+  , eachsch_typ SMALLINT default 0 not null
+  , eachsch_flg VARCHAR(31)
+  , stop_flg SMALLINT default 0 not null
+  , min_prc NUMERIC(8) default 0 not null
+  , max_prc NUMERIC(8) default 0 not null
+  , tax_flg SMALLINT default 0 not null
+  , member_qty SMALLINT default 0 not null
+  , div_cd SMALLINT default 0
+  , acct_cd NUMERIC(9) default 0 not null
+  , promo_ext_id VARCHAR(20) default 0
+  , trends_typ SMALLINT default 0 not null
+  , user_val_1 NUMERIC(9) default 0 not null
+  , user_val_2 NUMERIC(9) default 0 not null
+  , user_val_3 NUMERIC(9) default 0 not null
+  , user_val_4 NUMERIC(9) default 0 not null
+  , user_val_5 NUMERIC(9) default 0 not null
+  , user_val_6 VARCHAR(20)
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , point_add_magn NUMERIC(11,2) default 0 not null
+  , point_add_mem_typ SMALLINT default 0 not null
+  , svs_cls_f_data1 NUMERIC(11,2) default 0 not null
+  , svs_cls_s_data1 SMALLINT default 0 not null
+  , svs_cls_s_data2 SMALLINT default 0 not null
+  , svs_cls_s_data3 SMALLINT default 0 not null
+  , plupts_rate NUMERIC(11,2) default 0 not null
+  , custsvs_unit NUMERIC(9) default 0 not null
+  , ref_acct NUMERIC(9) default 0 not null
+  , linked_prom_id NUMERIC(18) default 0 not null
+  , date_flg1 SMALLINT default 0 not null
+  , date_flg2 SMALLINT default 0 not null
+  , date_flg3 SMALLINT default 0 not null
+  , date_flg4 SMALLINT default 0 not null
+  , date_flg5 SMALLINT default 0 not null
+  , constraint p_promsch_mst_PKC primary key (comp_cd,stre_cd,plan_cd,prom_cd,prom_typ,item_cd,lrgcls_cd,mdlcls_cd,smlcls_cd,tnycls_cd)
+) ;
+
+-- プロモーション商品マスタ
+drop table if exists p_promitem_mst cascade;
+
+create table p_promitem_mst (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , plan_cd VARCHAR(20)
+  , prom_cd NUMERIC(9)
+  , prom_typ SMALLINT not null
+  , item_typ SMALLINT default 0 not null
+  , item_cd VARCHAR(20)
+  , item_cd2 VARCHAR(20)
+  , stop_flg SMALLINT default 0 not null
+  , set_qty SMALLINT default 0 not null
+  , grp_cd SMALLINT
+  , user_val_1 NUMERIC(9) default 0 not null
+  , user_val_2 NUMERIC(9) default 0 not null
+  , user_val_3 NUMERIC(9) default 0 not null
+  , user_val_4 NUMERIC(9) default 0 not null
+  , user_val_5 NUMERIC(9) default 0 not null
+  , user_val_6 VARCHAR(20)
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint p_promitem_mst_PKC primary key (comp_cd,stre_cd,plan_cd,prom_cd,item_cd,item_cd2,grp_cd)
+) ;
+
+-- インストアマーキングマスタ
+drop table if exists c_instre_mst cascade;
+
+create table c_instre_mst (
+  comp_cd NUMERIC(9)
+  , instre_flg VARCHAR(4)
+  , format_no NUMERIC(9)
+  , format_typ NUMERIC(9) default 0 not null
+  , cls_code NUMERIC(9) default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_instre_mst_PKC primary key (comp_cd,instre_flg,format_no)
+) ;
+
+-- フォーマットタイプマスタ
+drop table if exists c_fmttyp_mst cascade;
+
+create table c_fmttyp_mst (
+  format_typ NUMERIC(9)
+  , format_typ_name VARCHAR(128)
+  , disp_flg SMALLINT default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_fmttyp_mst_PKC primary key (format_typ)
+) ;
+
+-- バーコードフォーマットマスタ
+drop table if exists c_barfmt_mst cascade;
+
+create table c_barfmt_mst (
+  format_no NUMERIC(9)
+  , format_typ NUMERIC(9)
+  , format VARCHAR(128)
+  , flg_num SMALLINT default 0 not null
+  , format_num SMALLINT default 0 not null
+  , disp_flg SMALLINT default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , cls_flg SMALLINT default 0 not null
+  , constraint c_barfmt_mst_PKC primary key (format_no,format_typ)
+) ;
+
+-- メッセージマスタ
+drop table if exists c_msg_mst cascade;
+
+create table c_msg_mst (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , msg_cd NUMERIC(9)
+  , msg_kind SMALLINT default 0 not null
+  , msg_data_1 VARCHAR(256)
+  , msg_data_2 VARCHAR(64)
+  , msg_data_3 VARCHAR(64)
+  , msg_data_4 VARCHAR(64)
+  , msg_data_5 VARCHAR(64)
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , msg_size_1 SMALLINT default 0 not null
+  , msg_size_2 SMALLINT default 0 not null
+  , msg_size_3 SMALLINT default 0 not null
+  , msg_size_4 SMALLINT default 0 not null
+  , msg_size_5 SMALLINT default 0 not null
+  , msg_color_1 SMALLINT default 11 not null
+  , msg_color_2 SMALLINT default 11 not null
+  , msg_color_3 SMALLINT default 11 not null
+  , msg_color_4 SMALLINT default 11 not null
+  , msg_color_5 SMALLINT default 11 not null
+  , back_color SMALLINT default 15 not null
+  , back_pict_typ SMALLINT default 0 not null
+  , second SMALLINT default 5 not null
+  , flg_01 SMALLINT default 0 not null
+  , flg_02 SMALLINT default 0 not null
+  , flg_03 SMALLINT default 0 not null
+  , flg_04 SMALLINT default 0 not null
+  , flg_05 SMALLINT default 0 not null
+  , msg_data_6 VARCHAR(64)
+  , msg_data_7 VARCHAR(64)
+  , msg_data_8 VARCHAR(64)
+  , msg_data_9 VARCHAR(64)
+  , msg_data_10 VARCHAR(64)
+  , msg_size_6 SMALLINT default 0 not null
+  , msg_size_7 SMALLINT default 0 not null
+  , msg_size_8 SMALLINT default 0 not null
+  , msg_size_9 SMALLINT default 0 not null
+  , msg_size_10 SMALLINT default 0 not null
+  , msg_color_6 SMALLINT default 11 not null
+  , msg_color_7 SMALLINT default 11 not null
+  , msg_color_8 SMALLINT default 11 not null
+  , msg_color_9 SMALLINT default 11 not null
+  , msg_color_10 SMALLINT default 11 not null
+  , flg_06 SMALLINT default 0 not null
+  , flg_07 SMALLINT default 0 not null
+  , flg_08 SMALLINT default 0 not null
+  , flg_09 SMALLINT default 0 not null
+  , flg_10 SMALLINT default 0 not null
+  , constraint c_msg_mst_PKC primary key (comp_cd,stre_cd,msg_cd)
+) ;
+
+-- メッセージレイアウトマスタ
+drop table if exists c_msglayout_mst cascade;
+
+create table c_msglayout_mst (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , msggrp_cd NUMERIC(9)
+  , msg_typ SMALLINT default 0
+  , msg_cd NUMERIC(9) default 0 not null
+  , target_typ SMALLINT default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_msglayout_mst_PKC primary key (comp_cd,stre_cd,msggrp_cd,msg_typ)
+) ;
+
+-- メッセージスケジュールマスタ
+drop table if exists c_msgsch_mst cascade;
+
+create table c_msgsch_mst (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , msgsch_cd NUMERIC(9)
+  , name VARCHAR(25)
+  , short_name VARCHAR(5)
+  , start_datetime TIMESTAMP
+  , end_datetime TIMESTAMP
+  , timesch_flg SMALLINT default 0 not null
+  , sun_flg SMALLINT default 0 not null
+  , mon_flg SMALLINT default 0 not null
+  , tue_flg SMALLINT default 0 not null
+  , wed_flg SMALLINT default 0 not null
+  , thu_flg SMALLINT default 0 not null
+  , fri_flg SMALLINT default 0 not null
+  , sat_flg SMALLINT default 0 not null
+  , stop_flg SMALLINT default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_msgsch_mst_PKC primary key (comp_cd,stre_cd,msgsch_cd)
+) ;
+
+-- メッセージスケジュールレイアウトマスタ
+drop table if exists c_msgsch_layout_mst cascade;
+
+create table c_msgsch_layout_mst (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , msgsch_cd NUMERIC(9)
+  , msggrp_cd NUMERIC(9)
+  , msg_typ SMALLINT default 0
+  , msg_cd NUMERIC(9) default 0 not null
+  , target_typ SMALLINT default 0 not null
+  , stop_flg SMALLINT default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_msgsch_layout_mst_PKC primary key (comp_cd,stre_cd,msgsch_cd,msggrp_cd,msg_typ)
+) ;
+
+-- ターミナルチェックマスタ
+drop table if exists c_trm_chk_mst cascade;
+
+create table c_trm_chk_mst (
+  trm_chk_grp_cd NUMERIC(9) not null
+  , trm_cd NUMERIC(9) not null
+  , trm_data NUMERIC(14,2) default 0 not null
+  , trm_chk_eq_flg SMALLINT default 0 not null
+  , constraint c_trm_chk_mst_PKC primary key (trm_chk_grp_cd,trm_cd)
+) ;
+
+-- 帳票印字条件マスタ
+drop table if exists c_report_cond_mst cascade;
+
+create table c_report_cond_mst (
+  code NUMERIC(9) not null
+  , menu_kind SMALLINT not null
+  , sub_menu_kind SMALLINT not null
+  , btn_stp SMALLINT not null
+  , btn_grp SMALLINT default 0 not null
+  , attr_cd SMALLINT default 0 not null
+  , constraint c_report_cond_mst_PKC primary key (code,menu_kind,sub_menu_kind,btn_stp)
+) ;
+
+-- 帳票属性マスタ
+drop table if exists c_report_attr_mst cascade;
+
+create table c_report_attr_mst (
+  attr_cd SMALLINT not null
+  , attr_sub_cd SMALLINT default 0 not null
+  , attr_typ SMALLINT default 0 not null
+  , start_data VARCHAR(20) not null
+  , end_data VARCHAR(20) not null
+  , digits SMALLINT default 0 not null
+  , img_cd NUMERIC(9) default 0 not null
+  , repo_sql_cd NUMERIC(9) default 0 not null
+  , constraint c_report_attr_mst_PKC primary key (attr_cd)
+) ;
+
+-- 帳票属性サブマスタ
+drop table if exists c_report_attr_sub_mst cascade;
+
+create table c_report_attr_sub_mst (
+  attr_sub_cd SMALLINT not null
+  , attr_sub_ordr SMALLINT not null
+  , img_cd NUMERIC(9) default 0
+  , repo_sql_cd NUMERIC(9) default 0
+  , constraint c_report_attr_sub_mst_PKC primary key (attr_sub_cd,attr_sub_ordr)
+) ;
+
+-- 帳票SQLマスタ
+drop table if exists c_report_sql_mst cascade;
+
+create table c_report_sql_mst (
+  repo_sql_cd NUMERIC(9) not null
+  , repo_sql_typ SMALLINT not null
+  , cond_sql TEXT
+  , cnct_sql1 SMALLINT not null
+  , cond_sql1 VARCHAR(100)
+  , cnct_sql2 SMALLINT not null
+  , cond_sql2 VARCHAR(100)
+  , constraint c_report_sql_mst_PKC primary key (repo_sql_cd)
+) ;
+
+-- 件数確認マスタ
+drop table if exists c_tcount_mst cascade;
+
+create table c_tcount_mst (
+  tcount_cd NUMERIC(9)
+  , set_tbl_name VARCHAR(50) not null
+  , set_tbl_typ SMALLINT default 0 not null
+  , file_dir VARCHAR(128)
+  , dat_div SMALLINT default 0 not null
+  , recog_grp_cd NUMERIC(9) default 0 not null
+  , constraint c_tcount_mst_PKC primary key (tcount_cd)
+) ;
+
+-- 自動開閉店マスタ
+drop table if exists c_stropncls_mst cascade;
+
+create table c_stropncls_mst (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , stropncls_grp NUMERIC(9)
+  , stropncls_cd NUMERIC(9)
+  , stropncls_data NUMERIC(14,2) default 0 not null
+  , data_typ SMALLINT default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_stropncls_mst_PKC primary key (comp_cd,stre_cd,stropncls_grp,stropncls_cd)
+) ;
+
+-- 自動開閉店設定マスタ
+drop table if exists c_stropncls_set_mst cascade;
+
+create table c_stropncls_set_mst (
+  stropncls_cd NUMERIC(9)
+  , stropncls_name VARCHAR(100)
+  , stropncls_dsp_cond SMALLINT default 0 not null
+  , stropncls_inp_cond SMALLINT default 0 not null
+  , stropncls_limit_max NUMERIC(14,2) default 0 not null
+  , stropncls_limit_min NUMERIC(14,2) default 0 not null
+  , stropncls_digits SMALLINT default 0 not null
+  , stropncls_zero_typ SMALLINT default 0 not null
+  , stropncls_btn_color SMALLINT default 0 not null
+  , stropncls_info_comment TEXT
+  , stropncls_info_pic SMALLINT default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_stropncls_set_mst_PKC primary key (stropncls_cd)
+) ;
+
+-- 自動開閉店サブマスタ
+drop table if exists c_stropncls_sub_mst cascade;
+
+create table c_stropncls_sub_mst (
+  stropncls_cd NUMERIC(9)
+  , stropncls_ordr SMALLINT
+  , stropncls_data NUMERIC(14,2) default 0 not null
+  , img_cd NUMERIC(9) default 0 not null
+  , stropncls_comment VARCHAR(50)
+  , stropncls_btn_color SMALLINT default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_stropncls_sub_mst_PKC primary key (stropncls_cd,stropncls_ordr)
+) ;
+
+-- 04
+-- 予約テーブル
+drop table if exists c_reserv_tbl cascade;
+
+create table c_reserv_tbl (
+  serial_no NUMERIC(43) default 0
+  , cust_no VARCHAR(20)
+  , last_name VARCHAR(50)
+  , first_name VARCHAR(50)
+  , tel_no1 VARCHAR(25)
+  , tel_no2 VARCHAR(25)
+  , post_no VARCHAR(7)
+  , address1 VARCHAR(20)
+  , address2 VARCHAR(20)
+  , address3 VARCHAR(40)
+  , recept_date TIMESTAMP
+  , ferry_date TIMESTAMP
+  , arrival_date TIMESTAMP
+  , qty NUMERIC(9) default 0 not null
+  , ttl NUMERIC(9) default 0 not null
+  , advance_money NUMERIC(9) default 0 not null
+  , memo1 VARCHAR(100)
+  , memo2 VARCHAR(100)
+  , finish SMALLINT default 0 not null
+  , constraint c_reserv_tbl_PKC primary key (serial_no)
+) ;
+
+-- 公共料金_残高情報テーブル
+drop table if exists p_pbchg_balance_tbl cascade;
+
+create table p_pbchg_balance_tbl (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , groupcd NUMERIC(9)
+  , officecd NUMERIC(9)
+  , dwn_balance NUMERIC(14) default 0 not null
+  , validflag SMALLINT default 0 not null
+  , now_balance NUMERIC(14) default 0 not null
+  , pay_amt NUMERIC(14) default 0 not null
+  , settle_flg SMALLINT default 0 not null
+  , fil1 NUMERIC(9) default 0 not null
+  , fil2 NUMERIC(9) default 0 not null
+  , constraint p_pbchg2_balance_tbl_PKC primary key (comp_cd,stre_cd,groupcd,officecd)
+) ;
+
+-- 公共料金_店舗情報テーブル
+drop table if exists p_pbchg_stre_tbl cascade;
+
+create table p_pbchg_stre_tbl (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , groupcd NUMERIC(9)
+  , officecd NUMERIC(9)
+  , strecd NUMERIC(9)
+  , termcd NUMERIC(9)
+  , minimum NUMERIC(9) default 0 not null
+  , svcstopclassify SMALLINT default 0 not null
+  , svcstopmoney NUMERIC(9) default 0 not null
+  , office_svcclassify SMALLINT default 0 not null
+  , office_validflag SMALLINT default 0 not null
+  , office_changed VARCHAR(14)
+  , stre_svcclassify SMALLINT default 0 not null
+  , stre_validflag SMALLINT default 0 not null
+  , stre_changed VARCHAR(14)
+  , eastclassify SMALLINT default 0 not null
+  , westclassify SMALLINT default 0 not null
+  , term_svcclassify SMALLINT default 0 not null
+  , term_validflag SMALLINT default 0 not null
+  , term_changed VARCHAR(14)
+  , fil1 NUMERIC(9) default 0 not null
+  , fil2 NUMERIC(9) default 0 not null
+  , constraint p_pbchg_stre_tbl_PKC primary key (comp_cd,stre_cd,groupcd,officecd,strecd,termcd)
+) ;
+
+-- 公共料金_収納企業情報テーブル
+drop table if exists p_pbchg_corp_tbl cascade;
+
+create table p_pbchg_corp_tbl (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , corpcd NUMERIC(9)
+  , subclassify SMALLINT
+  , subcd NUMERIC(9)
+  , name VARCHAR(80)
+  , kana VARCHAR(60)
+  , isntt SMALLINT default 0 not null
+  , corp_svcclassify SMALLINT default 0 not null
+  , corp_validflag SMALLINT default 0 not null
+  , corp_svcstart VARCHAR(14)
+  , barcodekind SMALLINT default 0 not null
+  , sclassify SMALLINT default 0 not null
+  , sjclassify SMALLINT default 0 not null
+  , sjmoney NUMERIC(9) default 0 not null
+  , sjcolumn SMALLINT default 0 not null
+  , sjrow SMALLINT default 0 not null
+  , pclassify SMALLINT default 0 not null
+  , ddclassify SMALLINT default 0 not null
+  , ddcolumn SMALLINT default 0 not null
+  , ddrows SMALLINT default 0 not null
+  , ddrowe SMALLINT default 0 not null
+  , ddmethod SMALLINT default 0 not null
+  , orgcolumn SMALLINT default 0 not null
+  , orgrows SMALLINT default 0 not null
+  , orgrowe SMALLINT default 0 not null
+  , rclassify SMALLINT default 0 not null
+  , fclassify SMALLINT default 0 not null
+  , fmoney1 NUMERIC(9) default 0 not null
+  , funit1 SMALLINT default 0 not null
+  , fee1 NUMERIC(9) default 0 not null
+  , fmoney2 NUMERIC(9) default 0 not null
+  , funit2 SMALLINT default 0 not null
+  , fee2 NUMERIC(9) default 0 not null
+  , fmoney3 NUMERIC(9) default 0 not null
+  , funit3 SMALLINT default 0 not null
+  , fee3 NUMERIC(9) default 0 not null
+  , fmoney4 NUMERIC(9) default 0 not null
+  , funit4 SMALLINT default 0 not null
+  , fee4 NUMERIC(9) default 0 not null
+  , fmoney5 NUMERIC(9) default 0 not null
+  , funit5 SMALLINT default 0 not null
+  , fee5 NUMERIC(9) default 0 not null
+  , limit_amt NUMERIC(9) default 0 not null
+  , decision_svcclassify SMALLINT default 0 not null
+  , decision_validflag SMALLINT default 0 not null
+  , decision_changed VARCHAR(14)
+  , fil1 NUMERIC(9) default 0 not null
+  , fil2 NUMERIC(9) default 0 not null
+  , constraint p_pbchg_corp_tbl_PKC primary key (comp_cd,stre_cd,corpcd,subclassify,subcd)
+) ;
+
+-- 公共料金_端末別収納不可企業情報テーブル
+drop table if exists p_pbchg_ncorp_tbl cascade;
+
+create table p_pbchg_ncorp_tbl (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , groupcd NUMERIC(9)
+  , officecd NUMERIC(9)
+  , strecd NUMERIC(9)
+  , termcd NUMERIC(9)
+  , corpcd NUMERIC(9)
+  , subcd NUMERIC(9)
+  , validflag SMALLINT default 0 not null
+  , changed VARCHAR(14)
+  , fil1 NUMERIC(9) default 0 not null
+  , fil2 NUMERIC(9) default 0 not null
+  , constraint p_pbchg_ncorp_tbl_PKC primary key (comp_cd,stre_cd,groupcd,officecd,strecd,termcd,corpcd,subcd)
+) ;
+
+-- 公共料金_NTT東日本局番情報テーブル
+drop table if exists p_pbchg_ntte_tbl cascade;
+
+create table p_pbchg_ntte_tbl (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , startno NUMERIC(9) default 0 not null
+  , endno NUMERIC(9) default 0 not null
+  , validflag SMALLINT default 0 not null
+  , changed VARCHAR(14)
+  , fil1 NUMERIC(9) default 0 not null
+  , fil2 NUMERIC(9) default 0 not null
+) ;
+
+-- クレジット会社請求テーブル
+drop table if exists c_crdt_demand_tbl cascade;
+
+create table c_crdt_demand_tbl (
+  comp_cd NUMERIC(9) default 0
+  , card_kind NUMERIC(5) default 0
+  , company_cd NUMERIC(5) default 0 not null
+  , id VARCHAR(1)
+  , business SMALLINT default 0 not null
+  , mbr_no_from NUMERIC(12) default 0 not null
+  , mbr_no_to NUMERIC(12) default 0 not null
+  , mbr_no_position NUMERIC(2) default 1 not null
+  , mbr_no_digit NUMERIC(2) default 1 not null
+  , ckdigit_chk SMALLINT default 0 not null
+  , ckdigit_wait VARCHAR(15)
+  , card_company_name VARCHAR(20)
+  , good_thru_position NUMERIC(2) default 1 not null
+  , pay_autoinput_chk SMALLINT default 0 not null
+  , pay_shut_day NUMERIC(2) default 1 not null
+  , pay_day NUMERIC(2) default 1 not null
+  , lump SMALLINT default 0 not null
+  , twice SMALLINT default 0 not null
+  , divide SMALLINT default 0 not null
+  , bonus_lump SMALLINT default 0 not null
+  , bonus_twice SMALLINT default 0 not null
+  , bonus_use SMALLINT default 0 not null
+  , ribo SMALLINT default 0 not null
+  , skip SMALLINT default 0 not null
+  , divide3 SMALLINT default 0 not null
+  , divide4 SMALLINT default 0 not null
+  , divide5 SMALLINT default 0 not null
+  , divide6 SMALLINT default 0 not null
+  , divide7 SMALLINT default 0 not null
+  , divide8 SMALLINT default 0 not null
+  , divide9 SMALLINT default 0 not null
+  , divide10 SMALLINT default 0 not null
+  , divide11 SMALLINT default 0 not null
+  , divide12 SMALLINT default 0 not null
+  , divide15 SMALLINT default 0 not null
+  , divide18 SMALLINT default 0 not null
+  , divide20 SMALLINT default 0 not null
+  , divide24 SMALLINT default 0 not null
+  , divide25 SMALLINT default 0 not null
+  , divide30 SMALLINT default 0 not null
+  , divide35 SMALLINT default 0 not null
+  , divide36 SMALLINT default 0 not null
+  , divide3_limit NUMERIC(6) default 0 not null
+  , divide4_limit NUMERIC(6) default 0 not null
+  , divide5_limit NUMERIC(6) default 0 not null
+  , divide6_limit NUMERIC(6) default 0 not null
+  , divide7_limit NUMERIC(6) default 0 not null
+  , divide8_limit NUMERIC(6) default 0 not null
+  , divide9_limit NUMERIC(6) default 0 not null
+  , divide10_limit NUMERIC(6) default 0 not null
+  , divide11_limit NUMERIC(6) default 0 not null
+  , divide12_limit NUMERIC(6) default 0 not null
+  , divide15_limit NUMERIC(6) default 0 not null
+  , divide18_limit NUMERIC(6) default 0 not null
+  , divide20_limit NUMERIC(6) default 0 not null
+  , divide24_limit NUMERIC(6) default 0 not null
+  , divide25_limit NUMERIC(6) default 0 not null
+  , divide30_limit NUMERIC(6) default 0 not null
+  , divide35_limit NUMERIC(6) default 0 not null
+  , divide36_limit NUMERIC(6) default 0 not null
+  , bonus_use2 SMALLINT default 0 not null
+  , bonus_use3 SMALLINT default 0 not null
+  , bonus_use4 SMALLINT default 0 not null
+  , bonus_use5 SMALLINT default 0 not null
+  , bonus_use6 SMALLINT default 0 not null
+  , bonus_use7 SMALLINT default 0 not null
+  , bonus_use8 SMALLINT default 0 not null
+  , bonus_use9 SMALLINT default 0 not null
+  , bonus_use10 SMALLINT default 0 not null
+  , bonus_use11 SMALLINT default 0 not null
+  , bonus_use12 SMALLINT default 0 not null
+  , bonus_use15 SMALLINT default 0 not null
+  , bonus_use18 SMALLINT default 0 not null
+  , bonus_use20 SMALLINT default 0 not null
+  , bonus_use24 SMALLINT default 0 not null
+  , bonus_use25 SMALLINT default 0 not null
+  , bonus_use30 SMALLINT default 0 not null
+  , bonus_use35 SMALLINT default 0 not null
+  , bonus_use36 SMALLINT default 0 not null
+  , bonus_use2_limit NUMERIC(6) default 0 not null
+  , bonus_use3_limit NUMERIC(6) default 0 not null
+  , bonus_use4_limit NUMERIC(6) default 0 not null
+  , bonus_use5_limit NUMERIC(6) default 0 not null
+  , bonus_use6_limit NUMERIC(6) default 0 not null
+  , bonus_use7_limit NUMERIC(6) default 0 not null
+  , bonus_use8_limit NUMERIC(6) default 0 not null
+  , bonus_use9_limit NUMERIC(6) default 0 not null
+  , bonus_use10_limit NUMERIC(6) default 0 not null
+  , bonus_use11_limit NUMERIC(6) default 0 not null
+  , bonus_use12_limit NUMERIC(6) default 0 not null
+  , bonus_use15_limit NUMERIC(6) default 0 not null
+  , bonus_use18_limit NUMERIC(6) default 0 not null
+  , bonus_use20_limit NUMERIC(6) default 0 not null
+  , bonus_use24_limit NUMERIC(6) default 0 not null
+  , bonus_use25_limit NUMERIC(6) default 0 not null
+  , bonus_use30_limit NUMERIC(6) default 0 not null
+  , bonus_use35_limit NUMERIC(6) default 0 not null
+  , bonus_use36_limit NUMERIC(6) default 0 not null
+  , pay_input_chk SMALLINT default 0 not null
+  , winter_bonus_from NUMERIC(4) default 0 not null
+  , winter_bonus_to NUMERIC(4) default 0 not null
+  , winter_bonus_pay1 NUMERIC(2) default 0 not null
+  , winter_bonus_pay2 NUMERIC(2) default 0 not null
+  , winter_bonus_pay3 NUMERIC(2) default 0 not null
+  , summer_bonus_from NUMERIC(4) default 0 not null
+  , summer_bonus_to NUMERIC(4) default 0 not null
+  , summer_bonus_pay1 NUMERIC(2) default 0 not null
+  , summer_bonus_pay2 NUMERIC(2) default 0 not null
+  , summer_bonus_pay3 NUMERIC(2) default 0 not null
+  , bonus_lump_limit NUMERIC(6) default 0 not null
+  , bonus_twice_limit NUMERIC(6) default 0 not null
+  , offline_limit NUMERIC(6) default 0 not null
+  , card_jis SMALLINT default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT
+  , send_flg SMALLINT
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT
+  , company_cd_to NUMERIC(5) default 0 not null
+  , stlcrdtdsc_per NUMERIC(2) default 0 not null
+  , mkr_cd SMALLINT default 0 not null
+  , destination VARCHAR(7)
+  , signless_flg SMALLINT default 0 not null
+  , coopcode1 NUMERIC(6) default 0 not null
+  , coopcode2 NUMERIC(6) default 0 not null
+  , coopcode3 NUMERIC(6) default 0 not null
+  , bonus_add_input_chk SMALLINT default 0 not null
+  , bonus_cnt_input_chk SMALLINT default 0 not null
+  , bonus_cnt SMALLINT default 0 not null
+  , paymonth_input_chk SMALLINT default 0 not null
+  , sign_amt NUMERIC(6) default 0 not null
+  , effect_code NUMERIC(6) default 0 not null
+  , fil1 SMALLINT default 0 not null
+  , fil2 SMALLINT default 0 not null
+  , fil3 SMALLINT default 0 not null
+  , fil4 SMALLINT default 0 not null
+  , fil5 SMALLINT default 0 not null
+  , fil6 NUMERIC(9) default 0 not null
+  , fil7 NUMERIC(9) default 0 not null
+  , fil8 NUMERIC(9) default 0 not null
+  , fil9 NUMERIC(9) default 0 not null
+  , fil10 NUMERIC(9) default 0 not null
+  , fil11 VARCHAR(20)
+  , fil12 VARCHAR(20)
+  , fil13 VARCHAR(20)
+  , fil14 VARCHAR(20)
+  , fil15 VARCHAR(20)
+) ;
+
+-- 予約売価変更スケジュールマスタ
+drop table if exists p_prcchg_sch_mst cascade;
+
+create table p_prcchg_sch_mst (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , prcchg_cd NUMERIC(9)
+  , div_cd SMALLINT default 0 not null
+  , start_datetime TIMESTAMP
+  , end_datetime TIMESTAMP
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint p_prcchg_sch_mst_PKC primary key (comp_cd,stre_cd,prcchg_cd)
+) ;
+
+-- 予約売価変更商品マスタ
+drop table if exists p_prcchg_item_mst cascade;
+
+create table p_prcchg_item_mst (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , prcchg_cd NUMERIC(9)
+  , bkup_flg SMALLINT
+  , plu_cd VARCHAR(20)
+  , item_name VARCHAR(50)
+  , pos_prc NUMERIC(9) default 0 not null
+  , cust_prc NUMERIC(9) default 0 not null
+  , cost_prc NUMERIC(11,2) default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint p_prcchg_item_mst_PKC primary key (comp_cd,stre_cd,prcchg_cd,bkup_flg,plu_cd)
+) ;
+
+-- 売価変更マスタ
+drop table if exists p_prcchg_mst cascade;
+
+create table p_prcchg_mst (
+  serial_no NUMERIC(9)
+  , plu_cd VARCHAR(20)
+  , item_name VARCHAR(50)
+  , pos_prc NUMERIC(9) default 0 not null
+  , cust_prc NUMERIC(9) default 0 not null
+  , cost_prc NUMERIC(11,2) default 0 not null
+  , prcchg_cd NUMERIC(9) default 0 not null
+  , mac_no NUMERIC(9) default 0 not null
+  , div_cd SMALLINT default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint p_prcchg_mst_PKC primary key (serial_no)
+) ;
+
+-- バックヤード機器設定マスタ
+drop table if exists s_backyard_grp_mst cascade;
+
+create table s_backyard_grp_mst (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , cnct_no NUMERIC(9)
+  , cls_typ SMALLINT
+  , cls_cd NUMERIC(9)
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint s_backyard_grp_mst_PKC primary key (comp_cd, stre_cd, cnct_no, cls_typ, cls_cd)
+);
+
+-- Wiz情報テーブル
+drop table if exists c_wiz_inf_tbl cascade;
+
+create table c_wiz_inf_tbl (
+  cd NUMERIC(9)
+  , ipaddr VARCHAR(20)
+  , mac_addr VARCHAR(20)
+  , pwr_sts INT
+  , run_flg INT
+  , run_bfre_date TIMESTAMP
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_wiz_inf_tbl_PKC primary key (cd)
+);
+
+
+-- 05
+--------- 実績ヘッダログ ---------------------------------------------
+		-- 予約実績ヘッダログ(日付分)
+		drop table if exists c_header_log_reserv_01 cascade;
+
+	-- 予約実績ヘッダログ
+	drop table if exists c_header_log_reserv cascade;
+
+	-- RM3800 フローティング用実績ヘッダログ 
+	drop table if exists c_header_log_floating cascade;
+
+	-- 実績ヘッダログ(日付分)
+	drop table if exists c_header_log_01 cascade;
+	drop table if exists c_header_log_02 cascade;
+	drop table if exists c_header_log_03 cascade;
+	drop table if exists c_header_log_04 cascade;
+	drop table if exists c_header_log_05 cascade;
+	drop table if exists c_header_log_06 cascade;
+	drop table if exists c_header_log_07 cascade;
+	drop table if exists c_header_log_08 cascade;
+	drop table if exists c_header_log_09 cascade;
+	drop table if exists c_header_log_10 cascade;
+	drop table if exists c_header_log_11 cascade;
+	drop table if exists c_header_log_12 cascade;
+	drop table if exists c_header_log_13 cascade;
+	drop table if exists c_header_log_14 cascade;
+	drop table if exists c_header_log_15 cascade;
+	drop table if exists c_header_log_16 cascade;
+	drop table if exists c_header_log_17 cascade;
+	drop table if exists c_header_log_18 cascade;
+	drop table if exists c_header_log_19 cascade;
+	drop table if exists c_header_log_20 cascade;
+	drop table if exists c_header_log_21 cascade;
+	drop table if exists c_header_log_22 cascade;
+	drop table if exists c_header_log_23 cascade;
+	drop table if exists c_header_log_24 cascade;
+	drop table if exists c_header_log_25 cascade;
+	drop table if exists c_header_log_26 cascade;
+	drop table if exists c_header_log_27 cascade;
+	drop table if exists c_header_log_28 cascade;
+	drop table if exists c_header_log_29 cascade;
+	drop table if exists c_header_log_30 cascade;
+	drop table if exists c_header_log_31 cascade;
+
+-- 実績ヘッダログ
+drop table if exists c_header_log cascade;
+
+create table c_header_log (
+  serial_no NUMERIC(43) default 0
+  , comp_cd NUMERIC(9) default 0 not null
+  , stre_cd NUMERIC(9) default 0 not null
+  , mac_no NUMERIC(9) default 0 not null
+  , receipt_no NUMERIC(4) default 0 not null
+  , print_no NUMERIC(4) default 0 not null
+  , cshr_no NUMERIC(10) default 0 not null
+  , chkr_no NUMERIC(10) default 0 not null
+  , cust_no VARCHAR(20)
+  , sale_date TIMESTAMP
+  , starttime TIMESTAMP
+  , endtime TIMESTAMP
+  , ope_mode_flg NUMERIC(9) default 0 not null
+  , inout_flg SMALLINT default 0 not null
+  , prn_typ SMALLINT default 0 not null
+  , void_serial_no NUMERIC(43) default 0 not null
+  , qc_serial_no NUMERIC(44) default 0 not null
+  , void_kind SMALLINT default 0 not null
+  , void_sale_date TIMESTAMP
+  , data_log_cnt SMALLINT default 0 not null
+  , ej_log_cnt SMALLINT default 0 not null
+  , status_log_cnt SMALLINT default 0 not null
+  , tran_flg SMALLINT default 0 not null
+  , sub_tran_flg SMALLINT default 0 not null
+  , off_entry_flg SMALLINT default 0 not null
+  , various_flg_1 SMALLINT default 0 not null
+  , various_flg_2 SMALLINT default 0 not null
+  , various_flg_3 SMALLINT default 0 not null
+  , various_num_1 NUMERIC(9) default 0 not null
+  , various_num_2 NUMERIC(9) default 0 not null
+  , various_num_3 NUMERIC(9) default 0 not null
+  , various_data VARCHAR(128)
+  , various_flg_4 SMALLINT default 0 not null
+  , various_flg_5 SMALLINT default 0 not null
+  , various_flg_6 SMALLINT default 0 not null
+  , various_flg_7 SMALLINT default 0 not null
+  , various_flg_8 SMALLINT default 0 not null
+  , various_flg_9 SMALLINT default 0 not null
+  , various_flg_10 SMALLINT default 0 not null
+  , various_flg_11 SMALLINT default 0 not null
+  , various_flg_12 SMALLINT default 0 not null
+  , various_flg_13 SMALLINT default 0 not null
+  , reserv_flg SMALLINT default 0 not null
+  , reserv_stre_cd NUMERIC(9) default 0 not null
+  , reserv_status SMALLINT default 0 not null
+  , reserv_chg_cnt SMALLINT default 0 not null
+  , reserv_cd VARCHAR(128)
+  , lock_cd VARCHAR(128)
+  , constraint c_header_log_PKC primary key (serial_no)
+) ;
+
+	-- 実績ヘッダログ(日付分)
+	create table c_header_log_01 ( ) inherits (c_header_log);
+	create table c_header_log_02 ( ) inherits (c_header_log);
+	create table c_header_log_03 ( ) inherits (c_header_log);
+	create table c_header_log_04 ( ) inherits (c_header_log);
+	create table c_header_log_05 ( ) inherits (c_header_log);
+	create table c_header_log_06 ( ) inherits (c_header_log);
+	create table c_header_log_07 ( ) inherits (c_header_log);
+	create table c_header_log_08 ( ) inherits (c_header_log);
+	create table c_header_log_09 ( ) inherits (c_header_log);
+	create table c_header_log_10 ( ) inherits (c_header_log);
+	create table c_header_log_11 ( ) inherits (c_header_log);
+	create table c_header_log_12 ( ) inherits (c_header_log);
+	create table c_header_log_13 ( ) inherits (c_header_log);
+	create table c_header_log_14 ( ) inherits (c_header_log);
+	create table c_header_log_15 ( ) inherits (c_header_log);
+	create table c_header_log_16 ( ) inherits (c_header_log);
+	create table c_header_log_17 ( ) inherits (c_header_log);
+	create table c_header_log_18 ( ) inherits (c_header_log);
+	create table c_header_log_19 ( ) inherits (c_header_log);
+	create table c_header_log_20 ( ) inherits (c_header_log);
+	create table c_header_log_21 ( ) inherits (c_header_log);
+	create table c_header_log_22 ( ) inherits (c_header_log);
+	create table c_header_log_23 ( ) inherits (c_header_log);
+	create table c_header_log_24 ( ) inherits (c_header_log);
+	create table c_header_log_25 ( ) inherits (c_header_log);
+	create table c_header_log_26 ( ) inherits (c_header_log);
+	create table c_header_log_27 ( ) inherits (c_header_log);
+	create table c_header_log_28 ( ) inherits (c_header_log);
+	create table c_header_log_29 ( ) inherits (c_header_log);
+	create table c_header_log_30 ( ) inherits (c_header_log);
+	create table c_header_log_31 ( ) inherits (c_header_log);
+
+	-- 予約実績ヘッダログ
+	create table c_header_log_reserv ( ) inherits (c_header_log);
+
+		-- 予約実績ヘッダログ(日付分)
+		create table c_header_log_reserv_01 ( ) inherits (c_header_log);
+
+	-- RM3800フローティング用実績ヘッダログ 
+	create table c_header_log_floating ( ) inherits (c_header_log);
+
+--------- 実績データログ ---------------------------------------------
+		-- 予約実績データログ(日付分)
+		drop table if exists c_data_log_reserv_01 cascade;
+
+	-- 予約実績データログ
+	drop table if exists c_data_log_reserv cascade;
+
+	-- RM3800 フローティング用実績データログ 
+	drop table if exists c_data_log_floating cascade;
+
+
+	-- 実績データログ(日付分)
+	drop table if exists c_data_log_01 cascade;
+	drop table if exists c_data_log_02 cascade;
+	drop table if exists c_data_log_03 cascade;
+	drop table if exists c_data_log_04 cascade;
+	drop table if exists c_data_log_05 cascade;
+	drop table if exists c_data_log_06 cascade;
+	drop table if exists c_data_log_07 cascade;
+	drop table if exists c_data_log_08 cascade;
+	drop table if exists c_data_log_09 cascade;
+	drop table if exists c_data_log_10 cascade;
+	drop table if exists c_data_log_11 cascade;
+	drop table if exists c_data_log_12 cascade;
+	drop table if exists c_data_log_13 cascade;
+	drop table if exists c_data_log_14 cascade;
+	drop table if exists c_data_log_15 cascade;
+	drop table if exists c_data_log_16 cascade;
+	drop table if exists c_data_log_17 cascade;
+	drop table if exists c_data_log_18 cascade;
+	drop table if exists c_data_log_19 cascade;
+	drop table if exists c_data_log_20 cascade;
+	drop table if exists c_data_log_21 cascade;
+	drop table if exists c_data_log_22 cascade;
+	drop table if exists c_data_log_23 cascade;
+	drop table if exists c_data_log_24 cascade;
+	drop table if exists c_data_log_25 cascade;
+	drop table if exists c_data_log_26 cascade;
+	drop table if exists c_data_log_27 cascade;
+	drop table if exists c_data_log_28 cascade;
+	drop table if exists c_data_log_29 cascade;
+	drop table if exists c_data_log_30 cascade;
+	drop table if exists c_data_log_31 cascade;
+
+-- 実績データログ
+drop table if exists c_data_log cascade;
+
+create table c_data_log (
+  serial_no NUMERIC(43) default 0 not null
+  , seq_no SMALLINT default 0 not null
+  , cnct_seq_no SMALLINT default 0 not null
+  , func_cd NUMERIC(9) default 0 not null
+  , func_seq_no SMALLINT default 0 not null
+  , c_data1 VARCHAR(200)
+  , c_data2 VARCHAR(200)
+  , c_data3 VARCHAR(200)
+  , c_data4 VARCHAR(200)
+  , c_data5 VARCHAR(200)
+  , c_data6 VARCHAR(200)
+  , c_data7 VARCHAR(200)
+  , c_data8 VARCHAR(200)
+  , c_data9 VARCHAR(200)
+  , c_data10 VARCHAR(200)
+  , n_data1 NUMERIC(11,2) default 0 not null
+  , n_data2 NUMERIC(11,2) default 0 not null
+  , n_data3 NUMERIC(11,2) default 0 not null
+  , n_data4 NUMERIC(11,2) default 0 not null
+  , n_data5 NUMERIC(11,2) default 0 not null
+  , n_data6 NUMERIC(11,2) default 0 not null
+  , n_data7 NUMERIC(11,2) default 0 not null
+  , n_data8 NUMERIC(11,2) default 0 not null
+  , n_data9 NUMERIC(11,2) default 0 not null
+  , n_data10 NUMERIC(11,2) default 0 not null
+  , n_data11 NUMERIC(11,2) default 0 not null
+  , n_data12 NUMERIC(11,2) default 0 not null
+  , n_data13 NUMERIC(11,2) default 0 not null
+  , n_data14 NUMERIC(11,2) default 0 not null
+  , n_data15 NUMERIC(11,2) default 0 not null
+  , n_data16 NUMERIC(11,2) default 0 not null
+  , n_data17 NUMERIC(11,2) default 0 not null
+  , n_data18 NUMERIC(11,2) default 0 not null
+  , n_data19 NUMERIC(11,2) default 0 not null
+  , n_data20 NUMERIC(11,2) default 0 not null
+  , n_data21 NUMERIC(11,2) default 0 not null
+  , n_data22 NUMERIC(11,2) default 0 not null
+  , n_data23 NUMERIC(11,2) default 0 not null
+  , n_data24 NUMERIC(11,2) default 0 not null
+  , n_data25 NUMERIC(11,2) default 0 not null
+  , n_data26 NUMERIC(11,2) default 0 not null
+  , n_data27 NUMERIC(11,2) default 0 not null
+  , n_data28 NUMERIC(11,2) default 0 not null
+  , n_data29 NUMERIC(11,2) default 0 not null
+  , n_data30 NUMERIC(11,2) default 0 not null
+  , d_data1 TIMESTAMP
+  , d_data2 TIMESTAMP
+  , d_data3 TIMESTAMP
+  , d_data4 TIMESTAMP
+  , d_data5 TIMESTAMP
+  , constraint c_data_log_PKC primary key (serial_no,seq_no)
+) ;
+
+	-- 実績データログ(日付分)
+	create table c_data_log_01 ( ) inherits (c_data_log);
+	create table c_data_log_02 ( ) inherits (c_data_log);
+	create table c_data_log_03 ( ) inherits (c_data_log);
+	create table c_data_log_04 ( ) inherits (c_data_log);
+	create table c_data_log_05 ( ) inherits (c_data_log);
+	create table c_data_log_06 ( ) inherits (c_data_log);
+	create table c_data_log_07 ( ) inherits (c_data_log);
+	create table c_data_log_08 ( ) inherits (c_data_log);
+	create table c_data_log_09 ( ) inherits (c_data_log);
+	create table c_data_log_10 ( ) inherits (c_data_log);
+	create table c_data_log_11 ( ) inherits (c_data_log);
+	create table c_data_log_12 ( ) inherits (c_data_log);
+	create table c_data_log_13 ( ) inherits (c_data_log);
+	create table c_data_log_14 ( ) inherits (c_data_log);
+	create table c_data_log_15 ( ) inherits (c_data_log);
+	create table c_data_log_16 ( ) inherits (c_data_log);
+	create table c_data_log_17 ( ) inherits (c_data_log);
+	create table c_data_log_18 ( ) inherits (c_data_log);
+	create table c_data_log_19 ( ) inherits (c_data_log);
+	create table c_data_log_20 ( ) inherits (c_data_log);
+	create table c_data_log_21 ( ) inherits (c_data_log);
+	create table c_data_log_22 ( ) inherits (c_data_log);
+	create table c_data_log_23 ( ) inherits (c_data_log);
+	create table c_data_log_24 ( ) inherits (c_data_log);
+	create table c_data_log_25 ( ) inherits (c_data_log);
+	create table c_data_log_26 ( ) inherits (c_data_log);
+	create table c_data_log_27 ( ) inherits (c_data_log);
+	create table c_data_log_28 ( ) inherits (c_data_log);
+	create table c_data_log_29 ( ) inherits (c_data_log);
+	create table c_data_log_30 ( ) inherits (c_data_log);
+	create table c_data_log_31 ( ) inherits (c_data_log);
+
+	-- 予約実績データログ
+	create table c_data_log_reserv ( ) inherits (c_data_log);
+
+		-- 予約実績データログ(日付分)
+		create table c_data_log_reserv_01 ( ) inherits (c_data_log);
+
+	-- RM3800 フローティング用実績データログ 
+	create table c_data_log_floating ( ) inherits (c_data_log);
+
+
+--------- 実績ステータスログ -----------------------------------------
+		-- 予約実績ステータスログ(日付分)
+		drop table if exists c_status_log_reserv_01 cascade;
+
+	-- 予約実績ステータスログ
+	drop table if exists c_status_log_reserv cascade;	
+
+	-- RM3800 フローティング用実績ステータスログ 
+	drop table if exists c_status_log_floating cascade;
+
+	-- 実績ステータスログ(日付分)
+	drop table if exists c_status_log_01 cascade;
+	drop table if exists c_status_log_02 cascade;
+	drop table if exists c_status_log_03 cascade;
+	drop table if exists c_status_log_04 cascade;
+	drop table if exists c_status_log_05 cascade;
+	drop table if exists c_status_log_06 cascade;
+	drop table if exists c_status_log_07 cascade;
+	drop table if exists c_status_log_08 cascade;
+	drop table if exists c_status_log_09 cascade;
+	drop table if exists c_status_log_10 cascade;
+	drop table if exists c_status_log_11 cascade;
+	drop table if exists c_status_log_12 cascade;
+	drop table if exists c_status_log_13 cascade;
+	drop table if exists c_status_log_14 cascade;
+	drop table if exists c_status_log_15 cascade;
+	drop table if exists c_status_log_16 cascade;
+	drop table if exists c_status_log_17 cascade;
+	drop table if exists c_status_log_18 cascade;
+	drop table if exists c_status_log_19 cascade;
+	drop table if exists c_status_log_20 cascade;
+	drop table if exists c_status_log_21 cascade;
+	drop table if exists c_status_log_22 cascade;
+	drop table if exists c_status_log_23 cascade;
+	drop table if exists c_status_log_24 cascade;
+	drop table if exists c_status_log_25 cascade;
+	drop table if exists c_status_log_26 cascade;
+	drop table if exists c_status_log_27 cascade;
+	drop table if exists c_status_log_28 cascade;
+	drop table if exists c_status_log_29 cascade;
+	drop table if exists c_status_log_30 cascade;
+	drop table if exists c_status_log_31 cascade;
+
+-- 実績ステータスログ
+drop table if exists c_status_log cascade;
+
+create table c_status_log (
+  serial_no NUMERIC(43) default 0
+  , seq_no SMALLINT
+  , cnct_seq_no SMALLINT default 0 not null
+  , func_cd NUMERIC(9) default 0 not null
+  , func_seq_no SMALLINT default 0 not null
+  , status_data VARCHAR(1024)
+  , constraint c_status_log_PKC primary key (serial_no,seq_no)
+) ;
+
+	-- 実績ステータスログ(日付分)
+	create table c_status_log_01 ( ) inherits (c_status_log);
+	create table c_status_log_02 ( ) inherits (c_status_log);
+	create table c_status_log_03 ( ) inherits (c_status_log);
+	create table c_status_log_04 ( ) inherits (c_status_log);
+	create table c_status_log_05 ( ) inherits (c_status_log);
+	create table c_status_log_06 ( ) inherits (c_status_log);
+	create table c_status_log_07 ( ) inherits (c_status_log);
+	create table c_status_log_08 ( ) inherits (c_status_log);
+	create table c_status_log_09 ( ) inherits (c_status_log);
+	create table c_status_log_10 ( ) inherits (c_status_log);
+	create table c_status_log_11 ( ) inherits (c_status_log);
+	create table c_status_log_12 ( ) inherits (c_status_log);
+	create table c_status_log_13 ( ) inherits (c_status_log);
+	create table c_status_log_14 ( ) inherits (c_status_log);
+	create table c_status_log_15 ( ) inherits (c_status_log);
+	create table c_status_log_16 ( ) inherits (c_status_log);
+	create table c_status_log_17 ( ) inherits (c_status_log);
+	create table c_status_log_18 ( ) inherits (c_status_log);
+	create table c_status_log_19 ( ) inherits (c_status_log);
+	create table c_status_log_20 ( ) inherits (c_status_log);
+	create table c_status_log_21 ( ) inherits (c_status_log);
+	create table c_status_log_22 ( ) inherits (c_status_log);
+	create table c_status_log_23 ( ) inherits (c_status_log);
+	create table c_status_log_24 ( ) inherits (c_status_log);
+	create table c_status_log_25 ( ) inherits (c_status_log);
+	create table c_status_log_26 ( ) inherits (c_status_log);
+	create table c_status_log_27 ( ) inherits (c_status_log);
+	create table c_status_log_28 ( ) inherits (c_status_log);
+	create table c_status_log_29 ( ) inherits (c_status_log);
+	create table c_status_log_30 ( ) inherits (c_status_log);
+	create table c_status_log_31 ( ) inherits (c_status_log);
+
+	-- 予約実績ステータスログ
+	create table c_status_log_reserv ( ) inherits (c_status_log);
+		-- 予約実績ステータスログ(日付分)
+		create table c_status_log_reserv_01 ( ) inherits (c_status_log);
+
+	-- RM3800 フローティング用実績ステータスログ 
+	create table c_status_log_floating ( ) inherits (c_status_log);
+
+--------- 実績ジャーナルデータログ -----------------------------------------
+
+	-- 実績ジャーナルデータログ(日付分)
+	drop table if exists c_ej_log_01 cascade;
+	drop table if exists c_ej_log_02 cascade;
+	drop table if exists c_ej_log_03 cascade;
+	drop table if exists c_ej_log_04 cascade;
+	drop table if exists c_ej_log_05 cascade;
+	drop table if exists c_ej_log_06 cascade;
+	drop table if exists c_ej_log_07 cascade;
+	drop table if exists c_ej_log_08 cascade;
+	drop table if exists c_ej_log_09 cascade;
+	drop table if exists c_ej_log_10 cascade;
+	drop table if exists c_ej_log_11 cascade;
+	drop table if exists c_ej_log_12 cascade;
+	drop table if exists c_ej_log_13 cascade;
+	drop table if exists c_ej_log_14 cascade;
+	drop table if exists c_ej_log_15 cascade;
+	drop table if exists c_ej_log_16 cascade;
+	drop table if exists c_ej_log_17 cascade;
+	drop table if exists c_ej_log_18 cascade;
+	drop table if exists c_ej_log_19 cascade;
+	drop table if exists c_ej_log_20 cascade;
+	drop table if exists c_ej_log_21 cascade;
+	drop table if exists c_ej_log_22 cascade;
+	drop table if exists c_ej_log_23 cascade;
+	drop table if exists c_ej_log_24 cascade;
+	drop table if exists c_ej_log_25 cascade;
+	drop table if exists c_ej_log_26 cascade;
+	drop table if exists c_ej_log_27 cascade;
+	drop table if exists c_ej_log_28 cascade;
+	drop table if exists c_ej_log_29 cascade;
+	drop table if exists c_ej_log_30 cascade;
+	drop table if exists c_ej_log_31 cascade;
+
+-- 実績ジャーナルデータログ
+drop table if exists c_ej_log cascade;
+
+create table c_ej_log (
+  serial_no NUMERIC(43) default 0
+  , comp_cd NUMERIC(9) default 0 not null
+  , stre_cd NUMERIC(9) default 0 not null
+  , mac_no NUMERIC(9) default 0 not null
+  , print_no NUMERIC(4) default 0 not null
+  , seq_no SMALLINT
+  , receipt_no NUMERIC(4) default 0 not null
+  , end_rec_flg SMALLINT default 0 not null
+  , only_ejlog_flg SMALLINT default 0 not null
+  , cshr_no NUMERIC(10) default 0 not null
+  , chkr_no NUMERIC(10) default 0 not null
+  , now_sale_datetime TIMESTAMP
+  , sale_date TIMESTAMP
+  , ope_mode_flg NUMERIC(9) default 0 not null
+  , print_data TEXT
+  , sub_only_ejlog_flg SMALLINT default 0 not null
+  , trankey_search VARCHAR(100)
+  , etckey_search VARCHAR(100)
+  , constraint c_ej_log_PKC primary key (serial_no,seq_no)
+) ;
+
+	-- 実績ジャーナルデータログ(日付分)
+	create table c_ej_log_01 ( ) inherits (c_ej_log);
+	create table c_ej_log_02 ( ) inherits (c_ej_log);
+	create table c_ej_log_03 ( ) inherits (c_ej_log);
+	create table c_ej_log_04 ( ) inherits (c_ej_log);
+	create table c_ej_log_05 ( ) inherits (c_ej_log);
+	create table c_ej_log_06 ( ) inherits (c_ej_log);
+	create table c_ej_log_07 ( ) inherits (c_ej_log);
+	create table c_ej_log_08 ( ) inherits (c_ej_log);
+	create table c_ej_log_09 ( ) inherits (c_ej_log);
+	create table c_ej_log_10 ( ) inherits (c_ej_log);
+	create table c_ej_log_11 ( ) inherits (c_ej_log);
+	create table c_ej_log_12 ( ) inherits (c_ej_log);
+	create table c_ej_log_13 ( ) inherits (c_ej_log);
+	create table c_ej_log_14 ( ) inherits (c_ej_log);
+	create table c_ej_log_15 ( ) inherits (c_ej_log);
+	create table c_ej_log_16 ( ) inherits (c_ej_log);
+	create table c_ej_log_17 ( ) inherits (c_ej_log);
+	create table c_ej_log_18 ( ) inherits (c_ej_log);
+	create table c_ej_log_19 ( ) inherits (c_ej_log);
+	create table c_ej_log_20 ( ) inherits (c_ej_log);
+	create table c_ej_log_21 ( ) inherits (c_ej_log);
+	create table c_ej_log_22 ( ) inherits (c_ej_log);
+	create table c_ej_log_23 ( ) inherits (c_ej_log);
+	create table c_ej_log_24 ( ) inherits (c_ej_log);
+	create table c_ej_log_25 ( ) inherits (c_ej_log);
+	create table c_ej_log_26 ( ) inherits (c_ej_log);
+	create table c_ej_log_27 ( ) inherits (c_ej_log);
+	create table c_ej_log_28 ( ) inherits (c_ej_log);
+	create table c_ej_log_29 ( ) inherits (c_ej_log);
+	create table c_ej_log_30 ( ) inherits (c_ej_log);
+	create table c_ej_log_31 ( ) inherits (c_ej_log);
+
+-- 訂正確認ログ
+drop table if exists c_void_log_01 cascade;
+
+create table c_void_log_01 (
+  serial_no NUMERIC(43) default 0
+  , void_serial_no NUMERIC(44) default 0
+  , mac_no NUMERIC(9) default 0 not null
+  , sale_date TIMESTAMP
+  , void_sale_date TIMESTAMP
+  , void_kind SMALLINT default 0 not null
+  , void_taxfree_no VARCHAR(50)
+  , various_data1 VARCHAR(50)
+  , various_data2 VARCHAR(50)
+  , constraint c_void_log_01_PKC primary key (serial_no,void_serial_no)
+) ;
+
+-- 顧客明細ログ
+drop table if exists c_custd_log cascade;
+
+create table c_custd_log (
+  cust_no VARCHAR(20)
+  , comp_cd NUMERIC(9) not null
+  , stre_cd NUMERIC(9) default 0 not null
+  , serial_no NUMERIC(43)
+  , endtime TIMESTAMP not null
+  , ope_mode NUMERIC(9) not null
+  , ordr SMALLINT
+  , c_data1 VARCHAR(200)
+  , c_data2 VARCHAR(200)
+  , c_data3 VARCHAR(200)
+  , c_data4 VARCHAR(200)
+  , c_data5 VARCHAR(200)
+  , c_data6 VARCHAR(200)
+  , c_data7 VARCHAR(200)
+  , c_data8 VARCHAR(200)
+  , c_data9 VARCHAR(200)
+  , c_data10 VARCHAR(200)
+  , c_data11 VARCHAR(200)
+  , c_data12 VARCHAR(200)
+  , c_data13 VARCHAR(200)
+  , c_data14 VARCHAR(200)
+  , c_data15 VARCHAR(200)
+  , c_data16 VARCHAR(200)
+  , c_data17 VARCHAR(200)
+  , c_data18 VARCHAR(200)
+  , c_data19 VARCHAR(200)
+  , c_data20 VARCHAR(200)
+  , n_data1 NUMERIC(11,2)
+  , n_data2 NUMERIC(11,2)
+  , n_data3 NUMERIC(11,2)
+  , n_data4 NUMERIC(11,2)
+  , n_data5 NUMERIC(11,2)
+  , n_data6 NUMERIC(11,2)
+  , n_data7 NUMERIC(11,2)
+  , n_data8 NUMERIC(11,2)
+  , n_data9 NUMERIC(11,2)
+  , n_data10 NUMERIC(11,2)
+  , n_data11 NUMERIC(11,2)
+  , n_data12 NUMERIC(11,2)
+  , n_data13 NUMERIC(11,2)
+  , n_data14 NUMERIC(11,2)
+  , n_data15 NUMERIC(11,2)
+  , n_data16 NUMERIC(11,2)
+  , n_data17 NUMERIC(11,2)
+  , n_data18 NUMERIC(11,2)
+  , n_data19 NUMERIC(11,2)
+  , n_data20 NUMERIC(11,2)
+  , constraint c_custd_log_PKC primary key (cust_no,serial_no,ordr)
+) ;
+
+	-- 公共料金_収納ログマスタ
+	drop table if exists c_pbchg_log_01 cascade;
+
+-- 公共料金_収納ログ
+drop table if exists c_pbchg_log cascade;
+drop SEQUENCE c_pbchg_log_s0;
+create SEQUENCE c_pbchg_log_s0 cycle;
+
+create table c_pbchg_log (
+  serial_no NUMERIC(43) default 0
+  , seq_no             int4             	default nextval('c_pbchg_log_s0')
+  , comp_cd NUMERIC(9) default 0 not null
+  , stre_cd NUMERIC(9) default 0 not null
+  , mac_no NUMERIC(9) default 0 not null
+  , date VARCHAR(8)
+  , time VARCHAR(6)
+  , groupcd NUMERIC(3) default 0 not null
+  , officecd NUMERIC(4) default 0 not null
+  , strecd NUMERIC(4) default 0 not null
+  , termcd NUMERIC(8) default 0 not null
+  , dealseqno NUMERIC(5) default 0 not null
+  , servicekind VARCHAR(3)
+  , serviceseqno NUMERIC(5) default 0 not null
+  , settlestatus SMALLINT default 0 not null
+  , settlekind SMALLINT default 0 not null
+  , cashamt NUMERIC(8) default 0 not null
+  , charge1 NUMERIC(8) default 0 not null
+  , charge2 NUMERIC(8) default 0 not null
+  , dealererr SMALLINT default 0 not null
+  , receipterr SMALLINT default 0 not null
+  , validdate VARCHAR(8)
+  , barcodekind SMALLINT default 0 not null
+  , barcode1 VARCHAR(8)
+  , barcode2 VARCHAR(13)
+  , barcode3 VARCHAR(13)
+  , barcode4 VARCHAR(13)
+  , receiptmsgno SMALLINT default 0 not null
+  , comparestatus SMALLINT default 0 not null
+  , name VARCHAR(80)
+  , tran_flg SMALLINT default 0 not null
+  , sub_tran_flg SMALLINT default 0 not null
+  , receipt_flg SMALLINT default 0 not null
+  , matching_flg SMALLINT default 0 not null
+  , check_flg SMALLINT default 0 not null
+  , fil1 NUMERIC(9) default 0 not null
+  , fil2 NUMERIC(9) default 0 not null
+  , constraint c_pbchg_log_PKC primary key (serial_no,seq_no,comp_cd,stre_cd)
+) ;
+
+	-- 公共料金_収納ログマスタ
+	create table c_pbchg_log_01 ( ) inherits (c_pbchg_log);
+
+-- 顧客ヘッダーログ
+drop table if exists c_cust_header_log cascade;
+
+create table c_cust_header_log (
+  serial_no NUMERIC(43) default 0
+  , endtime TIMESTAMP
+  , sale_date TIMESTAMP
+  , ope_mode_flg NUMERIC(9) default 0 not null
+  , tran_flg SMALLINT default 0 not null
+  , sub_tran_flg SMALLINT default 0 not null
+  , crdt_trm_cd VARCHAR(20)
+  , card_comp_cd NUMERIC(9) default 0 not null
+  , card_stre_cd NUMERIC(9) default 0 not null
+  , cust_no VARCHAR(20)
+  , data_log_cnt SMALLINT default 0 not null
+  , constraint c_cust_header_log_PKC primary key (serial_no)
+) ;
+
+-- 顧客データログ
+drop table if exists c_cust_data_log cascade;
+
+create table c_cust_data_log (
+  serial_no NUMERIC(43) default 0
+  , order_no SMALLINT
+  , func_cd NUMERIC(9) default 0 not null
+  , c_data1 VARCHAR(50)
+  , c_data2 VARCHAR(50)
+  , n_data1 NUMERIC(9) default 0 not null
+  , n_data2 NUMERIC(9) default 0 not null
+  , n_data3 NUMERIC(9) default 0 not null
+  , n_data4 NUMERIC(9) default 0 not null
+  , n_data5 NUMERIC(9) default 0 not null
+  , n_data6 NUMERIC(9) default 0 not null
+  , n_data7 NUMERIC(9) default 0 not null
+  , n_data8 NUMERIC(9) default 0 not null
+  , n_data9 NUMERIC(9) default 0 not null
+  , n_data10 NUMERIC(9) default 0 not null
+  , d_data1 TIMESTAMP
+  , d_data2 TIMESTAMP
+  , d_data3 TIMESTAMP
+  , d_data4 TIMESTAMP
+  , d_data5 TIMESTAMP
+  , d_data6 TIMESTAMP
+  , constraint c_cust_data_log_PKC primary key (serial_no,order_no)
+) ;
+
+---------- 予約ログ --------------------------------------------------
+	-- 予約ログマスタ
+	drop table if exists c_reserv_log_01  cascade;
+
+-- 予約ログ
+drop table if exists c_reserv_log cascade;
+
+create table c_reserv_log (
+  serial_no NUMERIC(43) default 0
+  , now_sale_datetime TIMESTAMP
+  , void_serial_no NUMERIC(44) default 0
+  , cust_no VARCHAR(20)
+  , last_name VARCHAR(50)
+  , first_name VARCHAR(50)
+  , tel_no1 VARCHAR(25)
+  , tel_no2 VARCHAR(25)
+  , address1 VARCHAR(20)
+  , address2 VARCHAR(20)
+  , address3 VARCHAR(40)
+  , recept_date TIMESTAMP
+  , ferry_date TIMESTAMP
+  , arrival_date TIMESTAMP
+  , qty NUMERIC(9) not null
+  , ttl NUMERIC(9) not null
+  , advance_money NUMERIC(9) not null
+  , memo1 VARCHAR(100)
+  , memo2 VARCHAR(100)
+  , fil1 NUMERIC(9) not null
+  , fil2 NUMERIC(9) not null
+  , fil3 NUMERIC(9) not null
+  , finish SMALLINT not null
+  , tran_flg SMALLINT not null
+  , sub_tran_flg SMALLINT not null
+  , center_flg SMALLINT not null
+  , update_flg SMALLINT not null
+  , constraint c_reserv_log_PKC primary key (serial_no,now_sale_datetime)
+) ;
+
+	-- 予約ログマスタ
+	create table c_reserv_log_01 ( ) inherits (c_reserv_log);
+
+
+-- 06
+-- 企画マスタ
+drop table if exists c_plan_mst cascade;
+
+create table c_plan_mst (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , plan_cd NUMERIC(14)
+  , name VARCHAR(25)
+  , short_name VARCHAR(5)
+  , loy_flg SMALLINT default 0 not null
+  , prom_typ SMALLINT not null
+  , start_datetime TIMESTAMP
+  , end_datetime TIMESTAMP
+  , trends_typ SMALLINT default 0 not null
+  , POPtitle VARCHAR(250)
+  , promo_ext_id VARCHAR(20)
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_plan_mst_PKC primary key (comp_cd,stre_cd,plan_cd)
+) ;
+
+-- 特売マスタ
+drop table if exists s_brgn_mst cascade;
+
+create table s_brgn_mst (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , plan_cd NUMERIC(14)
+  , brgn_cd NUMERIC(9)
+  , plu_cd VARCHAR(20)
+  , showorder SMALLINT default 0 not null
+  , brgn_typ SMALLINT default 0 not null
+  , name VARCHAR(25)
+  , short_name VARCHAR(5)
+  , dsc_flg SMALLINT default 0 not null
+  , svs_typ SMALLINT default 0 not null
+  , dsc_typ SMALLINT default 0 not null
+  , start_datetime TIMESTAMP
+  , end_datetime TIMESTAMP
+  , timesch_flg SMALLINT default 0 not null
+  , sun_flg SMALLINT default 1 not null
+  , mon_flg SMALLINT default 1 not null
+  , tue_flg SMALLINT default 1 not null
+  , wed_flg SMALLINT default 1 not null
+  , thu_flg SMALLINT default 1 not null
+  , fri_flg SMALLINT default 1 not null
+  , sat_flg SMALLINT default 1 not null
+  , trends_typ SMALLINT default 0 not null
+  , brgn_prc NUMERIC(9) default 0 not null
+  , brgncust_prc NUMERIC(9) default 0 not null
+  , brgn_cost NUMERIC(11,2) default 0 not null
+  , consist_val1 NUMERIC(9) default 0 not null
+  , gram_prc NUMERIC(6) default 0 not null
+  , markdown_flg SMALLINT default 0 not null
+  , markdown NUMERIC(6) default 0 not null
+  , imagedata_cd NUMERIC(6) default 0 not null
+  , advantize_cd NUMERIC(6) default 0 not null
+  , labelsize NUMERIC(6) default 0 not null
+  , auto_order_flg SMALLINT default 0 not null
+  , div_cd SMALLINT default 0 not null
+  , promo_ext_id VARCHAR(20)
+  , comment1 VARCHAR(1000)
+  , comment2 VARCHAR(1000)
+  , memo1 VARCHAR(1000)
+  , memo2 VARCHAR(1000)
+  , sale_cnt NUMERIC(5) default 0 not null
+  , sale_unit VARCHAR(50)
+  , limit_info VARCHAR(50)
+  , first_service VARCHAR(50)
+  , card1 NUMERIC(4) default 0 not null
+  , card2 NUMERIC(4) default 0 not null
+  , card3 NUMERIC(4) default 0 not null
+  , card4 NUMERIC(4) default 0 not null
+  , card5 NUMERIC(4) default 0 not null
+  , timeprc_dsc_flg SMALLINT default 0 not null
+  , brgn_div SMALLINT default 0 not null
+  , brgn_costper NUMERIC(5,2) default 0 not null
+  , notes VARCHAR(250)
+  , qty_flg SMALLINT default 0 not null
+  , row_order_cnt NUMERIC(4) default 0 not null
+  , row_order_add_cnt NUMERIC(4) default 0 not null
+  , stop_flg SMALLINT default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , date_flg1 SMALLINT default 0 not null
+  , date_flg2 SMALLINT default 0 not null
+  , date_flg3 SMALLINT default 0 not null
+  , date_flg4 SMALLINT default 0 not null
+  , date_flg5 SMALLINT default 0 not null
+  , constraint s_brgn_mst_PKC primary key (comp_cd,stre_cd,plan_cd,brgn_cd,plu_cd)
+) ;
+
+-- バンドルミックスマッチスケジュールマスタ
+drop table if exists s_bdlsch_mst cascade;
+
+create table s_bdlsch_mst (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , plan_cd NUMERIC(14)
+  , bdl_cd NUMERIC(9)
+  , bdl_typ SMALLINT default 0 not null
+  , name VARCHAR(25)
+  , short_name VARCHAR(5)
+  , start_datetime TIMESTAMP
+  , end_datetime TIMESTAMP
+  , timesch_flg SMALLINT default 0 not null
+  , sun_flg SMALLINT default 1 not null
+  , mon_flg SMALLINT default 1 not null
+  , tue_flg SMALLINT default 1 not null
+  , wed_flg SMALLINT default 1 not null
+  , thu_flg SMALLINT default 1 not null
+  , fri_flg SMALLINT default 1 not null
+  , sat_flg SMALLINT default 1 not null
+  , trends_typ SMALLINT default 0 not null
+  , bdl_qty1 NUMERIC(3) default 0 not null
+  , bdl_qty2 NUMERIC(3) default 0 not null
+  , bdl_qty3 NUMERIC(3) default 0 not null
+  , bdl_qty4 NUMERIC(3) default 0 not null
+  , bdl_qty5 NUMERIC(3) default 0 not null
+  , bdl_prc1 NUMERIC(9) default 0 not null
+  , bdl_prc2 NUMERIC(9) default 0 not null
+  , bdl_prc3 NUMERIC(9) default 0 not null
+  , bdl_prc4 NUMERIC(9) default 0 not null
+  , bdl_prc5 NUMERIC(9) default 0 not null
+  , bdl_avprc NUMERIC(9) default 0 not null
+  , limit_cnt NUMERIC(3) default 0 not null
+  , low_limit NUMERIC(9) default 0 not null
+  , mbdl_prc1 NUMERIC(9) default 0 not null
+  , mbdl_prc2 NUMERIC(9) default 0 not null
+  , mbdl_prc3 NUMERIC(9) default 0 not null
+  , mbdl_prc4 NUMERIC(9) default 0 not null
+  , mbdl_prc5 NUMERIC(9) default 0 not null
+  , mbdl_avprc NUMERIC(9) default 0 not null
+  , stop_flg SMALLINT default 0 not null
+  , dsc_flg SMALLINT default 0 not null
+  , div_cd SMALLINT default 0 not null
+  , avprc_adpt_flg SMALLINT default 0 not null
+  , avprc_util_flg SMALLINT default 0 not null
+  , comment1 VARCHAR(1000)
+  , comment2 VARCHAR(1000)
+  , memo1 VARCHAR(1000)
+  , memo2 VARCHAR(1000)
+  , sale_unit VARCHAR(50)
+  , limit_info VARCHAR(50)
+  , first_service VARCHAR(50)
+  , card1 NUMERIC(4) default 0 not null
+  , card2 NUMERIC(4) default 0 not null
+  , card3 NUMERIC(4) default 0 not null
+  , card4 NUMERIC(4) default 0 not null
+  , card5 NUMERIC(4) default 0 not null
+  , promo_ext_id VARCHAR(20)
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , date_flg1 SMALLINT default 0 not null
+  , date_flg2 SMALLINT default 0 not null
+  , date_flg3 SMALLINT default 0 not null
+  , date_flg4 SMALLINT default 0 not null
+  , date_flg5 SMALLINT default 0 not null
+  , constraint s_bdlsch_mst_PKC primary key (comp_cd,stre_cd,plan_cd,bdl_cd)
+) ;
+
+-- バンドルミックスマッチ商品マスタ
+drop table if exists s_bdlitem_mst cascade;
+
+create table s_bdlitem_mst (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , plan_cd NUMERIC(14)
+  , bdl_cd NUMERIC(9)
+  , plu_cd VARCHAR(20)
+  , showorder SMALLINT default 0 not null
+  , stop_flg SMALLINT default 0 not null
+  , promo_ext_id VARCHAR(20)
+  , comment1 VARCHAR(1000)
+  , comment2 VARCHAR(1000)
+  , memo1 VARCHAR(1000)
+  , memo2 VARCHAR(1000)
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint s_bdlitem_mst_PKC primary key (comp_cd,stre_cd,plan_cd,bdl_cd,plu_cd)
+) ;
+
+-- セットマッチマスタ
+drop table if exists s_stmsch_mst cascade;
+
+create table s_stmsch_mst (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , plan_cd NUMERIC(14)
+  , stm_cd NUMERIC(9)
+  , name VARCHAR(25)
+  , short_name VARCHAR(5)
+  , start_datetime timestamp
+  , end_datetime timestamp
+  , timesch_flg SMALLINT default 0 not null
+  , sun_flg SMALLINT default 1 not null
+  , mon_flg SMALLINT default 1 not null
+  , tue_flg SMALLINT default 1 not null
+  , wed_flg SMALLINT default 1 not null
+  , thu_flg SMALLINT default 1 not null
+  , fri_flg SMALLINT default 1 not null
+  , sat_flg SMALLINT default 1 not null
+  , member_qty NUMERIC(3) default 0 not null
+  , limit_cnt NUMERIC(2) default 0 not null
+  , stop_flg SMALLINT default 0 not null
+  , trends_typ SMALLINT default 0 not null
+  , dsc_flg SMALLINT default 0 not null
+  , stm_prc NUMERIC(9) default 0 not null
+  , stm_prc2 NUMERIC(9) default 0 not null
+  , stm_prc3 NUMERIC(9) default 0 not null
+  , stm_prc4 NUMERIC(9) default 0 not null
+  , stm_prc5 NUMERIC(9) default 0 not null
+  , mstm_prc NUMERIC(9) default 0 not null
+  , mstm_prc2 NUMERIC(9) default 0 not null
+  , mstm_prc3 NUMERIC(9) default 0 not null
+  , mstm_prc4 NUMERIC(9) default 0 not null
+  , mstm_prc5 NUMERIC(9) default 0 not null
+  , div_cd SMALLINT default 0 not null
+  , promo_ext_id VARCHAR(20)
+  , ins_datetime timestamp
+  , upd_datetime timestamp
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , date_flg1 SMALLINT default 0 not null
+  , date_flg2 SMALLINT default 0 not null
+  , date_flg3 SMALLINT default 0 not null
+  , date_flg4 SMALLINT default 0 not null
+  , date_flg5 SMALLINT default 0 not null
+  , constraint s_stmsch_mst_PKC primary key (comp_cd,stre_cd,plan_cd,stm_cd)
+) ;
+
+-- セットマッチ商品マスタ
+drop table if exists s_stmitem_mst cascade;
+
+create table s_stmitem_mst (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , plan_cd NUMERIC(14)
+  , stm_cd NUMERIC(9)
+  , plu_cd VARCHAR(20)
+  , grpno smallint not null
+  , stm_qty NUMERIC(5) default 0 not null
+  , showorder smallint not null
+  , poppy_flg smallint not null
+  , stop_flg smallint not null
+  , promo_ext_id VARCHAR(20)
+  , ins_datetime timestamp
+  , upd_datetime timestamp
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint s_stmitem_mst_PKC primary key (comp_cd,stre_cd,plan_cd,stm_cd,plu_cd)
+) ;
+
+-- 商品加算ポイントマスタ
+drop table if exists s_plu_point_mst cascade;
+
+create table s_plu_point_mst (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , plan_cd NUMERIC(14)
+  , plusch_cd NUMERIC(9)
+  , plu_cd VARCHAR(20)
+  , name VARCHAR(25)
+  , short_name VARCHAR(5)
+  , showorder SMALLINT default 0 not null
+  , point_add NUMERIC(9) default 0 not null
+  , prom_cd1 NUMERIC(6) default 0 not null
+  , prom_cd2 NUMERIC(6) default 0 not null
+  , prom_cd3 NUMERIC(6) default 0 not null
+  , start_datetime TIMESTAMP
+  , end_datetime TIMESTAMP
+  , timesch_flg SMALLINT default 0 not null
+  , sun_flg SMALLINT default 1 not null
+  , mon_flg SMALLINT default 1 not null
+  , tue_flg SMALLINT default 1 not null
+  , wed_flg SMALLINT default 1 not null
+  , thu_flg SMALLINT default 1 not null
+  , fri_flg SMALLINT default 1 not null
+  , sat_flg SMALLINT default 1 not null
+  , stop_flg SMALLINT default 0 not null
+  , trends_typ SMALLINT default 0 not null
+  , acct_cd NUMERIC(9) default 0 not null
+  , promo_ext_id VARCHAR(20)
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , tnycls_cd NUMERIC(9)
+  , plu_cls_flg SMALLINT
+  , pts_type SMALLINT
+  , pts_rate NUMERIC(11,2) default 0 not null
+  , lrgcls_cd NUMERIC(9)
+  , mdlcls_cd NUMERIC(9)
+  , smlcls_cd NUMERIC(9)
+  , constraint s_plu_point_mst_PKC primary key (comp_cd,stre_cd,plan_cd,plusch_cd,plu_cd,tnycls_cd,plu_cls_flg,pts_type,lrgcls_cd,mdlcls_cd,smlcls_cd)
+) ;
+
+-- 小計割引スケジュール
+drop table if exists s_subtsch_mst cascade;
+
+create table s_subtsch_mst (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , plan_cd NUMERIC(14)
+  , subt_cd NUMERIC(12)
+  , name VARCHAR(25)
+  , short_name VARCHAR(5)
+  , svs_typ SMALLINT default 0 not null
+  , dsc_typ SMALLINT default 0 not null
+  , dsc_prc NUMERIC(9) default 0 not null
+  , mdsc_prc NUMERIC(9) default 0 not null
+  , stl_form_amt NUMERIC(9) default 0 not null
+  , start_datetime TIMESTAMP
+  , end_datetime TIMESTAMP
+  , timesch_flg SMALLINT default 0 not null
+  , sun_flg SMALLINT default 1 not null
+  , mon_flg SMALLINT default 1 not null
+  , tue_flg SMALLINT default 1 not null
+  , wed_flg SMALLINT default 1 not null
+  , thu_flg SMALLINT default 1 not null
+  , fri_flg SMALLINT default 1 not null
+  , sat_flg SMALLINT default 1 not null
+  , trends_typ SMALLINT default 0 not null
+  , stop_flg SMALLINT default 0 not null
+  , div_cd SMALLINT default 0 not null
+  , promo_ext_id VARCHAR(20)
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint s_subtsch_mst_PKC primary key (comp_cd,stre_cd,plan_cd,subt_cd)
+) ;
+
+-- 分類一括割引スケジュール
+drop table if exists s_clssch_mst cascade;
+
+create table s_clssch_mst (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , plan_cd NUMERIC(14)
+  , sch_cd NUMERIC(9)
+  , lrgcls_cd NUMERIC(9)
+  , mdlcls_cd NUMERIC(9)
+  , smlcls_cd NUMERIC(9)
+  , tnycls_cd NUMERIC(9)
+  , svs_class SMALLINT default 0
+  , name VARCHAR(25)
+  , short_name VARCHAR(5)
+  , svs_typ SMALLINT default 0 not null
+  , dsc_typ SMALLINT default 0 not null
+  , dsc_prc NUMERIC(9) default 0 not null
+  , mdsc_prc NUMERIC(9) default 0 not null
+  , start_datetime TIMESTAMP
+  , end_datetime TIMESTAMP
+  , timesch_flg SMALLINT default 0 not null
+  , sun_flg SMALLINT default 1 not null
+  , mon_flg SMALLINT default 1 not null
+  , tue_flg SMALLINT default 1 not null
+  , wed_flg SMALLINT default 1 not null
+  , thu_flg SMALLINT default 1 not null
+  , fri_flg SMALLINT default 1 not null
+  , sat_flg SMALLINT default 1 not null
+  , trends_typ SMALLINT default 0 not null
+  , stop_flg SMALLINT default 0 not null
+  , div_cd SMALLINT default 0 not null
+  , promo_ext_id VARCHAR(20)
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint s_clssch_mst_PKC primary key (comp_cd,stre_cd,plan_cd,sch_cd,lrgcls_cd,mdlcls_cd,smlcls_cd,tnycls_cd,svs_class)
+) ;
+
+
+-- 07
+-- アカウントマスタ
+drop table if exists c_acct_mst cascade;
+
+create table c_acct_mst (
+  acct_cd NUMERIC(9)
+  , mthr_acct_cd NUMERIC(9) default 0 not null
+  , acct_name VARCHAR(25)
+  , rcpt_prn_flg SMALLINT default 0 not null
+  , prn_seq_no SMALLINT default 0 not null
+  , acct_typ SMALLINT default 0 not null
+  , start_date TIMESTAMP
+  , end_date TIMESTAMP
+  , plus_end_date TIMESTAMP
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , acct_cal_typ SMALLINT default 0 not null
+  , constraint c_acct_mst_PKC primary key (acct_cd,comp_cd,stre_cd)
+) ;
+
+-- クーポンヘッダー
+drop table if exists c_cpnhdr_mst cascade;
+
+create table c_cpnhdr_mst (
+  cpn_id NUMERIC(11)
+  , comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , prn_stre_name VARCHAR(50)
+  , prn_time VARCHAR(20)
+  , start_date TIMESTAMP
+  , end_date TIMESTAMP
+  , template_id VARCHAR(5)
+  , pict_path VARCHAR(128)
+  , notes VARCHAR(128)
+  , line SMALLINT default 0 not null
+  , stop_flg SMALLINT default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , all_cust_flg SMALLINT default 0 not null
+  , prn_val NUMERIC(9) default 0 not null
+  , val_flg SMALLINT default 0 not null
+  , prn_qty SMALLINT default 1 not null
+  , tran_qty SMALLINT default 1 not null
+  , day_qty SMALLINT default 0 not null
+  , ttl_qty SMALLINT default 0 not null
+  , reward_prom_cd NUMERIC(18) default 0 not null
+  , linked_prom_cd NUMERIC(18) default 0 not null
+  , rec_srch_id NUMERIC(18) default 0 not null
+  , prn_upp_lim NUMERIC(9) default 0 not null
+  , ref_typ SMALLINT default 0 not null
+  , stp_acct_cd NUMERIC(9) default 0 not null
+  , stp_red_amt NUMERIC(9) default 0 not null
+  , sng_prn_flg SMALLINT default 0 not null
+  , cust_kind_flg SMALLINT default 0 not null
+  , timesch_flg SMALLINT default 0 not null
+  , sun_flg SMALLINT default 0 not null
+  , mon_flg SMALLINT default 0 not null
+  , tue_flg SMALLINT default 0 not null
+  , wed_flg SMALLINT default 0 not null
+  , thu_flg SMALLINT default 0 not null
+  , fri_flg SMALLINT default 0 not null
+  , sat_flg SMALLINT default 0 not null
+  , date_flg1 SMALLINT default 0 not null
+  , date_flg2 SMALLINT default 0 not null
+  , date_flg3 SMALLINT default 0 not null
+  , date_flg4 SMALLINT default 0 not null
+  , date_flg5 SMALLINT default 0 not null
+  , stp_cpn_id NUMERIC(11)
+  , cust_kind_trgt SMALLINT[]  NOT NULL  DEFAULT '{0}'
+  , ref_typ2 SMALLINT default 0 not null
+  , cust_card_kind SMALLINT default 0 not null
+  , n_custom1 NUMERIC(9) default 0 not null
+  , n_custom2 NUMERIC(9) default 0 not null
+  , n_custom3 NUMERIC(9) default 0 not null
+  , n_custom4 NUMERIC(9) default 0 not null
+  , n_custom5 NUMERIC(9) default 0 not null
+  , n_custom6 NUMERIC(9) default 0 not null
+  , n_custom7 NUMERIC(9) default 0 not null
+  , n_custom8 NUMERIC(9) default 0 not null
+  , s_custom1 SMALLINT default 0 not null
+  , s_custom2 SMALLINT default 0 not null
+  , s_custom3 SMALLINT default 0 not null
+  , s_custom4 SMALLINT default 0 not null
+  , s_custom5 SMALLINT default 0 not null
+  , s_custom6 SMALLINT default 0 not null
+  , s_custom7 SMALLINT default 0 not null
+  , s_custom8 SMALLINT default 0 not null
+  , c_custom1 VARCHAR(50)
+  , c_custom2 VARCHAR(50)
+  , c_custom3 VARCHAR(50)
+  , c_custom4 VARCHAR(50)
+  , d_custom1 TIMESTAMP
+  , d_custom2 TIMESTAMP
+  , d_custom3 TIMESTAMP
+  , d_custom4 TIMESTAMP
+  , constraint c_cpnhdr_mst_PKC primary key (cpn_id,comp_cd,stre_cd)
+) ;
+
+-- クーポン明細
+drop table if exists c_cpnbdy_mst cascade;
+
+create table c_cpnbdy_mst (
+  plan_cd NUMERIC(18)
+  , cpn_id NUMERIC(11)
+  , cpn_content VARCHAR(128)[]
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , comp_cd NUMERIC(9)
+  , constraint c_cpnbdy_mst_PKC primary key (plan_cd,comp_cd)
+) ;
+
+-- クーポン管理マスタ
+drop table if exists c_cpn_ctrl_mst cascade;
+
+create table c_cpn_ctrl_mst (
+  cpn_id NUMERIC(11)
+  , name VARCHAR(25)
+  , start_datetime TIMESTAMP
+  , end_datetime TIMESTAMP
+  , cpn_start_datetime TIMESTAMP
+  , cpn_end_datetime TIMESTAMP
+  , stop_flg SMALLINT default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , comp_cd NUMERIC(9)
+  , constraint c_cpn_ctrl_mst_PKC primary key (cpn_id,comp_cd)
+) ;
+
+-- ロイヤリティ企画対象店舗マスタ
+drop table if exists c_loystre_mst cascade;
+
+create table c_loystre_mst (
+  cpn_id NUMERIC(11)
+  , comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , stop_flg SMALLINT default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_loystre_mst_PKC primary key (cpn_id,comp_cd,stre_cd)
+) ;
+
+-- ロイヤリティ企画マスタ
+drop table if exists c_loypln_mst cascade;
+
+create table c_loypln_mst (
+  plan_cd NUMERIC(18)
+  , cpn_id NUMERIC(11)
+  , all_cust_flg SMALLINT default 0 not null
+  , all_stre_flg SMALLINT default 0 not null
+  , prom_name VARCHAR(50)
+  , rcpt_name VARCHAR(25)
+  , svs_class SMALLINT default 0 not null
+  , svs_typ SMALLINT default 0 not null
+  , reward_val NUMERIC(9) default 0 not null
+  , bdl_prc_flg SMALLINT default 0 not null
+  , bdl_qty NUMERIC(7)[] default '{0,0,0,0,0}'::numeric[] not null
+  , bdl_prc NUMERIC(9)[] default '{0,0,0,0,0}'::numeric[] not null
+  , bdl_reward_val NUMERIC(9)[] default '{0,0,0,0,0}'::numeric[] not null
+  , form_amt NUMERIC(9) default 0 not null
+  , form_qty NUMERIC(9) default 0 not null
+  , rec_limit NUMERIC(5) default 0 not null
+  , day_limit NUMERIC(5) default 0 not null
+  , max_limit NUMERIC(5) default 0 not null
+  , start_datetime TIMESTAMP
+  , end_datetime TIMESTAMP
+  , stop_flg SMALLINT default 0 not null
+  , timesch_flg SMALLINT default 0 not null
+  , sun_flg SMALLINT default 0 not null
+  , mon_flg SMALLINT default 0 not null
+  , tue_flg SMALLINT default 0 not null
+  , wed_flg SMALLINT default 0 not null
+  , thu_flg SMALLINT default 0 not null
+  , fri_flg SMALLINT default 0 not null
+  , sat_flg SMALLINT default 0 not null
+  , acct_cd NUMERIC(9) default 0 not null
+  , seq_no NUMERIC(6) default 0 not null
+  , promo_ext_id VARCHAR(20)
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , cpn_kind SMALLINT default 0 not null
+  , svs_kind SMALLINT default 0 not null
+  , refer_comp_cd NUMERIC(9) default 0 not null
+  , comp_cd NUMERIC(9)
+  , mul_val NUMERIC(11,2) default 0 not null
+  , reward_flg SMALLINT default 0 not null
+  , bcd_all_cust_flg SMALLINT default 0 not null
+  , loy_bcd VARCHAR(40)
+  , low_lim NUMERIC(9) default 0 not null
+  , upp_lim NUMERIC(9) default 0 not null
+  , val_flg SMALLINT default 0 not null
+  , ref_typ SMALLINT default 0 not null
+  , apl_cnt SMALLINT default 1 not null
+  , stp_acct_cd NUMERIC(9) default 0 not null
+  , stp_red_amt NUMERIC(9) default 0 not null
+  , cust_kind_flg SMALLINT default 0 not null
+  , date_flg1 SMALLINT default 0 not null
+  , date_flg2 SMALLINT default 0 not null
+  , date_flg3 SMALLINT default 0 not null
+  , date_flg4 SMALLINT default 0 not null
+  , date_flg5 SMALLINT default 0 not null
+  , stp_cpn_id NUMERIC(11)
+  , svs_content TEXT
+  , cust_kind_trgt SMALLINT[]  NOT NULL  DEFAULT '{0}'
+  , ref_typ2 SMALLINT default 0 not null
+  , pay_key_cd SMALLINT default 0 not null
+  , cust_card_kind SMALLINT default 0 not null
+  , n_custom1 NUMERIC(9) default 0 not null
+  , n_custom2 NUMERIC(9) default 0 not null
+  , n_custom3 NUMERIC(9) default 0 not null
+  , n_custom4 NUMERIC(9) default 0 not null
+  , n_custom5 NUMERIC(9) default 0 not null
+  , n_custom6 NUMERIC(9) default 0 not null
+  , n_custom7 NUMERIC(9) default 0 not null
+  , n_custom8 NUMERIC(9) default 0 not null
+  , s_custom1 SMALLINT default 0 not null
+  , s_custom2 SMALLINT default 0 not null
+  , s_custom3 SMALLINT default 0 not null
+  , s_custom4 SMALLINT default 0 not null
+  , s_custom5 SMALLINT default 0 not null
+  , s_custom6 SMALLINT default 0 not null
+  , s_custom7 SMALLINT default 0 not null
+  , s_custom8 SMALLINT default 0 not null
+  , c_custom1 VARCHAR(50)
+  , c_custom2 VARCHAR(50)
+  , c_custom3 VARCHAR(50)
+  , c_custom4 VARCHAR(50)
+  , d_custom1 TIMESTAMP
+  , d_custom2 TIMESTAMP
+  , d_custom3 TIMESTAMP
+  , d_custom4 TIMESTAMP
+  , constraint c_loypln_mst_PKC primary key (plan_cd,comp_cd)
+) ;
+
+-- ロイヤリティ企画商品マスタ
+drop table if exists c_loyplu_mst cascade;
+
+create table c_loyplu_mst (
+  plan_cd NUMERIC(18)
+  , prom_cd VARCHAR(20)
+  , cpn_id NUMERIC(11)
+  , stop_flg SMALLINT default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , comp_cd NUMERIC(9)
+  , val NUMERIC(11,2) default 0 not null
+  , ref_flg SMALLINT
+  , exclude_flg SMALLINT default 0 not null
+  , prom_cd2 VARCHAR(20) default 0 not null
+  , sub_cls_cd NUMERIC(9) default 0 not null
+  , constraint c_loyplu_mst_PKC primary key (plan_cd,prom_cd,comp_cd,ref_flg,prom_cd2,sub_cls_cd)
+) ;
+
+-- ロイヤリティ企画メッセージマスタ
+drop table if exists c_loytgt_mst cascade;
+
+create table c_loytgt_mst (
+  plan_cd NUMERIC(18)
+  , cpn_id NUMERIC(11)
+  , title_data VARCHAR(8)
+  , title_col SMALLINT default 0 not null
+  , title_siz SMALLINT default 0 not null
+  , message1 VARCHAR(25)
+  , message1_col SMALLINT default 0 not null
+  , message1_siz SMALLINT default 0 not null
+  , message2 VARCHAR(25)
+  , message2_col SMALLINT default 0 not null
+  , message2_siz SMALLINT default 0 not null
+  , message3 VARCHAR(25)
+  , message3_col SMALLINT default 0 not null
+  , message3_siz SMALLINT default 0 not null
+  , message4 VARCHAR(25)
+  , message4_col SMALLINT default 0 not null
+  , message4_siz SMALLINT default 0 not null
+  , message5 VARCHAR(25)
+  , message5_col SMALLINT default 0 not null
+  , message5_siz SMALLINT default 0 not null
+  , dialog_typ SMALLINT default 0 not null
+  , dialog_img_cd SMALLINT default 0 not null
+  , dialog_icon_cd SMALLINT default 0 not null
+  , dialog_sound_cd SMALLINT default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , comp_cd NUMERIC(9)
+  , constraint c_loytgt_mst_PKC primary key (plan_cd,comp_cd)
+) ;
+
+-- ランク判定マスタ
+drop table if exists c_rank_mst cascade;
+
+create table c_rank_mst (
+  comp_cd NUMERIC(9)
+  , rank_cd NUMERIC(9)
+  , rank_kind SMALLINT
+  , rank_name VARCHAR(25)
+  , reward_typ SMALLINT default 0 not null
+  , rank_judge_1 NUMERIC(9) default 0 not null
+  , rank_judge_2 NUMERIC(9) default 0 not null
+  , rank_judge_3 NUMERIC(9) default 0 not null
+  , rank_judge_4 NUMERIC(9) default 0 not null
+  , rank_judge_5 NUMERIC(9) default 0 not null
+  , rank_judge_6 NUMERIC(9) default 0 not null
+  , rank_judge_7 NUMERIC(9) default 0 not null
+  , rank_judge_8 NUMERIC(9) default 0 not null
+  , rank_judge_9 NUMERIC(9) default 0 not null
+  , rank_judge_10 NUMERIC(9) default 0 not null
+  , rank_reward_1 NUMERIC(9) default 0 not null
+  , rank_reward_2 NUMERIC(9) default 0 not null
+  , rank_reward_3 NUMERIC(9) default 0 not null
+  , rank_reward_4 NUMERIC(9) default 0 not null
+  , rank_reward_5 NUMERIC(9) default 0 not null
+  , rank_reward_6 NUMERIC(9) default 0 not null
+  , rank_reward_7 NUMERIC(9) default 0 not null
+  , rank_reward_8 NUMERIC(9) default 0 not null
+  , rank_reward_9 NUMERIC(9) default 0 not null
+  , rank_reward_10 NUMERIC(9) default 0 not null
+  , start_datetime TIMESTAMP
+  , end_datetime TIMESTAMP
+  , timesch_flg SMALLINT default 0 not null
+  , sun_flg SMALLINT default 0 not null
+  , mon_flg SMALLINT default 0 not null
+  , tue_flg SMALLINT default 0 not null
+  , wed_flg SMALLINT default 0 not null
+  , thu_flg SMALLINT default 0 not null
+  , fri_flg SMALLINT default 0 not null
+  , sat_flg SMALLINT default 0 not null
+  , seq_no NUMERIC(6) default 0 not null
+  , promo_ext_id VARCHAR(20)
+  , acct_cd NUMERIC(9) default 0 not null
+  , stop_flg SMALLINT default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_rank_mst_PKC primary key (comp_cd,rank_cd,rank_kind)
+) ;
+
+-- ターミナル予約マスタ
+drop table if exists c_trm_rsrv_mst cascade;
+
+create table c_trm_rsrv_mst (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , trm_cd NUMERIC(9)
+  , kopt_cd SMALLINT
+  , rsrv_datetime TIMESTAMP
+  , trm_data NUMERIC(11,2) default 0 not null
+  , trm_data_str VARCHAR(50)
+  , trm_data_typ SMALLINT default 0 not null
+  , trm_ref_flg SMALLINT default 0 not null
+  , seq_no NUMERIC(6) not null
+  , promo_ext_id VARCHAR(20)
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , stop_flg SMALLINT default 0 not null
+  , constraint c_trm_rsrv_mst_PKC primary key (comp_cd,stre_cd,trm_cd,kopt_cd,rsrv_datetime)
+) ;
+
+-- ポイントスケジュールマスタ
+drop table if exists c_pntsch_mst cascade;
+
+create table c_pntsch_mst (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , pntsch_cd NUMERIC(9)
+  , name VARCHAR(25)
+  , start_datetime TIMESTAMP
+  , end_datetime TIMESTAMP
+  , timesch_flg SMALLINT default 0 not null
+  , sun_flg SMALLINT default 1 not null
+  , mon_flg SMALLINT default 1 not null
+  , tue_flg SMALLINT default 1 not null
+  , wed_flg SMALLINT default 1 not null
+  , thu_flg SMALLINT default 1 not null
+  , fri_flg SMALLINT default 1 not null
+  , sat_flg SMALLINT default 1 not null
+  , stop_flg SMALLINT default 0 not null
+  , seq_no NUMERIC(6) not null
+  , promo_ext_id VARCHAR(20)
+  , acct_cd NUMERIC(9) default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_pntsch_mst_PKC primary key (comp_cd,stre_cd,pntsch_cd)
+) ;
+
+-- ポイントスケジュールグループマスタ
+drop table if exists c_pntschgrp_mst cascade;
+
+create table c_pntschgrp_mst (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , pntsch_cd NUMERIC(9)
+  , trm_grp_cd NUMERIC(9)
+  , trm_cd NUMERIC(9)
+  , trm_data NUMERIC(11,2) default 0 not null
+  , stop_flg SMALLINT default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , low_lim NUMERIC(9) default 0 not null
+  , acct_cd NUMERIC(9) default 0 not null
+  , constraint c_pntschgrp_mst_PKC primary key (comp_cd,stre_cd,pntsch_cd,trm_grp_cd,trm_cd)
+) ;
+
+-- ターミナル企画番号マスタ
+drop table if exists c_trm_plan_mst cascade;
+
+create table c_trm_plan_mst (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , acct_cd NUMERIC(9)
+  , acct_flg SMALLINT default 0
+  , seq_no NUMERIC(6) not null
+  , promo_ext_id VARCHAR(20)
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_trm_plan_mst_PKC primary key (comp_cd,stre_cd,acct_cd,acct_flg)
+) ;
+
+
+-- 08
+-- 顧客マスタ
+drop table if exists c_cust_mst cascade;
+
+create table c_cust_mst (
+  cust_no VARCHAR(20)
+  , comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9) default 0 not null
+  , last_name VARCHAR(50)
+  , first_name VARCHAR(50)
+  , kana_last_name VARCHAR(50)
+  , kana_first_name VARCHAR(50)
+  , birth_day TIMESTAMP
+  , tel_no1 VARCHAR(25)
+  , tel_no2 VARCHAR(25)
+  , sex SMALLINT default 0 not null
+  , cust_status SMALLINT default 0 not null
+  , admission_date TIMESTAMP
+  , withdraw_date TIMESTAMP
+  , withdraw_typ NUMERIC(6) default 0 not null
+  , withdraw_resn TEXT
+  , card_clct_typ SMALLINT default 0 not null
+  , custzone_cd NUMERIC(9) default 0 not null
+  , post_no VARCHAR(7)
+  , address1 VARCHAR(20)
+  , address2 VARCHAR(20)
+  , address3 VARCHAR(40)
+  , mail_addr VARCHAR(50)
+  , mail_flg SMALLINT default 0 not null
+  , dm_flg SMALLINT default 0 not null
+  , password VARCHAR(25)
+  , targ_typ SMALLINT default 0 not null
+  , attrib1 NUMERIC(6) default 0 not null
+  , attrib2 NUMERIC(6) default 0 not null
+  , attrib3 NUMERIC(6) default 0 not null
+  , attrib4 NUMERIC(6) default 0 not null
+  , attrib5 NUMERIC(6) default 0 not null
+  , attrib6 NUMERIC(6) default 0 not null
+  , attrib7 NUMERIC(6) default 0 not null
+  , attrib8 NUMERIC(6) default 0 not null
+  , attrib9 NUMERIC(6) default 0 not null
+  , attrib10 NUMERIC(6) default 0 not null
+  , mov_flg SMALLINT default 0 not null
+  , pre_cust_no VARCHAR(20)
+  , remark TEXT
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , svs_cls_cd NUMERIC(9) default 999999 not null
+  , staff_flg SMALLINT default 0 not null
+  , cust_prc_type SMALLINT default 0 not null
+  , address4 VARCHAR(40)
+  , tel_flg SMALLINT default 0 not null
+  , constraint c_cust_mst_PKC primary key (cust_no,comp_cd)
+) ;
+
+-- 自店カード判定マスタ
+drop table if exists c_cust_jdg_mst cascade;
+
+create table c_cust_jdg_mst (
+  comp_cd NUMERIC(9)
+  , refer_stre_cd NUMERIC(9)
+  , stop_flg SMALLINT default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_cust_jdg_mst_PKC primary key (comp_cd,refer_stre_cd)
+) ;
+
+
+-- 09
+-- 従業員マスタ
+drop table if exists c_staff_mst cascade;
+
+create table c_staff_mst (
+  comp_cd NUMERIC(9)
+  , staff_cd NUMERIC(10)
+  , stre_cd NUMERIC(9) not null
+  , name VARCHAR(25)
+  , passwd VARCHAR(8)
+  , auth_lvl SMALLINT default 0 not null
+  , svr_auth_lvl SMALLINT default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , nochk_overlap SMALLINT default 0 not null
+  , constraint c_staff_mst_PKC primary key (comp_cd,staff_cd)
+) ;
+
+-- 従業員権限マスタ
+drop table if exists c_staffauth_mst cascade;
+
+create table c_staffauth_mst (
+  comp_cd NUMERIC(9)
+  , auth_lvl SMALLINT
+  , auth_name VARCHAR(50)
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_staffauth_mst_PKC primary key (comp_cd,auth_lvl)
+) ;
+
+-- サーバー従業員権限マスタ
+drop table if exists s_svr_staffauth_mst cascade;
+
+create table s_svr_staffauth_mst (
+  comp_cd NUMERIC(9)
+  , svr_auth_lvl SMALLINT
+  , svr_auth_name VARCHAR(50)
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint s_svr_staffauth_mst_PKC primary key (comp_cd,svr_auth_lvl)
+) ;
+
+-- ファンクション操作権限マスタ
+drop table if exists c_keyauth_mst cascade;
+
+create table c_keyauth_mst (
+  comp_cd NUMERIC(9)
+  , auth_lvl SMALLINT
+  , fnc_cd SMALLINT
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_keyauth_mst_PKC primary key (comp_cd,auth_lvl,fnc_cd)
+) ;
+
+-- レジメニュー操作権限マスタ
+drop table if exists c_menuauth_mst cascade;
+
+create table c_menuauth_mst (
+  comp_cd NUMERIC(9)
+  , auth_lvl SMALLINT
+  , appl_grp_cd NUMERIC(9)
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , menu_chk_flg SMALLINT default 0 not null
+  , constraint c_menuauth_mst_PKC primary key (comp_cd,auth_lvl,appl_grp_cd)
+) ;
+
+-- 従業員オープン情報マスタ
+drop table if exists c_staffopen_mst cascade;
+
+create table c_staffopen_mst (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , mac_no NUMERIC(9)
+  , chkr_cd VARCHAR(10)
+  , chkr_name VARCHAR(25)
+  , chkr_status SMALLINT default 0 not null
+  , chkr_open_time TIMESTAMP
+  , chkr_start_no NUMERIC(9) default 0 not null
+  , chkr_end_no NUMERIC(9) default 0 not null
+  , cshr_cd VARCHAR(10)
+  , cshr_name VARCHAR(25)
+  , cshr_status SMALLINT default 0 not null
+  , cshr_open_time TIMESTAMP
+  , cshr_start_no NUMERIC(9) default 0 not null
+  , cshr_end_no NUMERIC(9) default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_staffopen_mst_PKC primary key (comp_cd,stre_cd,mac_no)
+) ;
+
+
+-- 10
+-- 履歴ログ
+drop table if exists c_histlog_mst cascade;
+
+drop sequence if exists c_histlog_mst_s0;
+create sequence c_histlog_mst_s0 cycle;
+
+create table c_histlog_mst (
+  hist_cd NUMERIC(18) default nextval('c_histlog_mst_s0')
+  , ins_datetime TIMESTAMP
+  , comp_cd NUMERIC(9) default 0 not null
+  , stre_cd NUMERIC(9) default 0 not null
+  , table_name VARCHAR(50)
+  , mode SMALLINT default 0 not null
+  , mac_flg numeric(3)
+  , data1 VARCHAR(8000)
+  , data2 VARCHAR(8000)
+  , constraint c_histlog_mst_PKC primary key (hist_cd)
+) ;
+
+-- レジ履歴ログカウント
+drop table if exists c_histlog_chg_cnt cascade;
+
+create table c_histlog_chg_cnt (
+  counter_cd NUMERIC(9)
+  , hist_cd NUMERIC(18)
+  , ins_datetime TIMESTAMP
+  , constraint c_histlog_chg_cnt_PKC primary key (counter_cd)
+) ;
+
+-- 履歴ログ制御コントロールマスタ
+drop table if exists hist_ctrl_mst cascade;
+
+create table hist_ctrl_mst (
+  ctrl_cd numeric(6)
+  , flg1 SMALLINT
+  , flg2 SMALLINT
+  , flg3 SMALLINT
+  , flg4 SMALLINT
+  , flg5 SMALLINT
+  , flg6 SMALLINT
+  , flg7 SMALLINT
+  , flg8 SMALLINT
+  , flg9 SMALLINT
+  , flg10 SMALLINT
+  , constraint hist_ctrl_mst_PKC primary key (ctrl_cd)
+) ;
+
+-- 履歴ログスキップコード番号保持テーブル
+drop table if exists histlog_skip_num cascade;
+
+create table histlog_skip_num(
+	hist_cd NUMERIC(18)
+);
+
+-- リカバリー確認用テーブル --
+drop table if exists c_recover_tbl cascade;
+
+create table c_recover_tbl(
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , mac_no NUMERIC(9)
+  , sale_date TIMESTAMP
+  , exec_flg SMALLINT default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , constraint c_recover_tbl_PKC primary key (comp_cd,stre_cd,mac_no,sale_date)
+) ;
+
+-- キャッシュリサイクルマスタ
+drop table if exists c_cashrecycle_mst cascade;
+
+create table c_cashrecycle_mst (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , cashrecycle_grp NUMERIC(9)
+  , code NUMERIC(9)
+  , data NUMERIC(14,2) default 0 not null
+  , data_typ SMALLINT default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_cashrecycle_mst_PKC primary key (comp_cd,stre_cd,cashrecycle_grp,code)
+) ;
+
+-- キャッシュリサイクル設定マスタ
+drop table if exists c_cashrecycle_set_mst cascade;
+
+create table c_cashrecycle_set_mst (
+  code NUMERIC(9)
+  , set_name VARCHAR(100)
+  , dsp_cond SMALLINT default 0 not null
+  , inp_cond SMALLINT default 0 not null
+  , limit_max NUMERIC(14,2) default 0 not null
+  , limit_min NUMERIC(14,2) default 0 not null
+  , digits SMALLINT default 0 not null
+  , zero_typ SMALLINT default 0 not null
+  , btn_color SMALLINT default 0 not null
+  , info_comment TEXT
+  , info_pic SMALLINT default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_cashrecycle_set_mst_PKC primary key (code)
+) ;
+
+-- キャッシュリサイクルサブマスタ
+drop table if exists c_cashrecycle_sub_mst cascade;
+
+create table c_cashrecycle_sub_mst (
+  code NUMERIC(9)
+  , ordr SMALLINT
+  , data NUMERIC(14,2) default 0 not null
+  , img_cd NUMERIC(9) default 0 not null
+  , comment VARCHAR(50)
+  , btn_color SMALLINT default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_cashrecycle_sub_mst_PKC primary key (code,ordr)
+) ;
+
+--キャッシュリサイクル情報管理マスタ
+drop table if exists c_cashrecycle_info_mst cascade;
+
+create table c_cashrecycle_info_mst (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , mac_no NUMERIC(9)
+  , cashrecycle_grp NUMERIC(9) default 1 not null
+  , cal_grp_cd NUMERIC(9) default 0 not null
+  , server SMALLINT default 0 not null
+  , server_macno NUMERIC(9) default 0 not null
+  , server_info VARCHAR(100)
+  , sub_server SMALLINT default 0 not null
+  , sub_server_macno NUMERIC(9) default 0 not null
+  , sub_server_info VARCHAR(100)
+  , first_disp_macno1 NUMERIC(9) default 0 not null
+  , first_disp_macno2 NUMERIC(9) default 0 not null
+  , first_disp_macno3 NUMERIC(9) default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_cashrecycle_info_mst_PKC primary key (comp_cd,stre_cd,mac_no)
+) ;
+
+
+-- レジ・扱者日別取引
+drop table if exists rdly_deal cascade;
+
+create table rdly_deal (
+  comp_cd numeric(9) not null
+  , stre_cd numeric(9) not null
+  , mac_no numeric(9) not null
+  , chkr_no NUMERIC(10) default 0 not null
+  , cshr_no NUMERIC(10) default 0 not null
+  , sale_date timestamp without time zone not null
+  , kind_cd character varying(128) not null
+  , sub smallint not null
+  , data1 numeric(12) default 0 not null
+  , data2 numeric(12) default 0 not null
+  , data3 numeric(12) default 0 not null
+  , data4 numeric(12) default 0 not null
+  , data5 numeric(12) default 0 not null
+  , data6 numeric(12) default 0 not null
+  , data7 numeric(12) default 0 not null
+  , data8 numeric(12) default 0 not null
+  , data9 numeric(12) default 0 not null
+  , data10 numeric(15, 3) default 0 not null
+  , constraint rdly_deal_PKC primary key (comp_cd,stre_cd,mac_no,chkr_no,cshr_no,sale_date,kind_cd,sub)
+);
+
+
+-- レジ・扱者日別取引時間帯
+drop table if exists rdly_deal_hour cascade;
+
+create table rdly_deal_hour (
+  comp_cd numeric(9) not null
+  , stre_cd numeric(9) not null
+  , mac_no numeric(9) not null
+  , chkr_no NUMERIC(10) default 0 not null
+  , cshr_no NUMERIC(10) default 0 not null
+  , sale_date timestamp without time zone not null
+  , date_hour timestamp without time zone not null
+  , mode numeric(9) not null
+  , sub NUMERIC(9) not null
+  , data1 numeric(12) default 0 not null
+  , data2 numeric(12) default 0 not null
+  , data3 numeric(12) default 0 not null
+  , data4 numeric(12) default 0 not null
+  , data5 numeric(12) default 0 not null
+  , data6 numeric(12) default 0 not null
+  , data7 numeric(12) default 0 not null
+  , data8 numeric(12) default 0 not null
+  , data9 numeric(12) default 0 not null
+  , data10 numeric(15, 3) default 0 not null
+  , data11 numeric(14, 2) default 0 not null
+  , constraint rdly_deal_hour_PKC primary key (comp_cd,stre_cd,mac_no,chkr_no,cshr_no,sale_date,date_hour,mode,sub)
+);
+
+-- レジ・扱者日別在高
+drop table if exists rdly_flow cascade;
+
+create table rdly_flow (
+  comp_cd numeric(9) not null
+  , stre_cd numeric(9) not null
+  , mac_no numeric(9) not null
+  , chkr_no NUMERIC(10) default 0 not null
+  , cshr_no NUMERIC(10) default 0 not null
+  , sale_date timestamp without time zone not null
+  , kind smallint not null
+  , sub smallint not null
+  , data1 numeric(12) default 0 not null
+  , data2 numeric(12) default 0 not null
+  , data3 numeric(12) default 0 not null
+  , data4 numeric(12) default 0 not null
+  , data5 numeric(12) default 0 not null
+  , data6 numeric(12) default 0 not null
+  , constraint rdly_flow_PKC primary key (comp_cd,stre_cd,mac_no,chkr_no,cshr_no,sale_date,kind,sub)
+);
+
+-- レジ日別釣銭機
+drop table if exists rdly_acr cascade;
+
+create table rdly_acr (
+  comp_cd numeric(9) not null
+  , stre_cd numeric(9) not null
+  , mac_no numeric(6) not null
+  , sale_date timestamp without time zone not null
+  , acr_1_sht numeric(5) default 0 not null
+  , acr_5_sht numeric(5) default 0 not null
+  , acr_10_sht numeric(5) default 0 not null
+  , acr_50_sht numeric(5) default 0 not null
+  , acr_100_sht numeric(5) default 0 not null
+  , acr_500_sht numeric(5) default 0 not null
+  , acb_1000_sht numeric(5) default 0 not null
+  , acb_2000_sht numeric(5) default 0 not null
+  , acb_5000_sht numeric(5) default 0 not null
+  , acb_10000_sht numeric(5) default 0 not null
+  , acr_1_pol_sht numeric(5) default 0 not null
+  , acr_5_pol_sht numeric(5) default 0 not null
+  , acr_10_pol_sht numeric(5) default 0 not null
+  , acr_50_pol_sht numeric(5) default 0 not null
+  , acr_100_pol_sht numeric(5) default 0 not null
+  , acr_500_pol_sht numeric(5) default 0 not null
+  , acr_oth_pol_sht numeric(5) default 0 not null
+  , acb_1000_pol_sht numeric(5) default 0 not null
+  , acb_2000_pol_sht numeric(5) default 0 not null
+  , acb_5000_pol_sht numeric(5) default 0 not null
+  , acb_10000_pol_sht numeric(5) default 0 not null
+  , acb_fill_pol_sht numeric(5) default 0 not null
+  , acb_reject_cnt numeric(5) default 0 not null
+  , constraint rdly_acr_PKC primary key (comp_cd,stre_cd,mac_no,sale_date)
+);
+
+-- レジ日別分類
+drop table if exists rdly_class cascade;
+
+create table rdly_class (
+  comp_cd numeric(9) not null
+  , stre_cd numeric(9) not null
+  , mac_no numeric(9) not null
+  , lgpcls_cd numeric(9) not null
+  , grpcls_cd numeric(9) not null
+  , lrgcls_cd numeric(9) not null
+  , mdlcls_cd numeric(9) not null
+  , smlcls_cd numeric(9) not null
+  , tnycls_cd numeric(9) not null
+  , sale_date timestamp without time zone not null
+  , mode numeric(9) not null
+  , sub smallint not null
+  , data1 numeric(12) default 0 not null
+  , data2 numeric(12) default 0 not null
+  , data3 numeric(12) default 0 not null
+  , data4 numeric(12) default 0 not null
+  , data5 numeric(12) default 0 not null
+  , data6 numeric(12) default 0 not null
+  , data7 numeric(12) default 0 not null
+  , data8 numeric(12) default 0 not null
+  , data9 numeric(12) default 0 not null
+  , data10 numeric(12) default 0 not null
+  , data11 numeric(12) default 0 not null
+  , data12 numeric(12) default 0 not null
+  , data13 numeric(12) default 0 not null
+  , data14 numeric(12) default 0 not null
+  , data15 numeric(12) default 0 not null
+  , data16 numeric(12) default 0 not null
+  , data17 numeric(12) default 0 not null
+  , data18 numeric(12) default 0 not null
+  , data19 numeric(12) default 0 not null
+  , data20 numeric(15, 3) default 0 not null
+  , data21 numeric(14, 2) default 0 not null
+  , data22 timestamp without time zone
+  , constraint rdly_class_PKC primary key (comp_cd,stre_cd,mac_no,lgpcls_cd,grpcls_cd,lrgcls_cd,mdlcls_cd,smlcls_cd,tnycls_cd,sale_date,mode,sub)
+);
+
+-- レジ日別分類時間帯
+drop table if exists rdly_class_hour cascade;
+
+create table rdly_class_hour (
+  comp_cd numeric(9) not null
+  , stre_cd numeric(9) not null
+  , mac_no numeric(9) not null
+  , lgpcls_cd numeric(9) not null
+  , grpcls_cd numeric(9) not null
+  , lrgcls_cd numeric(9) not null
+  , mdlcls_cd numeric(9) not null
+  , smlcls_cd numeric(9) not null
+  , tnycls_cd numeric(9) not null
+  , sale_date timestamp without time zone not null
+  , date_hour timestamp without time zone not null
+  , mode numeric(9) not null
+  , sub smallint not null
+  , data1 numeric(12) default 0 not null
+  , data2 numeric(12) default 0 not null
+  , data3 numeric(12) default 0 not null
+  , data4 numeric(12) default 0 not null
+  , data5 numeric(12) default 0 not null
+  , data6 numeric(12) default 0 not null
+  , data7 numeric(12) default 0 not null
+  , data8 numeric(12) default 0 not null
+  , data9 numeric(12) default 0 not null
+  , data10 numeric(12) default 0 not null
+  , data11 numeric(12) default 0 not null
+  , data12 numeric(12) default 0 not null
+  , data13 numeric(12) default 0 not null
+  , data14 numeric(12) default 0 not null
+  , data15 numeric(12) default 0 not null
+  , data16 numeric(12) default 0 not null
+  , data17 numeric(12) default 0 not null
+  , data18 numeric(12) default 0 not null
+  , data19 numeric(12) default 0 not null
+  , data20 numeric(15, 3) default 0 not null
+  , data21 numeric(14, 2) default 0 not null
+  , data22 timestamp without time zone
+  , constraint rdly_class_hour_PKC primary key (comp_cd,stre_cd,mac_no,lgpcls_cd,grpcls_cd,lrgcls_cd,mdlcls_cd,smlcls_cd,tnycls_cd,sale_date,date_hour,mode,sub)
+);
+
+-- レジ日別商品
+drop table if exists rdly_plu cascade;
+
+create table rdly_plu (
+  comp_cd numeric(9) not null
+  , stre_cd numeric(9) not null
+  , mac_no numeric(9) not null
+  , plu_cd character varying(20) not null
+  , smlcls_cd numeric(9) not null
+  , sale_date timestamp without time zone not null
+  , mode numeric(9) not null
+  , sub smallint not null
+  , data1 numeric(12) default 0 not null
+  , data2 numeric(12) default 0 not null
+  , data3 numeric(12) default 0 not null
+  , data4 numeric(12) default 0 not null
+  , data5 numeric(12) default 0 not null
+  , data6 numeric(12) default 0 not null
+  , data7 numeric(12) default 0 not null
+  , data8 numeric(12) default 0 not null
+  , data9 numeric(12) default 0 not null
+  , data10 numeric(12) default 0 not null
+  , data11 numeric(12) default 0 not null
+  , data12 numeric(12) default 0 not null
+  , data13 numeric(12) default 0 not null
+  , data14 numeric(12) default 0 not null
+  , data15 numeric(12) default 0 not null
+  , data16 numeric(12) default 0 not null
+  , data17 numeric(12) default 0 not null
+  , data18 numeric(12) default 0 not null
+  , data19 numeric(12) default 0 not null
+  , data20 numeric(15, 3) default 0 not null
+  , data21 numeric(14, 2) default 0 not null
+  , data22 timestamp without time zone
+  , constraint rdly_plu_PKC primary key (comp_cd,stre_cd,mac_no,plu_cd,smlcls_cd,sale_date,mode,sub)
+);
+
+-- レジ日別商品時間帯
+drop table if exists rdly_plu_hour cascade;
+
+create table rdly_plu_hour (
+  comp_cd numeric(9) not null
+  , stre_cd numeric(9) not null
+  , mac_no numeric(9) not null
+  , plu_cd character varying(20) not null
+  , smlcls_cd numeric(9) not null
+  , sale_date timestamp without time zone not null
+  , date_hour timestamp without time zone not null
+  , mode numeric(9) not null
+  , sub smallint not null
+  , data1 numeric(12) default 0 not null
+  , data2 numeric(12) default 0 not null
+  , data3 numeric(12) default 0 not null
+  , data4 numeric(12) default 0 not null
+  , data5 numeric(12) default 0 not null
+  , data6 numeric(12) default 0 not null
+  , data7 numeric(12) default 0 not null
+  , data8 numeric(12) default 0 not null
+  , data9 numeric(12) default 0 not null
+  , data10 numeric(12) default 0 not null
+  , data11 numeric(12) default 0 not null
+  , data12 numeric(12) default 0 not null
+  , data13 numeric(12) default 0 not null
+  , data14 numeric(12) default 0 not null
+  , data15 numeric(12) default 0 not null
+  , data16 numeric(12) default 0 not null
+  , data17 numeric(12) default 0 not null
+  , data18 numeric(12) default 0 not null
+  , data19 numeric(12) default 0 not null
+  , data20 numeric(15, 3) default 0 not null
+  , data21 numeric(14, 2) default 0 not null
+  , data22 timestamp without time zone
+  , constraint rdly_plu_hour_PKC primary key (comp_cd,stre_cd,mac_no,plu_cd,smlcls_cd,sale_date,date_hour,mode,sub)
+);
+
+-- レジ日別値下
+drop table if exists rdly_dsc cascade;
+
+create table rdly_dsc (
+  comp_cd numeric(9) not null
+  , stre_cd numeric(9) not null
+  , mac_no numeric(9) not null
+  , plu_cd character varying(20) not null
+  , smlcls_cd numeric(9) not null
+  , sale_date timestamp without time zone not null
+  , mode numeric(9) not null
+  , kind smallint not null
+  , sub smallint not null
+  , data1 numeric(12) default 0 not null
+  , data2 numeric(12) default 0 not null
+  , data3 numeric(12) default 0 not null
+  , data4 numeric(12) default 0 not null
+  , data5 numeric(12) default 0 not null
+  , data6 numeric(12) default 0 not null
+  , constraint rdly_dsc_PKC primary key (comp_cd,stre_cd,mac_no,plu_cd,smlcls_cd,sale_date,mode,kind,sub)
+);
+
+-- レジ日別プロモーション
+drop table if exists rdly_prom cascade;
+
+create table rdly_prom (
+  comp_cd numeric(9) not null
+  , stre_cd numeric(9) not null
+  , mac_no numeric(9) not null
+  , sch_cd numeric(18) not null
+  , plu_cd character varying(20) not null
+  , cls_cd numeric(9) not null
+  , sale_date timestamp without time zone not null
+  , mode numeric(9) not null
+  , prom_typ smallint not null
+  , sch_typ smallint not null
+  , kind smallint not null
+  , data1 numeric(12) default 0 not null
+  , data2 numeric(12) default 0 not null
+  , data3 numeric(12) default 0 not null
+  , data4 numeric(12) default 0 not null
+  , data5 numeric(12) default 0 not null
+  , data6 numeric(12) default 0 not null
+  , constraint rdly_prom_PKC primary key (comp_cd,stre_cd,mac_no,sch_cd,plu_cd,cls_cd,sale_date,mode,prom_typ,sch_typ,kind)
+);
+-- 実績ワーク
+drop table if exists wk_que cascade;
+
+create table wk_que (
+  serial_no numeric(43)
+  , pid integer
+  , wk_step integer
+  , endtime timestamp without time zone
+);
+
+-- 顧客クーポン印字情報
+drop table if exists s_cust_cpn_tbl cascade;
+
+create table s_cust_cpn_tbl (
+  cust_no VARCHAR(20)
+  , cpn_id NUMERIC(11)
+  , comp_cd NUMERIC(9)
+  , print_datetime TIMESTAMP
+  , cpn_data NUMERIC(18)[]
+  , print_flg SMALLINT[]  NOT NULL  DEFAULT '{0}'
+  , stop_flg SMALLINT default 0 not null
+  , prn_comp_cd NUMERIC(9) default 0 not null
+  , prn_stre_cd NUMERIC(9) default 0 not null
+  , prn_mac_no NUMERIC(9) default 0 not null
+  , prn_staff_cd NUMERIC(10) default 0 not null
+  , prn_datetime TIMESTAMP
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , tday_cnt SMALLINT default 0 not null
+  , total_cnt SMALLINT default 0 not null
+  , constraint s_cust_cpn_tbl_PKC primary key (cust_no,cpn_id,comp_cd)
+) ;
+
+-- 顧客プロモーションテーブル
+drop table if exists s_cust_loy_tbl cascade;
+
+create table s_cust_loy_tbl (
+  cust_no VARCHAR(20)
+  , cpn_id NUMERIC(11)
+  , comp_cd NUMERIC(9)
+  , plan_cd NUMERIC(18)[]  NOT NULL  DEFAULT '{0}'
+  , tday_cnt SMALLINT[]  NOT NULL  DEFAULT '{0}'
+  , total_cnt SMALLINT[]  NOT NULL  DEFAULT '{0}'
+  , last_sellday TIMESTAMP
+  , prn_seq_no SMALLINT[]  NOT NULL  DEFAULT '{0}'
+  , prn_flg SMALLINT[]  NOT NULL  DEFAULT '{0}'
+  , target_flg SMALLINT[]  NOT NULL  DEFAULT '{0}'
+  , stop_flg SMALLINT[]  NOT NULL  DEFAULT '{0}'
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint s_cust_loy_tbl_PKC primary key (cust_no,cpn_id,comp_cd)
+) ;
+
+-- 顧客別累計購買情報テーブル
+drop table if exists s_cust_ttl_tbl cascade;
+
+create table s_cust_ttl_tbl (
+  cust_no VARCHAR(20)
+  , comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9) not null
+  , srch_cust_no VARCHAR(20)
+  , acct_cd_1 NUMERIC(9) default 0 not null
+  , acct_totalpnt_1 NUMERIC(9) default 0 not null
+  , acct_totalamt_1 NUMERIC(9) default 0 not null
+  , acct_totalqty_1 NUMERIC(9) default 0 not null
+  , acct_cd_2 NUMERIC(9) default 0 not null
+  , acct_totalpnt_2 NUMERIC(9) default 0 not null
+  , acct_totalamt_2 NUMERIC(9) default 0 not null
+  , acct_totalqty_2 NUMERIC(9) default 0 not null
+  , acct_cd_3 NUMERIC(9) default 0 not null
+  , acct_totalpnt_3 NUMERIC(9) default 0 not null
+  , acct_totalamt_3 NUMERIC(9) default 0 not null
+  , acct_totalqty_3 NUMERIC(9) default 0 not null
+  , acct_cd_4 NUMERIC(9) default 0 not null
+  , acct_totalpnt_4 NUMERIC(9) default 0 not null
+  , acct_totalamt_4 NUMERIC(9) default 0 not null
+  , acct_totalqty_4 NUMERIC(9) default 0 not null
+  , acct_cd_5 NUMERIC(9) default 0 not null
+  , acct_totalpnt_5 NUMERIC(9) default 0 not null
+  , acct_totalamt_5 NUMERIC(9) default 0 not null
+  , acct_totalqty_5 NUMERIC(9) default 0 not null
+  , month_amt_1 NUMERIC(9) default 0 not null
+  , month_amt_2 NUMERIC(9) default 0 not null
+  , month_amt_3 NUMERIC(9) default 0 not null
+  , month_amt_4 NUMERIC(9) default 0 not null
+  , month_amt_5 NUMERIC(9) default 0 not null
+  , month_amt_6 NUMERIC(9) default 0 not null
+  , month_amt_7 NUMERIC(9) default 0 not null
+  , month_amt_8 NUMERIC(9) default 0 not null
+  , month_amt_9 NUMERIC(9) default 0 not null
+  , month_amt_10 NUMERIC(9) default 0 not null
+  , month_amt_11 NUMERIC(9) default 0 not null
+  , month_amt_12 NUMERIC(9) default 0 not null
+  , month_visit_date_1 TIMESTAMP
+  , month_visit_date_2 TIMESTAMP
+  , month_visit_date_3 TIMESTAMP
+  , month_visit_date_4 TIMESTAMP
+  , month_visit_date_5 TIMESTAMP
+  , month_visit_date_6 TIMESTAMP
+  , month_visit_date_7 TIMESTAMP
+  , month_visit_date_8 TIMESTAMP
+  , month_visit_date_9 TIMESTAMP
+  , month_visit_date_10 TIMESTAMP
+  , month_visit_date_11 TIMESTAMP
+  , month_visit_date_12 TIMESTAMP
+  , month_visit_cnt_1 SMALLINT default 0 not null
+  , month_visit_cnt_2 SMALLINT default 0 not null
+  , month_visit_cnt_3 SMALLINT default 0 not null
+  , month_visit_cnt_4 SMALLINT default 0 not null
+  , month_visit_cnt_5 SMALLINT default 0 not null
+  , month_visit_cnt_6 SMALLINT default 0 not null
+  , month_visit_cnt_7 SMALLINT default 0 not null
+  , month_visit_cnt_8 SMALLINT default 0 not null
+  , month_visit_cnt_9 SMALLINT default 0 not null
+  , month_visit_cnt_10 SMALLINT default 0 not null
+  , month_visit_cnt_11 SMALLINT default 0 not null
+  , month_visit_cnt_12 SMALLINT default 0 not null
+  , bnsdsc_amt NUMERIC(9) default 0 not null
+  , bnsdsc_visit_date TIMESTAMP
+  , ttl_amt NUMERIC(9) default 0 not null
+  , delivery_date TIMESTAMP
+  , last_name VARCHAR(50)
+  , first_name VARCHAR(50)
+  , birth_day TIMESTAMP
+  , tel_no1 VARCHAR(25)
+  , tel_no2 VARCHAR(25)
+  , last_visit_date TIMESTAMP
+  , pnt_service_type SMALLINT default 0 not null
+  , pnt_service_limit NUMERIC(7) default 0 not null
+  , portal_flg SMALLINT default 0 not null
+  , enq_comp_cd NUMERIC(9) default 0 not null
+  , enq_stre_cd NUMERIC(9) default 0 not null
+  , enq_mac_no NUMERIC(9) default 0 not null
+  , enq_datetime TIMESTAMP
+  , cust_status SMALLINT default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , targ_typ SMALLINT default 0 not null
+  , staff_flg SMALLINT default 0 not null
+  , cust_prc_type SMALLINT default 0 not null
+  , sch_acct_cd_1 NUMERIC(9) default 0 not null
+  , acct_accval_1 NUMERIC(9) default 0 not null
+  , acct_optotal_1 NUMERIC(9) default 0 not null
+  , sch_acct_cd_2 NUMERIC(9) default 0 not null
+  , acct_accval_2 NUMERIC(9) default 0 not null
+  , acct_optotal_2 NUMERIC(9) default 0 not null
+  , sch_acct_cd_3 NUMERIC(9) default 0 not null
+  , acct_accval_3 NUMERIC(9) default 0 not null
+  , acct_optotal_3 NUMERIC(9) default 0 not null
+  , sch_acct_cd_4 NUMERIC(9) default 0 not null
+  , acct_accval_4 NUMERIC(9) default 0 not null
+  , acct_optotal_4 NUMERIC(9) default 0 not null
+  , sch_acct_cd_5 NUMERIC(9) default 0 not null
+  , acct_accval_5 NUMERIC(9) default 0 not null
+  , acct_optotal_5 NUMERIC(9) default 0 not null
+  , c_data1 VARCHAR(20)
+  , n_data1 NUMERIC(10) default 0 not null
+  , n_data2 NUMERIC(9) default 0 not null
+  , n_data3 NUMERIC(9) default 0 not null
+  , n_data4 NUMERIC(9) default 0 not null
+  , n_data5 NUMERIC(9) default 0 not null
+  , n_data6 NUMERIC(9) default 0 not null
+  , n_data7 NUMERIC(9) default 0 not null
+  , n_data8 NUMERIC(9) default 0 not null
+  , n_data9 NUMERIC(9) default 0 not null
+  , n_data10 NUMERIC(9) default 0 not null
+  , n_data11 NUMERIC(9) default 0 not null
+  , n_data12 NUMERIC(9) default 0 not null
+  , n_data13 NUMERIC(9) default 0 not null
+  , n_data14 NUMERIC(9) default 0 not null
+  , n_data15 NUMERIC(9) default 0 not null
+  , n_data16 NUMERIC(9) default 0 not null
+  , s_data1 SMALLINT default 0 not null
+  , s_data2 SMALLINT default 0 not null
+  , s_data3 SMALLINT default 0 not null
+  , d_data1 TIMESTAMP
+  , d_data2 TIMESTAMP
+  , d_data3 TIMESTAMP
+  , d_data4 TIMESTAMP
+  , d_data5 TIMESTAMP
+  , d_data6 TIMESTAMP
+  , d_data7 TIMESTAMP
+  , d_data8 TIMESTAMP
+  , d_data9 TIMESTAMP
+  , d_data10 TIMESTAMP
+  , constraint s_cust_ttl_tbl_PKC primary key (cust_no,comp_cd)
+) ;
+
+-- サービス分類スケジュールマスタ
+drop table if exists s_svs_sch_mst cascade;
+
+create table s_svs_sch_mst (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , plan_cd NUMERIC(14)
+  , svs_cls_sch_cd NUMERIC(9)
+  , svs_cls_cd NUMERIC(9)
+  , svs_cls_sch_name VARCHAR(25)
+  , point_add_magn NUMERIC(11,2) default 0 not null
+  , point_add_mem_typ SMALLINT default 0 not null
+  , f_data1 NUMERIC(11,2) default 0 not null
+  , s_data1 SMALLINT default 0 not null
+  , s_data2 SMALLINT default 0 not null
+  , s_data3 SMALLINT default 0 not null
+  , start_datetime TIMESTAMP
+  , end_datetime TIMESTAMP
+  , timesch_flg SMALLINT default 0 not null
+  , sun_flg SMALLINT default 1 not null
+  , mon_flg SMALLINT default 1 not null
+  , tue_flg SMALLINT default 1 not null
+  , wed_flg SMALLINT default 1 not null
+  , thu_flg SMALLINT default 1 not null
+  , fri_flg SMALLINT default 1 not null
+  , sat_flg SMALLINT default 1 not null
+  , stop_flg SMALLINT default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , acct_cd NUMERIC(9) default 0 not null
+  , constraint s_svs_sch_mst_PKC primary key (comp_cd,stre_cd,plan_cd,svs_cls_sch_cd,svs_cls_cd)
+) ;
+
+
+-- 購買履歴確認除外商品テーブル
+drop table if exists s_daybook_spplu_tbl cascade;
+
+create table s_daybook_spplu_tbl (
+    plu_cd VARCHAR(20)
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint s_daybook_spplu_tbl_PKC primary key (plu_cd)
+) ;
+
+
+-- 会員日別実績
+drop table if exists rdly_cust cascade;
+
+create table rdly_cust (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , cust_no VARCHAR(20)
+  , custzone_cd NUMERIC(9) default 0
+  , svs_cls_cd NUMERIC(9) default 999999
+  , sale_date TIMESTAMP
+  , sub SMALLINT
+  , data1 NUMERIC(12) default 0 not null
+  , data2 NUMERIC(12) default 0 not null
+  , data3 NUMERIC(12) default 0 not null
+  , data4 NUMERIC(12) default 0 not null
+  , data5 NUMERIC(12) default 0 not null
+  , data6 NUMERIC(12) default 0 not null
+  , data7 NUMERIC(12) default 0 not null
+  , data8 NUMERIC(12) default 0 not null
+  , data9 NUMERIC(12) default 0 not null
+  , data10 NUMERIC(12) default 0 not null
+  , data11 NUMERIC(12) default 0 not null
+  , data12 NUMERIC(12) default 0 not null
+  , data13 NUMERIC(12) default 0 not null
+  , data14 NUMERIC(12) default 0 not null
+  , data15 NUMERIC(12) default 0 not null
+  , data16 NUMERIC(12) default 0 not null
+  , data17 NUMERIC(12) default 0 not null
+  , data18 NUMERIC(12) default 0 not null
+  , data19 NUMERIC(12) default 0 not null
+  , data20 NUMERIC(12) default 0 not null
+  , data21 NUMERIC(12) default 0 not null
+  , data22 NUMERIC(12) default 0 not null
+  , data23 NUMERIC(12) default 0 not null
+  , data24 NUMERIC(14) default 0 not null
+  , data25 NUMERIC(14,2) default 0 not null
+  , constraint rdly_cust_PKC primary key (comp_cd,stre_cd,cust_no,custzone_cd,svs_cls_cd,sale_date,sub)
+);
+
+-- サービス分類日別実績
+drop table if exists rdly_svs cascade;
+
+create table rdly_svs (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , svs_cls_cd NUMERIC(9) default 999999
+  , sale_date TIMESTAMP
+  , sub SMALLINT
+  , data1 NUMERIC(12) default 0 not null
+  , data2 NUMERIC(12) default 0 not null
+  , data3 NUMERIC(12) default 0 not null
+  , data4 NUMERIC(12) default 0 not null
+  , data5 NUMERIC(12) default 0 not null
+  , data6 NUMERIC(12) default 0 not null
+  , data7 NUMERIC(12) default 0 not null
+  , data8 NUMERIC(12) default 0 not null
+  , data9 NUMERIC(12) default 0 not null
+  , data10 NUMERIC(12) default 0 not null
+  , data11 NUMERIC(12) default 0 not null
+  , data12 NUMERIC(12) default 0 not null
+  , data13 NUMERIC(12) default 0 not null
+  , data14 NUMERIC(12) default 0 not null
+  , data15 NUMERIC(12) default 0 not null
+  , data16 NUMERIC(12) default 0 not null
+  , data17 NUMERIC(12) default 0 not null
+  , data18 NUMERIC(12) default 0 not null
+  , data19 NUMERIC(12) default 0 not null
+  , data20 NUMERIC(12) default 0 not null
+  , data21 NUMERIC(12) default 0 not null
+  , data22 NUMERIC(12) default 0 not null
+  , data23 NUMERIC(12) default 0 not null
+  , data24 NUMERIC(14) default 0 not null
+  , data25 NUMERIC(14,2) default 0 not null
+  , constraint rdly_svs_PKC primary key (comp_cd,stre_cd,svs_cls_cd,sale_date,sub)
+);
+
+-- 顧客スタンプカードテーブル
+drop table if exists s_cust_stp_tbl cascade;
+
+create table s_cust_stp_tbl (
+  cust_no VARCHAR(20)
+  , comp_cd NUMERIC(9)
+  , acct_cd NUMERIC(9)
+  , acc_amt NUMERIC(9) default 0 not null
+  , red_amt NUMERIC(9) default 0 not null
+  , last_upd_date TIMESTAMP
+  , stop_flg SMALLINT default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , cpn_id NUMERIC(11)
+  , tday_acc_amt NUMERIC(9) default 0 not null
+  , constraint s_cust_stp_tbl_PKC primary key (cust_no,comp_cd,acct_cd,cpn_id)
+) ;
+
+-- パスポート情報マスタ
+drop table if exists c_passport_info_mst cascade;
+
+create table c_passport_info_mst (
+  kind NUMERIC(6)
+  , code NUMERIC(6)
+  , data_jp VARCHAR(32)
+  , data_ex VARCHAR(32)
+  , langue SMALLINT
+  , data_01 VARCHAR(32)
+  , data_02 VARCHAR(32)
+  , country_code NUMERIC(6)
+  , data_03 VARCHAR(32)
+  , flg_01 SMALLINT
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , start_date TIMESTAMP
+  , end_date TIMESTAMP
+  , get_date TIMESTAMP
+  , constraint c_passport_info_mst_PKC primary key (kind,code)
+);
+
+-- サブ1分類マスタ
+drop table if exists c_sub1_cls_mst cascade;
+
+create table c_sub1_cls_mst (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , cls_typ SMALLINT
+  , sub1_lrg_cd NUMERIC(9)
+  , sub1_mdl_cd NUMERIC(9)
+  , sub1_sml_cd NUMERIC(9)
+  , name VARCHAR(25)
+  , short_name VARCHAR(5)
+  , kana_name VARCHAR(25)
+  , rbttarget_flg SMALLINT default 0 not null
+  , stl_dsc_flg SMALLINT default 0 not null
+  , stlplus_flg SMALLINT default 0 not null
+  , pctr_tckt_flg SMALLINT default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , rbtpremium_per NUMERIC(5,2) default 1.00 not null
+  , constraint c_sub1_cls_mst_PKC primary key (comp_cd,stre_cd,cls_typ,sub1_lrg_cd,sub1_mdl_cd,sub1_sml_cd)
+);
+
+-- サブ2分類マスタ
+drop table if exists c_sub2_cls_mst cascade;
+
+create table c_sub2_cls_mst (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , cls_typ SMALLINT
+  , sub2_lrg_cd NUMERIC(9)
+  , sub2_mdl_cd NUMERIC(9)
+  , sub2_sml_cd NUMERIC(9)
+  , name VARCHAR(25)
+  , short_name VARCHAR(5)
+  , kana_name VARCHAR(25)
+  , rbttarget_flg SMALLINT default 0 not null
+  , stl_dsc_flg SMALLINT default 0 not null
+  , stlplus_flg SMALLINT default 0 not null
+  , pctr_tckt_flg SMALLINT default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , rbtpremium_per NUMERIC(5,2) default 1.00 not null
+  , constraint c_sub2_cls_mst_PKC primary key (comp_cd,stre_cd,cls_typ,sub2_lrg_cd,sub2_mdl_cd,sub2_sml_cd)
+);
+
+-- 会員カード判定マスタ
+drop table if exists c_mbrcard_mst cascade;
+
+create table c_mbrcard_mst (
+  seq_no NUMERIC(9)
+  , comp_cd NUMERIC(9)
+  , code_from VARCHAR(20)
+  , code_to VARCHAR(20)
+  , c_data1 VARCHAR(25)
+  , c_data2 VARCHAR(10)
+  , c_data3 VARCHAR(1)
+  , s_data1 SMALLINT default 0 not null
+  , s_data2 SMALLINT default 0 not null
+  , n_data1 NUMERIC(9) default 0 not null
+  , n_data2 NUMERIC(9) default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_mbrcard_mst_PKC primary key (seq_no,comp_cd)
+) ;
+
+-- 会員カードサービス判定マスタ
+drop table if exists c_mbrcard_svs_mst cascade;
+
+create table c_mbrcard_svs_mst (
+  rec_id NUMERIC(9)
+  , comp_cd NUMERIC(9)
+  , card_kind SMALLINT
+  , svs_cd SMALLINT
+  , c_data1 VARCHAR(25)
+  , c_data2 VARCHAR(10)
+  , c_data3 VARCHAR(1)
+  , s_data1 SMALLINT default 0 not null
+  , s_data2 SMALLINT default 0 not null
+  , n_data1 NUMERIC(9) default 0 not null
+  , n_data2 NUMERIC(9) default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_mbrcard_svs_mst_PKC primary key (rec_id,comp_cd,card_kind,svs_cd)
+) ;
+
+-- 特定操作マスタ
+drop table if exists c_operation_mst cascade;
+
+create table c_operation_mst (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , ope_cd SMALLINT
+  , ope_name VARCHAR(25)
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_operation_mst_PKC primary key (comp_cd,stre_cd,ope_cd)
+) ;
+
+-- 特定操作権限マスタ
+drop table if exists c_operationauth_mst cascade;
+
+create table c_operationauth_mst (
+  comp_cd NUMERIC(9)
+  , auth_lvl SMALLINT
+  , ope_cd SMALLINT
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_operationauth_mst_PKC primary key (comp_cd,auth_lvl,ope_cd)
+) ;
+
+-- スタンプカード企画マスタ
+drop table if exists c_stppln_mst cascade;
+
+create table c_stppln_mst (
+  cpn_id NUMERIC(11)
+  , plan_cd NUMERIC(18)
+  , comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , all_cust_flg SMALLINT default 0 not null
+  , cust_kind_flg SMALLINT default 0 not null
+  , plan_name VARCHAR(50)
+  , rcpt_name VARCHAR(25)
+  , format_flg SMALLINT default 0
+  , pict_path VARCHAR(128)
+  , notes VARCHAR(128)
+  , prn_stre_name VARCHAR(50)
+  , prn_time VARCHAR(20)
+  , c_data1 VARCHAR(128)
+  , c_data2 VARCHAR(128)
+  , c_data3 VARCHAR(128)
+  , c_data4 VARCHAR(128)
+  , c_data5 VARCHAR(128)
+  , c_data6 VARCHAR(128)
+  , s_data1 SMALLINT default 0
+  , s_data2 SMALLINT default 0
+  , s_data3 SMALLINT default 0
+  , ref_unit_flg SMALLINT default 0 not null
+  , cond_class_flg SMALLINT default 0 not null
+  , low_lim NUMERIC(9) default 0 not null
+  , upp_lim NUMERIC(9) default 0 not null
+  , rec_limit SMALLINT default 0 not null
+  , day_limit SMALLINT default 0 not null
+  , max_limit SMALLINT default 0 not null
+  , start_datetime TIMESTAMP
+  , end_datetime TIMESTAMP
+  , svs_start_datetime TIMESTAMP
+  , svs_end_datetime TIMESTAMP
+  , stop_flg SMALLINT default 0 not null
+  , timesch_flg SMALLINT default 0 not null
+  , sun_flg SMALLINT default 0 not null
+  , mon_flg SMALLINT default 0 not null
+  , tue_flg SMALLINT default 0 not null
+  , wed_flg SMALLINT default 0 not null
+  , thu_flg SMALLINT default 0 not null
+  , fri_flg SMALLINT default 0 not null
+  , sat_flg SMALLINT default 0 not null
+  , date_flg1 SMALLINT default 0 not null
+  , date_flg2 SMALLINT default 0 not null
+  , date_flg3 SMALLINT default 0 not null
+  , date_flg4 SMALLINT default 0 not null
+  , date_flg5 SMALLINT default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , cust_kind_trgt SMALLINT[]  NOT NULL  DEFAULT '{0}'
+  , n_custom1 NUMERIC(9) default 0 not null
+  , n_custom2 NUMERIC(9) default 0 not null
+  , n_custom3 NUMERIC(9) default 0 not null
+  , n_custom4 NUMERIC(9) default 0 not null
+  , n_custom5 NUMERIC(9) default 0 not null
+  , n_custom6 NUMERIC(9) default 0 not null
+  , n_custom7 NUMERIC(9) default 0 not null
+  , n_custom8 NUMERIC(9) default 0 not null
+  , s_custom1 SMALLINT default 0 not null
+  , s_custom2 SMALLINT default 0 not null
+  , s_custom3 SMALLINT default 0 not null
+  , s_custom4 SMALLINT default 0 not null
+  , s_custom5 SMALLINT default 0 not null
+  , s_custom6 SMALLINT default 0 not null
+  , s_custom7 SMALLINT default 0 not null
+  , s_custom8 SMALLINT default 0 not null
+  , c_custom1 VARCHAR(50)
+  , c_custom2 VARCHAR(50)
+  , c_custom3 VARCHAR(50)
+  , c_custom4 VARCHAR(50)
+  , d_custom1 TIMESTAMP
+  , d_custom2 TIMESTAMP
+  , d_custom3 TIMESTAMP
+  , d_custom4 TIMESTAMP
+  , constraint c_stppln_mst_PKC primary key (cpn_id,plan_cd,comp_cd,stre_cd)
+) ;
+
+-- メッセージレイアウト設定マスタ
+drop table if exists c_msglayout_set_mst cascade;
+
+create table c_msglayout_set_mst (
+  msg_set_kind NUMERIC(9)
+  , msg_data SMALLINT default 0 not null
+  , msg_name VARCHAR(100)
+  , msg_dsp_cond SMALLINT default 0 not null
+  , msg_target_dsp_cond SMALLINT default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_msglayout_set_mst_PKC primary key (msg_set_kind,msg_data)
+);
+
+--- コード決済事業者マスタ
+drop table if exists c_payoperator_mst cascade;
+
+CREATE TABLE c_payoperator_mst (
+  comp_cd	NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , payopera_typ VARCHAR(50)
+  , payopera_cd SMALLINT  DEFAULT 0
+  , name VARCHAR(50)
+  , short_name VARCHAR(25)
+  , misc_cd NUMERIC(10)  NOT NULL  DEFAULT 0
+  , showorder SMALLINT  NOT NULL DEFAULT 1
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT  NOT NULL  DEFAULT 0
+  , send_flg SMALLINT  NOT NULL  DEFAULT 0
+  , upd_user NUMERIC(10)  NOT NULL  DEFAULT 0
+  , upd_system SMALLINT  NOT NULL  DEFAULT 0
+  , constraint c_payoperator_mst_PKC primary key (comp_cd,stre_cd,payopera_typ,payopera_cd)
+);
+
+-- レジ・扱者日別コード決済在高
+drop table if exists rdly_cdpayflow cascade;
+
+create table rdly_cdpayflow (
+  comp_cd numeric(9) not null
+  , stre_cd numeric(9) not null
+  , mac_no numeric(9) not null
+  , chkr_no NUMERIC(10) default 0 not null
+  , cshr_no NUMERIC(10) default 0 not null
+  , sale_date timestamp without time zone not null
+  , kind smallint not null
+  , sub smallint not null
+  , payopera_cd SMALLINT  DEFAULT 0
+  , payopera_typ VARCHAR(50)
+  , data1 numeric(12) default 0 not null
+  , data2 numeric(12) default 0 not null
+  , data3 numeric(12) default 0 not null
+  , data4 numeric(12) default 0 not null
+  , data5 numeric(12) default 0 not null
+  , data6 numeric(12) default 0 not null
+  , constraint rdly_cdpayflow_PKC primary key (comp_cd,stre_cd,mac_no,chkr_no,cshr_no,sale_date,kind,sub,payopera_cd,payopera_typ)
+);
+
+-- レジ・扱者日別税別取引
+drop table if exists rdly_tax_deal cascade;
+
+create table rdly_tax_deal (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , mac_no NUMERIC(9)
+  , chkr_no NUMERIC(10)
+  , cshr_no NUMERIC(10)
+  , sale_date TIMESTAMP
+  , mode NUMERIC(9)
+  , kind SMALLINT
+  , sub SMALLINT
+  , func_cd SMALLINT
+  , data1 NUMERIC(12) default 0 not null
+  , data2 NUMERIC(12) default 0 not null
+  , data3 NUMERIC(12) default 0 not null
+  , data4 NUMERIC(12) default 0 not null
+  , data5 NUMERIC(12) default 0 not null
+  , data6 NUMERIC(12) default 0 not null
+  , data7 NUMERIC(12) default 0 not null
+  , data8 NUMERIC(12) default 0 not null
+  , data9 NUMERIC(12) default 0 not null
+  , data10 NUMERIC(12) default 0 not null
+  , data11 NUMERIC(12) default 0 not null
+  , data12 NUMERIC(12) default 0 not null
+  , data13 NUMERIC(12) default 0 not null
+  , data14 NUMERIC(12) default 0 not null
+  , data15 NUMERIC(12) default 0 not null
+  , data16 NUMERIC(12) default 0 not null
+  , data17 NUMERIC(12) default 0 not null
+  , data18 NUMERIC(12) default 0 not null
+  , data19 NUMERIC(12) default 0 not null
+  , data20 NUMERIC(15,3) default 0 not null
+  , data21 NUMERIC(14,2) default 0 not null
+  , constraint rdly_tax_deal_PKC primary key (comp_cd,stre_cd,mac_no,chkr_no,cshr_no,sale_date,mode,kind,sub,func_cd)
+) ;
+
+-- レジ・扱者日別税別取引時間帯
+drop table if exists rdly_tax_deal_hour cascade;
+
+create table rdly_tax_deal_hour (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , mac_no NUMERIC(9)
+  , chkr_no NUMERIC(10)
+  , cshr_no NUMERIC(10)
+  , sale_date TIMESTAMP
+  , date_hour TIMESTAMP
+  , mode NUMERIC(9)
+  , kind SMALLINT
+  , sub SMALLINT
+  , func_cd SMALLINT
+  , data1 NUMERIC(12) default 0 not null
+  , data2 NUMERIC(12) default 0 not null
+  , data3 NUMERIC(12) default 0 not null
+  , data4 NUMERIC(12) default 0 not null
+  , data5 NUMERIC(12) default 0 not null
+  , data6 NUMERIC(12) default 0 not null
+  , data7 NUMERIC(12) default 0 not null
+  , data8 NUMERIC(12) default 0 not null
+  , data9 NUMERIC(12) default 0 not null
+  , data10 NUMERIC(12) default 0 not null
+  , data11 NUMERIC(12) default 0 not null
+  , data12 NUMERIC(12) default 0 not null
+  , data13 NUMERIC(12) default 0 not null
+  , data14 NUMERIC(12) default 0 not null
+  , data15 NUMERIC(12) default 0 not null
+  , data16 NUMERIC(12) default 0 not null
+  , data17 NUMERIC(12) default 0 not null
+  , data18 NUMERIC(12) default 0 not null
+  , data19 NUMERIC(12) default 0 not null
+  , data20 NUMERIC(15,3) default 0 not null
+  , data21 NUMERIC(14,2) default 0 not null
+  , constraint rdly_tax_deal_hour_PKC primary key (comp_cd,stre_cd,mac_no,chkr_no,cshr_no,sale_date,date_hour,mode,kind,sub,func_cd)
+) ;
+
+-- 緊急メンテナンスオフラインテーブル
+drop table if exists p_notfplu_off_tbl cascade;
+
+create table p_notfplu_off_tbl (
+  plu_cd VARCHAR(20)
+  , lrgcls_cd NUMERIC(9) default 0 not null
+  , mdlcls_cd NUMERIC(9) default 0 not null
+  , smlcls_cd NUMERIC(9) default 0 not null
+  , tnycls_cd NUMERIC(9) default 0 not null
+  , item_name VARCHAR(50)
+  , pos_name VARCHAR(50)
+  , pos_prc NUMERIC(9) default 0 not null
+  , tax_cd_1 SMALLINT default 0 not null
+  , mac_no NUMERIC(9) default 0 not null
+  , staff_cd NUMERIC(10) default 0 not null
+  , constraint p_notfplu_off_tbl_PKC primary key (plu_cd)
+);
+
+-- 酒品目マスタ
+drop table if exists c_liqritem_mst cascade;
+
+create table c_liqritem_mst (
+  comp_cd NUMERIC(9)
+  , liqritem_cd NUMERIC(6)
+  , liqritem_name1 VARCHAR(30)
+  , liqritem_name2 VARCHAR(30)
+  , liqritem_name3 VARCHAR(30)
+  , powliqr_flg  SMALLINT default 0 not null
+  , data_c_01 VARCHAR(20)
+  , data_c_02 VARCHAR(20)
+  , data_n_01 NUMERIC(6)
+  , data_n_02 NUMERIC(6)
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_liqritem_mst_PKC primary key (comp_cd,liqritem_cd)
+);
+
+-- 酒税マスタ
+drop table if exists c_liqrtax_mst cascade;
+
+create table c_liqrtax_mst (
+  comp_cd NUMERIC(9)
+  , liqrtax_cd NUMERIC(6)
+  , liqrtax_name VARCHAR(30)
+  , liqrtax_rate NUMERIC(9) default 0 not null
+  , liqrtax_alc NUMERIC(4,2) default 0 not null
+  , liqrtax_add NUMERIC(4,2) default 0 not null
+  , liqrtax_add_amt NUMERIC(9) default 0 not null
+  , liqrtax_odd_flg SMALLINT default 2 not null
+  , data_c_01 VARCHAR(20)
+  , data_n_01 NUMERIC(9)
+  , data_n_02 NUMERIC(9)
+  , data_n_03 NUMERIC(4,2)
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_liqrtax_mst_PKC primary key (comp_cd,liqrtax_cd)
+);
+
+
+DROP TABLE c_batprcchg_mst;
+CREATE TABLE c_batprcchg_mst (
+  prcchg_cd SMALLINT
+  , order_cd SMALLINT
+  , comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , plu_cd VARCHAR(20)
+  , flg    SMALLINT
+  , pos_prc NUMERIC(9) default 0 not null
+  , cust_prc NUMERIC(9) default 0 not null
+  , start_datetime TIMESTAMP
+  , end_datetime TIMESTAMP
+  , timesch_flg SMALLINT default 0 not null
+  , sun_flg SMALLINT default 0 not null
+  , mon_flg SMALLINT default 0 not null
+  , tue_flg SMALLINT default 0 not null
+  , wed_flg SMALLINT default 0 not null
+  , thu_flg SMALLINT default 0 not null
+  , fri_flg SMALLINT default 0 not null
+  , sat_flg SMALLINT default 0 not null
+  , stop_flg SMALLINT default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_batprcchg_mst_PKC primary key (prcchg_cd,order_cd,comp_cd,stre_cd)
+);
+
+-- 区分マスタ2
+drop table if exists c_divide2_mst cascade;
+
+create table c_divide2_mst (
+  comp_cd NUMERIC(9)
+  , stre_cd NUMERIC(9)
+  , kind_cd SMALLINT
+  , div_cd SMALLINT
+  , name VARCHAR(25)
+  , short_name VARCHAR(5)
+  , exp_cd1 SMALLINT not null
+  , exp_cd2 SMALLINT not null
+  , exp_cd3 SMALLINT default 0 not null
+  , exp_cd4 SMALLINT default 0 not null
+  , exp_data1 VARCHAR(20)
+  , exp_data2 VARCHAR(20)
+  , exp_data3 VARCHAR(20)
+  , exp_l_cd1 NUMERIC(9) default 0 not null
+  , exp_l_cd2 NUMERIC(9) default 0 not null
+  , exp_l_cd3 NUMERIC(9) default 0 not null
+  , exp_d_cd1 NUMERIC(5,2) default 0 not null
+  , exp_d_cd2 NUMERIC(5,2) default 0 not null
+  , exp_amt NUMERIC(9) default 0 not null
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_divide2_mst_PKC primary key (comp_cd,stre_cd,kind_cd,div_cd)
+);
+
+-- ハイタッチ受信ログ
+drop table if exists c_hitouch_rcv_log cascade;
+
+CREATE TABLE c_hitouch_rcv_log (
+  rcv_datetime TIMESTAMP
+  , tag_id VARCHAR(10)
+  , plu_cd VARCHAR(20)
+  , upd_flg SMALLINT default 0 not null
+  , constraint c_hitouch_rcv_log_PKC primary key (rcv_datetime, tag_id)
+) ;
+
+-- index 追加の際は, src/vup/db/vup_db3.c の vup_db_proc_create_index() を参照すること. 記述ルールがあります.
+
+DROP INDEX IF EXISTS p_promsch_mst_idx;
+CREATE INDEX p_promsch_mst_idx ON p_promsch_mst (start_datetime, end_datetime, stop_flg, sch_typ, item_cd, timesch_flg);
+
+DROP INDEX IF EXISTS p_promitem_mst_idx;
+CREATE INDEX p_promitem_mst_idx ON p_promitem_mst (prom_typ);
+

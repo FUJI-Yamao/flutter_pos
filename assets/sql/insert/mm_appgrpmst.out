@@ -1,0 +1,529 @@
+BEGIN;
+-- バージョンアップにてz_initializeが消されないよう制御
+DELETE FROM c_appl_grp_mst WHERE comp_cd = :COMP AND stre_cd = :STRE AND appl_grp_cd <> '56912111' and ins_datetime = upd_datetime;
+
+\set insert_field  'comp_cd, stre_cd, cond_trm_cd, recog_grp_cd, ins_datetime, upd_datetime, status, send_flg, upd_user, upd_system, appl_grp_cd, appl_name, cond_con_typ, menu_chk_flg, flg_1, flg_2, flg_3, flg_4 '
+\set insert_field2 'comp_cd, stre_cd, ins_datetime, upd_datetime, status, send_flg, upd_user, upd_system, appl_grp_cd, appl_name, cond_con_typ, cond_trm_cd, recog_grp_cd, menu_chk_flg, flg_1, flg_2, flg_3, flg_4 '
+
+--          comp_cd, stre_cd, cond_trm_cd, recog_grp_cd, ins_datetime, upd_datetime, status, send_flg, upd_user, upd_system
+\set cmn_set  ' :COMP, :STRE, \'0\', \'0\', \'now\', \'now\', \'0\', \'0\', \'999999\', \'2\' '
+\set cmn_set2 ' :COMP, :STRE, \'now\', \'now\', \'0\', \'0\', \'999999\', \'2\' '
+\set sub_query 'SELECT appl_grp_cd FROM c_appl_grp_mst WHERE comp_cd = :COMP AND stre_cd = :STRE '
+
+-- proc_con
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1', E'regs', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '2', E'regs_opt', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '2'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '3', E'regs_opt_dual', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '3'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '4', E'stropncls', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '4'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '5', E'retotal', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '5'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '6', E'menu', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '6'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '7', E'startup', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '7'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '8', E'simple2stf', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '8'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '9', E'simple2stf_dual', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '9'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '10', E'bank_prg', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '10'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '11', E'FenceOver', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '11'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '12', E'EjConf', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '12'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '13', E'CashRecycle', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '13'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '14', E'HistoryGet', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '14'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '15', E'ファイルリクエスト', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '15'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '16', E'CustEnqClr', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '16'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '17', E'Resimslog', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '17'); 
+
+-- メインメニュー
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '101', E'登録', '111111', '1', '1', '1', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '101'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '102', E'オープン／クローズ', '111111', '0', '0', '1', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '102'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '103', E'訂正', '111111', '1', '1', '1', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '103'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '104', E'訓練', '111111', '1', '1', '1', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '104'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '105', E'廃棄', '111111', '1', '1', '1', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '105'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '107', E'売上速報', '011111', '0', '1', '1', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '107'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '108', E'売上点検', '111111', '0', '1', '1', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '108'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '109', E'売上精算', '111111', '0', '1', '1', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '109'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '112', E'売価変更', '111111', '0', '1', '1', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '112'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '113', E'予約レポート出力', '111111', '0', '1', '1', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '113'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '114', E'ファイルリクエスト', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '114'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '116', E'ユーザーセットアップ', '111111', '0', '1', '1', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '116'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '117', E'閉設処理', '111111', '2', '1', '1', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '117'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '119', E'キャリブレーション設定', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '119'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '120', E'隠しボタン表示化', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '120'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '121', E'切替', '111111', '0', '1', '1', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '121'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '122', E'音の設定', '111111', '0', '1', '1', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '122'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '123', E'即時受信', '111111', '0', '1', '1', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '123');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '125', E'メモ', '111111', '0', '1', '1', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '125');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '126', E'連絡', '111111', '0', '1', '1', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '126');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '127', E'釣機精査', '111111', '0', '1', '1', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '127');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '128', E'棚卸', '111111', '1', '1', '1', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '128');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '129', E'生産', '111111', '1', '1', '1', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '129');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '130', E'発注', '111111', '1', '1', '1', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '130');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '131', E'収納業務', '111111', '1', '1', '1', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '131');
+--insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '199', E'売上速報', '111111', '0', '1', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '199');
+
+-- 設定
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '201', E'商品', '000110', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '201'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '202', E'特売', '000110', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '202'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '203', E'ﾐｯｸｽﾏｯﾁ', '000110', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '203'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '204', E'ｾｯﾄﾏｯﾁ', '000110', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '204'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '205', E'ﾌﾟﾘｾｯﾄ', '000110', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '205'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '206', E'中分類', '000110', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '206'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '207', E'小分類', '000110', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '207'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '208', E'ｶﾃｺﾞﾘｰ値引', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '208'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '209', E'従業員', '000110', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '209'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '210', E'地区', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '210'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '211', E'会員関連', '000110', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '211'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '212', E'記念日種別', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '212'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '213', E'ｻｰﾋﾞｽ分類', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '213'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '214', E'画像分類変更', '000110', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '214'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '215', E'分類値下スケジュール', '000110', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '215'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '216', E'小分類値下スケジュール', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '216'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '217', E'FSPスケジュール', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '217'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '218', E'予約ﾚﾎﾟｰﾄ', '000111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '218'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '221', E'ﾀｰﾐﾅﾙ', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '221'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '222', E'ｷｰｵﾌﾟｼｮﾝ', '000110', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '222'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '223', E'共通ｺﾝﾄﾛｰﾙ', '000110', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '223'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '224', E'ｲﾝｽﾄｱﾏｰｷﾝｸﾞ', '000110', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '224'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '225', E'ﾚｼﾞｺﾝﾄﾛｰﾙ', '000110', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '225'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '226', E'ｲﾒｰｼﾞ/ﾌｧﾝｸｼｮﾝ', '000110', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '226'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '227', E'税金', '000110', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '227'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '228', E'メッセージ関連', '000110', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '228'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '229', E'日付＆時刻', '000110', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '229'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '231', E'ｽｷｬﾆﾝｸﾞPLU', '000110', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '231'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '232', E'商品ポイントスケジュール', '000110', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '232'); 
+--insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '233', E'郵便番号', '000110', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '233'); 
+insert into c_appl_grp_mst (:insert_field2) SELECT :cmn_set2, '233', E'郵便番号', '000110', '0', '1', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '233'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '234', E'確定割戻率', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '234'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '235', E'速報送信時刻', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '235'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '236', E'マスタ受信時刻', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '236'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '237', E'会員自動生成', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '237'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '238', E'会員番号変更', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '238'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '241', E'伝票プリンタフォーマット', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '241'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '242', E'税種変更', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '242'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '243', E'Ｍカード', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '243'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '244', E'取引明細\nフリーフォーマット', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '244'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '245', E'クレジット会社\n請求テーブル', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '245'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '246', E'NON-PLU税種変更', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '246'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '247', E'みなし内税', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '247'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '248', E'客側表示メッセージ', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '248');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '249', E'レシートメッセージ\nスケジュール', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '249');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '250', E'客側表示\nメッセージスケジュール', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '250');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '251', E'産地・メーカー', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '251');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '252', E'(3-12)', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '252');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '253', E'商品プロモーション', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '253');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '254', E'音選択', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '254');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '255', E'キャッシュリサイクル関連', '000111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '255');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '257', E'生産者一括', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '257');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '258', E'メモ（常駐）', '000110', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '258');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '259', E'メモ（連絡）', '000110', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '259');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '261', E'税種予約変更', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '261');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '271', E'メインメニュー設定', '000111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '271');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '272', E'生産者品目マスタ', '000110', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '272'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '273', E'店舗情報', '000110', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '273'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '274', E'ダイアログ設定', '000110', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '274');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '281', E'ﾌｧｲﾙ\n確認', '000110', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '281');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '282', E'件数\n確認', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '282');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '290', E'小計値下スケジュール', '000111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '290');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '291', E'自動開閉店', '000111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '291');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '292', E'区分', '000111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '292');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '301', E'登録プリセットキー設定', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '301');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '302', E'小計プリセット設定', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '302');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '303', E'小計プリセット(5.7inch)設定', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '303');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '304', E'キーレイアウト設定:タワーキー', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '304');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '305', E'キーレイアウト設定:卓上キー', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '305');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '306', E'キーレイアウト設定:Prime卓上', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '306');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '307', E'登録共通プリセットキー設定', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '307');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '308', E'キーレイアウト設定:2800i卓上', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '308');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '309', E'キーレイアウト設定:2800a卓上', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '309');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '310', E'キーレイアウト設定:2800タワー', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '310');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '320', E'キーレイアウト設定:SpeezaSL C', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '320');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '321', E'キーレイアウト設定:SpeezaSL W', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '321');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '322', E'拡張プリセット設定', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '322');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '323', E'商品明細(登録)プリセット設定', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '323');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '324', E'商品明細(小計)プリセット設定', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '324');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '325', E'商品登録補助プリセット設定', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '325');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '326', E'登録補助プリセット設定', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '326');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '327', E'決済プリセット設定', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '327');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '328', E'セルフメンテプリセット設定', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '328');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '329', E'キーレイアウト設定:3800a 35ｷｰ', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '329');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '330', E'入金', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '330');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '331', E'出金', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '331');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '332', E'掛売相手先', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '332');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '333', E'値引理由', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '333');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '334', E'割引理由', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '334');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '335', E'返品理由', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '335');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '336', E'取消理由', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '336');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '337', E'訂正理由', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '337');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '338', E'決済種選択', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '338');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '339', E'釣銭決済種選択', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '339');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '340', E'廃棄理由', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '340');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '341', E'酒品目', '000110', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '341'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '342', E'酒税', '000110', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '342'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '343', E'キーレイアウト設定:3800P 35ｷｰ', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '343');
+
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '560', E'金種商品品券1', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '560');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '561', E'金種商品品券2', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '561');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '562', E'金種商品品券3', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '562');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '563', E'金種商品品券4', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '563');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '564', E'金種商品品券5', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '564');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '565', E'金種商品会計1', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '565');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '566', E'金種商品会計2', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '566');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '567', E'金種商品会計3', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '567');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '568', E'金種商品会計4', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '568');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '569', E'金種商品会計5', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '569');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '570', E'金種商品会計6', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '570');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '571', E'金種商品会計7', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '571');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '572', E'金種商品会計8', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '572');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '573', E'金種商品会計9', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '573');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '574', E'金種商品会計10', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '574');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '575', E'金種商品会計11', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '575');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '576', E'金種商品会計12', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '576');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '577', E'金種商品会計13', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '577');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '578', E'金種商品会計14', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '578');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '579', E'金種商品会計15', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '579');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '580', E'金種商品会計16', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '580');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '581', E'金種商品会計17', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '581');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '582', E'金種商品会計18', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '582');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '583', E'金種商品会計19', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '583');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '584', E'金種商品会計20', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '584');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '585', E'金種商品会計21', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '585');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '586', E'金種商品会計22', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '586');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '587', E'金種商品会計23', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '587');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '588', E'金種商品会計24', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '588');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '589', E'金種商品会計25', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '589');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '590', E'金種商品会計26', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '590');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '591', E'金種商品会計27', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '591');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '592', E'金種商品会計28', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '592');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '593', E'金種商品会計29', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '593');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '594', E'金種商品会計30', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '594');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '595', E'売変理由', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '595');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '596', E'両替理由', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '596');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '599', E'雑収入', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '599');
+
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '350', E'従業員設定', '000111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '350');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '351', E'従業員権限設定', '000111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '351');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '352', E'従業員バーコード印字', '000111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '352');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '360', E'メッセージマスタ', '000111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '360');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '361', E'メッセージレイアウト', '000111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '361');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '362', E'メッセージスケジュール', '000111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '362');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '370', E'イメージ', '000111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '370');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '371', E'ファンクション', '000111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '371');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '380', E'設定マスタ', '000111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '380');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '381', E'レジ情報管理', '000111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '381');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '382', E'コード決済事業者', '000110', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '382');
+--insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '390', E'会員設定', '000111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '390');
+insert into c_appl_grp_mst (:insert_field2) SELECT :cmn_set2, '390', E'会員設定', '000111', '0', '1',  '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '390');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '391', E'購買履歴確認除外商品', '000111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '391');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '392', E'ポイント倍スケジュール', '000110', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '392'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '393', E'サービス分類スケジュール', '000110', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '393'); 
+--insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '394', E'ロイヤリティ設定', '000110', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '394'); 
+--insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '395', E'クーポン設定', '000110', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '395'); 
+
+-- 売上速報
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '401', E'中分類', '001111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '401');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '402', E'小分類', '001111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '402');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '403', E'商品', '001111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '403');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '404', E'レジ別', '001111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '404');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '405', E'従業員別', '001111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '405');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '406', E'特売',     '001111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '406');
+insert into c_appl_grp_mst (:insert_field2) SELECT :cmn_set2, '411', E'会員合計', '000111', '0', '1',  '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '411');
+insert into c_appl_grp_mst (:insert_field2) SELECT :cmn_set2, '414', E'会員情報', '000111', '0', '1',  '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '414');
+
+-- 売上点検
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '415', E'レジ日計', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '415');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '416', E'電子ジャーナル', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '416');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '421', E'店舗日計', '101111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '421');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '422', E'店舗累計', '001111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '422');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '423', E'一覧',     '000111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '423');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '431', E'リサイクル入出金明細', '101110', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '431');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '432', E'リサイクル入出金履歴', '101110', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '432');
+--insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '433', E'税率変更日付設定', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '433'); -- 未使用
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '434', E'レジ取引明細', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '434');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '435', E'レジ大分類別売上', '100000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '435');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '436', E'レジ中分類別売上', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '436');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '437', E'レジ小分類別売上', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '437');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '438', E'レジクラス別売上', '100000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '438');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '439', E'レジ売上キー', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '439');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '440', E'レジ入出金', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '440');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '441', E'レジ在高', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '441');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '442', E'レジ釣銭機明細', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '442');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '443', E'一括点検', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '443'); -- 未使用
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '444', E'レジ従業員別簡易取引明細', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '444'); -- 未使用
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '445', E'メディア情報', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '445'); -- 未使用
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '446', E'クレジット控え', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '446'); -- 未使用
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '447', E'シベール日計レポート', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '447'); -- 未使用
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '448', E'クレジット会社別', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '448'); -- 未使用
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '449', E'セルフ稼働時間', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '449'); -- 未使用
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '450', E'セルフ時間帯', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '450');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '451', E'領収書控え', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '451');
+
+-- 売上点検 - 店舗日計
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '452', E'店舗取引明細', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '452');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '453', E'売計キー', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '453');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '454', E'入出金', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '454');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '455', E'在高', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '455');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '456', E'従業員別取引明細', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '456');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '457', E'中分類別売上', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '457');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '458', E'小分類別売上', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '458');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '459', E'店舗時間帯', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '459');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '460', E'中分類別時間帯', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '460');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '461', E'小分類別時間帯', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '461');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '462', E'商品別時間帯', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '462');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '463', E'中分類別金額順売上', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '463');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '464', E'中分類別粗利順売上', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '464');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '465', E'小分類別金額順売上', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '465');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '466', E'小分類別粗利順売上', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '466');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '468', E'セルフ時間帯', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '468');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '469', E'簡易従業員取引明細', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '469'); -- 未使用
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '470', E'商品別売上', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '470');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '471', E'商品別金額順売上', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '471');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '472', E'商品別数量順売上', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '472');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '475', E'商品別値下売上', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '475');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '476', E'レジ別釣銭機明細', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '476');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '477', E'スケジュール別特売商品', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '477');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '478', E'ミックスマッチ', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '478');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '479', E'セットマッチ', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '479');
+
+
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '481', E'強制Ｅｄｙログ送信', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '481');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '482', E'強制Ｍカード実績ログ送信', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '482');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '483', E'テキストデータ保存', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '483');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '484', E'テキストデータ再送信', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '484');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '485', E'テキストデータ訂正送信', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '485');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '486', E'生産者実績データ再送信', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '486');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '487', E'Ｔｕｏテキストデータ再送信', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '487');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '488', E'棚卸データ送信', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '488');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '489', E'テキストデータ読込', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '489');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '490', E'税種変換 テキストデータ復帰', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '490');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '491', E'テキストデータ復帰', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '491');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '492', E'緊急メンテナンス商品', '000110', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '492');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '493', E'ノンアクト商品', '000110', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '493');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '494', E'商品台帳', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '494');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '495', E'会員合計', '001111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '495');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '502', E'会員情報', '001111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '502');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '511', E'買上ゼロ', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '511');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '513', E'記念日', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '513');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '514', E'会員売価商品', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '514');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '515', E'会員台帳', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '515');
+insert into c_appl_grp_mst (:insert_field2) SELECT :cmn_set2, '516', E'会員履歴', '111111', '0', '21', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '516');
+insert into c_appl_grp_mst (:insert_field2) SELECT :cmn_set2, '517', E'会員検索', '111111', '0', '21', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '517');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '518', E'会員問い合わせテーブルクリア', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '518');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '519', E'カード切替', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '519');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '520', E'ＦＳＰレベル決定', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '520');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '521', E'確定ポイント割戻', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '521');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '522', E'会員抽出', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '522');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '523', E'釣機再精査', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '523');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '524', E'お会計券未精算', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '524');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '525', E'レジ従業員精算', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '525');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '526', E'（M）レジ別釣銭機', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '526');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '527', E'（S）レジ別釣銭機', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '527');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '528', E'精算情報', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '528');
+insert into c_appl_grp_mst (:insert_field2) SELECT :cmn_set2, '529', E'精算レポート(日計)', '000010', '0', '10', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '529'); 
+insert into c_appl_grp_mst (:insert_field2) SELECT :cmn_set2, '550', E'レジ途中取引明細', '000010', '0', '10', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '550'); 
+insert into c_appl_grp_mst (:insert_field2) SELECT :cmn_set2, '600', E'会員関連', '001111', '0', '1', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd =  '600'); 
+
+-- 売上点検 - 店舗日計
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '419',  E'取引明細',	'101111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '419');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '420',  E'分類別',          '001111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '420');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '425',  E'商品別',		'001111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '425');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '426',  E'スケジュール別',  '001111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '426');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '427',  E'時間帯',		'101111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '427');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '428',  E'釣銭機明細',	'001111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '428');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '429',  E'セルフ',		'001111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '429');
+
+-- 売上点検 - 店舗累計
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '2419', E'取引明細', 	'001111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '2419');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '2420', E'分類別',          '001111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '2420');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '2425', E'商品別',		'001111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '2425');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '2426', E'スケジュール別',	'001111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '2426');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '2427', E'時間帯',		'001111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '2427');
+-- insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '2428', E'釣銭機明細',	'001111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '2428'); -- 累計では不必要
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '2429',  E'セルフ',		'001111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '2429');
+
+-- 売上精算 - 店舗日計
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1419',  E'取引明細',	'101111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1419');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1420',  E'分類別',         '101111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1420');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1425',  E'商品別',		'101111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1425');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1426',  E'スケジュール別',	'101111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1426');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1427',  E'時間帯',		'101111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1427');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1428',  E'釣銭機明細',	'101111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1428');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1429',  E'セルフ',		'101111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1429');
+
+-- 売上精算 - 店舗累計
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '3419', E'取引明細',	'101111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '3419');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '3420', E'分類別',	'101111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '3420');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '3425', E'商品別',		'101111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '3425');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '3426', E'スケジュール別',	'101111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '3426');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '3427', E'時間帯',		'101111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '3427');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '3429', E'セルフ',		'101111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '3429');
+
+-- 売上精算
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1401', E'中分類', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1401');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1402', E'小分類', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1402');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1403', E'商品', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1403');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1404', E'レジ別', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1404');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1405', E'従業員別', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1405');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1406', E'特売', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1406');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1415', E'レジ日計', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1415');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1416', E'電子ジャーナル', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1416');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1418', E'ログ関連', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1418');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1421', E'店舗日計', '001111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1421');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1422', E'店舗累計', '001111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1422');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1423', E'一覧',     '000111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1423');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1431', E'リサイクル入出金明細', '101110', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1431');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1432', E'リサイクル入出金履歴', '101110', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1432');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1433', E'税率変更日付設定', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1433');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1434', E'レジ取引明細', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1434');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1435', E'レジ大分類別売上', '100000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1435');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1436', E'レジ中分類別売上', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1436');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1437', E'レジ小分類別売上', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1437');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1438', E'レジクラス別売上', '100000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1438');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1439', E'レジ売上キー', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1439');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1440', E'レジ入出金', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1440');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1441', E'レジ在高', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1441');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1442', E'レジ釣銭機明細', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1442');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1443', E'一括点検', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1443');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1444', E'レジ従業員別簡易取引明細', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1444');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1445', E'メディア情報', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1445');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1446', E'クレジット控え', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1446');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1447', E'シベール日計レポート', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1447');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1448', E'クレジット会社別', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1448');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1449', E'セルフ稼働時間', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1449');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1450', E'セルフ時間帯', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1450');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1451', E'領収書控え', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1451');
+
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1526', E'会計別税明細', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1526');   -- 売上精算/レジ日計
+
+-- WS様専用レポート
+insert into c_appl_grp_mst (:insert_field2) SELECT :cmn_set2, '555', E'精算レポート', '111111', '0', '51', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '555'); -- 売上点検
+insert into c_appl_grp_mst (:insert_field2) SELECT :cmn_set2, '1555', E'精算レポート', '111111', '0', '51', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1555'); -- 売上精算
+
+-- 売上精算-店舗日計
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1452', E'店舗取引明細', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1452');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1453', E'売計キー', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1453');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1454', E'入出金', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1454');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1455', E'在高', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1455');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1456', E'従業員別取引明細', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1456');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1457', E'中分類別売上', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1457');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1458', E'小分類別売上', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1458');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1459', E'店舗時間帯', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1459');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1460', E'中分類別時間帯', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1460');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1461', E'小分類別時間帯', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1461');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1462', E'商品別時間帯', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1462');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1463', E'中分類別金額順売上', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1463');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1464', E'中分類別粗利順売上', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1464');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1465', E'小分類別金額順売上', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1465');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1466', E'小分類別粗利順売上', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1466');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1468', E'セルフ時間帯', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1468');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1469', E'簡易従業員取引明細', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1469');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1470', E'商品別売上', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1470');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1471', E'商品別金額順売上', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1471');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1472', E'商品別数量順売上', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1472');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1475', E'商品別値下売上', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1475');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1476', E'レジ別釣銭機明細', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1476');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1477', E'スケジュール別特売商品', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1477');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1478', E'ミックスマッチ', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1478');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1479', E'セットマッチ', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1479');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1481', E'強制Ｅｄｙログ送信', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1481');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1482', E'強制Ｍカード実績ログ送信', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1482');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1483', E'テキストデータ保存', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1483');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1484', E'テキストデータ再送信', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1484');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1485', E'テキストデータ訂正送信', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1485');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1486', E'生産者実績データ再送信', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1486');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1487', E'Ｔｕｏテキストデータ再送信', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1487');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1488', E'棚卸データ送信', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1488');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1489', E'テキストデータ読込', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1489');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1490', E'税種変換 テキストデータ復帰', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1490');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1491', E'テキストデータ復帰', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1491');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1492', E'緊急メンテナンス商品', '000110', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1492');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1493', E'ノンアクト商品', '000110', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1493');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1494', E'商品台帳', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1494');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1495', E'会員合計', '001111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1495');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1502', E'会員情報', '001111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1502');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1511', E'買上ゼロ', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1511');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1513', E'記念日', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1513');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1514', E'会員売価商品', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1514');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1515', E'会員台帳', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1515');
+insert into c_appl_grp_mst (:insert_field2) SELECT :cmn_set2, '1516', E'会員履歴', '111111', '0', '31', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1516');
+insert into c_appl_grp_mst (:insert_field2) SELECT :cmn_set2, '1517', E'会員検索', '111111', '0', '21', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1517');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1518', E'会員問い合わせテーブルクリア', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1518');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1519', E'カード切替', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1519');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1520', E'ＦＳＰレベル決定', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1520');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1521', E'確定ポイント割戻', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1521');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1522', E'会員抽出', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1522');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1523', E'釣機再精査', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1523');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1524', E'お会計券未精算', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1524');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1525', E'レジ従業員精算', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1525');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1528', E'精算情報', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1528');
+insert into c_appl_grp_mst (:insert_field2) SELECT :cmn_set2, '1529', E'精算レポート(日計)', '000010', '0', '10', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1529'); 
+insert into c_appl_grp_mst (:insert_field2) SELECT :cmn_set2, '1530', E'途中精算', '000010', '0', '10', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1530'); 
+insert into c_appl_grp_mst (:insert_field2) SELECT :cmn_set2, '1550', E'レジ途中取引明細', '000010', '0', '10', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1550'); 
+insert into c_appl_grp_mst (:insert_field2) SELECT :cmn_set2, '1600', E'会員関連', '001111', '0', '1', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1600'); 
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1560', E'会計別税明細', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1560');   -- 売上精算/店舗日計
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '1700', E'加算情報クリア(RM関連)', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '1700');
+
+-- その他
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '2816', E'設定', '111111', '0', '1', '1', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '2816');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '4352', E'ユーザーセットアップ', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '4352');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '26112', E'メンテナンス', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '26112');
+
+-- 売上点検-店舗累計
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '2452', E'店舗取引明細', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '2452');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '2453', E'売計キー', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '2453');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '2454', E'入出金', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '2454');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '2455', E'在高', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '2455');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '2456', E'従業員別取引明細', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '2456');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '2457', E'中分類別売上', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '2457');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '2458', E'小分類別売上', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '2458');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '2459', E'店舗時間帯', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '2459');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '2460', E'中分類別時間帯', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '2460');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '2461', E'小分類別時間帯', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '2461');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '2462', E'商品別時間帯', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '2462');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '2463', E'中分類別金額順売上', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '2463');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '2464', E'中分類別粗利順売上', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '2464');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '2465', E'小分類別金額順売上', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '2465');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '2466', E'小分類別粗利順売上', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '2466');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '2468', E'セルフ時間帯', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '2468');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '2469', E'簡易従業員取引明細', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '2469');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '2470', E'商品別売上', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '2470');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '2471', E'商品別金額順売上', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '2471');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '2472', E'商品別数量順売上', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '2472');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '2475', E'商品別値下売上', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '2475');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '2476', E'レジ別釣銭機明細', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '2476');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '2477', E'スケジュール別特売商品', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '2477');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '2478', E'ミックスマッチ', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '2478');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '2479', E'セットマッチ', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '2479');
+
+-- 売上精算-店舗累計
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '3452', E'店舗取引明細', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '3452');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '3453', E'売計キー', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '3453');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '3454', E'入出金', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '3454');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '3455', E'在高', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '3455');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '3456', E'従業員別取引明細', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '3456');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '3457', E'中分類別売上', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '3457');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '3458', E'小分類別売上', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '3458');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '3459', E'店舗時間帯', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '3459');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '3460', E'中分類別時間帯', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '3460');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '3461', E'小分類別時間帯', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '3461');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '3462', E'商品別時間帯', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '3462');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '3463', E'中分類別金額順売上', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '3463');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '3464', E'中分類別粗利順売上', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '3464');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '3465', E'小分類別金額順売上', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '3465');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '3466', E'小分類別粗利順売上', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '3466');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '3468', E'セルフ時間帯', '111111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '3468');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '3469', E'簡易従業員取引明細', '000000', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '3469');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '3470', E'商品別売上', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '3470');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '3471', E'商品別金額順売上', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '3471');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '3472', E'商品別数量順売上', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '3472');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '3475', E'商品別値下売上', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '3475');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '3476', E'レジ別釣銭機明細', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '3476');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '3477', E'スケジュール別特売商品', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '3477');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '3478', E'ミックスマッチ', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '3478');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '3479', E'セットマッチ', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '3479');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '3560', E'会計別税明細', '011111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '3560');   -- 売上精算/店舗累計
+
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '2495', E'会員合計', '001111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '2495');
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '3495', E'会員合計', '001111', '0', '0', '0', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '3495');
+
+-- cond_trm_cd を 246 で設定
+\set cmn_set ' :COMP, :STRE, \'246\', \'0\', \'now\', \'now\', \'0\', \'0\', \'999999\', \'2\' '
+insert into c_appl_grp_mst (:insert_field) SELECT :cmn_set, '124', '電源', '111111', '0', '0', '1', '0', '0' WHERE NOT EXISTS(:sub_query AND appl_grp_cd = '124');
+
+COMMIT;
+

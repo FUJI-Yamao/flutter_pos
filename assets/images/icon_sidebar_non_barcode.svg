@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <g id="icon_sidebar_non_barcode" transform="translate(-16 -336)">
+    <g id="グループ_18745" data-name="グループ 18745" transform="translate(-192 -332)" opacity="0">
+      <path id="パス_28697" data-name="パス 28697" d="M0,0H32V32H0Z" transform="translate(208 668)" fill="gray" opacity="0.255"/>
+    </g>
+    <path id="パス_28804" data-name="パス 28804" d="M24,3.391H20.727V17.585l-2.182-2.093V3.391H17.455V14.446L16.363,13.4V3.391H13.091V10.26L12,9.213V3.391H9.818V7.12L7.637,5.027V3.391H6.545v.59L2.775.364A1.309,1.309,0,0,0,.962,2.253L2.148,3.391H0V18.663H2.273V3.51l1,.96V18.663H5.455V6.563l1.09,1.046V18.663H7.637V8.656l2.182,2.093v7.915H12V12.841l1.09,1.047v4.776h3.273V17.027l1.091,1.047v.59h.615l3.156,3.027a1.309,1.309,0,1,0,1.813-1.89l-1.186-1.138H24Z" transform="translate(20 341)" fill="#96baff"/>
+  </g>
+</svg>

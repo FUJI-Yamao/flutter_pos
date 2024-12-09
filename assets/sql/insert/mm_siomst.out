@@ -1,0 +1,62 @@
+BEGIN;
+TRUNCATE c_sio_mst;
+
+\set insert_field 'cnct_kind, cnct_grp, drv_sec_name, sio_image_cd, sio_rate, sio_stop, sio_record, sio_parity, ins_datetime, upd_datetime, status, send_flg, upd_user, upd_system'
+
+-- ins_datetime, upd_datetime, status, send_flg, upd_user, upd_system
+\set cmn_set ' \'now\', \'now\', \'0\', \'0\', \'999999\', \'2\' '
+
+\set sub_query 'SELECT * FROM c_sio_mst WHERE '
+
+--                                            cnct_kind, cnct_grp, drv_sec_name, sio_image_cd, sio_rate, sio_stop, sio_record, sio_parity
+INSERT INTO c_sio_mst (:insert_field) SELECT '1', '2', E'acb', '5045', '3', '0', '0', '2', :cmn_set WHERE NOT EXISTS (:sub_query cnct_kind = '1');
+INSERT INTO c_sio_mst (:insert_field) SELECT '2', '2', E'acr', '5046', '3', '0', '0', '2', :cmn_set WHERE NOT EXISTS (:sub_query cnct_kind = '2');
+INSERT INTO c_sio_mst (:insert_field) SELECT '3', '2', E'acb20', '5047', '1', '0', '0', '2', :cmn_set WHERE NOT EXISTS (:sub_query cnct_kind = '3');
+INSERT INTO c_sio_mst (:insert_field) SELECT '4', '2', E'acb50', '5048', '1', '0', '0', '2', :cmn_set WHERE NOT EXISTS (:sub_query cnct_kind = '4');
+INSERT INTO c_sio_mst (:insert_field) SELECT '5', '2', E'fal2', '5049', '4', '0', '1', '2', :cmn_set WHERE NOT EXISTS (:sub_query cnct_kind = '5');
+INSERT INTO c_sio_mst (:insert_field) SELECT '6', '3', E'rewrite', '5050', '2', '0', '1', '2', :cmn_set WHERE NOT EXISTS (:sub_query cnct_kind = '6');
+INSERT INTO c_sio_mst (:insert_field) SELECT '7', '3', E'vismac', '5051', '2', '0', '1', '2', :cmn_set WHERE NOT EXISTS (:sub_query cnct_kind = '7');
+INSERT INTO c_sio_mst (:insert_field) SELECT '8', '3', E'orc', '5052', '2', '0', '1', '2', :cmn_set WHERE NOT EXISTS (:sub_query cnct_kind = '8');
+INSERT INTO c_sio_mst (:insert_field) SELECT '9', '3', E'psp60', '5053', '1', '0', '0', '2', :cmn_set WHERE NOT EXISTS (:sub_query cnct_kind = '9');
+INSERT INTO c_sio_mst (:insert_field) SELECT '10', '3', E'pana', '5054', '2', '0', '1', '0', :cmn_set WHERE NOT EXISTS (:sub_query cnct_kind = '10');
+INSERT INTO c_sio_mst (:insert_field) SELECT '11', '3', E'pw410', '5055', '2', '0', '1', '0', :cmn_set WHERE NOT EXISTS (:sub_query cnct_kind = '11');
+INSERT INTO c_sio_mst (:insert_field) SELECT '12', '3', E'psp70', '5056', '3', '0', '0', '2', :cmn_set WHERE NOT EXISTS (:sub_query cnct_kind = '12');
+INSERT INTO c_sio_mst (:insert_field) SELECT '13', '3', E'mcp200', '5057', '3', '0', '1', '0', :cmn_set WHERE NOT EXISTS (:sub_query cnct_kind = '13');
+INSERT INTO c_sio_mst (:insert_field) SELECT '14', '3', E'ht2980', '5058', '4', '0', '1', '2', :cmn_set WHERE NOT EXISTS (:sub_query cnct_kind = '14');
+INSERT INTO c_sio_mst (:insert_field) SELECT '15', '3', E'absv31', '5059', '3', '0', '1', '2', :cmn_set WHERE NOT EXISTS (:sub_query cnct_kind = '15');
+INSERT INTO c_sio_mst (:insert_field) SELECT '16', '4', E'sip60', '5060', '4', '0', '1', '2', :cmn_set WHERE NOT EXISTS (:sub_query cnct_kind = '16');
+INSERT INTO c_sio_mst (:insert_field) SELECT '17', '4', E'ccr', '5061', '3', '0', '1', '0', :cmn_set WHERE NOT EXISTS (:sub_query cnct_kind = '17');
+INSERT INTO c_sio_mst (:insert_field) SELECT '18', '4', E'yamato', '5062', '3', '0', '1', '0', :cmn_set WHERE NOT EXISTS (:sub_query cnct_kind = '18');
+INSERT INTO c_sio_mst (:insert_field) SELECT '19', '5', E'scale', '5063', '1', '0', '0', '2', :cmn_set WHERE NOT EXISTS (:sub_query cnct_kind = '19');
+INSERT INTO c_sio_mst (:insert_field) SELECT '20', '6', E'sm_scale1', '5064', '5', '0', '1', '2', :cmn_set WHERE NOT EXISTS (:sub_query cnct_kind = '20');
+INSERT INTO c_sio_mst (:insert_field) SELECT '21', '7', E'sm_scale2', '5065', '5', '0', '1', '2', :cmn_set WHERE NOT EXISTS (:sub_query cnct_kind = '21');
+INSERT INTO c_sio_mst (:insert_field) SELECT '22', '8', E'stpr', '5066', '3', '0', '1', '0', :cmn_set WHERE NOT EXISTS (:sub_query cnct_kind = '22');
+INSERT INTO c_sio_mst (:insert_field) SELECT '23', '9', E'gp', '5067', '3', '0', '1', '2', :cmn_set WHERE NOT EXISTS (:sub_query cnct_kind = '23');
+INSERT INTO c_sio_mst (:insert_field) SELECT '24', '10', E'sm_scalesc', '5068', '5', '0', '1', '2', :cmn_set WHERE NOT EXISTS (:sub_query cnct_kind = '24');
+INSERT INTO c_sio_mst (:insert_field) SELECT '25', '11', E's2pr', '5069', '3', '0', '1', '0', :cmn_set WHERE NOT EXISTS (:sub_query cnct_kind = '25');
+INSERT INTO c_sio_mst (:insert_field) SELECT '26', '12', E'pwrctrl', '5070', '3', '0', '0', '2', :cmn_set WHERE NOT EXISTS (:sub_query cnct_kind = '26');
+INSERT INTO c_sio_mst (:insert_field) SELECT '27', '13', E'dish', '5071', '3', '0', '1', '2', :cmn_set WHERE NOT EXISTS (:sub_query cnct_kind = '27');
+INSERT INTO c_sio_mst (:insert_field) SELECT '28', '13', E'disht', '5072', '4', '0', '1', '0', :cmn_set WHERE NOT EXISTS (:sub_query cnct_kind = '28');
+--INSERT INTO c_sio_mst (:insert_field) SELECT '29', '14', E'aiv', '5073', '4', '0', '1', '0', :cmn_set WHERE NOT EXISTS (:sub_query cnct_kind = '29');
+--INSERT INTO c_sio_mst (:insert_field) SELECT '30', '14', E'ar_stts_01', '5074', '4', '0', '1', '1', :cmn_set WHERE NOT EXISTS (:sub_query cnct_kind = '30');
+INSERT INTO c_sio_mst (:insert_field) SELECT '31', '15', E'gcat', '5075', '1', '0', '1', '2', :cmn_set WHERE NOT EXISTS (:sub_query cnct_kind = '31');
+INSERT INTO c_sio_mst (:insert_field) SELECT '32', '15', E'gcat_cnct', '5076', '2', '0', '1', '0', :cmn_set WHERE NOT EXISTS (:sub_query cnct_kind = '32');
+INSERT INTO c_sio_mst (:insert_field) SELECT '33', '15', E'smtplus', '5077', '4', '0', '1', '2', :cmn_set WHERE NOT EXISTS (:sub_query cnct_kind = '33');
+INSERT INTO c_sio_mst (:insert_field) SELECT '34', '15', E'cct', '5078', '2', '0', '1', '0', :cmn_set WHERE NOT EXISTS (:sub_query cnct_kind = '34');
+INSERT INTO c_sio_mst (:insert_field) SELECT '35', '15', E'jmups', '5079', '6', '0', '1', '1', :cmn_set WHERE NOT EXISTS (:sub_query cnct_kind = '35');
+INSERT INTO c_sio_mst (:insert_field) SELECT '36', '16', E'scan_plus_1', '5080', '3', '1', '0', '1', :cmn_set WHERE NOT EXISTS (:sub_query cnct_kind = '36');
+INSERT INTO c_sio_mst (:insert_field) SELECT '37', '17', E'yomoca', '5081', '3', '0', '1', '0', :cmn_set WHERE NOT EXISTS (:sub_query cnct_kind = '37');
+INSERT INTO c_sio_mst (:insert_field) SELECT '38', '18', E'suica', '5082', '4', '0', '1', '0', :cmn_set WHERE NOT EXISTS (:sub_query cnct_kind = '38');
+INSERT INTO c_sio_mst (:insert_field) SELECT '39', '19', E'rfid', '5083', '5', '0', '1', '0', :cmn_set WHERE NOT EXISTS (:sub_query cnct_kind = '39');
+INSERT INTO c_sio_mst (:insert_field) SELECT '40', '20', E'fcl', '5084', '4', '0', '1', '2', :cmn_set WHERE NOT EXISTS (:sub_query cnct_kind = '40');
+INSERT INTO c_sio_mst (:insert_field) SELECT '41', '21', E'scan_plus_2', '5085', '3', '1', '0', '1', :cmn_set WHERE NOT EXISTS (:sub_query cnct_kind = '41');
+INSERT INTO c_sio_mst (:insert_field) SELECT '42', '21', E'scan_2800ip_2', '5086', '3', '1', '0', '1', :cmn_set WHERE NOT EXISTS (:sub_query cnct_kind = '42');
+INSERT INTO c_sio_mst (:insert_field) SELECT '43', '22', E'jrw_multi', '5087', '4', '0', '1', '0', :cmn_set WHERE NOT EXISTS (:sub_query cnct_kind = '43');
+INSERT INTO c_sio_mst (:insert_field) SELECT '44', '23', E'masr', '5088', '5', '0', '1', '2', :cmn_set WHERE NOT EXISTS (:sub_query cnct_kind = '44');
+INSERT INTO c_sio_mst (:insert_field) SELECT '45', '4', E'mst', '5095', '5', '0', '1', '0', :cmn_set WHERE NOT EXISTS (:sub_query cnct_kind = '45');
+INSERT INTO c_sio_mst (:insert_field) SELECT '46', '24', E'vega3000', '5362', '4', '0', '1', '2', :cmn_set WHERE NOT EXISTS (:sub_query cnct_kind = '46');
+INSERT INTO c_sio_mst (:insert_field) SELECT '47', '15', E'castles', '5400', '2', '0', '1', '0', :cmn_set WHERE NOT EXISTS (:sub_query cnct_kind = '47');
+INSERT INTO c_sio_mst (:insert_field) SELECT '48', '25', E'pct', '5464', '3', '0', '1', '0', :cmn_set WHERE NOT EXISTS (:sub_query cnct_kind = '48');
+INSERT INTO c_sio_mst (:insert_field) SELECT '49', '26', E'scale_sks', '5580', '5', '0', '1', '2', :cmn_set WHERE NOT EXISTS (:sub_query cnct_kind = '49');
+
+COMMIT;

@@ -1,0 +1,79 @@
+-- 承認キー設定で使用
+-- psql -U postgres tpr_db -f mm_recoginfomst.out -v COMP=1 -v STRE=1 -v MACNO=1
+
+\set insert_field 'comp_cd, stre_cd, mac_no, ins_datetime, upd_datetime, status, send_flg, upd_user, upd_system, page, password, fcode, qcjc_type, emergency_type, emergency_date'
+
+-- comp_cd, stre_cd, mac_no, ins_datetime, upd_datetime, status, send_flg, upd_user, upd_system
+\set cmn_set ' :COMP, :STRE, :MACNO, \'now\', \'now\', \'0\', \'0\', \'999999\', \'2\' '
+
+\set sub_query 'select page FROM c_recoginfo_mst WHERE comp_cd = :COMP AND stre_cd = :STRE AND mac_no=:MACNO'
+
+
+-- 通常
+--         page, password, fcode, qcjc_type, emergency_type, emergency_date
+insert into c_recoginfo_mst (:insert_field) SELECT :cmn_set, '1', '', '', '000000000000000000', '000000000000000000', NULL WHERE NOT EXISTS (:sub_query AND page = '1');
+insert into c_recoginfo_mst (:insert_field) SELECT :cmn_set, '2', '', '', '000000000000000000', '000000000000000000', NULL WHERE NOT EXISTS (:sub_query AND page = '2');
+insert into c_recoginfo_mst (:insert_field) SELECT :cmn_set, '3', '', '', '000000000000000000', '000000000000000000', NULL WHERE NOT EXISTS (:sub_query AND page = '3');
+insert into c_recoginfo_mst (:insert_field) SELECT :cmn_set, '4', '', '', '000000000000000000', '000000000000000000', NULL WHERE NOT EXISTS (:sub_query AND page = '4');
+insert into c_recoginfo_mst (:insert_field) SELECT :cmn_set, '5', '', '', '000000000000000000', '000000000000000000', NULL WHERE NOT EXISTS (:sub_query AND page = '5');
+insert into c_recoginfo_mst (:insert_field) SELECT :cmn_set, '6', '', '', '000000000012000000', '000000000000000000', NULL WHERE NOT EXISTS (:sub_query AND page = '6');
+insert into c_recoginfo_mst (:insert_field) SELECT :cmn_set, '7', '', '', '000000000000000000', '000000000000000000', NULL WHERE NOT EXISTS (:sub_query AND page = '7');
+insert into c_recoginfo_mst (:insert_field) SELECT :cmn_set, '8', '', '', '000000000000000000', '000000000000000000', NULL WHERE NOT EXISTS (:sub_query AND page = '8');
+insert into c_recoginfo_mst (:insert_field) SELECT :cmn_set, '9', '', '', '000000000000000000', '000000000000000000', NULL WHERE NOT EXISTS (:sub_query AND page = '9');
+insert into c_recoginfo_mst (:insert_field) SELECT :cmn_set, '10', '', '', '000000000000000000', '000000000000000000', NULL WHERE NOT EXISTS (:sub_query AND page = '10');
+insert into c_recoginfo_mst (:insert_field) SELECT :cmn_set, '11', '', '', '000000000000000000', '000000000000000000', NULL WHERE NOT EXISTS (:sub_query AND page = '11');
+insert into c_recoginfo_mst (:insert_field) SELECT :cmn_set, '12', '', '', '000000000000000000', '000000000000000000', NULL WHERE NOT EXISTS (:sub_query AND page = '12');
+insert into c_recoginfo_mst (:insert_field) SELECT :cmn_set, '13', '', '', '000000000000000000', '000000000000000000', NULL WHERE NOT EXISTS (:sub_query AND page = '13');
+insert into c_recoginfo_mst (:insert_field) SELECT :cmn_set, '14', '', '', '000000000000000000', '000000000000000000', NULL WHERE NOT EXISTS (:sub_query AND page = '14');
+insert into c_recoginfo_mst (:insert_field) SELECT :cmn_set, '15', '', '', '000000000000000000', '000000000000000000', NULL WHERE NOT EXISTS (:sub_query AND page = '15');
+insert into c_recoginfo_mst (:insert_field) SELECT :cmn_set, '16', '', '', '000000000000000000', '000000000000000000', NULL WHERE NOT EXISTS (:sub_query AND page = '16');
+insert into c_recoginfo_mst (:insert_field) SELECT :cmn_set, '17', '', '', '000000000000000000', '000000000000000000', NULL WHERE NOT EXISTS (:sub_query AND page = '17');
+insert into c_recoginfo_mst (:insert_field) SELECT :cmn_set, '18', '', '', '000000000000000000', '000000000000000000', NULL WHERE NOT EXISTS (:sub_query AND page = '18');
+insert into c_recoginfo_mst (:insert_field) SELECT :cmn_set, '19', '', '', '000000000000000000', '000000000000000000', NULL WHERE NOT EXISTS (:sub_query AND page = '19');
+insert into c_recoginfo_mst (:insert_field) SELECT :cmn_set, '20', '', '', '000000000000000000', '000000000000000000', NULL WHERE NOT EXISTS (:sub_query AND page = '20');
+insert into c_recoginfo_mst (:insert_field) SELECT :cmn_set, '21', '', '', '000000000000000000', '000000000000000000', NULL WHERE NOT EXISTS (:sub_query AND page = '21');
+insert into c_recoginfo_mst (:insert_field) SELECT :cmn_set, '22', '', '', '000000000000000000', '000000000000000000', NULL WHERE NOT EXISTS (:sub_query AND page = '22');
+insert into c_recoginfo_mst (:insert_field) SELECT :cmn_set, '23', '', '', '000000000000000000', '000000000000000000', NULL WHERE NOT EXISTS (:sub_query AND page = '23');
+insert into c_recoginfo_mst (:insert_field) SELECT :cmn_set, '24', '', '', '000000000000000000', '000000000000000000', NULL WHERE NOT EXISTS (:sub_query AND page = '24');
+insert into c_recoginfo_mst (:insert_field) SELECT :cmn_set, '25', '', '', '000000000000000000', '000000000000000000', NULL WHERE NOT EXISTS (:sub_query AND page = '25');
+insert into c_recoginfo_mst (:insert_field) SELECT :cmn_set, '26', '', '', '000000000000000000', '000000000000000000', NULL WHERE NOT EXISTS (:sub_query AND page = '26');
+insert into c_recoginfo_mst (:insert_field) SELECT :cmn_set, '27', '', '', '000000000000000000', '000000000000000000', NULL WHERE NOT EXISTS (:sub_query AND page = '27');
+insert into c_recoginfo_mst (:insert_field) SELECT :cmn_set, '28', '', '', '000000000000000000', '000000000000000000', NULL WHERE NOT EXISTS (:sub_query AND page = '28');
+insert into c_recoginfo_mst (:insert_field) SELECT :cmn_set, '29', '', '', '000000000000000000', '000000000000000000', NULL WHERE NOT EXISTS (:sub_query AND page = '29');
+insert into c_recoginfo_mst (:insert_field) SELECT :cmn_set, '30', '', '', '000000000000000000', '000000000000000000', NULL WHERE NOT EXISTS (:sub_query AND page = '30');
+insert into c_recoginfo_mst (:insert_field) SELECT :cmn_set, '31', '', '', '000000000000000000', '000000000000000000', NULL WHERE NOT EXISTS (:sub_query AND page = '31');
+insert into c_recoginfo_mst (:insert_field) SELECT :cmn_set, '32', '', '', '000000000000000000', '000000000000000000', NULL WHERE NOT EXISTS (:sub_query AND page = '32');
+insert into c_recoginfo_mst (:insert_field) SELECT :cmn_set, '33', '', '', '000000000000000000', '000000000000000000', NULL WHERE NOT EXISTS (:sub_query AND page = '33');
+insert into c_recoginfo_mst (:insert_field) SELECT :cmn_set, '34', '', '', '000000000000000000', '000000000000000000', NULL WHERE NOT EXISTS (:sub_query AND page = '34');
+insert into c_recoginfo_mst (:insert_field) SELECT :cmn_set, '35', '', '', '000000000000000000', '000000000000000000', NULL WHERE NOT EXISTS (:sub_query AND page = '35');
+insert into c_recoginfo_mst (:insert_field) SELECT :cmn_set, '36', '', '', '000000000000000000', '000000000000000000', NULL WHERE NOT EXISTS (:sub_query AND page = '36');
+insert into c_recoginfo_mst (:insert_field) SELECT :cmn_set, '37', '', '', '000000000000000000', '000000000000000000', NULL WHERE NOT EXISTS (:sub_query AND page = '37');
+insert into c_recoginfo_mst (:insert_field) SELECT :cmn_set, '38', '', '', '000000000000000000', '000000000000000000', NULL WHERE NOT EXISTS (:sub_query AND page = '38');
+insert into c_recoginfo_mst (:insert_field) SELECT :cmn_set, '39', '', '', '000000000000000000', '000000000000000000', NULL WHERE NOT EXISTS (:sub_query AND page = '39');
+insert into c_recoginfo_mst (:insert_field) SELECT :cmn_set, '40', '', '', '000000000000000000', '000000000000000000', NULL WHERE NOT EXISTS (:sub_query AND page = '40');
+insert into c_recoginfo_mst (:insert_field) SELECT :cmn_set, '41', '', '', '000000000000000000', '000000000000000000', NULL WHERE NOT EXISTS (:sub_query AND page = '41');
+insert into c_recoginfo_mst (:insert_field) SELECT :cmn_set, '42', '', '', '000000000000000000', '000000000000000000', NULL WHERE NOT EXISTS (:sub_query AND page = '42');
+insert into c_recoginfo_mst (:insert_field) SELECT :cmn_set, '43', '', '', '000000000000000000', '000000000000000000', NULL WHERE NOT EXISTS (:sub_query AND page = '43');
+insert into c_recoginfo_mst (:insert_field) SELECT :cmn_set, '44', '', '', '000000000000000000', '000000000000000000', NULL WHERE NOT EXISTS (:sub_query AND page = '44');
+insert into c_recoginfo_mst (:insert_field) SELECT :cmn_set, '45', '', '', '000000000000000000', '000000000000000000', NULL WHERE NOT EXISTS (:sub_query AND page = '45');
+insert into c_recoginfo_mst (:insert_field) SELECT :cmn_set, '46', '', '', '000000000000000000', '000000000000000000', NULL WHERE NOT EXISTS (:sub_query AND page = '46');
+insert into c_recoginfo_mst (:insert_field) SELECT :cmn_set, '47', '', '', '000000000000000000', '000000000000000000', NULL WHERE NOT EXISTS (:sub_query AND page = '47');
+insert into c_recoginfo_mst (:insert_field) SELECT :cmn_set, '48', '', '', '000000000000000000', '000000000000000000', NULL WHERE NOT EXISTS (:sub_query AND page = '48');
+insert into c_recoginfo_mst (:insert_field) SELECT :cmn_set, '49', '', '', '000000000000000000', '000000000000000000', NULL WHERE NOT EXISTS (:sub_query AND page = '49');
+insert into c_recoginfo_mst (:insert_field) SELECT :cmn_set, '50', '', '', '000000000000000000', '000000000000000000', NULL WHERE NOT EXISTS (:sub_query AND page = '50');
+insert into c_recoginfo_mst (:insert_field) SELECT :cmn_set, '51', '', '', '000000000000000000', '000000000000000000', NULL WHERE NOT EXISTS (:sub_query AND page = '51');
+insert into c_recoginfo_mst (:insert_field) SELECT :cmn_set, '52', '', '', '000000000000000000', '000000000000000000', NULL WHERE NOT EXISTS (:sub_query AND page = '52');
+insert into c_recoginfo_mst (:insert_field) SELECT :cmn_set, '53', '', '', '000000000000000000', '000000000000000000', NULL WHERE NOT EXISTS (:sub_query AND page = '53');
+insert into c_recoginfo_mst (:insert_field) SELECT :cmn_set, '54', '', '', '000000000000000000', '000000000000000000', NULL WHERE NOT EXISTS (:sub_query AND page = '54');
+insert into c_recoginfo_mst (:insert_field) SELECT :cmn_set, '55', '', '', '000000000000000000', '000000000000000000', NULL WHERE NOT EXISTS (:sub_query AND page = '55');
+insert into c_recoginfo_mst (:insert_field) SELECT :cmn_set, '56', '', '', '000000000000000000', '000000000000000000', NULL WHERE NOT EXISTS (:sub_query AND page = '56');
+insert into c_recoginfo_mst (:insert_field) SELECT :cmn_set, '57', '', '', '000000000000000000', '000000000000000000', NULL WHERE NOT EXISTS (:sub_query AND page = '57');
+insert into c_recoginfo_mst (:insert_field) SELECT :cmn_set, '58', '', '', '000000000000000000', '000000000000000000', NULL WHERE NOT EXISTS (:sub_query AND page = '58');
+insert into c_recoginfo_mst (:insert_field) SELECT :cmn_set, '59', '', '', '000000000000000000', '000000000000000000', NULL WHERE NOT EXISTS (:sub_query AND page = '59');
+insert into c_recoginfo_mst (:insert_field) SELECT :cmn_set, '60', '', '', '000000000000000000', '000000000000000000', NULL WHERE NOT EXISTS (:sub_query AND page = '60');
+insert into c_recoginfo_mst (:insert_field) SELECT :cmn_set, '61', '', '', '000000000000000000', '000000000000000000', NULL WHERE NOT EXISTS (:sub_query AND page = '61');
+insert into c_recoginfo_mst (:insert_field) SELECT :cmn_set, '62', '', '', '000000000000000000', '000000000000000000', NULL WHERE NOT EXISTS (:sub_query AND page = '62');
+insert into c_recoginfo_mst (:insert_field) SELECT :cmn_set, '63', '', '', '000000000000000000', '000000000000000000', NULL WHERE NOT EXISTS (:sub_query AND page = '63');
+insert into c_recoginfo_mst (:insert_field) SELECT :cmn_set, '64', '', '', '000000000000000000', '000000000000000000', NULL WHERE NOT EXISTS (:sub_query AND page = '64');
+
+

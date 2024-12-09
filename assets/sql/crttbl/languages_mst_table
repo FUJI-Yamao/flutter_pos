@@ -1,0 +1,11 @@
+drop table if exists languages_mst;
+create table languages_mst ( 
+    multilingual_key TEXT not null
+    , country_division INTEGER not null
+    , label_name TEXT
+    , ins_datetime TEXT
+    , upd_datetime TEXT
+    , upd_user TEXT
+    , primary key (multilingual_key, country_division)
+);
+    

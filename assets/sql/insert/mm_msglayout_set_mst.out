@@ -1,0 +1,120 @@
+
+-- c_msglayout_set_mst 
+
+BEGIN;
+TRUNCATE c_msglayout_set_mst;
+
+\set insert_field_set ' ins_datetime, upd_datetime, status, send_flg, upd_user, upd_system, msg_set_kind, msg_data, msg_name, msg_dsp_cond, msg_target_dsp_cond'
+
+-- ins_datetime, upd_datetime, status, send_flg, upd_user, upd_system
+\set cmn_set '\'now\', \'now\', \'0\', \'0\', \'999999\', \'2\''
+
+\set sub_query_set_1 'SELECT msg_data FROM c_msglayout_set_mst WHERE msg_set_kind = '0' and msg_data '
+\set sub_query_set_2 'SELECT msg_data FROM c_msglayout_set_mst WHERE msg_set_kind = '1' and msg_data '
+
+---項目名称
+
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '1', E'ﾚｼｰﾄﾍｯﾀﾞｰ1', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '1');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '2', E'ﾚｼｰﾄﾍｯﾀﾞｰ2', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '2');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '3', E'ﾚｼｰﾄﾍｯﾀﾞｰ3', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '3');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '4', E'ﾚｼｰﾄﾌｯﾀｰ1', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '4');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '5', E'ﾚｼｰﾄﾌｯﾀｰ2', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '5');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '6', E'ﾚｼｰﾄﾌｯﾀｰ3', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '6');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '7', E'保証書ﾍｯﾀﾞｰ1', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '7');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '8', E'保証書ﾍｯﾀﾞｰ2', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '8');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '9', E'ｻｰﾋﾞｽﾁｹｯﾄﾍｯﾀﾞｰ1', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '9');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '10', E'ｻｰﾋﾞｽﾁｹｯﾄﾍｯﾀﾞｰ2', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '10');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '11', E'ｻｰﾋﾞｽﾁｹｯﾄﾌｯﾀｰ1', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '11');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '12', E'ｻｰﾋﾞｽﾁｹｯﾄﾌｯﾀｰ2', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '12');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '13', E'買上ﾁｹｯﾄ1', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '13');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '14', E'買上ﾁｹｯﾄ2', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '14');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '15', E'ﾘﾄﾗｲｶｰﾄﾞCM1', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '15');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '16', E'ﾘﾄﾗｲｶｰﾄﾞCM2', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '16');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '17', E'金券ﾁｹｯﾄ1', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '17');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '18', E'金券ﾁｹｯﾄ2', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '18');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '19', E'釣銭ﾁｹｯﾄ1', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '19');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '20', E'釣銭ﾁｹｯﾄ2', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '20');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '21', E'へそくりﾁｹｯﾄ1', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '21');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '22', E'へそくりﾁｹｯﾄ2', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '22');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '23', E'ﾚﾎﾟｰﾄﾍｯﾀﾞｰ', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '23');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '24', E'予約ﾚｼｰﾄﾌｯﾀｰ1', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '24');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '25', E'予約ﾚｼｰﾄﾌｯﾀｰ2', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '25');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '26', E'QC指定専用時のｽﾀｰﾄﾒｯｾｰｼﾞ', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '26');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '27', E'ｵﾌﾗｲﾝ会員印字', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '27');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '28', E'ﾛｯｸ中会員印字', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '28');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '29', E'ﾎﾟｰﾀﾙｻｲﾄ印字1', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '29');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '30', E'ﾎﾟｰﾀﾙｻｲﾄ印字2', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '30');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '31', E'ﾎﾟｰﾀﾙｻｲﾄ印字3', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '31');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '32', E'領収書発行者情報', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '32');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '33', E'お会計券ﾌｯﾀｰ', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '33');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '34', E'お会計券おつりﾌｯﾀｰ', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '34');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '35', E'お会計券ﾛｺﾞ', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '35');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '36', E'特注ﾒｯｾｰｼﾞ印字用1', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '36');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '37', E'特注ﾒｯｾｰｼﾞ印字用2', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '37');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '38', E'特注ﾒｯｾｰｼﾞ印字用3', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '38');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '39', E'特注ﾒｯｾｰｼﾞ印字用4', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '39');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '40', E'特注ﾒｯｾｰｼﾞ印字用5', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '40');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '41', E'入出金ﾚｼｰﾄﾍｯﾀﾞｰ', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '41');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '42', E'客層ｷｰ1での印字', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '42');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '43', E'客層ｷｰ2での印字', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '43');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '44', E'客層ｷｰ3での印字', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '44');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '45', E'客層ｷｰ4での印字', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '45');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '46', E'客層ｷｰ5での印字', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '46');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '47', E'客層ｷｰ6での印字', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '47');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '48', E'客層ｷｰ7での印字', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '48');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '49', E'客層ｷｰ8での印字', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '49');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '50', E'客層ｷｰ9での印字', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '50');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '51', E'客層ｷｰ10での印字', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '51');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '52', E'開設画面ｴﾗｰ時印字', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '52');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '53', E'販売証明書ﾍｯﾀﾞｰ', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '53');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '54', E'免税所轄税務署', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '54');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '55', E'免税納税地', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '55');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '56', E'免税販売者氏名', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '56');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '57', E'免税販売場所在地', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '57');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '58', E'第1類ﾒｯｾｰｼﾞ', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '58');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '59', E'横型ﾁｹｯﾄﾒｯｾｰｼﾞ', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '59');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '60', E'Shop&GoｱﾌﾟﾘDL用QR印字', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '60');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '61', E'ﾚｼｰﾄﾒｰﾙ本文ﾍｯﾀﾞｰ', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '61');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '62', E'ﾚｼｰﾄﾒｰﾙ本文ﾌｯﾀｰ', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '62');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '63', E'Tﾎﾟｲﾝﾄﾒｯｾｰｼﾞ1', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '63');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '64', E'Tﾎﾟｲﾝﾄﾒｯｾｰｼﾞ2', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '64');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '65', E'Tﾎﾟｲﾝﾄﾒｯｾｰｼﾞ3', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '65');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '66', E'Tｸｰﾎﾟﾝﾒｯｾｰｼﾞ', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '66');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '67', E'Tﾏﾈｰﾒｯｾｰｼﾞ', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '67');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '68', E'対面客側顧客読取(案内)', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '68');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '69', E'対面客側顧客読取(拒否)', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '69');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '70', E'対面客側顧客読取(入力)', '0', '0' WHERE NOT EXISTS (:sub_query_set_1 = '70');
+
+
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '100', E'FIP1', '0', '1' WHERE NOT EXISTS (:sub_query_set_1 = '100');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '101', E'FIP2', '0', '1' WHERE NOT EXISTS (:sub_query_set_1 = '101');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '102', E'FIP3', '0', '1' WHERE NOT EXISTS (:sub_query_set_1 = '102');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '103', E'FIP4', '0', '1' WHERE NOT EXISTS (:sub_query_set_1 = '103');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '104', E'FIP5', '0', '1' WHERE NOT EXISTS (:sub_query_set_1 = '104');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '105', E'FIP6', '0', '1' WHERE NOT EXISTS (:sub_query_set_1 = '105');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '106', E'FIP7', '0', '1' WHERE NOT EXISTS (:sub_query_set_1 = '106');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '107', E'FIP8', '0', '1' WHERE NOT EXISTS (:sub_query_set_1 = '107');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '108', E'FIP9', '0', '1' WHERE NOT EXISTS (:sub_query_set_1 = '108');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '109', E'FIP10', '0', '1' WHERE NOT EXISTS (:sub_query_set_1 = '109');
+
+
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '200', E'ｶﾗｰ客表1', '0', '1' WHERE NOT EXISTS (:sub_query_set_1 = '200');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '201', E'ｶﾗｰ客表2', '0', '1' WHERE NOT EXISTS (:sub_query_set_1 = '201');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '202', E'ｶﾗｰ客表3', '0', '1' WHERE NOT EXISTS (:sub_query_set_1 = '202');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '203', E'ｶﾗｰ客表4', '0', '1' WHERE NOT EXISTS (:sub_query_set_1 = '203');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '204', E'ｶﾗｰ客表5', '0', '1' WHERE NOT EXISTS (:sub_query_set_1 = '204');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '205', E'ｶﾗｰ客表6', '0', '1' WHERE NOT EXISTS (:sub_query_set_1 = '205');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '206', E'ｶﾗｰ客表7', '0', '1' WHERE NOT EXISTS (:sub_query_set_1 = '206');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '207', E'ｶﾗｰ客表8', '0', '1' WHERE NOT EXISTS (:sub_query_set_1 = '207');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '208', E'ｶﾗｰ客表9', '0', '1' WHERE NOT EXISTS (:sub_query_set_1 = '208');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '0', '209', E'ｶﾗｰ客表10', '0', '1' WHERE NOT EXISTS (:sub_query_set_1 = '209');
+
+
+---対象
+
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '1', '0', E'全員', '0', '0' WHERE NOT EXISTS (:sub_query_set_2 = '0');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '1', '1', E'会員以外', '0', '0' WHERE NOT EXISTS (:sub_query_set_2 = '1');
+INSERT INTO c_msglayout_set_mst (:insert_field_set) SELECT :cmn_set, '1', '2', E'会員のみ', '0', '0' WHERE NOT EXISTS (:sub_query_set_2 = '2');
+
+
+COMMIT;

@@ -1,0 +1,1054 @@
+-- V0.014
+
+CREATE INDEX c_bdllog_i0 ON c_bdllog USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_bdllog_i1 ON c_bdllog USING BTREE
+(
+  receipt_no
+);
+CREATE INDEX c_bdllog_i2 ON c_bdllog USING BTREE
+(
+  mac_no
+);
+CREATE INDEX c_caseitem_mst_i0 ON c_caseitem_mst USING BTREE
+(
+  plu_cd
+);
+CREATE INDEX c_crdt_actual_log_i0 ON c_crdt_actual_log USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_crdt_actual_log_i1 ON c_crdt_actual_log USING BTREE
+(
+  receipt_no
+);
+CREATE INDEX c_crdt_actual_log_i2 ON c_crdt_actual_log USING BTREE
+(
+  crdt_flg
+);
+CREATE INDEX c_crdt_actual_log_i3 ON c_crdt_actual_log USING BTREE
+(
+  now_sale_datetime
+);
+CREATE INDEX c_crdt_actual_log_i4 ON c_crdt_actual_log USING BTREE
+(
+  mac_no
+);
+CREATE INDEX c_crdt_demand_tbl_i0 ON c_crdt_demand_tbl USING BTREE
+(
+  company_cd
+);
+CREATE INDEX c_cust_log_i0 ON c_cust_log USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_cust_log_i1 ON c_cust_log USING BTREE
+(
+  receipt_no
+);
+CREATE INDEX c_cust_log_i2 ON c_cust_log USING BTREE
+(
+  tran_flg
+);
+CREATE INDEX c_cust_log_i3 ON c_cust_log USING BTREE
+(
+  sub_tran_flg
+);
+CREATE INDEX c_cust_log_i4 ON c_cust_log USING BTREE
+(
+  now_sale_datetime
+);
+CREATE INDEX c_cust_log_i5 ON c_cust_log USING BTREE
+(
+  mac_no
+);
+CREATE INDEX c_cust_mst_i0 ON c_cust_mst USING BTREE
+(
+  srch_telno
+);
+CREATE INDEX c_ejlog_i0 ON c_ejlog USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_ejlog_i1 ON c_ejlog USING BTREE
+(
+  receipt_no
+);
+CREATE INDEX c_ejlog_i2 ON c_ejlog USING BTREE
+(
+  only_ejlog_flg
+);
+CREATE INDEX c_ejlog_i3 ON c_ejlog USING BTREE
+(
+  sub_only_ejlog_flg
+);
+CREATE INDEX c_ejlog_i4 ON c_ejlog USING BTREE
+(
+  mac_no
+);
+CREATE INDEX c_itemlog_i0 ON c_itemlog USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_itemlog_i1 ON c_itemlog USING BTREE
+(
+  receipt_no
+);
+CREATE INDEX c_itemlog_i2 ON c_itemlog USING BTREE
+(
+  mdlcls_cd
+);
+CREATE INDEX c_itemlog_i3 ON c_itemlog USING BTREE
+(
+  smlcls_cd
+);
+CREATE INDEX c_itemlog_i4 ON c_itemlog USING BTREE
+(
+  tnycls_cd
+);
+CREATE INDEX c_itemlog_i5 ON c_itemlog USING BTREE
+(
+  mac_no
+);
+CREATE INDEX c_mdlcls_mst_i0 ON c_mdlcls_mst USING BTREE
+(
+  lrgcls_cd
+);
+CREATE INDEX c_preset_img_mst_i0 ON c_preset_img_mst USING BTREE
+(
+  cls_cd
+);
+CREATE INDEX c_scanplu_mst_i0 ON c_scanplu_mst USING BTREE
+(
+  plu_cd
+);
+CREATE INDEX c_scanplu_mst_i1 ON c_scanplu_mst USING BTREE
+(
+  pack_week
+);
+CREATE INDEX c_schctrl_mst_i0 ON c_schctrl_mst USING BTREE
+(
+  start_datetime
+);
+CREATE INDEX c_schctrl_mst_i1 ON c_schctrl_mst USING BTREE
+(
+  end_datetime
+);
+CREATE INDEX c_schctrl_mst_i2 ON c_schctrl_mst USING BTREE
+(
+  started_flg
+);
+CREATE INDEX c_schctrl_mst_i3 ON c_schctrl_mst USING BTREE
+(
+  ended_flg
+);
+CREATE INDEX c_smlcls_mst_i0 ON c_smlcls_mst USING BTREE
+(
+  mdlcls_cd
+);
+CREATE INDEX c_stmlog_i0 ON c_stmlog USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_stmlog_i1 ON c_stmlog USING BTREE
+(
+  receipt_no
+);
+CREATE INDEX c_stmlog_i2 ON c_stmlog USING BTREE
+(
+  mac_no
+);
+CREATE INDEX c_totallog_i0 ON c_ttllog USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_totallog_i1 ON c_ttllog USING BTREE
+(
+  receipt_no
+);
+CREATE INDEX c_totallog_i2 ON c_ttllog USING BTREE
+(
+  tran_flg
+);
+CREATE INDEX c_totallog_i3 ON c_ttllog USING BTREE
+(
+  sub_tran_flg
+);
+CREATE INDEX c_totallog_i4 ON c_ttllog USING BTREE
+(
+  now_sale_datetime
+);
+CREATE INDEX c_totallog_i5 ON c_ttllog USING BTREE
+(
+  mac_no
+);
+CREATE INDEX cust_itemlog_i0 ON cust_itemlog USING BTREE
+(
+  cust_no
+);
+CREATE INDEX cust_ttllog_i0 ON cust_ttllog USING BTREE
+(
+  cust_no
+);
+CREATE INDEX histlog_mst_i0 ON histlog_mst USING BTREE
+(
+  ins_datetime
+);
+CREATE INDEX pbchg_log_i0 ON pbchg_log USING BTREE
+(
+  tran_flg
+);
+CREATE INDEX pbchg_log_i1 ON pbchg_log USING BTREE
+(
+  sub_tran_flg
+);
+CREATE INDEX pbchg_log_i2 ON pbchg_log USING BTREE
+(
+  receipt_flg
+);
+CREATE INDEX reserv_log_i0 ON reserv_log USING BTREE
+(
+  number
+);
+CREATE INDEX reserv_log_i1 ON reserv_log USING BTREE
+(
+  tran_flg
+);
+CREATE INDEX reserv_log_i2 ON reserv_log USING BTREE
+(
+  sub_tran_flg
+);
+CREATE INDEX c_itemlog01_i0 ON c_itemlog01 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_itemlog02_i0 ON c_itemlog02 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_itemlog03_i0 ON c_itemlog03 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_itemlog04_i0 ON c_itemlog04 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_itemlog05_i0 ON c_itemlog05 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_itemlog06_i0 ON c_itemlog06 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_itemlog07_i0 ON c_itemlog07 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_itemlog08_i0 ON c_itemlog08 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_itemlog09_i0 ON c_itemlog09 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_itemlog10_i0 ON c_itemlog10 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_itemlog11_i0 ON c_itemlog11 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_itemlog12_i0 ON c_itemlog12 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_itemlog13_i0 ON c_itemlog13 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_itemlog14_i0 ON c_itemlog14 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_itemlog15_i0 ON c_itemlog15 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_itemlog16_i0 ON c_itemlog16 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_itemlog17_i0 ON c_itemlog17 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_itemlog18_i0 ON c_itemlog18 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_itemlog19_i0 ON c_itemlog19 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_itemlog20_i0 ON c_itemlog20 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_itemlog21_i0 ON c_itemlog21 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_itemlog22_i0 ON c_itemlog22 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_itemlog23_i0 ON c_itemlog23 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_itemlog24_i0 ON c_itemlog24 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_itemlog25_i0 ON c_itemlog25 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_itemlog26_i0 ON c_itemlog26 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_itemlog27_i0 ON c_itemlog27 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_itemlog28_i0 ON c_itemlog28 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_itemlog29_i0 ON c_itemlog29 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_itemlog30_i0 ON c_itemlog30 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_itemlog31_i0 ON c_itemlog31 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_ttllog01_i0 ON c_ttllog01 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_ttllog02_i0 ON c_ttllog02 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_ttllog03_i0 ON c_ttllog03 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_ttllog04_i0 ON c_ttllog04 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_ttllog05_i0 ON c_ttllog05 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_ttllog06_i0 ON c_ttllog06 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_ttllog07_i0 ON c_ttllog07 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_ttllog08_i0 ON c_ttllog08 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_ttllog09_i0 ON c_ttllog09 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_ttllog10_i0 ON c_ttllog10 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_ttllog11_i0 ON c_ttllog11 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_ttllog12_i0 ON c_ttllog12 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_ttllog13_i0 ON c_ttllog13 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_ttllog14_i0 ON c_ttllog14 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_ttllog15_i0 ON c_ttllog15 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_ttllog16_i0 ON c_ttllog16 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_ttllog17_i0 ON c_ttllog17 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_ttllog18_i0 ON c_ttllog18 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_ttllog19_i0 ON c_ttllog19 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_ttllog20_i0 ON c_ttllog20 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_ttllog21_i0 ON c_ttllog21 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_ttllog22_i0 ON c_ttllog22 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_ttllog23_i0 ON c_ttllog23 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_ttllog24_i0 ON c_ttllog24 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_ttllog25_i0 ON c_ttllog25 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_ttllog26_i0 ON c_ttllog26 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_ttllog27_i0 ON c_ttllog27 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_ttllog28_i0 ON c_ttllog28 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_ttllog29_i0 ON c_ttllog29 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_ttllog30_i0 ON c_ttllog30 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_ttllog31_i0 ON c_ttllog31 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_ttllog01_i1 ON c_ttllog01 USING BTREE
+(
+  now_sale_datetime
+);
+CREATE INDEX c_ttllog02_i1 ON c_ttllog02 USING BTREE
+(
+  now_sale_datetime
+);
+CREATE INDEX c_ttllog03_i1 ON c_ttllog03 USING BTREE
+(
+  now_sale_datetime
+);
+CREATE INDEX c_ttllog04_i1 ON c_ttllog04 USING BTREE
+(
+  now_sale_datetime
+);
+CREATE INDEX c_ttllog05_i1 ON c_ttllog05 USING BTREE
+(
+  now_sale_datetime
+);
+CREATE INDEX c_ttllog06_i1 ON c_ttllog06 USING BTREE
+(
+  now_sale_datetime
+);
+CREATE INDEX c_ttllog07_i1 ON c_ttllog07 USING BTREE
+(
+  now_sale_datetime
+);
+CREATE INDEX c_ttllog08_i1 ON c_ttllog08 USING BTREE
+(
+  now_sale_datetime
+);
+CREATE INDEX c_ttllog09_i1 ON c_ttllog09 USING BTREE
+(
+  now_sale_datetime
+);
+CREATE INDEX c_ttllog10_i1 ON c_ttllog10 USING BTREE
+(
+  now_sale_datetime
+);
+CREATE INDEX c_ttllog11_i1 ON c_ttllog11 USING BTREE
+(
+  now_sale_datetime
+);
+CREATE INDEX c_ttllog12_i1 ON c_ttllog12 USING BTREE
+(
+  now_sale_datetime
+);
+CREATE INDEX c_ttllog13_i1 ON c_ttllog13 USING BTREE
+(
+  now_sale_datetime
+);
+CREATE INDEX c_ttllog14_i1 ON c_ttllog14 USING BTREE
+(
+  now_sale_datetime
+);
+CREATE INDEX c_ttllog15_i1 ON c_ttllog15 USING BTREE
+(
+  now_sale_datetime
+);
+CREATE INDEX c_ttllog16_i1 ON c_ttllog16 USING BTREE
+(
+  now_sale_datetime
+);
+CREATE INDEX c_ttllog17_i1 ON c_ttllog17 USING BTREE
+(
+  now_sale_datetime
+);
+CREATE INDEX c_ttllog18_i1 ON c_ttllog18 USING BTREE
+(
+  now_sale_datetime
+);
+CREATE INDEX c_ttllog19_i1 ON c_ttllog19 USING BTREE
+(
+  now_sale_datetime
+);
+CREATE INDEX c_ttllog20_i1 ON c_ttllog20 USING BTREE
+(
+  now_sale_datetime
+);
+CREATE INDEX c_ttllog21_i1 ON c_ttllog21 USING BTREE
+(
+  now_sale_datetime
+);
+CREATE INDEX c_ttllog22_i1 ON c_ttllog22 USING BTREE
+(
+  now_sale_datetime
+);
+CREATE INDEX c_ttllog23_i1 ON c_ttllog23 USING BTREE
+(
+  now_sale_datetime
+);
+CREATE INDEX c_ttllog24_i1 ON c_ttllog24 USING BTREE
+(
+  now_sale_datetime
+);
+CREATE INDEX c_ttllog25_i1 ON c_ttllog25 USING BTREE
+(
+  now_sale_datetime
+);
+CREATE INDEX c_ttllog26_i1 ON c_ttllog26 USING BTREE
+(
+  now_sale_datetime
+);
+CREATE INDEX c_ttllog27_i1 ON c_ttllog27 USING BTREE
+(
+  now_sale_datetime
+);
+CREATE INDEX c_ttllog28_i1 ON c_ttllog28 USING BTREE
+(
+  now_sale_datetime
+);
+CREATE INDEX c_ttllog29_i1 ON c_ttllog29 USING BTREE
+(
+  now_sale_datetime
+);
+CREATE INDEX c_ttllog30_i1 ON c_ttllog30 USING BTREE
+(
+  now_sale_datetime
+);
+CREATE INDEX c_ttllog31_i1 ON c_ttllog31 USING BTREE
+(
+  now_sale_datetime
+);
+CREATE INDEX c_ejlog01_i0 ON c_ejlog01 USING BTREE
+(
+  mac_no
+);
+CREATE INDEX c_ejlog02_i0 ON c_ejlog02 USING BTREE
+(
+  mac_no
+);
+CREATE INDEX c_ejlog03_i0 ON c_ejlog03 USING BTREE
+(
+  mac_no
+);
+CREATE INDEX c_ejlog04_i0 ON c_ejlog04 USING BTREE
+(
+  mac_no
+);
+CREATE INDEX c_ejlog05_i0 ON c_ejlog05 USING BTREE
+(
+  mac_no
+);
+CREATE INDEX c_ejlog06_i0 ON c_ejlog06 USING BTREE
+(
+  mac_no
+);
+CREATE INDEX c_ejlog07_i0 ON c_ejlog07 USING BTREE
+(
+  mac_no
+);
+CREATE INDEX c_ejlog08_i0 ON c_ejlog08 USING BTREE
+(
+  mac_no
+);
+CREATE INDEX c_ejlog09_i0 ON c_ejlog09 USING BTREE
+(
+  mac_no
+);
+CREATE INDEX c_ejlog10_i0 ON c_ejlog10 USING BTREE
+(
+  mac_no
+);
+CREATE INDEX c_ejlog11_i0 ON c_ejlog11 USING BTREE
+(
+  mac_no
+);
+CREATE INDEX c_ejlog12_i0 ON c_ejlog12 USING BTREE
+(
+  mac_no
+);
+CREATE INDEX c_ejlog13_i0 ON c_ejlog13 USING BTREE
+(
+  mac_no
+);
+CREATE INDEX c_ejlog14_i0 ON c_ejlog14 USING BTREE
+(
+  mac_no
+);
+CREATE INDEX c_ejlog15_i0 ON c_ejlog15 USING BTREE
+(
+  mac_no
+);
+CREATE INDEX c_ejlog16_i0 ON c_ejlog16 USING BTREE
+(
+  mac_no
+);
+CREATE INDEX c_ejlog17_i0 ON c_ejlog17 USING BTREE
+(
+  mac_no
+);
+CREATE INDEX c_ejlog18_i0 ON c_ejlog18 USING BTREE
+(
+  mac_no
+);
+CREATE INDEX c_ejlog19_i0 ON c_ejlog19 USING BTREE
+(
+  mac_no
+);
+CREATE INDEX c_ejlog20_i0 ON c_ejlog20 USING BTREE
+(
+  mac_no
+);
+CREATE INDEX c_ejlog21_i0 ON c_ejlog21 USING BTREE
+(
+  mac_no
+);
+CREATE INDEX c_ejlog22_i0 ON c_ejlog22 USING BTREE
+(
+  mac_no
+);
+CREATE INDEX c_ejlog23_i0 ON c_ejlog23 USING BTREE
+(
+  mac_no
+);
+CREATE INDEX c_ejlog24_i0 ON c_ejlog24 USING BTREE
+(
+  mac_no
+);
+CREATE INDEX c_ejlog25_i0 ON c_ejlog25 USING BTREE
+(
+  mac_no
+);
+CREATE INDEX c_ejlog26_i0 ON c_ejlog26 USING BTREE
+(
+  mac_no
+);
+CREATE INDEX c_ejlog27_i0 ON c_ejlog27 USING BTREE
+(
+  mac_no
+);
+CREATE INDEX c_ejlog28_i0 ON c_ejlog28 USING BTREE
+(
+  mac_no
+);
+CREATE INDEX c_ejlog29_i0 ON c_ejlog29 USING BTREE
+(
+  mac_no
+);
+CREATE INDEX c_ejlog30_i0 ON c_ejlog30 USING BTREE
+(
+  mac_no
+);
+CREATE INDEX c_ejlog31_i0 ON c_ejlog31 USING BTREE
+(
+  mac_no
+);
+CREATE INDEX c_ejlog01_i1 ON c_ejlog01 USING BTREE
+(
+  now_sale_datetime
+);
+CREATE INDEX c_ejlog02_i1 ON c_ejlog02 USING BTREE
+(
+  now_sale_datetime
+);
+CREATE INDEX c_ejlog03_i1 ON c_ejlog03 USING BTREE
+(
+  now_sale_datetime
+);
+CREATE INDEX c_ejlog04_i1 ON c_ejlog04 USING BTREE
+(
+  now_sale_datetime
+);
+CREATE INDEX c_ejlog05_i1 ON c_ejlog05 USING BTREE
+(
+  now_sale_datetime
+);
+CREATE INDEX c_ejlog06_i1 ON c_ejlog06 USING BTREE
+(
+  now_sale_datetime
+);
+CREATE INDEX c_ejlog07_i1 ON c_ejlog07 USING BTREE
+(
+  now_sale_datetime
+);
+CREATE INDEX c_ejlog08_i1 ON c_ejlog08 USING BTREE
+(
+  now_sale_datetime
+);
+CREATE INDEX c_ejlog09_i1 ON c_ejlog09 USING BTREE
+(
+  now_sale_datetime
+);
+CREATE INDEX c_ejlog10_i1 ON c_ejlog10 USING BTREE
+(
+  now_sale_datetime
+);
+CREATE INDEX c_ejlog11_i1 ON c_ejlog11 USING BTREE
+(
+  now_sale_datetime
+);
+CREATE INDEX c_ejlog12_i1 ON c_ejlog12 USING BTREE
+(
+  now_sale_datetime
+);
+CREATE INDEX c_ejlog13_i1 ON c_ejlog13 USING BTREE
+(
+  now_sale_datetime
+);
+CREATE INDEX c_ejlog14_i1 ON c_ejlog14 USING BTREE
+(
+  now_sale_datetime
+);
+CREATE INDEX c_ejlog15_i1 ON c_ejlog15 USING BTREE
+(
+  now_sale_datetime
+);
+CREATE INDEX c_ejlog16_i1 ON c_ejlog16 USING BTREE
+(
+  now_sale_datetime
+);
+CREATE INDEX c_ejlog17_i1 ON c_ejlog17 USING BTREE
+(
+  now_sale_datetime
+);
+CREATE INDEX c_ejlog18_i1 ON c_ejlog18 USING BTREE
+(
+  now_sale_datetime
+);
+CREATE INDEX c_ejlog19_i1 ON c_ejlog19 USING BTREE
+(
+  now_sale_datetime
+);
+CREATE INDEX c_ejlog20_i1 ON c_ejlog20 USING BTREE
+(
+  now_sale_datetime
+);
+CREATE INDEX c_ejlog21_i1 ON c_ejlog21 USING BTREE
+(
+  now_sale_datetime
+);
+CREATE INDEX c_ejlog22_i1 ON c_ejlog22 USING BTREE
+(
+  now_sale_datetime
+);
+CREATE INDEX c_ejlog23_i1 ON c_ejlog23 USING BTREE
+(
+  now_sale_datetime
+);
+CREATE INDEX c_ejlog24_i1 ON c_ejlog24 USING BTREE
+(
+  now_sale_datetime
+);
+CREATE INDEX c_ejlog25_i1 ON c_ejlog25 USING BTREE
+(
+  now_sale_datetime
+);
+CREATE INDEX c_ejlog26_i1 ON c_ejlog26 USING BTREE
+(
+  now_sale_datetime
+);
+CREATE INDEX c_ejlog27_i1 ON c_ejlog27 USING BTREE
+(
+  now_sale_datetime
+);
+CREATE INDEX c_ejlog28_i1 ON c_ejlog28 USING BTREE
+(
+  now_sale_datetime
+);
+CREATE INDEX c_ejlog29_i1 ON c_ejlog29 USING BTREE
+(
+  now_sale_datetime
+);
+CREATE INDEX c_ejlog30_i1 ON c_ejlog30 USING BTREE
+(
+  now_sale_datetime
+);
+CREATE INDEX c_ejlog31_i1 ON c_ejlog31 USING BTREE
+(
+  now_sale_datetime
+);
+CREATE UNIQUE INDEX m_cust_log_u0 ON m_cust_log USING BTREE
+(
+  serial_no
+);
+CREATE INDEX c_crdt_actual_log01_i0 ON c_crdt_actual_log01 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_crdt_actual_log02_i0 ON c_crdt_actual_log02 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_crdt_actual_log03_i0 ON c_crdt_actual_log03 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_crdt_actual_log04_i0 ON c_crdt_actual_log04 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_crdt_actual_log05_i0 ON c_crdt_actual_log05 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_crdt_actual_log06_i0 ON c_crdt_actual_log06 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_crdt_actual_log07_i0 ON c_crdt_actual_log07 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_crdt_actual_log08_i0 ON c_crdt_actual_log08 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_crdt_actual_log09_i0 ON c_crdt_actual_log09 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_crdt_actual_log10_i0 ON c_crdt_actual_log10 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_crdt_actual_log11_i0 ON c_crdt_actual_log11 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_crdt_actual_log12_i0 ON c_crdt_actual_log12 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_crdt_actual_log13_i0 ON c_crdt_actual_log13 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_crdt_actual_log14_i0 ON c_crdt_actual_log14 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_crdt_actual_log15_i0 ON c_crdt_actual_log15 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_crdt_actual_log16_i0 ON c_crdt_actual_log16 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_crdt_actual_log17_i0 ON c_crdt_actual_log17 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_crdt_actual_log18_i0 ON c_crdt_actual_log18 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_crdt_actual_log19_i0 ON c_crdt_actual_log19 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_crdt_actual_log20_i0 ON c_crdt_actual_log20 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_crdt_actual_log21_i0 ON c_crdt_actual_log21 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_crdt_actual_log22_i0 ON c_crdt_actual_log22 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_crdt_actual_log23_i0 ON c_crdt_actual_log23 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_crdt_actual_log24_i0 ON c_crdt_actual_log24 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_crdt_actual_log25_i0 ON c_crdt_actual_log25 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_crdt_actual_log26_i0 ON c_crdt_actual_log26 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_crdt_actual_log27_i0 ON c_crdt_actual_log27 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_crdt_actual_log28_i0 ON c_crdt_actual_log28 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_crdt_actual_log29_i0 ON c_crdt_actual_log29 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_crdt_actual_log30_i0 ON c_crdt_actual_log30 USING BTREE
+(
+  print_no
+);
+CREATE INDEX c_crdt_actual_log31_i0 ON c_crdt_actual_log31 USING BTREE
+(
+  print_no
+);
+CREATE UNIQUE INDEX m_reserv_log_u0 ON m_reserv_log USING BTREE
+(
+  serial_no
+);
+CREATE INDEX m_reserv_log_i0 ON m_reserv_log USING BTREE
+(
+  number
+);
+CREATE INDEX c_pbchg_log_01_i0 ON c_pbchg_log_01 USING BTREE
+(
+  tran_flg
+);
+CREATE INDEX c_pbchg_log_01_i1 ON c_pbchg_log_01 USING BTREE
+(
+  sub_tran_flg
+);
+CREATE INDEX c_pbchg_log_01_i2 ON c_pbchg_log_01 USING BTREE
+(
+  receipt_flg
+);
+CREATE INDEX c_brgnsch_mst_old_i0 ON c_brgnsch_mst_old USING BTREE
+(
+  stre_cd,brgn_cd
+);
+CREATE INDEX c_brgnitem_mst_old_i0 ON c_brgnitem_mst_old USING BTREE
+(
+  stre_cd,plu_cd,brgn_cd
+);
+CREATE INDEX c_bdlsch_mst_old_i0 ON c_bdlsch_mst_old USING BTREE
+(
+  stre_cd,bdl_cd
+);
+CREATE INDEX c_bdlitem_mst_old_i0 ON c_bdlitem_mst_old USING BTREE
+(
+  stre_cd, plu_cd, bdl_cd
+);
+CREATE INDEX c_stmsch_mst_old_i0 ON c_stmsch_mst_old USING BTREE
+(
+  stre_cd, stm_cd
+);
+CREATE INDEX c_stmitem_mst_old_i0 ON c_stmitem_mst_old USING BTREE
+(
+  stre_cd, plu_cd, stm_cd
+);
+CREATE INDEX c_stmsch2_mst_old_i0 ON c_stmsch2_mst_old USING BTREE
+(
+  stre_cd, stm_cd
+);
+CREATE INDEX c_stmitem2_mst_old_i0 ON c_stmitem2_mst_old USING BTREE
+(
+  stre_cd, plu_cd, stm_cd,grpno
+);
+CREATE INDEX c_mdlsch_mst_old_i0 ON c_mdlsch_mst_old USING BTREE
+(
+  stre_cd, mdlsch_cd
+);
+CREATE INDEX c_mdlitem_mst_old_i0 ON c_mdlitem_mst_old USING BTREE
+(
+  stre_cd, mdlcls_cd, mdlsch_cd
+);
+CREATE INDEX c_smlsch_mst_old_i0 ON c_smlsch_mst_old USING BTREE
+(
+  stre_cd, smlsch_cd
+);
+CREATE INDEX c_smlitem_mst_old_i0 ON c_smlitem_mst_old USING BTREE
+(
+  stre_cd, smlcls_cd, smlsch_cd
+);
+CREATE INDEX c_tnysch_mst_old_i0 ON c_tnysch_mst_old USING BTREE
+(
+  stre_cd, tnysch_cd
+);
+CREATE INDEX c_tnyitem_mst_old_i0 ON c_tnyitem_mst_old USING BTREE
+(
+  stre_cd, smlcls_cd, tnycls_cd, tnysch_cd
+);
+CREATE INDEX c_plusch_mst_old_i0 ON c_plusch_mst_old USING BTREE
+(
+  stre_cd, plusch_cd
+);
+CREATE INDEX c_pluitem_mst_old_i0 ON c_pluitem_mst_old USING BTREE
+(
+  stre_cd, plu_cd, plusch_cd
+);

@@ -1,0 +1,211 @@
+-- c_barfmt_mst
+-- 2021/10/20 T.Saito           衣料バーコードの表示フラグをすべて表示に変更
+
+BEGIN;
+TRUNCATE c_barfmt_mst;
+
+\set insert_field 'ins_datetime, upd_datetime, status, send_flg, upd_user, upd_system, disp_flg, cls_flg, format_no, format_typ, format, flg_num, format_num'
+
+-- ins_datetime, upd_datetime, status, send_flg, upd_user, upd_system, disp_flg, cls_flg
+
+-- 設定画面に表示させるレコード(標準)
+\set cmn_set '\'now\', \'now\', \'0\', \'0\', \'999999\', \'2\', \'0\' , \'0\''
+\set cmn_set3 '\'now\', \'now\', \'0\', \'0\', \'999999\', \'2\', \'0\' , \'1\''
+
+-- 設定画面に表示させないレコード(特注など)
+\set cmn_set2 '\'now\', \'now\', \'0\', \'0\', \'999999\', \'2\', \'1\', \'0\''
+
+\set sub_query 'select format_no FROM c_barfmt_mst WHERE '
+
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '1',  '1',  E'FF IIIII PC/D PPPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '1' AND format_typ = '1' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '2',  '1',  E'F IIIIII PC/D PPPP C/D',  '1',  '13' WHERE NOT EXISTS (:sub_query format_no = '2' AND format_typ = '1' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '3',  '1',  E'FF IIIII 0 PPPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '3' AND format_typ = '1' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '4',  '1',  E'FF IIIIII PPPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '4' AND format_typ = '1' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '5',  '1',  E'FF IIIII PPPPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '5' AND format_typ = '1' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '6',  '1',  E'F IIIIII PPPPP C/D',  '1',  '13' WHERE NOT EXISTS (:sub_query format_no = '6' AND format_typ = '1' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '7',  '1',  E'F IIIII PPPPPP C/D',  '1',  '13' WHERE NOT EXISTS (:sub_query format_no = '7' AND format_typ = '1' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '9',  '1',  E'FF IIII PPPPPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '9' AND format_typ = '1' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '13',  '1',  E'FF IIII PC/D PPPPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '13' AND format_typ = '1' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '14',  '1',  E'F X IIIIII PPPP C/D',  '1',  '13' WHERE NOT EXISTS (:sub_query format_no = '14' AND format_typ = '1' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '15',  '1',  E'F X IIIII PC/D PPPP C/D',  '1',  '13' WHERE NOT EXISTS (:sub_query format_no = '15' AND format_typ = '1' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '16',  '1',  E'F IIIII PC/D PPPPP C/D',  '1',  '13' WHERE NOT EXISTS (:sub_query format_no = '16' AND format_typ = '1' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '20',  '1',  E'F IIIIIII PPPP C/D',  '1',  '13' WHERE NOT EXISTS (:sub_query format_no = '20' AND format_typ = '1' );
+--INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '133',  '1',  E'F IIIII PC/D PPPP C/D',  '1',  '12' WHERE NOT EXISTS (:sub_query format_no = '133' AND format_typ = '1' );
+--INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '134',  '1',  E'F JJJJJJJJJJ C/D',  '1',  '12' WHERE NOT EXISTS (:sub_query format_no = '134' AND format_typ = '1' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '137',  '1',  E'FF MWIIII PPPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '137' AND format_typ = '1' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '12',  '2',  E'F II PPPP C/D',  '1',  '8' WHERE NOT EXISTS (:sub_query format_no = '12' AND format_typ = '2' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set2, '10',  '3',  E'FF NNNNN C/D',  '2',  '8' WHERE NOT EXISTS (:sub_query format_no = '10' AND format_typ = '3' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set2, '11',  '3',  E'F NNNNNN C/D',  '1',  '8' WHERE NOT EXISTS (:sub_query format_no = '11' AND format_typ = '3' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '135',  '3',  E'FF ?? NNNNNNNN C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '135' AND format_typ = '3' );
+--INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '136',  '4',  E'FF ????IIIIII C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '136' AND format_typ = '4' ); -- 329があるため
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '21',  '5',  E'FF IIIII WC/D WWWW C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '21' AND format_typ = '5' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '23',  '5',  E'FF IIIII 0 WWWW C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '23' AND format_typ = '5' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '24',  '5',  E'FF IIIIII WWWW C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '24' AND format_typ = '5' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '25',  '5',  E'FF IIIII WWWWW C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '25' AND format_typ = '5' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '33',  '5',  E'FF IIII WC/D WWWWW C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '33' AND format_typ = '5' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '26',  '5',  E'F IIIIII WWWWW C/D',  '1',  '13' WHERE NOT EXISTS (:sub_query format_no = '26' AND format_typ = '5' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set3, '102',  '6',  E'FF MMMMM VV PPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '102' AND format_typ = '6' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set3, '103',  '6',  E'FF 0 IIII VV PPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '103' AND format_typ = '6' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set3, '106',  '6',  E'FF 1 IIII VV PPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '106' AND format_typ = '6' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set3, '104',  '6',  E'FF 0 IIII 00 PPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '104' AND format_typ = '6' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set3, '107',  '6',  E'FF 1 IIII 00 PPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '107' AND format_typ = '6' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set3, '105',  '6',  E'FF 0 III W 00 PPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '105' AND format_typ = '6' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set3, '108',  '6',  E'FF 1 III W 00 PPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '108' AND format_typ = '6' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set3, '109',  '6',  E'FF 2 IIII VV PPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '109' AND format_typ = '6' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set3, '112',  '6',  E'FF 3 IIII VV PPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '112' AND format_typ = '6' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set3, '110',  '6',  E'FF 2 IIII 00 PPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '110' AND format_typ = '6' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set3, '113',  '6',  E'FF 3 IIII 00 PPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '113' AND format_typ = '6' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set3, '111',  '6',  E'FF 2 III W 00 PPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '111' AND format_typ = '6' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set3, '114',  '6',  E'FF 3 III W 00 PPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '114' AND format_typ = '6' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set3, '115',  '6',  E'FF 4 IIII VV PPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '115' AND format_typ = '6' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set3, '118',  '6',  E'FF 5 IIII VV PPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '118' AND format_typ = '6' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set3, '116',  '6',  E'FF 4 IIII 00 PPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '116' AND format_typ = '6' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set3, '119',  '6',  E'FF 5 IIII 00 PPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '119' AND format_typ = '6' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set3, '117',  '6',  E'FF 4 III W 00 PPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '117' AND format_typ = '6' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set3, '120',  '6',  E'FF 5 III W 00 PPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '120' AND format_typ = '6' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set3, '121',  '6',  E'FF 6 IIII VV PPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '121' AND format_typ = '6' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set3, '122',  '6',  E'FF 6 IIII 00 PPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '122' AND format_typ = '6' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set3, '123',  '6',  E'FF 6 III W 00 PPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '123' AND format_typ = '6' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set3, '124',  '6',  E'FF 7 IIII VV PPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '124' AND format_typ = '6' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set3, '125',  '6',  E'FF 7 IIII 00 PPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '125' AND format_typ = '6' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set3, '126',  '6',  E'FF 7 III W 00 PPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '126' AND format_typ = '6' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set3, '127',  '6',  E'FF 8 IIII VV PPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '127' AND format_typ = '6' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set3, '128',  '6',  E'FF 8 IIII 00 PPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '128' AND format_typ = '6' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set3, '129',  '6',  E'FF 8 III W 00 PPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '129' AND format_typ = '6' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set3, '130',  '6',  E'FF 9 IIII VV PPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '130' AND format_typ = '6' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set3, '131',  '6',  E'FF 9 IIII 00 PPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '131' AND format_typ = '6' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set3, '132',  '6',  E'FF 9  III W 00 PPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '132' AND format_typ = '6' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set3, '144',  '14',  E'FFF IIIIIIIII C/D',  '3',  '13' WHERE NOT EXISTS (:sub_query format_no = '144' AND format_typ = '14' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '101',  '7',  E'FFF CCCC PPPPP C/D',  '3',  '13' WHERE NOT EXISTS (:sub_query format_no = '101' AND format_typ = '7' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '222',  '23',  E'F IIIIIIIIIIII C/D',  '1',  '14' WHERE NOT EXISTS (:sub_query format_no = '222' AND format_typ = '23' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '223',  '23',  E'FFF IIIIIIIIIIII C/D',  '3',  '16' WHERE NOT EXISTS (:sub_query format_no = '223' AND format_typ = '23' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set2, '138',  '8',  E'FF CCCCC III PP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '138' AND format_typ = '8' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set2, '145',  '8',  E'FF CCCCC II PPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '145' AND format_typ = '8' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '139',  '9',  E'FF IIIIIIIIII C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '139' AND format_typ = '9' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '140',  '10',  E'FF III 0 N PPPPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '140' AND format_typ = '10' );
+--INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '141',  '11',  E'FF YYMMDD rrrr C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '141' AND format_typ = '11' );
+--INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '142',  '12',  E'FF RRRRRR pppp C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '142' AND format_typ = '12' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set2, '143',  '13',  E'FF 0000 CCCCCC C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '143' AND format_typ = '13' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set2, '90',  '13',  E'FF CC000N PPPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '90' AND format_typ = '13' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '146',  '16',  E'FF SSSSSSSSSS C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '146' AND format_typ = '16' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '147',  '16',  E'FF DDSSSSSSSS C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '147' AND format_typ = '16' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '148',  '16',  E'FF DDDSSSSSSS C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '148' AND format_typ = '16' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '149',  '16',  E'FF DDDDSSSSSS C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '149' AND format_typ = '16' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '150',  '16',  E'FF DDDDDSSSSS C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '150' AND format_typ = '16' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '151',  '16',  E'FF DDDDDDSSSS C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '151' AND format_typ = '16' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '145',  '16',  E'FF III 0000000 C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '145' AND format_typ = '16' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '152',  '17',  E'FF SSSSSSPPPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '152' AND format_typ = '17' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '153',  '17',  E'FF SSSSSPPPPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '153' AND format_typ = '17' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '154',  '17',  E'FF SSSSPPPPPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '154' AND format_typ = '17' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '155',  '17',  E'FF SSSPPPPPPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '155' AND format_typ = '17' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set2, '156',  '17',  E'FFFF SSPPPPPP C/D',  '4',  '13' WHERE NOT EXISTS (:sub_query format_no = '156' AND format_typ = '17' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '157',  '18',  E'FF IIIIIC PPPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '157' AND format_typ = '18' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '158',  '18',  E'FF IIIICC PPPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '158' AND format_typ = '18' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '159',  '18',  E'FF IIICCC PPPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '159' AND format_typ = '18' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '160',  '18',  E'FF IICCCC PPPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '160' AND format_typ = '18' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '161',  '18',  E'FF ICCCCC PPPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '161' AND format_typ = '18' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '198',  '18',  E'F IIIICCC PPPP C/D',  '1',  '13' WHERE NOT EXISTS (:sub_query format_no = '198' AND format_typ = '18' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '199',  '18',  E'F IIICCCC PPPP C/D',  '1',  '13' WHERE NOT EXISTS (:sub_query format_no = '199' AND format_typ = '18' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '200',  '18',  E'F IIICCC PPPPP C/D',  '1',  '13' WHERE NOT EXISTS (:sub_query format_no = '200' AND format_typ = '18' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '162',  '19',  E'FF 00IIIXXIII C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '162' AND format_typ = '19' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set3, '163',  '20',  E'FFF S 0 IIII VV Y C/D S PPPP',  '3',  '18' WHERE NOT EXISTS (:sub_query format_no = '163' AND format_typ = '20' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set3, '164',  '20',  E'FFF S 0 III W VV Y C/D S PPPP',  '3',  '18' WHERE NOT EXISTS (:sub_query format_no = '164' AND format_typ = '20' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set3, '165',  '20',  E'FFF S 1 IIII VV Y C/D S PPPP',  '3',  '18' WHERE NOT EXISTS (:sub_query format_no = '165' AND format_typ = '20' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set3, '166',  '20',  E'FFF S 1 III W VV Y C/D S PPPP',  '3',  '18' WHERE NOT EXISTS (:sub_query format_no = '166' AND format_typ = '20' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set3, '167',  '20',  E'FFF S 2 IIII VV Y C/D S PPPP',  '3',  '18' WHERE NOT EXISTS (:sub_query format_no = '167' AND format_typ = '20' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set3, '168',  '20',  E'FFF S 2 III W VV Y C/D S PPPP',  '3',  '18' WHERE NOT EXISTS (:sub_query format_no = '168' AND format_typ = '20' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set3, '169',  '20',  E'FFF S 3 IIII VV Y C/D S PPPP',  '3',  '18' WHERE NOT EXISTS (:sub_query format_no = '169' AND format_typ = '20' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set3, '170',  '20',  E'FFF S 3 III W VV Y C/D S PPPP',  '3',  '18' WHERE NOT EXISTS (:sub_query format_no = '170' AND format_typ = '20' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set3, '171',  '20',  E'FFF S 4 IIII VV Y C/D S PPPP',  '3',  '18' WHERE NOT EXISTS (:sub_query format_no = '171' AND format_typ = '20' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set3, '172',  '20',  E'FFF S 4 III W VV Y C/D S PPPP',  '3',  '18' WHERE NOT EXISTS (:sub_query format_no = '172' AND format_typ = '20' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set3, '173',  '20',  E'FFF S 5 IIII VV Y C/D S PPPP',  '3',  '18' WHERE NOT EXISTS (:sub_query format_no = '173' AND format_typ = '20' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set3, '174',  '20',  E'FFF S 5 III W VV Y C/D S PPPP',  '3',  '18' WHERE NOT EXISTS (:sub_query format_no = '174' AND format_typ = '20' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set3, '175',  '20',  E'FFF S 6 IIII VV Y C/D S PPPP',  '3',  '18' WHERE NOT EXISTS (:sub_query format_no = '175' AND format_typ = '20' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set3, '176',  '20',  E'FFF S 6 III W VV Y C/D S PPPP',  '3',  '18' WHERE NOT EXISTS (:sub_query format_no = '176' AND format_typ = '20' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set3, '177',  '20',  E'FFF S 7 IIII VV Y C/D S PPPP',  '3',  '18' WHERE NOT EXISTS (:sub_query format_no = '177' AND format_typ = '20' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set3, '178',  '20',  E'FFF S 7 III W VV Y C/D S PPPP',  '3',  '18' WHERE NOT EXISTS (:sub_query format_no = '178' AND format_typ = '20' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set3, '179',  '20',  E'FFF S 8 IIII VV Y C/D S PPPP',  '3',  '18' WHERE NOT EXISTS (:sub_query format_no = '179' AND format_typ = '20' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set3, '180',  '20',  E'FFF S 8 III W VV Y C/D S PPPP',  '3',  '18' WHERE NOT EXISTS (:sub_query format_no = '180' AND format_typ = '20' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set3, '181',  '20',  E'FFF S 9 IIII VV Y C/D S PPPP',  '3',  '18' WHERE NOT EXISTS (:sub_query format_no = '181' AND format_typ = '20' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set3, '182',  '20',  E'FFF S 9 III W VV Y C/D S PPPP',  '3',  '18' WHERE NOT EXISTS (:sub_query format_no = '182' AND format_typ = '20' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set2, '183',  '21',  E'FFFF NNNNN VVV C/D',  '4',  '13' WHERE NOT EXISTS (:sub_query format_no = '183' AND format_typ = '21' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set2, '184',  '22',  E'FFFF NNNNN VVV C/D ',  '4',  '13' WHERE NOT EXISTS (:sub_query format_no = '184' AND format_typ = '22' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set2, '206',  '23',  E'F CCCCCC PPPPP WWWWW C/D',  '1',  '18' WHERE NOT EXISTS (:sub_query format_no = '206' AND format_typ = '23' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set2, '221',  '23',  E'F CCCCCC WWWWW PPPPP C/D',  '1',  '18' WHERE NOT EXISTS (:sub_query format_no = '221' AND format_typ = '23' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set2, '185',  '24',  E'FF XXXXXXXXXX C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '185' AND format_typ = '24' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set2, '186',  '25',  E'FF IIII IIII II C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '186' AND format_typ = '25' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set2, '187',  '26',  E'FF PPPPPPPPPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '187' AND format_typ = '26' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set2, '188',  '27',  E'FF IIII IIII II C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '188' AND format_typ = '27' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set2, '189',  '28',  E'FF IIII PPPPPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '189' AND format_typ = '28' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set2, '190',  '29',  E'FF IIII IIII II C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '190' AND format_typ = '29' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set2, '191',  '30',  E'FF XXXXXXX PPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '191' AND format_typ = '30' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set2, '74',  '30',  E'FF C YYMMDD XXX C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '74' AND format_typ = '30' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set2, '195',  '30',  E'FF MMMM PPPPPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '195' AND format_typ = '30' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set2, '4',  '31',  E'FF IIIIII PPPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '4' AND format_typ = '31' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '192',  '32',  E'FF 000000 CCCC C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '192' AND format_typ = '32' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '300',  '33',  E'FF D IIII PPPPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '300' AND format_typ = '33' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set2, '301',  '34',  E'FF MMDDHH M SSS C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '301' AND format_typ = '34' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set2, '193',  '35',  E'FF CCCC SSSSSS C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '193' AND format_typ = '35' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set2, '7100',  '37',  E'FF CCCCOOOOOO C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '7100' AND format_typ = '37' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set2, '7101',  '38',  E'FF CCCCOOOOOO C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '7101' AND format_typ = '38' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set2, '194',  '36',  E'FF SSS RR rrrr P C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '194' AND format_typ = '36' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set2, '194',  '39',  E'FF SSS RR rrrr P C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '194' AND format_typ = '39' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '196',  '40',  E'FF 1 IIIIIIIII C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '196' AND format_typ = '40' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '197',  '41',  E'FF 2 S 000 PPPPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '197' AND format_typ = '41' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set2, '80',  '42',  E'FF CCCCCCCCCC C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '80' AND format_typ = '42' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set2, '83',  '43',  E'FF SSS I CCC PPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '83' AND format_typ = '43' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set2, '84',  '44',  E'FF SSS PPP MMDD C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '84' AND format_typ = '44' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set2, '85',  '45',  E'FF RRRRRR rrr C/D',  '2',  '12' WHERE NOT EXISTS (:sub_query format_no = '85' AND format_typ = '45' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set2, '60',  '46',  E'FF NNNNNN PPPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '60' AND format_typ = '46' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set2, '61',  '47',  E'FF IIIIIIIIII C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '61' AND format_typ = '47' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '62',  '48',  E'FF II 000 PPPPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '62' AND format_typ = '48' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '63',  '49',  E'FF IIII PPPPPPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '63' AND format_typ = '49' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '320',  '49',  E'F II PPPP C/D',  '1',  '8' WHERE NOT EXISTS (:sub_query format_no = '320' AND format_typ = '49' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '64',  '50',  E'FF IIIIIIIIII C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '64' AND format_typ = '50' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set2, '65',  '51',  E'FF NNNNNNNNNN C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '65' AND format_typ = '51' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set2, '66',  '52',  E'FF SSSS NNNN PP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '66' AND format_typ = '52' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set2, '67',  '53',  E'FF SSSS NNNN PP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '67' AND format_typ = '53' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set2, '73',  '54',  E'FF CCC CCCC CCC C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '73' AND format_typ = '54' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set2, '68',  '55',  E'FF 000 CCCCCCC C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '68' AND format_typ = '55' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set2, '69',  '56',  E'FF CCC CCCC CCC C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '69' AND format_typ = '56' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set2, '70',  '57',  E'FF I 00 PPPPPPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '70' AND format_typ = '57' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set2, '75',  '58',  E'FF IIIIIIIIII C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '75' AND format_typ = '58' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set2, '251',  '59',  E'FF 000000000 CCCCCC C/D',  '2',  '18' WHERE NOT EXISTS (:sub_query format_no = '251' AND format_typ = '59' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '86',  '60',  E'FF JJJJJJJJJJJ C/D',  '2',  '14' WHERE NOT EXISTS (:sub_query format_no = '86' AND format_typ = '60' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set2, '79',  '61',  E'FF 0000000 DDD C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '79' AND format_typ = '61' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set2, '7102',  '62',  E'FF NNNNNNN K 00 C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '7102' AND format_typ = '62' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set2, '77',  '63',  E'FF SSS YYMMDD 0 C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '77' AND format_typ = '63' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set2, '78',  '64',  E'FF RRRR CCC PPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '78' AND format_typ = '64' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '256',  '67',  E'FF NNNNNNNNNN T OOOOOO HHMMSS IIIIII C/D',  '2',  '32' WHERE NOT EXISTS (:sub_query format_no = '256' AND format_typ = '67' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '87',  '68',  E'FF NNNN PPPPPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '87' AND format_typ = '68' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set2, '88',  '69',  E'FF ???? NNNNNN C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '88' AND format_typ = '69' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set2, '89',  '70',  E'FF XXXXXX PPPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '89' AND format_typ = '70' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set2, '302',  '71',  E'FF IIIII PPPPP C/D MMDDHH 00 SSSSS C/D',  '2',  '27' WHERE NOT EXISTS (:sub_query format_no = '302' AND format_typ = '71' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set2, '96',  '72',  E'FF XXXXXXXXXX C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '96' AND format_typ = '72' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set2, '97',  '73',  E'FF XXXXXXX PPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '97' AND format_typ = '73' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set2, '98',  '74',  E'FF X CCCCCCCCC C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '98' AND format_typ = '74' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '321',  '75',  E'FF NNNNNNNNNN C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '321' AND format_typ = '75' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '322',  '76',  E'FF YMMDD RR NNN C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '322' AND format_typ = '76' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '329',  '4',  E'FF XXXXXXXXXX C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '329' AND format_typ = '4' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set2, '255',  '81',  E'FF 0 IIIIIIIIIIIII NNNNNNNNNNNNNNNN',  '2',  '32' WHERE NOT EXISTS (:sub_query format_no = '255' AND format_typ = '81' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '259',  '87',  E'FF YYMMDD rrrr 000 RRRRRR pppp C/D',  '2',  '26' WHERE NOT EXISTS (:sub_query format_no = '259' AND format_typ = '87' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '341',  '89',  E'FF IIIIIIIIII C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '341' AND format_typ = '89' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '52',  '1',  E'FF III PPPPPPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '52' AND format_typ = '1' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '260',  '90',  E'FF IIIIIIIIIIIII YYMMDD C/D',  '2',  '22' WHERE NOT EXISTS (:sub_query format_no = '260' AND format_typ = '90' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '342',  '16',  E'FF DDDD 000000 C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '342' AND format_typ = '16' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '343',  '17',  E'FF 0000 PPPPPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '343' AND format_typ = '17' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '344',  '18',  E'FF IIIIII CCCC C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '344' AND format_typ = '18' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '345',  '18',  E'FF IIIII CCCCC C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '345' AND format_typ = '18' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '346',  '18',  E'FF IIII CCCCCC C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '346' AND format_typ = '18' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '347',  '18',  E'FF CCC III PPPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '347' AND format_typ = '18' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '348',  '91',  E'FF CCCCCCCCCCCCC II C/D',  '2',  '18' WHERE NOT EXISTS (:sub_query format_no = '348' AND format_typ = '91' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '350',  '92',  E'FF ???? CCCCCC C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '350' AND format_typ = '92' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '325',  '93',  E'FF NNNNNNNNNN C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '325' AND format_typ = '93' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '349',  '94',  E'FF CC 00 PPPPPP C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '349' AND format_typ = '94' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '354',  '97',  E'FF CCCCCCCCCC C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '354' AND format_typ = '97' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '355',  '98',  E'FF CCCCCCCCCC C/D',  '2',  '13' WHERE NOT EXISTS (:sub_query format_no = '355' AND format_typ = '98' );
+INSERT INTO c_barfmt_mst (:insert_field) SELECT :cmn_set, '261',  '99',  E'FF 0 SSSS MMMM RRRR JJJJ PPPPPP C/D',  '2',  '26' WHERE NOT EXISTS (:sub_query format_no = '261' AND format_typ = '99' );
+
+-- cmn_setとcmn_set2の違いは, 設定画面へ表示するかの制御用
+
+COMMIT;

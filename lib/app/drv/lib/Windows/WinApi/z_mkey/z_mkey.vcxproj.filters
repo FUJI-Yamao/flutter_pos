@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ソース ファイル">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="OposSystem">
+      <UniqueIdentifier>{6b27944e-c0ad-4e5a-b079-32ed17569ad9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="..\OposSystem\NonCopyable.h">
+      <Filter>OposSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\OposSystem\OposDebug.h">
+      <Filter>OposSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\OposSystem\OposDefs.h">
+      <Filter>OposSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\OposSystem\Singleton.h">
+      <Filter>OposSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\OposSystem\stdafx.h">
+      <Filter>OposSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\OposSystem\TaskManager.h">
+      <Filter>OposSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\zPOSKeyboard\POSKeyboardAPI.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="..\zPOSKeyboard\POSKeyboardControl.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="..\OposSystem\Console.h">
+      <Filter>OposSystem</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="dllmain.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="..\OposSystem\OposDebug.cpp">
+      <Filter>OposSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\OposSystem\Singleton.cpp">
+      <Filter>OposSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\OposSystem\TaskManager.cpp">
+      <Filter>OposSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\zPOSKeyboard\POSKeyboardAPI.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="..\zPOSKeyboard\POSKeyboardControl.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

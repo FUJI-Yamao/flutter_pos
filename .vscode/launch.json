@@ -1,0 +1,46 @@
+{
+    // IntelliSense を使用して利用可能な属性を学べます。
+    // 既存の属性の説明をホバーして表示します。
+    // 詳細情報は次を確認してください: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+
+
+        {
+            "name": "flutter_pos",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "flutter_pos WITHOUT DEVICE",
+            "request": "launch",
+            "type": "dart",
+            "args": [
+                "--dart-define=WITHOUT_DEVICE=true",
+                "--dart-define=LINUX_DEBUG_BY_WIN=true",
+            ]
+        },
+        {
+            "name": "flutter_pos (profile mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "flutter_pos (release mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "release flutter_pos WITHOUT DEVICE",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release",
+            "args": [
+                "--dart-define=WITHOUT_DEVICE=true",
+                "--dart-define=LINUX_DEBUG_BY_WIN=true",
+            ]
+        },
+    ]
+}

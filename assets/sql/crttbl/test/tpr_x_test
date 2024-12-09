@@ -1,0 +1,35 @@
+-- V0.015
+-- Project Name : WebSeries
+-- Date/Time    : 2017/01/19
+-- Author       : K.Sho
+-- RDBMS Type   : PostgreSQL
+
+-- 01
+-- 企業マスタ
+drop table if exists c_comp_mst cascade;
+
+create table c_comp_mst (
+  comp_cd NUMERIC(9)
+  , comp_typ SMALLINT default 0 not null
+  , rtr_id NUMERIC(9) default 0 not null
+  , name VARCHAR(25)
+  , short_name VARCHAR(5)
+  , kana_name VARCHAR(25)
+  , post_no VARCHAR(7)
+  , adress1 VARCHAR(50)
+  , adress2 VARCHAR(50)
+  , adress3 VARCHAR(50)
+  , telno1 VARCHAR(25)
+  , telno2 VARCHAR(25)
+  , srch_telno1 VARCHAR(20)
+  , srch_telno2 VARCHAR(20)
+  , ins_datetime TIMESTAMP
+  , upd_datetime TIMESTAMP
+  , status SMALLINT default 0 not null
+  , send_flg SMALLINT default 0 not null
+  , upd_user NUMERIC(10) default 0 not null
+  , upd_system SMALLINT default 0 not null
+  , constraint c_comp_mst_PKC primary key (comp_cd)
+) ;
+
+

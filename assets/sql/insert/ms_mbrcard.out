@@ -1,0 +1,12 @@
+-- 初期値用ファイル(バージョンアップでは反映されない)
+
+\set insert_field 'comp_cd, ins_datetime, upd_datetime, status, send_flg, upd_user, upd_system, seq_no, code_from, code_to, s_data1'
+
+-- comp_cd, ins_datetime, upd_datetime, status, send_flg, upd_user, upd_system
+\set cmn_set ' :COMP, \'now\', \'now\', \'0\', \'0\', \'999999\', \'2\' '
+
+\set sub_query 'SELECT * FROM c_mbrcard_mst WHERE comp_cd = :COMP '
+
+-- c_mbrcard_mst 会員カードの種別
+INSERT INTO c_mbrcard_mst (:insert_field) SELECT :cmn_set, 1, '0000000000000', '9999999999999', 1 WHERE NOT EXISTS (:sub_query AND seq_no = '1');
+

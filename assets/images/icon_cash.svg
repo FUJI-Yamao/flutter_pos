@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="80" height="48" viewBox="0 0 80 48">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="長方形_6847" data-name="長方形 6847" width="60" height="36.916" transform="translate(0 0)" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="icon_cash" transform="translate(-536 -184)">
+    <rect id="長方形_6863" data-name="長方形 6863" width="80" height="48" transform="translate(536 184)" fill="gray" opacity="0"/>
+    <g id="グループ_16529" data-name="グループ 16529" transform="translate(546 190)">
+      <g id="グループ_16528" data-name="グループ 16528" clip-path="url(#clip-path)">
+        <path id="パス_28164" data-name="パス 28164" d="M48,15.916a9,9,0,1,0,9,9,9.01,9.01,0,0,0-9-9" fill="#727981"/>
+        <path id="パス_28165" data-name="パス 28165" d="M48,12.916a12,12,0,1,0,12,12,12,12,0,0,0-12-12m0,22a10,10,0,1,1,10-10,10,10,0,0,1-10,10" fill="#727981"/>
+        <path id="パス_28166" data-name="パス 28166" d="M45,11.25V3H3V21H34.569A14,14,0,0,1,45,11.25M24,18.794c-3.407,0-6.169-3.042-6.169-6.794S20.593,5.206,24,5.206,30.169,8.248,30.169,12,27.407,18.794,24,18.794" fill="#727981"/>
+        <path id="パス_28167" data-name="パス 28167" d="M2,2H46v9.074a14.176,14.176,0,0,1,2-.158V0H0V24H34.032a13.863,13.863,0,0,1,.289-2H2Z" fill="#727981"/>
+      </g>
+    </g>
+  </g>
+</svg>

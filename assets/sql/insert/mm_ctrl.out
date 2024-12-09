@@ -1,0 +1,53 @@
+-- c_ctrl_mst
+
+\set insert_field 'comp_cd, ins_datetime, upd_datetime, status, send_flg, upd_user, upd_system, ctrl_cd, ctrl_data, data_typ'
+
+-- comp_cd, ins_datetime, upd_datetime, status, send_flg, upd_user, upd_system
+\set cmn_set ' :COMP, \'now\', \'now\', \'0\', \'0\', \'999999\', \'2\' '
+
+\set sub_query 'SELECT ctrl_cd FROM c_ctrl_mst WHERE comp_cd = :COMP '
+
+INSERT INTO c_ctrl_mst (:insert_field) SELECT :cmn_set, '1', '2', '0' WHERE NOT EXISTS (:sub_query AND ctrl_cd = '1');
+INSERT INTO c_ctrl_mst (:insert_field) SELECT :cmn_set, '2', '2', '0' WHERE NOT EXISTS (:sub_query AND ctrl_cd = '2');
+INSERT INTO c_ctrl_mst (:insert_field) SELECT :cmn_set, '3', '2', '0' WHERE NOT EXISTS (:sub_query AND ctrl_cd = '3');
+INSERT INTO c_ctrl_mst (:insert_field) SELECT :cmn_set, '4', '2', '0' WHERE NOT EXISTS (:sub_query AND ctrl_cd = '4');
+INSERT INTO c_ctrl_mst (:insert_field) SELECT :cmn_set, '5', '2', '0' WHERE NOT EXISTS (:sub_query AND ctrl_cd = '5');
+INSERT INTO c_ctrl_mst (:insert_field) SELECT :cmn_set, '6', '2', '0' WHERE NOT EXISTS (:sub_query AND ctrl_cd = '6');
+INSERT INTO c_ctrl_mst (:insert_field) SELECT :cmn_set, '7', '2', '0' WHERE NOT EXISTS (:sub_query AND ctrl_cd = '7');
+INSERT INTO c_ctrl_mst (:insert_field) SELECT :cmn_set, '8', '2', '0' WHERE NOT EXISTS (:sub_query AND ctrl_cd = '8');
+INSERT INTO c_ctrl_mst (:insert_field) SELECT :cmn_set, '9', '2', '0' WHERE NOT EXISTS (:sub_query AND ctrl_cd = '9');
+INSERT INTO c_ctrl_mst (:insert_field) SELECT :cmn_set, '10', '0', '0' WHERE NOT EXISTS (:sub_query AND ctrl_cd = '10');
+INSERT INTO c_ctrl_mst (:insert_field) SELECT :cmn_set, '11', '0', '0' WHERE NOT EXISTS (:sub_query AND ctrl_cd = '11');
+INSERT INTO c_ctrl_mst (:insert_field) SELECT :cmn_set, '12', '0', '0' WHERE NOT EXISTS (:sub_query AND ctrl_cd = '12');
+INSERT INTO c_ctrl_mst (:insert_field) SELECT :cmn_set, '13', '0', '0' WHERE NOT EXISTS (:sub_query AND ctrl_cd = '13');
+INSERT INTO c_ctrl_mst (:insert_field) SELECT :cmn_set, '14', '0', '0' WHERE NOT EXISTS (:sub_query AND ctrl_cd = '14');
+INSERT INTO c_ctrl_mst (:insert_field) SELECT :cmn_set, '15', '2', '0' WHERE NOT EXISTS (:sub_query AND ctrl_cd = '15');
+INSERT INTO c_ctrl_mst (:insert_field) SELECT :cmn_set, '16', '2', '0' WHERE NOT EXISTS (:sub_query AND ctrl_cd = '16');
+INSERT INTO c_ctrl_mst (:insert_field) SELECT :cmn_set, '17', '2', '0' WHERE NOT EXISTS (:sub_query AND ctrl_cd = '17');
+INSERT INTO c_ctrl_mst (:insert_field) SELECT :cmn_set, '18', '2', '0' WHERE NOT EXISTS (:sub_query AND ctrl_cd = '18');
+INSERT INTO c_ctrl_mst (:insert_field) SELECT :cmn_set, '19', '2', '0' WHERE NOT EXISTS (:sub_query AND ctrl_cd = '19');
+INSERT INTO c_ctrl_mst (:insert_field) SELECT :cmn_set, '20', '2', '0' WHERE NOT EXISTS (:sub_query AND ctrl_cd = '20');
+INSERT INTO c_ctrl_mst (:insert_field) SELECT :cmn_set, '21', '2', '0' WHERE NOT EXISTS (:sub_query AND ctrl_cd = '21');
+INSERT INTO c_ctrl_mst (:insert_field) SELECT :cmn_set, '22', '2', '0' WHERE NOT EXISTS (:sub_query AND ctrl_cd = '22');
+INSERT INTO c_ctrl_mst (:insert_field) SELECT :cmn_set, '23', '2', '0' WHERE NOT EXISTS (:sub_query AND ctrl_cd = '23');
+INSERT INTO c_ctrl_mst (:insert_field) SELECT :cmn_set, '24', '2', '0' WHERE NOT EXISTS (:sub_query AND ctrl_cd = '24');
+INSERT INTO c_ctrl_mst (:insert_field) SELECT :cmn_set, '25', '2', '0' WHERE NOT EXISTS (:sub_query AND ctrl_cd = '25');
+INSERT INTO c_ctrl_mst (:insert_field) SELECT :cmn_set, '26', '2', '0' WHERE NOT EXISTS (:sub_query AND ctrl_cd = '26');
+INSERT INTO c_ctrl_mst (:insert_field) SELECT :cmn_set, '27', '2', '0' WHERE NOT EXISTS (:sub_query AND ctrl_cd = '27');
+INSERT INTO c_ctrl_mst (:insert_field) SELECT :cmn_set, '28', '2', '0' WHERE NOT EXISTS (:sub_query AND ctrl_cd = '28');
+INSERT INTO c_ctrl_mst (:insert_field) SELECT :cmn_set, '29', '2', '0' WHERE NOT EXISTS (:sub_query AND ctrl_cd = '29');
+INSERT INTO c_ctrl_mst (:insert_field) SELECT :cmn_set, '30', '2', '0' WHERE NOT EXISTS (:sub_query AND ctrl_cd = '30');
+INSERT INTO c_ctrl_mst (:insert_field) SELECT :cmn_set, '31', '2', '0' WHERE NOT EXISTS (:sub_query AND ctrl_cd = '31');
+INSERT INTO c_ctrl_mst (:insert_field) SELECT :cmn_set, '32', '20', '0' WHERE NOT EXISTS (:sub_query AND ctrl_cd = '32');
+INSERT INTO c_ctrl_mst (:insert_field) SELECT :cmn_set, '33', '2', '0' WHERE NOT EXISTS (:sub_query AND ctrl_cd = '33');
+INSERT INTO c_ctrl_mst (:insert_field) SELECT :cmn_set, '34', '2', '0' WHERE NOT EXISTS (:sub_query AND ctrl_cd = '34');
+INSERT INTO c_ctrl_mst (:insert_field) SELECT :cmn_set, '35', '2', '0' WHERE NOT EXISTS (:sub_query AND ctrl_cd = '35');
+INSERT INTO c_ctrl_mst (:insert_field) SELECT :cmn_set, '36', '2', '0' WHERE NOT EXISTS (:sub_query AND ctrl_cd = '36');
+INSERT INTO c_ctrl_mst (:insert_field) SELECT :cmn_set, '37', '2', '0' WHERE NOT EXISTS (:sub_query AND ctrl_cd = '37');
+INSERT INTO c_ctrl_mst (:insert_field) SELECT :cmn_set, '38', '2', '0' WHERE NOT EXISTS (:sub_query AND ctrl_cd = '38');
+INSERT INTO c_ctrl_mst (:insert_field) SELECT :cmn_set, '39', '2', '0' WHERE NOT EXISTS (:sub_query AND ctrl_cd = '39');
+INSERT INTO c_ctrl_mst (:insert_field) SELECT :cmn_set, '40', '2', '0' WHERE NOT EXISTS (:sub_query AND ctrl_cd = '40');
+INSERT INTO c_ctrl_mst (:insert_field) SELECT :cmn_set, '41', '2', '0' WHERE NOT EXISTS (:sub_query AND ctrl_cd = '41');
+INSERT INTO c_ctrl_mst (:insert_field) SELECT :cmn_set, '42', '2', '0' WHERE NOT EXISTS (:sub_query AND ctrl_cd = '42');
+INSERT INTO c_ctrl_mst (:insert_field) SELECT :cmn_set, '43', '2', '0' WHERE NOT EXISTS (:sub_query AND ctrl_cd = '43');
+INSERT INTO c_ctrl_mst (:insert_field) SELECT :cmn_set, '44', '0', '0' WHERE NOT EXISTS (:sub_query AND ctrl_cd = '44');

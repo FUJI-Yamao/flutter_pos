@@ -1,0 +1,54 @@
+-- c_cashrecycle_mst
+
+\set insert_field 'comp_cd, stre_cd, cashrecycle_grp, ins_datetime, upd_datetime, status, send_flg, upd_user, upd_system, code, data, data_typ'
+
+-- comp_cd, stre_cd, cashrecycle_grp, ins_datetime, upd_datetime, status, send_flg, upd_user, upd_system
+\set cmn_set ' :COMP, :STRE, :GRP, \'now\', \'now\', \'0\', \'0\', \'999999\', \'2\' '
+
+\set sub_query 'SELECT code FROM c_cashrecycle_mst WHERE comp_cd = :COMP AND stre_cd = :STRE AND cashrecycle_grp = :GRP'
+
+INSERT INTO c_cashrecycle_mst (:insert_field) SELECT :cmn_set, '1', '0', '0' WHERE NOT EXISTS (:sub_query AND code = '1');
+INSERT INTO c_cashrecycle_mst (:insert_field) SELECT :cmn_set, '100', '2', '0' WHERE NOT EXISTS (:sub_query AND code = '100');
+INSERT INTO c_cashrecycle_mst (:insert_field) SELECT :cmn_set, '200', '8', '0' WHERE NOT EXISTS (:sub_query AND code = '200');
+INSERT INTO c_cashrecycle_mst (:insert_field) SELECT :cmn_set, '300', '0', '0' WHERE NOT EXISTS (:sub_query AND code = '300');
+INSERT INTO c_cashrecycle_mst (:insert_field) SELECT :cmn_set, '400', '0', '0' WHERE NOT EXISTS (:sub_query AND code = '400');
+INSERT INTO c_cashrecycle_mst (:insert_field) SELECT :cmn_set, '500', '0', '0' WHERE NOT EXISTS (:sub_query AND code = '500');
+INSERT INTO c_cashrecycle_mst (:insert_field) SELECT :cmn_set, '501', '0', '0' WHERE NOT EXISTS (:sub_query AND code = '501');
+INSERT INTO c_cashrecycle_mst (:insert_field) SELECT :cmn_set, '502', '0', '0' WHERE NOT EXISTS (:sub_query AND code = '502');
+INSERT INTO c_cashrecycle_mst (:insert_field) SELECT :cmn_set, '503', '0', '0' WHERE NOT EXISTS (:sub_query AND code = '503');
+INSERT INTO c_cashrecycle_mst (:insert_field) SELECT :cmn_set, '504', '0', '0' WHERE NOT EXISTS (:sub_query AND code = '504');
+INSERT INTO c_cashrecycle_mst (:insert_field) SELECT :cmn_set, '505', '0', '0' WHERE NOT EXISTS (:sub_query AND code = '505');
+INSERT INTO c_cashrecycle_mst (:insert_field) SELECT :cmn_set, '506', '0', '0' WHERE NOT EXISTS (:sub_query AND code = '506');
+INSERT INTO c_cashrecycle_mst (:insert_field) SELECT :cmn_set, '507', '0', '0' WHERE NOT EXISTS (:sub_query AND code = '507');
+INSERT INTO c_cashrecycle_mst (:insert_field) SELECT :cmn_set, '508', '0', '0' WHERE NOT EXISTS (:sub_query AND code = '508');
+INSERT INTO c_cashrecycle_mst (:insert_field) SELECT :cmn_set, '509', '0', '0' WHERE NOT EXISTS (:sub_query AND code = '509');
+INSERT INTO c_cashrecycle_mst (:insert_field) SELECT :cmn_set, '600', '0', '0' WHERE NOT EXISTS (:sub_query AND code = '600');
+INSERT INTO c_cashrecycle_mst (:insert_field) SELECT :cmn_set, '700', '0', '0' WHERE NOT EXISTS (:sub_query AND code = '700');
+INSERT INTO c_cashrecycle_mst (:insert_field) SELECT :cmn_set, '701', '5', '0' WHERE NOT EXISTS (:sub_query AND code = '701');
+INSERT INTO c_cashrecycle_mst (:insert_field) SELECT :cmn_set, '702', '0', '0' WHERE NOT EXISTS (:sub_query AND code = '702');
+INSERT INTO c_cashrecycle_mst (:insert_field) SELECT :cmn_set, '703', '10', '0' WHERE NOT EXISTS (:sub_query AND code = '703');
+INSERT INTO c_cashrecycle_mst (:insert_field) SELECT :cmn_set, '704', '10', '0' WHERE NOT EXISTS (:sub_query AND code = '704');
+INSERT INTO c_cashrecycle_mst (:insert_field) SELECT :cmn_set, '705', '10', '0' WHERE NOT EXISTS (:sub_query AND code = '705');
+INSERT INTO c_cashrecycle_mst (:insert_field) SELECT :cmn_set, '706', '10', '0' WHERE NOT EXISTS (:sub_query AND code = '706');
+INSERT INTO c_cashrecycle_mst (:insert_field) SELECT :cmn_set, '707', '10', '0' WHERE NOT EXISTS (:sub_query AND code = '707');
+INSERT INTO c_cashrecycle_mst (:insert_field) SELECT :cmn_set, '708', '10', '0' WHERE NOT EXISTS (:sub_query AND code = '708');
+INSERT INTO c_cashrecycle_mst (:insert_field) SELECT :cmn_set, '709', '10', '0' WHERE NOT EXISTS (:sub_query AND code = '709');
+INSERT INTO c_cashrecycle_mst (:insert_field) SELECT :cmn_set, '800', '0', '0' WHERE NOT EXISTS (:sub_query AND code = '800');
+INSERT INTO c_cashrecycle_mst (:insert_field) SELECT :cmn_set, '900', '0', '0' WHERE NOT EXISTS (:sub_query AND code = '900');
+INSERT INTO c_cashrecycle_mst (:insert_field) SELECT :cmn_set, '901', '0', '0' WHERE NOT EXISTS (:sub_query AND code = '901');
+INSERT INTO c_cashrecycle_mst (:insert_field) SELECT :cmn_set, '902', '0', '0' WHERE NOT EXISTS (:sub_query AND code = '902');
+INSERT INTO c_cashrecycle_mst (:insert_field) SELECT :cmn_set, '903', '0', '0' WHERE NOT EXISTS (:sub_query AND code = '903');
+INSERT INTO c_cashrecycle_mst (:insert_field) SELECT :cmn_set, '904', '0', '0' WHERE NOT EXISTS (:sub_query AND code = '904');
+INSERT INTO c_cashrecycle_mst (:insert_field) SELECT :cmn_set, '905', '0', '0' WHERE NOT EXISTS (:sub_query AND code = '905');
+INSERT INTO c_cashrecycle_mst (:insert_field) SELECT :cmn_set, '906', '0', '0' WHERE NOT EXISTS (:sub_query AND code = '906');
+INSERT INTO c_cashrecycle_mst (:insert_field) SELECT :cmn_set, '907', '0', '0' WHERE NOT EXISTS (:sub_query AND code = '907');
+INSERT INTO c_cashrecycle_mst (:insert_field) SELECT :cmn_set, '908', '0', '0' WHERE NOT EXISTS (:sub_query AND code = '908');
+INSERT INTO c_cashrecycle_mst (:insert_field) SELECT :cmn_set, '909', '0', '0' WHERE NOT EXISTS (:sub_query AND code = '909');
+INSERT INTO c_cashrecycle_mst (:insert_field) SELECT :cmn_set, '1000', '0', '0' WHERE NOT EXISTS (:sub_query AND code = '1000');
+INSERT INTO c_cashrecycle_mst (:insert_field) SELECT :cmn_set, '1100', '0', '0' WHERE NOT EXISTS (:sub_query AND code = '1100');
+INSERT INTO c_cashrecycle_mst (:insert_field) SELECT :cmn_set, '1200', '0', '0' WHERE NOT EXISTS (:sub_query AND code = '1200');
+INSERT INTO c_cashrecycle_mst (:insert_field) SELECT :cmn_set, '1400', '0', '0' WHERE NOT EXISTS (:sub_query AND code = '1400');
+INSERT INTO c_cashrecycle_mst (:insert_field) SELECT :cmn_set, '1500', '0', '0' WHERE NOT EXISTS (:sub_query AND code = '1500');
+INSERT INTO c_cashrecycle_mst (:insert_field) SELECT :cmn_set, '1600', '0', '0' WHERE NOT EXISTS (:sub_query AND code = '1600');
+INSERT INTO c_cashrecycle_mst (:insert_field) SELECT :cmn_set, '1700', '0', '0' WHERE NOT EXISTS (:sub_query AND code = '1700');
+INSERT INTO c_cashrecycle_mst (:insert_field) SELECT :cmn_set, '1800', '0', '0' WHERE NOT EXISTS (:sub_query AND code = '1800');

@@ -1,0 +1,782 @@
+BEGIN;
+TRUNCATE p_appl_mst;
+
+\set insert_field 'appl_grp_cd, appl_cd, call_type, name, position, param1, param2, param3, param4, param5, recog_grp_cd, pause_flg'
+
+\set sub_query 'SELECT * FROM p_appl_mst WHERE '
+
+-- アプリマスタ
+-- for 「regs」
+INSERT INTO p_appl_mst (:insert_field) SELECT '1', '1', '1', 'print', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1', '2', '1', 'drw', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1' AND appl_cd = '2');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1', '3', '1', 'print', '/apl', '#TPRX_HOME#', '2', NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1' AND appl_cd = '3');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1', '4', '1', 'print', '/apl', '#TPRX_HOME#', '3', NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1' AND appl_cd = '4');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1', '6', '1', 'print', '/apl', '#TPRX_HOME#', '5', NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1' AND appl_cd = '6');
+
+
+-- for 「regs_opt_dual」
+INSERT INTO p_appl_mst (:insert_field) SELECT '2', '1', '1', 'spool', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '2', '2', '1', 'acx', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2' AND appl_cd = '2');
+INSERT INTO p_appl_mst (:insert_field) SELECT '2', '3', '1', 'jpo', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2' AND appl_cd = '3');
+INSERT INTO p_appl_mst (:insert_field) SELECT '2', '4', '1', 'scl', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2' AND appl_cd = '4');
+INSERT INTO p_appl_mst (:insert_field) SELECT '2', '5', '1', 'rwc', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2' AND appl_cd = '5');
+INSERT INTO p_appl_mst (:insert_field) SELECT '2', '6', '1', 'sgscl1', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2' AND appl_cd = '6');
+INSERT INTO p_appl_mst (:insert_field) SELECT '2', '7', '1', 'sgscl2', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2' AND appl_cd = '7');
+INSERT INTO p_appl_mst (:insert_field) SELECT '2', '8', '1', 's2pr', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2' AND appl_cd = '8');
+INSERT INTO p_appl_mst (:insert_field) SELECT '2', '9', '1', 'stpr2', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2' AND appl_cd = '9');
+INSERT INTO p_appl_mst (:insert_field) SELECT '2', '10', '1', 'fb_SelfMovie', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2' AND appl_cd = '10');
+INSERT INTO p_appl_mst (:insert_field) SELECT '2', '11', '1', 'mp1', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2' AND appl_cd = '11');
+INSERT INTO p_appl_mst (:insert_field) SELECT '2', '12', '1', 'multi', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2' AND appl_cd = '12');
+INSERT INTO p_appl_mst (:insert_field) SELECT '2', '13', '1', 'fb_Movie', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2' AND appl_cd = '13');
+INSERT INTO p_appl_mst (:insert_field) SELECT '2', '14', '1', 'custreal', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2' AND appl_cd = '14');
+INSERT INTO p_appl_mst (:insert_field) SELECT '2', '15', '1', 'custreal2', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2' AND appl_cd = '15');
+INSERT INTO p_appl_mst (:insert_field) SELECT '2', '16', '1', 'custreal_netdoa', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2' AND appl_cd = '16');
+INSERT INTO p_appl_mst (:insert_field) SELECT '2', '17', '1', 'qcConnect', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2' AND appl_cd = '17');
+INSERT INTO p_appl_mst (:insert_field) SELECT '2', '18', '1', 'credit', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2' AND appl_cd = '18');
+INSERT INTO p_appl_mst (:insert_field) SELECT '2', '19', '1', 'nttd_preca', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2' AND appl_cd = '19');
+INSERT INTO p_appl_mst (:insert_field) SELECT '2', '20', '1', 'sqrc', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2' AND appl_cd = '20');
+INSERT INTO p_appl_mst (:insert_field) SELECT '2', '21', '1', 'trk_preca', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2' AND appl_cd = '21');
+INSERT INTO p_appl_mst (:insert_field) SELECT '2', '22', '1', 'repica', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2' AND appl_cd = '22');
+INSERT INTO p_appl_mst (:insert_field) SELECT '2', '23', '1', 'custreal2_pa', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2' AND appl_cd = '23');
+INSERT INTO p_appl_mst (:insert_field) SELECT '2', '24', '1', 'custreal_odbc', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2' AND appl_cd = '24');
+INSERT INTO p_appl_mst (:insert_field) SELECT '2', '25', '1', 'cogca', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2' AND appl_cd = '25');
+INSERT INTO p_appl_mst (:insert_field) SELECT '2', '27', '1', 'vega3000', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2' AND appl_cd = '27');
+INSERT INTO p_appl_mst (:insert_field) SELECT '2', '28', '1', 'dpoint', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2' AND appl_cd = '28');
+INSERT INTO p_appl_mst (:insert_field) SELECT '2', '29', '1', 'ajs_emoney', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2' AND appl_cd = '29');
+INSERT INTO p_appl_mst (:insert_field) SELECT '2', '30', '1', 'valuecard', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2' AND appl_cd = '30');
+INSERT INTO p_appl_mst (:insert_field) SELECT '2', '31', '1', 'rpoint', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2' AND appl_cd = '31');
+INSERT INTO p_appl_mst (:insert_field) SELECT '2', '32', '1', 'tpoint', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2' AND appl_cd = '32');
+INSERT INTO p_appl_mst (:insert_field) SELECT '2', '33', '1', 'tomoIF', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2' AND appl_cd = '33');
+INSERT INTO p_appl_mst (:insert_field) SELECT '2', '34', '1', 'custcurlcomm', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2' AND appl_cd = '34');
+
+-- for 「stropncls」(開設処理用)
+INSERT INTO p_appl_mst (:insert_field) SELECT '4', '1', '1', 'stropncls', '/apl', '#TPRX_HOME#', '3', NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '4' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '4', '2', '1', 'jpo', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '4' AND appl_cd = '2');
+
+-- for 「retotal」
+INSERT INTO p_appl_mst (:insert_field) SELECT '5', '1', '1', 'retotal', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '5' AND appl_cd = '1');
+
+-- for 「menu」
+INSERT INTO p_appl_mst (:insert_field) SELECT '6', '1', '1', 'acxreal', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '6' AND appl_cd = '1');
+
+-- for 「startup」
+INSERT INTO p_appl_mst (:insert_field) SELECT '7', '1', '1', 'csvsend', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '7' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '7', '2', '1', 'iis', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '7' AND appl_cd = '2');
+INSERT INTO p_appl_mst (:insert_field) SELECT '7', '3', '1', 'tprapl_reglog', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '7' AND appl_cd = '3');
+INSERT INTO p_appl_mst (:insert_field) SELECT '7', '4', '1', 'mobile', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '7' AND appl_cd = '4');
+INSERT INTO p_appl_mst (:insert_field) SELECT '7', '5', '1', 'stpr', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '7' AND appl_cd = '5');
+INSERT INTO p_appl_mst (:insert_field) SELECT '7', '6', '1', 'pmod', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '7' AND appl_cd = '6');
+--INSERT INTO p_appl_mst (:insert_field) SELECT '7', '7', '1', 'sale_com_mm', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '7' AND appl_cd = '7');
+INSERT INTO p_appl_mst (:insert_field) SELECT '7', '8', '1', 'menteserver', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '7' AND appl_cd = '8');
+INSERT INTO p_appl_mst (:insert_field) SELECT '7', '9', '1', 'menteclient', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '7' AND appl_cd = '9');
+INSERT INTO p_appl_mst (:insert_field) SELECT '7', '10', '1', 'sound_con', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '7' AND appl_cd = '10');
+INSERT INTO p_appl_mst (:insert_field) SELECT '7', '11', '1', 'mcftp', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '7' AND appl_cd = '11');
+INSERT INTO p_appl_mst (:insert_field) SELECT '7', '12', '1', 'upd_con', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '7' AND appl_cd = '12');
+INSERT INTO p_appl_mst (:insert_field) SELECT '7', '13', '1', 'ecoaserver', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '7' AND appl_cd = '13');
+INSERT INTO p_appl_mst (:insert_field) SELECT '7', '14', '1', 'kill_proc', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '7' AND appl_cd = '14');
+INSERT INTO p_appl_mst (:insert_field) SELECT '7', '15', '1', 'keyb', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '7' AND appl_cd = '15');
+INSERT INTO p_appl_mst (:insert_field) SELECT '7', '16', '1', 'multi', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '7' AND appl_cd = '16');
+INSERT INTO p_appl_mst (:insert_field) SELECT '7', '17', '1', 'icc', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '7' AND appl_cd = '17');
+INSERT INTO p_appl_mst (:insert_field) SELECT '7', '18', '1', 'drugrevs', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '7' AND appl_cd = '18');
+INSERT INTO p_appl_mst (:insert_field) SELECT '7', '19', '1', 'tprapl_tprt', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '7' AND appl_cd = '19');
+INSERT INTO p_appl_mst (:insert_field) SELECT '7', '20', '1', 'jpo', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '7' AND appl_cd = '20');
+INSERT INTO p_appl_mst (:insert_field) SELECT '7', '21', '1', 'pbchg_log_send', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '7' AND appl_cd = '21');
+INSERT INTO p_appl_mst (:insert_field) SELECT '7', '22', '1', 'ftp', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '7' AND appl_cd = '22');
+INSERT INTO p_appl_mst (:insert_field) SELECT '7', '23', '1', 'spqcs', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '7' AND appl_cd = '23');
+INSERT INTO p_appl_mst (:insert_field) SELECT '7', '24', '1', 'spqcc', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '7' AND appl_cd = '24');
+INSERT INTO p_appl_mst (:insert_field) SELECT '7', '25', '1', 'pbchg_test_server', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '7' AND appl_cd = '25');
+INSERT INTO p_appl_mst (:insert_field) SELECT '7', '26', '1', 'WizS', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '7' AND appl_cd = '26');
+INSERT INTO p_appl_mst (:insert_field) SELECT '7', '27', '1', 'qcSelectServer', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '7' AND appl_cd = '27');
+INSERT INTO p_appl_mst (:insert_field) SELECT '7', '28', '1', 'moviesend', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '7' AND appl_cd = '28');
+INSERT INTO p_appl_mst (:insert_field) SELECT '7', '29', '1', 'credit', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '7' AND appl_cd = '29');
+INSERT INTO p_appl_mst (:insert_field) SELECT '7', '30', '1', 'qcConnectServer', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '7' AND appl_cd = '30');
+INSERT INTO p_appl_mst (:insert_field) SELECT '7', '31', '1', 'custreal_nec', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '7' AND appl_cd = '31');
+INSERT INTO p_appl_mst (:insert_field) SELECT '7', '32', '1', 'masr', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '7' AND appl_cd = '32');
+INSERT INTO p_appl_mst (:insert_field) SELECT '7', '33', '1', 'multi_tmn', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '7' AND appl_cd = '33');
+INSERT INTO p_appl_mst (:insert_field) SELECT '7', '34', '1', 'multi_glory', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '7' AND appl_cd = '34');
+INSERT INTO p_appl_mst (:insert_field) SELECT '7', '35', '1', 'suica', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '7' AND appl_cd = '35');
+INSERT INTO p_appl_mst (:insert_field) SELECT '7', '36', '1', 'netdoa_pqs', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '7' AND appl_cd = '36');
+INSERT INTO p_appl_mst (:insert_field) SELECT '7', '37', '1', 'tpoint_ftp', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '7' AND appl_cd = '37');
+INSERT INTO p_appl_mst (:insert_field) SELECT '7', '38', '1', 'print_com', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '7' AND appl_cd = '38');
+INSERT INTO p_appl_mst (:insert_field) SELECT '7', '39', '1', 'report', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '7' AND appl_cd = '39');
+INSERT INTO p_appl_mst (:insert_field) SELECT '7', '40', '1', 'colordsp_msg', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '7' AND appl_cd = '40');
+INSERT INTO p_appl_mst (:insert_field) SELECT '7', '41', '1', 'loop_cnct', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '7' AND appl_cd = '41');
+INSERT INTO p_appl_mst (:insert_field) SELECT '7', '42', '1', 'barcode_pay', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '7' AND appl_cd = '42');
+INSERT INTO p_appl_mst (:insert_field) SELECT '7', '43', '1', 'taxfree', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '7' AND appl_cd = '43');
+INSERT INTO p_appl_mst (:insert_field) SELECT '7', '44', '1', 'mail_sender', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '7' AND appl_cd = '44');
+INSERT INTO p_appl_mst (:insert_field) SELECT '7', '45', '1', 'multi_tmn_vega3000', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '7' AND appl_cd = '45');
+INSERT INTO p_appl_mst (:insert_field) SELECT '7', '46', '1', 'updzip', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '7' AND appl_cd = '46');
+INSERT INTO p_appl_mst (:insert_field) SELECT '7', '47', '1', 'basket_server', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '7' AND appl_cd = '47');
+INSERT INTO p_appl_mst (:insert_field) SELECT '7', '48', '1', 'floating_staff', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '7' AND appl_cd = '48');
+INSERT INTO p_appl_mst (:insert_field) SELECT '7', '49', '1', 'net_receipt', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '7' AND appl_cd = '49');
+INSERT INTO p_appl_mst (:insert_field) SELECT '7', '50', '1', 'hi_touch_rcv', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '7' AND appl_cd = '50');
+INSERT INTO p_appl_mst (:insert_field) SELECT '7', '51', '1', 'acttrigger', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '7' AND appl_cd = '51');
+
+-- for 「simple2stf」
+INSERT INTO p_appl_mst (:insert_field) SELECT '8', '1', '1', 'spool', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '8' AND appl_cd = '1');
+--INSERT INTO p_appl_mst (:insert_field) SELECT '8', '2', '1', 'cashier', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '8' AND appl_cd = '2');
+
+-- for 「simple2stf_dual」
+INSERT INTO p_appl_mst (:insert_field) SELECT '9', '1', '1', 'spool', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '9' AND appl_cd = '1');
+
+-- for 「bank_prg」
+INSERT INTO p_appl_mst (:insert_field) SELECT '10', '1', '1', 'bankprg', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '10' AND appl_cd = '1');
+
+-- for 「FenceOver」
+INSERT INTO p_appl_mst (:insert_field) SELECT '11', '1', '1', 'custd_srch', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '11' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '11', '2', '1', 'custd_hist', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '11' AND appl_cd = '2');
+INSERT INTO p_appl_mst (:insert_field) SELECT '11', '3', '1', 'custd_mtg', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '11' AND appl_cd = '3');
+INSERT INTO p_appl_mst (:insert_field) SELECT '11', '4', '1', 'prg_cust_popup', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '11' AND appl_cd = '4');
+INSERT INTO p_appl_mst (:insert_field) SELECT '11', '5', '1', 'cd_contents', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '11' AND appl_cd = '5');
+INSERT INTO p_appl_mst (:insert_field) SELECT '11', '6', '1', 'reserv_conf', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '11' AND appl_cd = '6');
+INSERT INTO p_appl_mst (:insert_field) SELECT '11', '7', '1', 'chprice', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '11' AND appl_cd = '7');
+INSERT INTO p_appl_mst (:insert_field) SELECT '11', '8', '1', 'autotest', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '11' AND appl_cd = '8');
+INSERT INTO p_appl_mst (:insert_field) SELECT '11', '9', '1', 'pbchg_util', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '11' AND appl_cd = '9');
+INSERT INTO p_appl_mst (:insert_field) SELECT '11', '10', '1', 'Cons', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '11' AND appl_cd = '10');
+INSERT INTO p_appl_mst (:insert_field) SELECT '11', '11', '1', 'DSft', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '11' AND appl_cd = '11');
+INSERT INTO p_appl_mst (:insert_field) SELECT '11', '12', '1', 'FMente', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '11' AND appl_cd = '12');
+INSERT INTO p_appl_mst (:insert_field) SELECT '11', '13', '1', 'acx_recalc_g', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '11' AND appl_cd = '13');
+INSERT INTO p_appl_mst (:insert_field) SELECT '11', '14', '1', 'acx_recalc', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '11' AND appl_cd = '14');
+
+-- for 「EjConf」
+INSERT INTO p_appl_mst (:insert_field) SELECT '12', '1', '1', 'fb_Movie', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '12' AND appl_cd = '1');
+
+-- for 「CashRecycle」
+INSERT INTO p_appl_mst (:insert_field) SELECT '13', '1', '1', 'cash_recycle', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '13' AND appl_cd = '1');
+
+-- for 「stropncls」(閉設処理用)
+INSERT INTO p_appl_mst (:insert_field) SELECT '14', '1', '1', 'stropncls', '/apl', '#TPRX_HOME#', '5', NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '14' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '14', '2', '1', 'jpo', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '14' AND appl_cd = '2');
+
+-- for 「another1」
+INSERT INTO p_appl_mst (:insert_field) SELECT '15', '1', '1', 'history_get', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '15' AND appl_cd = '1');
+
+-- for 「another2」
+INSERT INTO p_appl_mst (:insert_field) SELECT '16', '1', '1', 'freq', '/apl', '#TPRX_HOME#', '#DEV_ID#', NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '16' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '17', '1', '1', 'cust_enq_clr', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '17' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '18', '1', '1', 'resimslog', '/apl', '#TPRX_HOME#', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '18' AND appl_cd = '1');
+
+-- (メインメニュー／お気に入り画面用)
+INSERT INTO p_appl_mst (:insert_field) SELECT '101', '1', '2', 'maincb_1_clicked', '', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '101' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '121', '1', '2', 'maincb_sw_clicked', '', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '121' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '122', '1', '2', 'DispSoundCtlDlg', '', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '122' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '123', '1', '2', 'maincb_27_clicked', '', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '123' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '124', '1', '2', 'DispPowerCtlDlg', '', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '124' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '125', '1', '2', 'Memo_clicked', '', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '125' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '126', '1', '2', 'TMemo_clicked', '', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '126' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '127', '1', '2', 'maincb_34_clicked', '', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '127' AND appl_cd = '1');
+
+--maincb_2_clicked (opncls_main(), TPRTST_STATUS02, 0x0200)
+INSERT INTO p_appl_mst (:insert_field) SELECT '102', '1', '2', 'maincb_2_clicked', '', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '102' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '103', '1', '2', 'maincb_3_clicked', '', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '103' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '104', '1', '2', 'maincb_4_clicked', '', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '104' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '105', '1', '2', 'maincb_5_clicked', '', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '105' AND appl_cd = '1');
+
+-- sale_com_mmの画面起動は関数(sale_clicked())を使用する：モジュール自体はスタートアップ時に起動されて待機状態にある
+INSERT INTO p_appl_mst (:insert_field) SELECT '107', '1', '2', 'maincb_7_clicked', '', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '107' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '108', '1', '2', 'maincb_8_clicked', '', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '108' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '109', '1', '2', 'maincb_9_clicked', '', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '109' AND appl_cd = '1');
+
+-- pmodの画面起動は関数(maincb_11_clicked()、pmod_clicked())を使用する：モジュール自体はスタートアップ時に起動されて待機状態にある
+INSERT INTO p_appl_mst (:insert_field) SELECT '2816', '1', '2', 'maincb_11_clicked', 'syst', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2816' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '112', '1', '2', 'maincb_12_clicked', 'syst', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '112' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '113', '1', '2', 'maincb_13_clicked', 'syst', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '113' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '4352', '1', '1', 'mente', '/apl', '#TPRX_HOME#', '#DEV_ID#', 'usetup', '#FNC_CODE#', NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '4352' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '116', '1', '2', 'maincb_16_clicked', 'syst', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '116' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '117', '1', '2', 'maincb_17_clicked', 'syst', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '117' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '26112', '1', '2', 'mente', '/apl', '#TPRX_HOME#', '#DEV_ID#', 'mente', '#FNC_CODE#', NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '26112' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '119', '1', '2', 'Calibration', 'syst', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '119' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '120', '1', '2', 'ShowHiddenBtn', 'syst', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '120' AND appl_cd = '1');
+
+-- 棚卸, 生産, 発注モード用
+INSERT INTO p_appl_mst (:insert_field) SELECT '128', '1', '2', 'bmodecb_2_clicked', '', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '128' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '129', '1', '2', 'bmodecb_3_clicked', '', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '129' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '130', '1', '2', 'bmodecb_10_clicked', '', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '130' AND appl_cd = '1');
+
+INSERT INTO p_appl_mst (:insert_field) SELECT '131', '1', '2', 'maincb_14_clicked', 'syst', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '131' AND appl_cd = '1');
+
+-- アプリマスタ【設定メイン画面用
+
+-- 1ページ目
+INSERT INTO p_appl_mst (:insert_field) SELECT '201', '1', '2', 'prg_plu_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '201' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '202', '1', '2', 'prg_plan_sp_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '202' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '203', '1', '2', 'prg_plan_mm_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '203' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '204', '1', '2', 'prg_plan_sm_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '204' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '205', '1', '2', 'prg_preset_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '205' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '206', '1', '2', 'prg_mdl_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '206' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '207', '1', '2', 'prg_sml_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '207' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '208', '1', '2', 'prg_catdsc_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '208' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '209', '1', '2', 'prg_staff_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '209' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '210', '1', '2', 'prg_zone_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '210' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '211', '1', '2', 'prg_cust_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '211' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '212', '1', '2', 'prg_anvkind_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '212' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '213', '1', '2', 'prg_svscls_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '213' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '214', '1', '2', 'prg_ImgClsChg_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '214' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '215', '1', '2', 'prg_plan_mdl_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '215' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '216', '1', '2', 'prg_plan_sml_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '216' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '217', '1', '2', 'prg_fspsch_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '217' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '218', '1', '2', 'sale_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '218' AND appl_cd = '1');
+
+INSERT INTO p_appl_mst (:insert_field) SELECT '221', '1', '2', 'set_trm_clicked', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '221' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '222', '1', '2', 'prg_kopt_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '222' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '223', '1', '2', 'prg_ctrl_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '223' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '224', '1', '2', 'prg_instre_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '224' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '225', '1', '1', 'pmod_regctrl', '/apl', '#TPRX_HOME#', '#DEV_ID#', NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '225' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '226', '1', '2', 'prg_img_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '226' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '227', '1', '2', 'prg_tax_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '227' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '228', '1', '2', 'prg_message_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '228' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '229', '1', '2', 'prg_datetime_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '229' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '230', '1', '2', 'prg_cust_trm_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '230' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '231', '1', '2', 'prg_scanplu_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '231' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '232', '1', '2', 'prg_plan_point_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '232' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '233', '1', '2', 'prg_post_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '233' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '234', '1', '2', 'prg_decrbt_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '234' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '235', '1', '2', 'prg_hqftptime_0_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '235' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '236', '1', '2', 'prg_hqftptime_1_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '236' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '237', '1', '2', 'prg_cust_auto_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '237' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '238', '1', '2', 'prg_cust_chg_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '238' AND appl_cd = '1');
+
+INSERT INTO p_appl_mst (:insert_field) SELECT '241', '1', '2', 'prg_sprk_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '241' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '242', '1', '2', 'prg_taxchg_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '242' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '243', '1', '2', 'prg_mcardmain_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '243' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '244', '1', '2', 'prg_netwlpr_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '244' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '245', '1', '2', 'prg_crdt_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '245' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '246', '1', '2', 'prg_taxchg_nonplu_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '246' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '247', '1', '2', 'prg_intax_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '247' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '248', '1', '2', 'prg_fipmsg_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '248' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '249', '1', '2', 'prg_plan_msg_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '249' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '250', '1', '2', 'prg_plan_fip_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '250' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '251', '1', '2', 'prg_maker_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '251' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '252', '1', '2', 'prg_prom_sch_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '252' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '253', '1', '2', 'prg_prom_item_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '253' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '254', '1', '2', 'prg_WavSel_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '254' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '255', '1', '2', 'prg_cash_recycle_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '255' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '257', '1', '2', 'prg_jabar_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '257' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '258', '1', '2', 'prg_memo_regident_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '258' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '259', '1', '2', 'prg_memo_contact_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '259' AND appl_cd = '1');
+
+INSERT INTO p_appl_mst (:insert_field) SELECT '261', '1', '2', 'prg_taxchg_reserve_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '261' AND appl_cd = '1');
+
+-- (ユーザーメニュー設定関連)
+INSERT INTO p_appl_mst (:insert_field) SELECT '271', '1', '2', 'usermenu_set', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '271' AND appl_cd = '1');
+
+-- (生産者品目マスタ設定)
+INSERT INTO p_appl_mst (:insert_field) SELECT '272', '1', '2', 'prg_producer_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '272' AND appl_cd = '1');
+
+-- (店舗情報)
+INSERT INTO p_appl_mst (:insert_field) SELECT '273', '1', '2', 'prg_stre_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '273' AND appl_cd = '1');
+
+-- (ダイアログ)
+INSERT INTO p_appl_mst (:insert_field) SELECT '274', '1', '2', 'prg_dialog', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '274' AND appl_cd = '1');
+
+-- (ファイル確認)
+INSERT INTO p_appl_mst (:insert_field) SELECT '281', '1', '1', 'fcon', '/apl', '#TPRX_HOME#', '#DEV_ID#', NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '281' AND appl_cd = '1');
+
+-- (件数確認)
+INSERT INTO p_appl_mst (:insert_field) SELECT '282', '1', '1', 'tcount', '/apl', '#TPRX_HOME#', '#DEV_ID#', NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '282' AND appl_cd = '1');
+
+-- (小計値下スケジュール)
+INSERT INTO p_appl_mst (:insert_field) SELECT '290', '1', '2', 'prg_plan_subtsch_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '290' AND appl_cd = '1');
+
+-- (自動開閉店)
+INSERT INTO p_appl_mst (:insert_field) SELECT '291', '1', '2', 'prg_auto_stropncls_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '291' AND appl_cd = '1');
+
+-- (区分)
+INSERT INTO p_appl_mst (:insert_field) SELECT '292', '1', '2', 'prg_divide_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '292' AND appl_cd = '1');
+
+-- (酒品目）
+INSERT INTO p_appl_mst (:insert_field) SELECT '341', '1', '2', 'prg_liqritem_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '341' AND appl_cd = '1');
+
+-- (酒税）
+INSERT INTO p_appl_mst (:insert_field) SELECT '342', '1', '2', 'prg_liqrtax_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '342' AND appl_cd = '1');
+
+-- (店舗情報)
+-- (店舗情報)
+-- アプリマスタ【プリセット設定メニュー画面用
+-- 1ページ目
+INSERT INTO p_appl_mst (:insert_field) SELECT '301', '1', '2', 'preset_104reg_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '301' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '302', '1', '2', 'preset_104stl_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '302' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '303', '1', '2', 'preset_57stl_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '303' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '304', '1', '2', 'preset_tower_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '304' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '305', '1', '2', 'preset_desk_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '305' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '306', '1', '2', 'preset_jrdesk_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '306' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '307', '1', '2', 'preset_com_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '307' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '308', '1', '2', 'preset_2800i_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '308' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '309', '1', '2', 'preset_2800im_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '309' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '310', '1', '2', 'preset_2800tower_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '310' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '320', '1', '2', 'preset_52desk_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '320' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '321', '1', '2', 'preset_52tower_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '321' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '322', '1', '2', 'preset_ext_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '322' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '323', '1', '2', 'preset_ext_itm_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '323' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '324', '1', '2', 'preset_ext_stl_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '324' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '325', '1', '2', 'preset_ext_reg_assist_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '325' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '326', '1', '2', 'preset_ext_assist_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '326' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '327', '1', '2', 'preset_ext_payment_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '327' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '328', '1', '2', 'preset_selfmente_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '328' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '329', '1', '2', 'preset_35desk_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '329' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '343', '1', '2', 'preset_35pdesk_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '343' AND appl_cd = '1');
+
+-- (トリガーキー3752)
+INSERT INTO p_appl_mst (:insert_field) SELECT '311', '1', '2', 'PresetMente', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '311' AND appl_cd = '1');
+
+-- (区分設定)
+INSERT INTO p_appl_mst (:insert_field) SELECT '330', '1', '2', 'devide_receive', 'pmod', '1', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '330' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '331', '1', '2', 'devide_pay', 'pmod', '2', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '331' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '332', '1', '2', 'devide_creditSale', 'pmod', '3', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '332' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '333', '1', '2', 'devide_priceCut', 'pmod', '4', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '333' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '334', '1', '2', 'devide_discount', 'pmod', '5', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '334' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '335', '1', '2', 'devide_return', 'pmod', '6', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '335' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '336', '1', '2', 'devide_cancel', 'pmod', '7', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '336' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '337', '1', '2', 'devide_revice', 'pmod', '8', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '337' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '338', '1', '2', 'devide_closing', 'pmod', '9', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '338' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '339', '1', '2', 'devide_changerClosing', 'pmod', '10', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '339' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '340', '1', '2', 'devide_scrap', 'pmod', '11', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '340' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '560', '1', '2', 'devide_notechk1', 'pmod', '12', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '560' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '561', '1', '2', 'devide_notechk2', 'pmod', '13', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '561' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '562', '1', '2', 'devide_notechk3', 'pmod', '14', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '562' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '563', '1', '2', 'devide_notechk4', 'pmod', '15', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '563' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '564', '1', '2', 'devide_notechk5', 'pmod', '16', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '564' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '565', '1', '2', 'devide_notecha1', 'pmod', '17', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '565' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '566', '1', '2', 'devide_notecha2', 'pmod', '18', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '566' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '567', '1', '2', 'devide_notecha3', 'pmod', '19', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '567' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '568', '1', '2', 'devide_notecha4', 'pmod', '20', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '568' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '569', '1', '2', 'devide_notecha5', 'pmod', '21', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '569' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '570', '1', '2', 'devide_notecha6', 'pmod', '22', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '570' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '571', '1', '2', 'devide_notecha7', 'pmod', '23', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '571' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '572', '1', '2', 'devide_notecha8', 'pmod', '24', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '572' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '573', '1', '2', 'devide_notecha9', 'pmod', '25', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '573' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '574', '1', '2', 'devide_notecha10', 'pmod', '26', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '574' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '575', '1', '2', 'devide_notecha11', 'pmod', '27', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '575' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '576', '1', '2', 'devide_notecha12', 'pmod', '28', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '576' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '577', '1', '2', 'devide_notecha13', 'pmod', '29', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '577' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '578', '1', '2', 'devide_notecha14', 'pmod', '30', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '578' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '579', '1', '2', 'devide_notecha15', 'pmod', '31', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '579' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '580', '1', '2', 'devide_notecha16', 'pmod', '32', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '580' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '581', '1', '2', 'devide_notecha17', 'pmod', '33', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '581' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '582', '1', '2', 'devide_notecha18', 'pmod', '34', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '582' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '583', '1', '2', 'devide_notecha19', 'pmod', '35', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '583' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '584', '1', '2', 'devide_notecha20', 'pmod', '36', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '584' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '585', '1', '2', 'devide_notecha21', 'pmod', '37', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '585' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '586', '1', '2', 'devide_notecha22', 'pmod', '38', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '586' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '587', '1', '2', 'devide_notecha23', 'pmod', '39', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '587' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '588', '1', '2', 'devide_notecha24', 'pmod', '40', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '588' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '589', '1', '2', 'devide_notecha25', 'pmod', '41', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '589' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '590', '1', '2', 'devide_notechk26', 'pmod', '42', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '590' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '591', '1', '2', 'devide_notechk27', 'pmod', '43', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '591' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '592', '1', '2', 'devide_notechk28', 'pmod', '44', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '592' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '593', '1', '2', 'devide_notechk29', 'pmod', '45', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '593' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '594', '1', '2', 'devide_notechk30', 'pmod', '46', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '594' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '595', '1', '2', 'devide_prcchg', 'pmod', '47', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '595' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '596', '1', '2', 'devide_drw', 'pmod', '48', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '596' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '599', '1', '2', 'devide_otherincome', 'pmod', '52', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '599' AND appl_cd = '1');
+
+
+-- (従業員設定)
+INSERT INTO p_appl_mst (:insert_field) SELECT '350', '1', '2', 'staff_set', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '350' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '351', '1', '2', 'staff_auth_set', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '351' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '352', '1', '2', 'staff_barcd_prn', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '352' AND appl_cd = '1');
+
+-- (顧客関連設定)
+INSERT INTO p_appl_mst (:insert_field) SELECT '390', '1', '2', 'cust_customer', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '390' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '391', '1', '2', 'cust_nologplu', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '391' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '392', '1', '2', 'cust_point_xtimes', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '392' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '393', '1', '2', 'cust_service', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '393' AND appl_cd = '1');
+--INSERT INTO p_appl_mst (:insert_field) SELECT '394', '1', '2', 'cust_loyalty', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '394' AND appl_cd = '1');
+--INSERT INTO p_appl_mst (:insert_field) SELECT '395', '1', '2', 'cust_coupon', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '395' AND appl_cd = '1');
+
+-- (メッセージ)
+INSERT INTO p_appl_mst (:insert_field) SELECT '360', '1', '2', 'message_master', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '360' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '361', '1', '2', 'message_layout', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '361' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '362', '1', '2', 'message_schedule', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '362' AND appl_cd = '1');
+
+-- (ｲﾒｰｼﾞ/ﾌｧﾝｸｼｮﾝ)
+INSERT INTO p_appl_mst (:insert_field) SELECT '370', '1', '2', 'imgfnc_image', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '370' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '371', '1', '2', 'imgfnc_funtion', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '371' AND appl_cd = '1');
+
+-- (キャッシュリサイクル関連)
+INSERT INTO p_appl_mst (:insert_field) SELECT '380', '1', '2', 'cashrecycle_set', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '380' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '381', '1', '2', 'cashrecycle_mng', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '381' AND appl_cd = '1');
+
+-- コード決済実績分け
+INSERT INTO p_appl_mst (:insert_field) SELECT '382', '1', '2', 'prg_cdpay_fnc', 'pmod', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '382' AND appl_cd = '1');
+
+-- アプリマスタ【速報点検精算メイン画面用
+--【売上速報】
+-- 1ページ目
+INSERT INTO p_appl_mst (:insert_field) SELECT '401', '1', '2', 'bult_mcls_main_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '401' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '402', '1', '2', 'scls_main_mm_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '402' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '403', '1', '2', 'bult_plu_main_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '403' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '404', '1', '2', 'bult_reg_main_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '404' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '405', '1', '2', 'bult_staff_main_mm_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '405' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '406', '1', '2', 'bult_brgn_main_mm_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '406' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '526', '1', '2', 'acr_reg_main_mm_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '526' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '527', '1', '2', 'acx_reg_main_mm_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '527' AND appl_cd = '1');
+--2ページ目
+INSERT INTO p_appl_mst (:insert_field) SELECT '411', '1', '2', 'bult_mbrttl_main_mm_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '411' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '414', '1', '2', 'bult_cust_main_mm_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '414' AND appl_cd = '1');
+
+-- 
+--【売上点検】
+--1ページ目
+INSERT INTO p_appl_mst (:insert_field) SELECT '415', '1', '2', 'regist_day_acnt_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '415' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '416', '1', '2', 'mm_ejconf_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '416' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '421', '1', '2', 'store_day_acnt_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '421' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '422', '1', '2', 'store_total_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '422' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '423', '1', '2', 'list_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '423' AND appl_cd = '1');
+
+-- 売上点検 > 店舗日計
+INSERT INTO p_appl_mst (:insert_field) SELECT '419',  '1', '2', 'store_day_deal_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '419' AND appl_cd = '1'); -- 取引明細関連
+INSERT INTO p_appl_mst (:insert_field) SELECT '420',  '1', '2', 'store_day_cls_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '420' AND appl_cd = '1'); -- 分類別
+INSERT INTO p_appl_mst (:insert_field) SELECT '425',  '1', '2', 'store_day_plu_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '425' AND appl_cd = '1'); -- 商品別
+INSERT INTO p_appl_mst (:insert_field) SELECT '426',  '1', '2', 'store_day_sch_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '426' AND appl_cd = '1'); -- スケジュール別
+INSERT INTO p_appl_mst (:insert_field) SELECT '427',  '1', '2', 'store_day_time_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '427' AND appl_cd = '1'); -- 時間帯
+INSERT INTO p_appl_mst (:insert_field) SELECT '428',  '1', '2', 'store_day_chg_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '428' AND appl_cd = '1'); -- 釣銭明細
+INSERT INTO p_appl_mst (:insert_field) SELECT '429',  '1', '2', 'store_day_self_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '429' AND appl_cd = '1'); -- セルフ
+
+-- 売上点検 > 店舗累計
+INSERT INTO p_appl_mst (:insert_field) SELECT '2419', '1', '2', 'store_total_deal_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2419' AND appl_cd = '1'); -- 取引明細関連
+INSERT INTO p_appl_mst (:insert_field) SELECT '2420', '1', '2', 'store_total_cls_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2420' AND appl_cd = '1'); -- 中分類別
+--INSERT INTO p_appl_mst (:insert_field) SELECT '2424', '1', '2', 'store_total_smlcls_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2424' AND appl_cd = '1'); -- 小分類別
+INSERT INTO p_appl_mst (:insert_field) SELECT '2425', '1', '2', 'store_total_plu_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2425' AND appl_cd = '1'); -- 商品別
+INSERT INTO p_appl_mst (:insert_field) SELECT '2426', '1', '2', 'store_total_sch_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2426' AND appl_cd = '1'); -- スケジュール別
+INSERT INTO p_appl_mst (:insert_field) SELECT '2427', '1', '2', 'store_total_time_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2427' AND appl_cd = '1'); -- 時間帯
+INSERT INTO p_appl_mst (:insert_field) SELECT '2429', '1', '2', 'store_total_self_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2429' AND appl_cd = '1'); -- セルフ
+
+-- 売上精算 > 店舗日計
+INSERT INTO p_appl_mst (:insert_field) SELECT '1419',  '1', '2', 'store_day_deal_2_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1419' AND appl_cd = '1'); -- 取引明細関連
+INSERT INTO p_appl_mst (:insert_field) SELECT '1420',  '1', '2', 'store_day_cls_2_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1420' AND appl_cd = '1'); -- 中分類別
+INSERT INTO p_appl_mst (:insert_field) SELECT '1425',  '1', '2', 'store_day_plu_2_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1425' AND appl_cd = '1'); -- 商品別
+INSERT INTO p_appl_mst (:insert_field) SELECT '1426',  '1', '2', 'store_day_sch_2_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1426' AND appl_cd = '1'); -- スケジュール別
+INSERT INTO p_appl_mst (:insert_field) SELECT '1427',  '1', '2', 'store_day_time_2_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1427' AND appl_cd = '1'); -- 時間帯
+INSERT INTO p_appl_mst (:insert_field) SELECT '1428',  '1', '2', 'store_day_chg_2_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1428' AND appl_cd = '1'); -- 釣銭明細
+INSERT INTO p_appl_mst (:insert_field) SELECT '1429',  '1', '2', 'store_day_self_2_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1429' AND appl_cd = '1'); -- セルフ
+
+-- 売上精算 > 店舗累計
+INSERT INTO p_appl_mst (:insert_field) SELECT '3419', '1', '2', 'store_total_deal_2_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '3419' AND appl_cd = '1'); -- 取引明細関連
+INSERT INTO p_appl_mst (:insert_field) SELECT '3420', '1', '2', 'store_total_cls_2_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '3420' AND appl_cd = '1'); -- 中分類別
+--INSERT INTO p_appl_mst (:insert_field) SELECT '3424', '1', '2', 'store_total_smlcls_2_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '3424' AND appl_cd = '1'); -- 小分類別
+INSERT INTO p_appl_mst (:insert_field) SELECT '3425', '1', '2', 'store_total_plu_2_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '3425' AND appl_cd = '1'); -- 商品別
+INSERT INTO p_appl_mst (:insert_field) SELECT '3426', '1', '2', 'store_total_sch_2_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '3426' AND appl_cd = '1'); -- スケジュール別
+INSERT INTO p_appl_mst (:insert_field) SELECT '3427', '1', '2', 'store_total_time_2_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '3427' AND appl_cd = '1'); -- 時間帯
+INSERT INTO p_appl_mst (:insert_field) SELECT '3429', '1', '2', 'store_total_self_2_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '3429' AND appl_cd = '1'); -- セルフ
+
+-- 顧客関連
+INSERT INTO p_appl_mst (:insert_field) SELECT  '600', '1', '2', 'member_relation_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '600' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1600', '1', '2', 'member_relation_2_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1600' AND appl_cd = '1');
+
+
+--2ページ目
+--INSERT INTO p_appl_mst (:insert_field) SELECT '430', '1', '2', 'mm_rept77dsp_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '430' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '431', '1', '2', 'rept_main_fnc', 'sale_com_mm', '1', '4', '78', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '431' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '432', '1', '2', 'rept_main_fnc', 'sale_com_mm', '1', '4', '79', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '432' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '433', '1', '2', 'mm_rept193_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '433' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '523', '1', '2', 'mm_rept32dsp_fnc', 'sale_com_mm', '1', '0', '32', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '523' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '524', '1', '2', 'mm_rept76dsp_fnc', 'sale_com_mm', '1', '0', '76', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '524' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '528', '1', '2', 'rept_main_fnc', 'sale_com_mm', '1', '0', '34', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '528' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '529', '1', '2', 'regist_acnt_adjustmnt_rept_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '529' AND appl_cd = '1');
+
+--
+-- アプリマスタ【レジ日計メニュー】画面用
+INSERT INTO p_appl_mst (:insert_field) SELECT '434', '1', '2', 'rept_main_fnc', 'sale_com_mm', '1', '0', '1', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '434' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '435', '1', '2', 'rept_main_fnc', 'sale_com_mm', '1', '0', '70', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '435' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '436', '1', '2', 'rept_main_fnc', 'sale_com_mm', '1', '0', '7', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '436' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '437', '1', '2', 'rept_main_fnc', 'sale_com_mm', '1', '0', '10', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '437' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '438', '1', '2', 'rept_main_fnc', 'sale_com_mm', '1', '0', '71', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '438' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '439', '1', '2', 'rept_main_fnc', 'sale_com_mm', '1', '0', '2', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '439' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '440', '1', '2', 'rept_main_fnc', 'sale_com_mm', '1', '0', '3', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '440' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '441', '1', '2', 'rept_main_fnc', 'sale_com_mm', '1', '0', '4', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '441' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '442', '1', '2', 'sale_changerdsp_fnc', 'sale_com_mm', '1', '0', NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '442' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '443', '1', '2', 'sale_smlclsdsp_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '443' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '444', '1', '2', 'sale_RegStaffSalesDisp_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '444' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '445', '1', '2', 'sale_RegMediaDisp_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '445' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '446', '1', '2', 'sale_crdt_dsp_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '446' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '447', '1', '2', 'sale_cybele_dsp_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '447' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '448', '1', '2', 'mm_rept94dsp_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '448' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '449', '1', '2', 'mm_rept31dailyttl_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '449' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '450', '1', '2', 'rept_main_fnc', 'sale_com_mm', '1', '0', '30', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '450' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '451', '1', '2', 'rept_main_fnc', 'sale_com_mm', '1', '0', '95', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '451' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '525', '1', '2', 'rept_main_fnc', 'sale_com_mm', '1', '0', '88', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '525' AND appl_cd = '1');
+
+-- アプリマスタ【売上点検-店舗日計メニュー画面用】
+-- 1ページ目
+INSERT INTO p_appl_mst (:insert_field) SELECT '452', '1', '2', 'rept_main_fnc', 'sale_com_mm', '1', '1', '1', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '452' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '453', '1', '2', 'rept_main_fnc', 'sale_com_mm', '1', '1', '2', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '453' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '454', '1', '2', 'rept_main_fnc', 'sale_com_mm', '1', '1', '3', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '454' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '455', '1', '2', 'rept_main_fnc', 'sale_com_mm', '1', '1', '4', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '455' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '456', '1', '2', 'rept_main_fnc', 'sale_com_mm', '1', '1', '5', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '456' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '457', '1', '2', 'rept_main_fnc', 'sale_com_mm', '1', '1', '7', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '457' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '458', '1', '2', 'rept_main_fnc', 'sale_com_mm', '1', '1', '10', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '458' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '459', '1', '2', 'rept_main_fnc', 'sale_com_mm', '1', '1', '13', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '459' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '460', '1', '2', 'rept_main_fnc', 'sale_com_mm', '1', '1', '14', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '460' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '461', '1', '2', 'rept_main_fnc', 'sale_com_mm', '1', '1', '15', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '461' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '462', '1', '2', 'rept_main_fnc', 'sale_com_mm', '1', '1', '16', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '462' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '463', '1', '2', 'rept_main_fnc', 'sale_com_mm', '1', '1', '8', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '463' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '464', '1', '2', 'rept_main_fnc', 'sale_com_mm', '1', '1', '9', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '464' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '465', '1', '2', 'rept_main_fnc', 'sale_com_mm', '1', '1', '11', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '465' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '466', '1', '2', 'rept_main_fnc', 'sale_com_mm', '1', '1', '12', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '466' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '468', '1', '2', 'rept_main_fnc', 'sale_com_mm', '1', '1', '30', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '468' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '469', '1', '2', 'mm_rept90dsp_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '469' AND appl_cd = '1');
+
+-- 2ページ目
+INSERT INTO p_appl_mst (:insert_field) SELECT '470', '1', '2', 'rept_main_fnc', 'sale_com_mm', '1', '1', '17', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '470' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '471', '1', '2', 'rept_main_fnc', 'sale_com_mm', '1', '1', '18', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '471' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '472', '1', '2', 'rept_main_fnc', 'sale_com_mm', '1', '1', '19', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '472' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '475', '1', '2', 'rept_main_fnc', 'sale_com_mm', '1', '1', '22', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '475' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '476', '1', '2', 'rept_main_fnc', 'sale_com_mm', '1', '1', '6', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '476' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '477', '1', '2', 'rept_main_fnc', 'sale_com_mm', '1', '1', '23', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '477' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '478', '1', '2', 'rept_main_fnc', 'sale_com_mm', '1', '1', '24', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '478' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '479', '1', '2', 'rept_main_fnc', 'sale_com_mm', '1', '1', '25', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '479' AND appl_cd = '1');
+
+-- アプリマスタ【売上点検-店舗累計メニュー画面用】
+-- 1ページ目
+INSERT INTO p_appl_mst (:insert_field) SELECT '2452', '1', '2', 'rept_main_fnc', 'sale_com_mm', '1', '2', '1', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2452' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '2453', '1', '2', 'rept_main_fnc', 'sale_com_mm', '1', '2', '2', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2453' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '2454', '1', '2', 'rept_main_fnc', 'sale_com_mm', '1', '2', '3', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2454' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '2455', '1', '2', 'rept_main_fnc', 'sale_com_mm', '1', '2', '4', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2455' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '2456', '1', '2', 'rept_main_fnc', 'sale_com_mm', '1', '2', '5', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2456' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '2457', '1', '2', 'rept_main_fnc', 'sale_com_mm', '1', '2', '7', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2457' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '2458', '1', '2', 'rept_main_fnc', 'sale_com_mm', '1', '2', '10', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2458' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '2459', '1', '2', 'rept_main_fnc', 'sale_com_mm', '1', '2', '13', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2459' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '2460', '1', '2', 'rept_main_fnc', 'sale_com_mm', '1', '2', '14', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2460' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '2461', '1', '2', 'rept_main_fnc', 'sale_com_mm', '1', '2', '15', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2461' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '2462', '1', '2', 'rept_main_fnc', 'sale_com_mm', '1', '2', '16', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2462' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '2463', '1', '2', 'rept_main_fnc', 'sale_com_mm', '1', '2', '8', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2463' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '2464', '1', '2', 'rept_main_fnc', 'sale_com_mm', '1', '2', '9', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2464' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '2465', '1', '2', 'rept_main_fnc', 'sale_com_mm', '1', '2', '11', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2465' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '2466', '1', '2', 'rept_main_fnc', 'sale_com_mm', '1', '2', '12', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2466' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '2468', '1', '2', 'rept_main_fnc', 'sale_com_mm', '1', '2', '30', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2468' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '2469', '1', '2', 'mm_rept90dsp_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2469' AND appl_cd = '1');
+
+-- 2ページ目
+INSERT INTO p_appl_mst (:insert_field) SELECT '2470', '1', '2', 'rept_main_fnc', 'sale_com_mm', '1', '2', '17', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2470' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '2471', '1', '2', 'rept_main_fnc', 'sale_com_mm', '1', '2', '18', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2471' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '2472', '1', '2', 'rept_main_fnc', 'sale_com_mm', '1', '2', '19', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2472' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '2475', '1', '2', 'rept_main_fnc', 'sale_com_mm', '1', '2', '22', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2475' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '2476', '1', '2', 'rept_main_fnc', 'sale_com_mm', '1', '2', '6', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2476' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '2477', '1', '2', 'rept_main_fnc', 'sale_com_mm', '1', '2', '23', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2477' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '2478', '1', '2', 'rept_main_fnc', 'sale_com_mm', '1', '2', '24', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2478' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '2479', '1', '2', 'rept_main_fnc', 'sale_com_mm', '1', '2', '25', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2479' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '2480', '1', '2', 'mm_rept26dsp_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2480' AND appl_cd = '1');
+
+-- アプリマスタ【売上点検-精算レポート(日計)メニュー画面用】
+-- 1ページ目
+INSERT INTO p_appl_mst (:insert_field) SELECT '550', '1', '2', 'rept_main_fnc', 'sale_com_mm', '1', '9', '35', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '550' AND appl_cd = '1');
+
+
+-- アプリマスタ【ログ関連メニュー画面用】
+-- 1ページ目
+INSERT INTO p_appl_mst (:insert_field) SELECT '481', '1', '2', 'edylog_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '481' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '482', '1', '2', 'mclog_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '482' AND appl_cd = '1');
+
+-- アプリマスタ【テキスト関連メニュー画面用】
+-- 1ページ目
+INSERT INTO p_appl_mst (:insert_field) SELECT '483', '1', '2', 'mm_txtbkup_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '483' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '484', '1', '2', 'rept_resend_fnc', 'sale_com_mm', '1', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '484' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '485', '1', '2', 'rept_resend_fnc', 'sale_com_mm', '2', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '485' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '486', '1', '2', 'rept_resend_prod_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '486' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '487', '1', '2', 'rept_resend_tuo_fnc', 'sale_com_mm', '1', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '487' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '488', '1', '2', 'rept_resend_business_fnc', 'sale_com_mm', '1', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '488' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '489', '1', '2', 'rept_read_fnc', 'sale_com_mm', '0', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '489' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '490', '1', '2', 'rept_read_fnc', 'sale_com_mm', '2', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '490' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '491', '1', '2', 'rept_read_fnc', 'sale_com_mm', '1', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '491' AND appl_cd = '1');
+
+-- アプリマスタ【一覧メニュー画面用】
+-- 1ページ目
+INSERT INTO p_appl_mst (:insert_field) SELECT '492', '1', '2', 'rept_main_fnc', 'sale_com_mm', 1, 3, 27, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '492' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '493', '1', '2', 'mm_rept28dsp_fnc', 'sale_com_mm', '1', '3', NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '493' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '494', '1', '2', 'mm_rept29dsp_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '494' AND appl_cd = '1');
+
+-- アプリマスタ【会員日計メニュー画面用】
+-- 1ページ目
+INSERT INTO p_appl_mst (:insert_field) SELECT  '495', '1', '2', 'rept_main_fnc', 'sale_com_mm', '1', '1', '40', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd =  '495' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1495', '1', '2', 'rept_main_fnc', 'sale_com_mm', '2', '1', '40', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1495' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '2495', '1', '2', 'rept_main_fnc', 'sale_com_mm', '1', '2', '40', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '2495' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '3495', '1', '2', 'rept_main_fnc', 'sale_com_mm', '2', '2', '40', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '3495' AND appl_cd = '1');
+
+INSERT INTO p_appl_mst (:insert_field) SELECT '501', '1', '2', 'mm_rept_fspdsp_fnc', 'sale_com_mm', '3', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '501' AND appl_cd = '1');
+
+-- アプリマスタ【会員累計メニュー画面用】
+-- 1ページ目
+
+-- 「会員合計」
+-- 「地区」
+-- 「サービス分類」
+--   は会員日計メニューと同じものを使用
+INSERT INTO p_appl_mst (:insert_field) SELECT  '502', '1', '2', 'rept_main_fnc', 'sale_com_mm', '1', '7', '58', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd =  '502' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1502', '1', '2', 'rept_main_fnc', 'sale_com_mm', '2', '7', '58', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1502' AND appl_cd = '1');
+
+
+-- アプリマスタ【会員一覧メニュー画面用】
+-- 1ページ目
+INSERT INTO p_appl_mst (:insert_field) SELECT '511', '1', '2', 'mm_rept47dsp_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '511' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '513', '1', '2', 'mm_rept48dsp_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '513' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '514', '1', '2', 'mm_rept49dsp_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '514' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '515', '1', '2', 'mm_rept59dsp_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '515' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '516', '1', '2', 'cust_hist_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '516' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '517', '1', '2', 'cust_srch_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '517' AND appl_cd = '1');
+
+-- アプリマスタ【会員精算メニュー画面用】
+-- 1ページ目
+INSERT INTO p_appl_mst (:insert_field) SELECT '518', '1', '2', 'cust_enq_clr_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '518' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '519', '1', '2', 'mm_reptcardchg_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '519' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '520', '1', '2', 'mm_reptlv_fnc', 'sale_com_mm', '1', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '520' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '521', '1', '2', 'mm_reptrbt_fnc', 'sale_com_mm', '1', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '521' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '522', '1', '2', 'mm_reptcustslct_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '522' AND appl_cd = '1');
+
+
+-- 
+--【売上精算】
+--1ページ目
+INSERT INTO p_appl_mst (:insert_field) SELECT '1415', '1', '2', 'regist_day_acnt_2_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1415' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1416', '1', '2', 'mm_ejconf_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1416' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1418', '1', '2', 'log_menu_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1418' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1421', '1', '2', 'store_day_acnt_2_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1421' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1422', '1', '2', 'store_total_2_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1422' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1423', '1', '2', 'list_2_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1423' AND appl_cd = '1');
+
+--2ページ目
+INSERT INTO p_appl_mst (:insert_field) SELECT '1431', '1', '2', 'rept_main_fnc', 'sale_com_mm', '2', '4', '78', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1431' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1432', '1', '2', 'rept_main_fnc', 'sale_com_mm', '2', '4', '79', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1432' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1433', '1', '2', 'mm_rept193_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1433' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1523', '1', '2', 'mm_rept32dsp_fnc', 'sale_com_mm', '2', '0', '32', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1523' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1524', '1', '2', 'mm_rept76dsp_fnc', 'sale_com_mm', '2', '0', '76', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1524' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1528', '1', '2', 'rept_main_fnc', 'sale_com_mm', '2', '0', '34', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1528' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1529', '1', '2', 'regist_acnt_adjustmnt_rept_2_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1529' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1530', '1', '2', 'regist_halfway_adjustmnt_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1530' AND appl_cd = '1');
+
+--
+-- アプリマスタ【レジ日計メニュー】画面用
+INSERT INTO p_appl_mst (:insert_field) SELECT '1434', '1', '2', 'rept_main_fnc', 'sale_com_mm', '2', '0', '1', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1434' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1435', '1', '2', 'rept_main_fnc', 'sale_com_mm', '2', '0', '70', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1435' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1436', '1', '2', 'rept_main_fnc', 'sale_com_mm', '2', '0', '7', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1436' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1437', '1', '2', 'rept_main_fnc', 'sale_com_mm', '2', '0', '10', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1437' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1438', '1', '2', 'rept_main_fnc', 'sale_com_mm', '2', '0', '71', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1438' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1439', '1', '2', 'rept_main_fnc', 'sale_com_mm', '2', '0', '2', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1439' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1440', '1', '2', 'rept_main_fnc', 'sale_com_mm', '2', '0', '3', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1440' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1441', '1', '2', 'rept_main_fnc', 'sale_com_mm', '2', '0', '4', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1441' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1442', '1', '2', 'sale_changerdsp_fnc', 'sale_com_mm', '2', '0', NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1442' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1443', '1', '2', 'sale_smlclsdsp_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1443' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1444', '1', '2', 'sale_RegStaffSalesDisp_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1444' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1445', '1', '2', 'sale_RegMediaDisp_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1445' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1446', '1', '2', 'sale_crdt_dsp_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1446' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1447', '1', '2', 'sale_cybele_dsp_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1447' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1448', '1', '2', 'mm_rept94dsp_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1448' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1449', '1', '2', 'mm_rept31dailyttl_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1449' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1450', '1', '2', 'rept_main_fnc', 'sale_com_mm', '2', '0', '30', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1450' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1451', '1', '2', 'rept_main_fnc', 'sale_com_mm', '2', '0', '95', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1451' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1525', '1', '2', 'rept_main_fnc', 'sale_com_mm', '2', '0', '88', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1525' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1526', '1', '2', 'mm_rept34dailyttl_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1526' AND appl_cd = '1');
+
+-- WS様専用レポート
+INSERT INTO p_appl_mst (:insert_field) SELECT '555', '1', '2', 'rept_main_fnc', 'sale_com_mm', '1', '0', '37', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '555' AND appl_cd = '1'); -- 売上点検
+INSERT INTO p_appl_mst (:insert_field) SELECT '1555', '1', '2', 'rept_main_fnc', 'sale_com_mm', '2', '0', '37', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1555' AND appl_cd = '1'); -- 売上精算
+
+-- アプリマスタ【売上精算-店舗日計メニュー画面用】
+-- 1ページ目
+INSERT INTO p_appl_mst (:insert_field) SELECT '1452', '1', '2', 'rept_main_fnc', 'sale_com_mm', '2', '1', '1', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1452' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1453', '1', '2', 'rept_main_fnc', 'sale_com_mm', '2', '1', '2', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1453' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1454', '1', '2', 'rept_main_fnc', 'sale_com_mm', '2', '1', '3', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1454' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1455', '1', '2', 'rept_main_fnc', 'sale_com_mm', '2', '1', '4', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1455' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1456', '1', '2', 'rept_main_fnc', 'sale_com_mm', '2', '1', '5', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1456' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1457', '1', '2', 'rept_main_fnc', 'sale_com_mm', '2', '1', '7', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1457' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1458', '1', '2', 'rept_main_fnc', 'sale_com_mm', '2', '1', '10', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1458' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1459', '1', '2', 'rept_main_fnc', 'sale_com_mm', '2', '1', '13', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1459' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1460', '1', '2', 'rept_main_fnc', 'sale_com_mm', '2', '1', '14', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1460' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1461', '1', '2', 'rept_main_fnc', 'sale_com_mm', '2', '1', '15', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1461' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1462', '1', '2', 'rept_main_fnc', 'sale_com_mm', '2', '1', '16', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1462' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1463', '1', '2', 'rept_main_fnc', 'sale_com_mm', '2', '1', '8', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1463' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1464', '1', '2', 'rept_main_fnc', 'sale_com_mm', '2', '1', '9', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1464' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1465', '1', '2', 'rept_main_fnc', 'sale_com_mm', '2', '1', '11', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1465' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1466', '1', '2', 'rept_main_fnc', 'sale_com_mm', '2', '1', '12', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1466' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1468', '1', '2', 'rept_main_fnc', 'sale_com_mm', '2', '1', '30', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1468' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1469', '1', '2', 'mm_rept90dsp_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1469' AND appl_cd = '1');
+
+-- 2ページ目
+INSERT INTO p_appl_mst (:insert_field) SELECT '1470', '1', '2', 'rept_main_fnc', 'sale_com_mm', '2', '1', '17', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1470' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1471', '1', '2', 'rept_main_fnc', 'sale_com_mm', '2', '1', '18', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1471' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1472', '1', '2', 'rept_main_fnc', 'sale_com_mm', '2', '1', '19', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1472' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1475', '1', '2', 'rept_main_fnc', 'sale_com_mm', '2', '1', '22', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1475' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1476', '1', '2', 'rept_main_fnc', 'sale_com_mm', '2', '1', '6', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1476' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1477', '1', '2', 'rept_main_fnc', 'sale_com_mm', '2', '1', '23', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1477' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1478', '1', '2', 'rept_main_fnc', 'sale_com_mm', '2', '1', '24', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1478' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1479', '1', '2', 'rept_main_fnc', 'sale_com_mm', '2', '1', '25', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1479' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1560', '1', '2', 'mm_rept34dsp_fnc', 'sale_com_mm', '2', '1', NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1560' AND appl_cd = '1'); -- 会計別税明細
+INSERT INTO p_appl_mst (:insert_field) SELECT '1700', '1', '2', 'rm59_floating_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1700' AND appl_cd = '1'); -- 加算クリア
+
+-- アプリマスタ【売上精算-店舗累計メニュー画面用】
+-- 1ページ目
+INSERT INTO p_appl_mst (:insert_field) SELECT '3452', '1', '2', 'rept_main_fnc', 'sale_com_mm', '2', '2', '1', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '3452' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '3453', '1', '2', 'rept_main_fnc', 'sale_com_mm', '2', '2', '2', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '3453' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '3454', '1', '2', 'rept_main_fnc', 'sale_com_mm', '2', '2', '3', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '3454' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '3455', '1', '2', 'rept_main_fnc', 'sale_com_mm', '2', '2', '4', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '3455' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '3456', '1', '2', 'rept_main_fnc', 'sale_com_mm', '2', '2', '5', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '3456' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '3457', '1', '2', 'rept_main_fnc', 'sale_com_mm', '2', '2', '7', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '3457' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '3458', '1', '2', 'rept_main_fnc', 'sale_com_mm', '2', '2', '10', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '3458' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '3459', '1', '2', 'rept_main_fnc', 'sale_com_mm', '2', '2', '13', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '3459' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '3460', '1', '2', 'rept_main_fnc', 'sale_com_mm', '2', '2', '14', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '3460' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '3461', '1', '2', 'rept_main_fnc', 'sale_com_mm', '2', '2', '15', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '3461' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '3462', '1', '2', 'rept_main_fnc', 'sale_com_mm', '2', '2', '16', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '3462' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '3463', '1', '2', 'rept_main_fnc', 'sale_com_mm', '2', '2', '8', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '3463' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '3464', '1', '2', 'rept_main_fnc', 'sale_com_mm', '2', '2', '9', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '3464' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '3465', '1', '2', 'rept_main_fnc', 'sale_com_mm', '2', '2', '11', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '3465' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '3466', '1', '2', 'rept_main_fnc', 'sale_com_mm', '2', '2', '12', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '3466' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '3468', '1', '2', 'rept_main_fnc', 'sale_com_mm', '2', '2', '30', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '3468' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '3469', '1', '2', 'mm_rept90dsp_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '3469' AND appl_cd = '1');
+
+-- 2ページ目
+INSERT INTO p_appl_mst (:insert_field) SELECT '3470', '1', '2', 'rept_main_fnc', 'sale_com_mm', '2', '2', '17', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '3470' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '3471', '1', '2', 'rept_main_fnc', 'sale_com_mm', '2', '2', '18', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '3471' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '3472', '1', '2', 'rept_main_fnc', 'sale_com_mm', '2', '2', '19', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '3472' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '3475', '1', '2', 'rept_main_fnc', 'sale_com_mm', '2', '2', '22', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '3475' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '3476', '1', '2', 'rept_main_fnc', 'sale_com_mm', '2', '2', '6', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '3476' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '3477', '1', '2', 'rept_main_fnc', 'sale_com_mm', '2', '2', '23', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '3477' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '3478', '1', '2', 'rept_main_fnc', 'sale_com_mm', '2', '2', '24', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '3478' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '3479', '1', '2', 'rept_main_fnc', 'sale_com_mm', '2', '2', '25', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '3479' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '3560', '1', '2', 'mm_rept34dsp_fnc', 'sale_com_mm', '2', '2', NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '3560' AND appl_cd = '1'); -- 会計別税明細
+
+-- アプリマスタ【売上精算-精算レポート(日計)メニュー画面用】
+-- 1ページ目
+INSERT INTO p_appl_mst (:insert_field) SELECT '1550', '1', '2', 'rept_main_fnc', 'sale_com_mm', '2', '9', '35', NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1550' AND appl_cd = '1');
+
+
+-- アプリマスタ【ログ関連メニュー画面用】
+-- 1ページ目
+INSERT INTO p_appl_mst (:insert_field) SELECT '1481', '1', '2', 'edylog_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1481' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1482', '1', '2', 'mclog_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1482' AND appl_cd = '1');
+
+-- アプリマスタ【テキスト関連メニュー画面用】
+-- 1ページ目
+INSERT INTO p_appl_mst (:insert_field) SELECT '1483', '1', '2', 'mm_txtbkup_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1483' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1484', '1', '2', 'rept_resend_fnc', 'sale_com_mm', '1', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1484' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1485', '1', '2', 'rept_resend_fnc', 'sale_com_mm', '2', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1485' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1486', '1', '2', 'rept_resend_prod_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1486' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1487', '1', '2', 'rept_resend_tuo_fnc', 'sale_com_mm', '1', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1487' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1488', '1', '2', 'rept_resend_business_fnc', 'sale_com_mm', '1', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1488' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1489', '1', '2', 'rept_read_fnc', 'sale_com_mm', '0', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1489' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1490', '1', '2', 'rept_read_fnc', 'sale_com_mm', '2', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1490' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1491', '1', '2', 'rept_read_fnc', 'sale_com_mm', '1', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1491' AND appl_cd = '1');
+
+-- アプリマスタ【一覧メニュー画面用】
+-- 1ページ目
+INSERT INTO p_appl_mst (:insert_field) SELECT '1492', '1', '2', 'rept_main_fnc', 'sale_com_mm', 2, 3, 27, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1492' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1493', '1', '2', 'mm_rept28dsp_fnc', 'sale_com_mm', '2', '3', NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1493' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1494', '1', '2', 'mm_rept29dsp_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1494' AND appl_cd = '1');
+
+-- アプリマスタ【会員一覧メニュー画面用】
+-- 1ページ目
+INSERT INTO p_appl_mst (:insert_field) SELECT '1511', '1', '2', 'mm_rept47dsp_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1511' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1513', '1', '2', 'mm_rept48dsp_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1513' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1514', '1', '2', 'mm_rept49dsp_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1514' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1515', '1', '2', 'mm_rept59dsp_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1515' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1516', '1', '2', 'cust_hist_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1516' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1517', '1', '2', 'cust_srch_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1517' AND appl_cd = '1');
+
+-- アプリマスタ【会員精算メニュー画面用】
+-- 1ページ目
+INSERT INTO p_appl_mst (:insert_field) SELECT '1518', '1', '2', 'cust_enq_clr_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1518' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1519', '1', '2', 'mm_reptcardchg_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1519' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1520', '1', '2', 'mm_reptlv_fnc', 'sale_com_mm', '1', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1520' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1521', '1', '2', 'mm_reptrbt_fnc', 'sale_com_mm', '1', NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1521' AND appl_cd = '1');
+INSERT INTO p_appl_mst (:insert_field) SELECT '1522', '1', '2', 'mm_reptcustslct_fnc', 'sale_com_mm', NULL, NULL, NULL, NULL, NULL, '0', '0' WHERE NOT EXISTS (:sub_query appl_grp_cd = '1522' AND appl_cd = '1');
+
+COMMIT;

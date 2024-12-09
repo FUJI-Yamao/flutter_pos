@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="152" height="112" viewBox="0 0 152 112">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="長方形_8750" data-name="長方形 8750" width="44.51" height="53.316" fill="#727981"/>
+    </clipPath>
+  </defs>
+  <g id="icon_prepaidbalance" transform="translate(-708 -320)">
+    <rect id="長方形_7035" data-name="長方形 7035" width="152" height="112" transform="translate(708 320)" fill="#727981" opacity="0"/>
+    <g id="グループ_19281" data-name="グループ 19281" transform="translate(762 349)">
+      <g id="グループ_19280" data-name="グループ 19280" clip-path="url(#clip-path)">
+        <path id="パス_28855" data-name="パス 28855" d="M0,11.814v7.368c0,5.07,9.982,9.194,22.254,9.194S44.51,24.252,44.51,19.182V11.814c-2.468,4.25-11.393,7.27-22.256,7.27S2.468,16.064,0,11.814" transform="translate(0 2.183)" fill="#727981"/>
+        <path id="パス_28856" data-name="パス 28856" d="M22.254,28.687c-10.861,0-19.786-3.02-22.254-7.27v7.369c0,5.07,9.982,9.194,22.254,9.194S44.51,33.856,44.51,28.786V21.417c-2.467,4.25-11.392,7.27-22.256,7.27" transform="translate(0 3.958)" fill="#727981"/>
+        <path id="パス_28857" data-name="パス 28857" d="M22.254,38.29C11.393,38.29,2.468,35.27,0,31.02v7.369c0,5.07,9.982,9.194,22.254,9.194S44.51,43.459,44.51,38.389V31.02c-2.467,4.25-11.392,7.27-22.256,7.27" transform="translate(0 5.732)" fill="#727981"/>
+        <path id="パス_28858" data-name="パス 28858" d="M0,9.515C0,14.77,9.964,19.03,22.255,19.03S44.51,14.77,44.51,9.515,34.546,0,22.255,0,0,4.261,0,9.515" fill="#727981"/>
+      </g>
+    </g>
+  </g>
+</svg>

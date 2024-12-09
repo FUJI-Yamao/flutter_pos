@@ -1,0 +1,47 @@
+/*
+ * (C)2024 TERAOKA SEIKO Co., Ltd./株式会社寺岡精工
+ * CONFIDENTIAL/社外秘
+ * 無断開示・無断複製禁止
+ */
+
+///  関連tprxソース: rc_nttd_preca.h - NTTD_PRECA_ORDER
+enum NttdPrecaOrder {
+  NTTD_PRECA_NOT_ORDER,
+  NTTD_PRECA_TX,
+  NTTD_PRECA_RX,
+}
+
+///  関連tprxソース: rc_nttd_preca.h - NTTD_PRECA_SUB
+enum NttdPrecaSub {
+  NTTD_PRECA_NOT_SUB(0),
+  NTTD_PRECA_KEY(2610),
+  NTTD_PRECA_CHARGE(2410),
+  NTTD_PRECA_BALANCE(2110),
+  NTTD_PRECA_SALES(2210),
+  NTTD_PRECA_CHARGE_VOID(2510),
+  NTTD_PRECA_SALES_VOID(2310),
+  NTTD_PRECA_BEFORE_VOID(8910);
+
+  final int cd;
+  const NttdPrecaSub(this.cd);
+}
+
+///  関連tprxソース: rc_nttd_preca.h - NTTD_PRECA_RESULT_RX
+enum NttdPrecaResultRx {
+  NTTD_PRECA_CHARGE_OK(2420),
+  NTTD_PRECA_CHARGE_NG(2450),
+  NTTD_PRECA_BALANCE_OK(2120),
+  NTTD_PRECA_BALANCE_NG(2150),
+  NTTD_PRECA_SALES_OK(2220),
+  NTTD_PRECA_SALES_NG(2250),
+  NTTD_PRECA_CHARGE_VOID_OK(2520),
+  NTTD_PRECA_CHARGE_VOID_NG(2550),
+  NTTD_PRECA_SALES_VOID_OK(2320),
+  NTTD_PRECA_SALES_VOID_NG(2350),
+  NTTD_PRECA_BEFORE_VOID_OK(8950),
+  NTTD_PRECA_KEY_OK(2620),
+  NTTD_PRECA_KEY_NG(2650);
+
+  final int cd;
+  const NttdPrecaResultRx(this.cd);
+}

@@ -1,0 +1,4 @@
+\cd assets
+\cd sql
+\cd crttbl
+\i tpr_x_test

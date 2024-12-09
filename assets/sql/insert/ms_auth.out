@@ -1,0 +1,16 @@
+-- 初期値用ファイル(バージョンアップでは反映されない)
+
+\set insert_field 'comp_cd, ins_datetime, upd_datetime, status, send_flg, upd_user, upd_system, auth_lvl, auth_name'
+
+-- comp_cd, ins_datetime, upd_datetime, status, send_flg, upd_user, upd_system
+\set cmn_set ' :COMP, \'now\', \'now\', \'0\', \'0\', \'999999\', \'2\' '
+
+\set sub_query 'SELECT * FROM c_staffauth_mst WHERE comp_cd = :COMP '
+
+-- c_staffauth_mst 従業員権限レベル
+INSERT INTO c_staffauth_mst (:insert_field) SELECT :cmn_set, 1, '店舗従業員1' WHERE NOT EXISTS (:sub_query AND auth_lvl = '1');
+INSERT INTO c_staffauth_mst (:insert_field) SELECT :cmn_set, 2, '店舗従業員2' WHERE NOT EXISTS (:sub_query AND auth_lvl = '2');
+INSERT INTO c_staffauth_mst (:insert_field) SELECT :cmn_set, 3, '店舗従業員3' WHERE NOT EXISTS (:sub_query AND auth_lvl = '3');
+INSERT INTO c_staffauth_mst (:insert_field) SELECT :cmn_set, 9, '店舗従業員9' WHERE NOT EXISTS (:sub_query AND auth_lvl = '9');
+INSERT INTO c_staffauth_mst (:insert_field) SELECT :cmn_set, 999, '保守員' WHERE NOT EXISTS (:sub_query AND auth_lvl = '999');
+

@@ -1,0 +1,240 @@
+--
+-- mm_set_ctrl.out
+--
+-- Author   : Web Series
+-- Start    : 15.12.28  : H.Nakamura  : First Edition
+-- Ready    : 15.12.28  : H.Nakamura
+-- Modified : 23.04.25
+-- *--------------------------------------------------------------------*
+-- *       COPYRIGHT(C) 2015 TERAOKA SEIKO CO., LTD
+-- *--------------------------------------------------------------------*/
+
+BEGIN;
+TRUNCATE c_ctrl_set_mst;
+TRUNCATE c_ctrl_sub_mst;
+
+\set insert_field_set 'ctrl_cd, ctrl_name, ctrl_dsp_cond, ctrl_inp_cond, ctrl_limit_max, ctrl_limit_min, ctrl_digits, ctrl_zero_typ, ctrl_btn_color, ctrl_info_comment, ctrl_info_pic, ins_datetime, upd_datetime, status, send_flg, upd_user, upd_system'
+
+\set insert_field_sub 'ctrl_cd, ctrl_ordr, ctrl_data, ctrl_comment, ctrl_btn_color, ins_datetime, upd_datetime, status, send_flg, upd_user, upd_system'
+
+\set cmn_set '\'now\', \'now\', \'0\', \'0\', \'999999\', \'2\''
+\set sub_query_1 'SELECT * FROM c_ctrl_set_mst WHERE ctrl_cd '
+\set sub_query_2 'SELECT * FROM c_ctrl_sub_mst WHERE ctrl_cd '
+
+-- cost_per_cls
+INSERT INTO c_ctrl_set_mst (:insert_field_set) SELECT '1', E'原価率使用階層', '0', '3', '0', '0', '0', '0', '5', E'', '0', :cmn_set WHERE NOT EXISTS (:sub_query_1 = '1');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '1', '1', '1', E'中分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '1' AND ctrl_ordr = '1');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '1', '2', '2', E'小分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '1' AND ctrl_ordr = '2');
+
+-- nonact_cls
+INSERT INTO c_ctrl_set_mst (:insert_field_set) SELECT '2', E'一括削除禁止フラグ階層', '0', '3', '0', '0', '0', '0', '5', E'', '0', :cmn_set WHERE NOT EXISTS (:sub_query_1 = '2');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '2', '1', '1', E'中分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '2' AND ctrl_ordr = '1');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '2', '2', '2', E'小分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '2' AND ctrl_ordr = '2');
+
+-- dsc_cls
+INSERT INTO c_ctrl_set_mst (:insert_field_set) SELECT '3', E'一括値引/割引使用階層', '0', '3', '0', '0', '0', '0', '5', E'', '0', :cmn_set WHERE NOT EXISTS (:sub_query_1 = '3');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '3', '1', '1', E'中分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '3' AND ctrl_ordr = '1');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '3', '2', '2', E'小分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '3' AND ctrl_ordr = '2');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '3', '3', '3', E'クラス', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '3' AND ctrl_ordr = '3');
+
+-- rbt_cls_flg
+INSERT INTO c_ctrl_set_mst (:insert_field_set) SELECT '4', E'割戻対象商品使用階層', '0', '3', '0', '0', '0', '0', '5', E'', '0', :cmn_set WHERE NOT EXISTS (:sub_query_1 = '4');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '4', '1', '1', E'中分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '4' AND ctrl_ordr = '1');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '4', '2', '2', E'小分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '4' AND ctrl_ordr = '2');
+
+-- prcchg_flg
+INSERT INTO c_ctrl_set_mst (:insert_field_set) SELECT '5', E'売価変更許可', '0', '3', '0', '0', '0', '0', '5', E'', '0', :cmn_set WHERE NOT EXISTS (:sub_query_1 = '5');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '5', '1', '1', E'中分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '5' AND ctrl_ordr = '1');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '5', '2', '2', E'小分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '5' AND ctrl_ordr = '2');
+
+-- stldsc_flg
+INSERT INTO c_ctrl_set_mst (:insert_field_set) SELECT '6', E'小計値引/割引使用階層', '0', '3', '0', '0', '0', '0', '5', E'', '0', :cmn_set WHERE NOT EXISTS (:sub_query_1 = '6');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '6', '1', '1', E'中分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '6' AND ctrl_ordr = '1');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '6', '2', '2', E'小分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '6' AND ctrl_ordr = '2');
+
+-- regsale_cls
+INSERT INTO c_ctrl_set_mst (:insert_field_set) SELECT '7', E'部門外売/通常売使用階層', '0', '3', '0', '0', '0', '0', '5', E'', '0', :cmn_set WHERE NOT EXISTS (:sub_query_1 = '7');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '7', '1', '2', E'小分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '7' AND ctrl_ordr = '1');
+
+-- taxtbl_cls
+INSERT INTO c_ctrl_set_mst (:insert_field_set) SELECT '8', E'税テーブル使用階層', '0', '3', '0', '0', '0', '0', '5', E'', '0', :cmn_set WHERE NOT EXISTS (:sub_query_1 = '8');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '8', '1', '2', E'小分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '8' AND ctrl_ordr = '1');
+
+-- treat_cls_flg
+INSERT INTO c_ctrl_set_mst (:insert_field_set) SELECT '9', E'登録時取扱分類', '0', '3', '0', '0', '0', '0', '5', E'', '0', :cmn_set WHERE NOT EXISTS (:sub_query_1 = '9');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '9', '1', '1', E'中分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '9' AND ctrl_ordr = '1');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '9', '2', '2', E'小分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '9' AND ctrl_ordr = '2');
+
+-- wgh_cd_base_flg
+INSERT INTO c_ctrl_set_mst (:insert_field_set) SELECT '11', E'重量バーコード　値段計算単位\n０：１［ｇ］　１：１０［ｇ］', '0', '3', '0', '0', '0', '0', '5', E'', '0', :cmn_set WHERE NOT EXISTS (:sub_query_1 = '11');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '11', '1', '0', E'1g', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '11' AND ctrl_ordr = '1');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '11', '2', '1', E'10g', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '11' AND ctrl_ordr = '2');
+
+-- wgh_cd_rnd_flg
+INSERT INTO c_ctrl_set_mst (:insert_field_set) SELECT '12', E'重量バーコード　まるめ', '0', '3', '0', '0', '0', '0', '5', E'', '0', :cmn_set WHERE NOT EXISTS (:sub_query_1 = '12');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '12', '1', '0', E'四捨五入', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '12' AND ctrl_ordr = '1');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '12', '2', '1', E'切り上げ', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '12' AND ctrl_ordr = '2');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '12', '3', '2', E'切り捨て', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '12' AND ctrl_ordr = '3');
+
+-- udt_both_flg
+INSERT INTO c_ctrl_set_mst (:insert_field_set) SELECT '13', E'２人制時、売り上げを両方の従業員に加算', '0', '3', '0', '0', '0', '0', '5', E'', '0', :cmn_set WHERE NOT EXISTS (:sub_query_1 = '13');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '13', '1', '0', E'しない', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '13' AND ctrl_ordr = '1');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '13', '2', '1', E'する', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '13' AND ctrl_ordr = '2');
+
+-- reg_tenant_flg
+INSERT INTO c_ctrl_set_mst (:insert_field_set) SELECT '14', E'レジテナントフラグ\n（レジでの従業員速報のみ有効なフラグ）', '0', '3', '0', '0', '0', '0', '5', E'', '0', :cmn_set WHERE NOT EXISTS (:sub_query_1 = '14');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '14', '1', '0', E'しない', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '14' AND ctrl_ordr = '1');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '14', '2', '1', E'する', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '14' AND ctrl_ordr = '2');
+
+-- multprc_cls
+INSERT INTO c_ctrl_set_mst (:insert_field_set) SELECT '15', E'複数売価使用階層', '0', '3', '0', '0', '0', '0', '5', E'', '0', :cmn_set WHERE NOT EXISTS (:sub_query_1 = '15');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '15', '1', '1', E'中分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '15' AND ctrl_ordr = '1');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '15', '2', '2', E'小分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '15' AND ctrl_ordr = '2');
+
+-- preset_img_cls_flg
+INSERT INTO c_ctrl_set_mst (:insert_field_set) SELECT '16', E'画像分類階層', '0', '3', '0', '0', '0', '0', '5', E'', '0', :cmn_set WHERE NOT EXISTS (:sub_query_1 = '16');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '16', '1', '1', E'中分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '16' AND ctrl_ordr = '1');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '16', '2', '2', E'小分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '16' AND ctrl_ordr = '2');
+
+-- stlplus_flg
+INSERT INTO c_ctrl_set_mst (:insert_field_set) SELECT '17', E'小計割増使用階層', '0', '3', '0', '0', '0', '0', '5', E'', '0', :cmn_set WHERE NOT EXISTS (:sub_query_1 = '17');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '17', '1', '1', E'中分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '17' AND ctrl_ordr = '1');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '17', '2', '2', E'小分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '17' AND ctrl_ordr = '2');
+
+-- pctr_tckt_cls
+INSERT INTO c_ctrl_set_mst (:insert_field_set) SELECT '18', E'単品値下商品フラグ階層', '0', '3', '0', '0', '0', '0', '5', E'', '0', :cmn_set WHERE NOT EXISTS (:sub_query_1 = '18');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '18', '1', '1', E'中分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '18' AND ctrl_ordr = '1');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '18', '2', '2', E'小分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '18' AND ctrl_ordr = '2');
+
+-- clothing_cls
+INSERT INTO c_ctrl_set_mst (:insert_field_set) SELECT '19', E'衣料対象商品フラグ階層', '0', '3', '0', '0', '0', '0', '5', E'', '0', :cmn_set WHERE NOT EXISTS (:sub_query_1 = '19');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '19', '1', '1', E'中分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '19' AND ctrl_ordr = '1');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '19', '2', '2', E'小分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '19' AND ctrl_ordr = '2');
+
+-- alert_cls (fil3)
+INSERT INTO c_ctrl_set_mst (:insert_field_set) SELECT '20', E'警告商品使用階層', '0', '3', '0', '0', '0', '0', '5', E'', '0', :cmn_set WHERE NOT EXISTS (:sub_query_1 = '20');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '20', '1', '1', E'中分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '20' AND ctrl_ordr = '1');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '20', '2', '2', E'小分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '20' AND ctrl_ordr = '2');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '20', '3', '3', E'クラス', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '20' AND ctrl_ordr = '3');
+
+-- chg_ckt_cls (fil4)
+INSERT INTO c_ctrl_set_mst (:insert_field_set) SELECT '21', E'引換券発券商品使用階層', '0', '3', '0', '0', '0', '0', '5', E'', '0', :cmn_set WHERE NOT EXISTS (:sub_query_1 = '21');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '21', '1', '1', E'中分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '21' AND ctrl_ordr = '1');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '21', '2', '2', E'小分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '21' AND ctrl_ordr = '2');
+
+-- kitchen_prn_cls (fil4)
+INSERT INTO c_ctrl_set_mst (:insert_field_set) SELECT '22', E'キッチンプリンタ印字対象フラグ', '0', '3', '0', '0', '0', '0', '5', E'', '0', :cmn_set WHERE NOT EXISTS (:sub_query_1 = '22');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '22', '1', '1', E'中分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '22' AND ctrl_ordr = '1');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '22', '2', '2', E'小分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '22' AND ctrl_ordr = '2');
+
+-- pricing_cls (fil5)
+INSERT INTO c_ctrl_set_mst (:insert_field_set) SELECT '23', E'値付けラベル使用階層', '0', '3', '0', '0', '0', '0', '5', E'', '0', :cmn_set WHERE NOT EXISTS (:sub_query_1 = '23');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '23', '1', '1', E'中分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '23' AND ctrl_ordr = '1');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '23', '2', '2', E'小分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '23' AND ctrl_ordr = '2');
+
+-- coupon_cls (fil5)
+INSERT INTO c_ctrl_set_mst (:insert_field_set) SELECT '24', E'大感謝クーポン対象使用階層', '0', '3', '0', '0', '0', '0', '5', E'', '0', :cmn_set WHERE NOT EXISTS (:sub_query_1 = '24');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '24', '1', '1', E'中分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '24' AND ctrl_ordr = '1');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '24', '2', '2', E'小分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '24' AND ctrl_ordr = '2');
+
+-- self_weight_cls (fil6)
+INSERT INTO c_ctrl_set_mst (:insert_field_set) SELECT '25', E'セルフ重量チェック使用階層', '0', '3', '0', '0', '0', '0', '5', E'', '0', :cmn_set WHERE NOT EXISTS (:sub_query_1 = '25');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '25', '1', '1', E'中分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '25' AND ctrl_ordr = '1');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '25', '2', '2', E'小分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '25' AND ctrl_ordr = '2');
+
+-- msg_cls
+INSERT INTO c_ctrl_set_mst (:insert_field_set) SELECT '26', E'メッセージ名称使用階層', '0', '3', '0', '0', '0', '0', '5', E'', '0', :cmn_set WHERE NOT EXISTS (:sub_query_1 = '26');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '26', '1', '1', E'中分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '26' AND ctrl_ordr = '1');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '26', '2', '2', E'小分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '26' AND ctrl_ordr = '2');
+
+-- pop_cls
+INSERT INTO c_ctrl_set_mst (:insert_field_set) SELECT '27', E'ポップアップ名称使用階層', '0', '3', '0', '0', '0', '0', '5', E'', '0', :cmn_set WHERE NOT EXISTS (:sub_query_1 = '27');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '27', '1', '1', E'中分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '27' AND ctrl_ordr = '1');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '27', '2', '2', E'小分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '27' AND ctrl_ordr = '2');
+
+-- cust_detail_cls
+INSERT INTO c_ctrl_set_mst (:insert_field_set) SELECT '28', E'会員明細使用階層', '0', '3', '0', '0', '0', '0', '5', E'', '0', :cmn_set WHERE NOT EXISTS (:sub_query_1 = '28');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '28', '1', '1', E'中分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '28' AND ctrl_ordr = '1');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '28', '2', '2', E'小分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '28' AND ctrl_ordr = '2');
+
+-- magazine_cls
+INSERT INTO c_ctrl_set_mst (:insert_field_set) SELECT '29', E'雑誌部門登録使用階層', '0', '3', '0', '0', '0', '0', '5', E'', '0', :cmn_set WHERE NOT EXISTS (:sub_query_1 = '29');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '29', '1', '1', E'中分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '29' AND ctrl_ordr = '1');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '29', '2', '2', E'小分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '29' AND ctrl_ordr = '2');
+
+-- tax_exemption_cls
+INSERT INTO c_ctrl_set_mst (:insert_field_set) SELECT '30', E'免税フラグ使用階層', '0', '3', '0', '0', '0', '0', '5', E'', '0', :cmn_set WHERE NOT EXISTS (:sub_query_1 = '30');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '30', '1', '1', E'中分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '30' AND ctrl_ordr = '1');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '30', '2', '2', E'小分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '30' AND ctrl_ordr = '2');
+
+-- book_cls
+INSERT INTO c_ctrl_set_mst (:insert_field_set) SELECT '31', E'書籍部門登録使用階層', '0', '3', '0', '0', '0', '0', '5', E'', '0', :cmn_set WHERE NOT EXISTS (:sub_query_1 = '31');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '31', '1', '1', E'中分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '31' AND ctrl_ordr = '1');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '31', '2', '2', E'小分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '31' AND ctrl_ordr = '2');
+
+-- cust_unlock
+INSERT INTO c_ctrl_set_mst (:insert_field_set) SELECT '32', E'会員情報　自動ロック解除時間 [分]', '0', '0', '99', '1', '2', '0', '5', E'', '0', :cmn_set WHERE NOT EXISTS (:sub_query_1 = '32');
+
+-- cls_points_flg
+INSERT INTO c_ctrl_set_mst (:insert_field_set) SELECT '33', E'分類対象ポイント使用階層', '0', '3', '0', '0', '0', '0', '5', E'', '0', :cmn_set WHERE NOT EXISTS (:sub_query_1 = '33');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '33', '1', '1', E'中分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '33' AND ctrl_ordr = '1');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '33', '2', '2', E'小分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '33' AND ctrl_ordr = '2');
+
+-- sub1_points_flg
+INSERT INTO c_ctrl_set_mst (:insert_field_set) SELECT '34', E'サブ1分類対象ポイント使用階層', '0', '3', '0', '0', '0', '0', '5', E'', '0', :cmn_set WHERE NOT EXISTS (:sub_query_1 = '34');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '34', '1', '1', E'中分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '34' AND ctrl_ordr = '1');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '34', '2', '2', E'小分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '34' AND ctrl_ordr = '2');
+
+-- sub1_stldsc_flg
+INSERT INTO c_ctrl_set_mst (:insert_field_set) SELECT '35', E'サブ1小計値引/割引使用階層', '0', '3', '0', '0', '0', '0', '5', E'', '0', :cmn_set WHERE NOT EXISTS (:sub_query_1 = '35');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '35', '1', '1', E'中分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '35' AND ctrl_ordr = '1');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '35', '2', '2', E'小分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '35' AND ctrl_ordr = '2');
+
+-- sub1_stlplus_flg
+INSERT INTO c_ctrl_set_mst (:insert_field_set) SELECT '36', E'サブ1小計割増使用階層', '0', '3', '0', '0', '0', '0', '5', E'', '0', :cmn_set WHERE NOT EXISTS (:sub_query_1 = '36');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '36', '1', '1', E'中分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '36' AND ctrl_ordr = '1');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '36', '2', '2', E'小分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '36' AND ctrl_ordr = '2');
+
+-- sub1_pctr_tckt_cls
+INSERT INTO c_ctrl_set_mst (:insert_field_set) SELECT '37', E'サブ1単品値下商品フラグ階層', '0', '3', '0', '0', '0', '0', '5', E'', '0', :cmn_set WHERE NOT EXISTS (:sub_query_1 = '37');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '37', '1', '1', E'中分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '37' AND ctrl_ordr = '1');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '37', '2', '2', E'小分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '37' AND ctrl_ordr = '2');
+
+-- sub2_points_flg
+INSERT INTO c_ctrl_set_mst (:insert_field_set) SELECT '38', E'サブ2分類対象ポイント使用階層', '0', '3', '0', '0', '0', '0', '5', E'', '0', :cmn_set WHERE NOT EXISTS (:sub_query_1 = '38');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '38', '1', '1', E'中分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '38' AND ctrl_ordr = '1');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '38', '2', '2', E'小分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '38' AND ctrl_ordr = '2');
+
+-- sub2_stldsc_flg
+INSERT INTO c_ctrl_set_mst (:insert_field_set) SELECT '39', E'サブ2小計値引/割引使用階層', '0', '3', '0', '0', '0', '0', '5', E'', '0', :cmn_set WHERE NOT EXISTS (:sub_query_1 = '39');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '39', '1', '1', E'中分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '39' AND ctrl_ordr = '1');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '39', '2', '2', E'小分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '39' AND ctrl_ordr = '2');
+
+-- sub2_stlplus_flg
+INSERT INTO c_ctrl_set_mst (:insert_field_set) SELECT '40', E'サブ2小計割増使用階層', '0', '3', '0', '0', '0', '0', '5', E'', '0', :cmn_set WHERE NOT EXISTS (:sub_query_1 = '40');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '40', '1', '1', E'中分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '40' AND ctrl_ordr = '1');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '40', '2', '2', E'小分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '40' AND ctrl_ordr = '2');
+
+-- sub2_pctr_tckt_cls
+INSERT INTO c_ctrl_set_mst (:insert_field_set) SELECT '41', E'サブ2単品値下商品フラグ階層', '0', '3', '0', '0', '0', '0', '5', E'', '0', :cmn_set WHERE NOT EXISTS (:sub_query_1 = '41');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '41', '1', '1', E'中分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '41' AND ctrl_ordr = '1');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '41', '2', '2', E'小分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '41' AND ctrl_ordr = '2');
+
+-- dpnt_add_cls_flg
+INSERT INTO c_ctrl_set_mst (:insert_field_set) SELECT '42', E'分類対象dポイントフラグ使用階層', '0', '3', '0', '0', '0', '0', '5', E'', '0', :cmn_set WHERE NOT EXISTS (:sub_query_1 = '42');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '42', '1', '1', E'中分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '42' AND ctrl_ordr = '1');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '42', '2', '2', E'小分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '42' AND ctrl_ordr = '2');
+
+-- dpnt_use_cls_flg
+INSERT INTO c_ctrl_set_mst (:insert_field_set) SELECT '43', E'分類対象dポイント利用フラグ階層', '0', '3', '0', '0', '0', '0', '5', E'', '0', :cmn_set WHERE NOT EXISTS (:sub_query_1 = '43');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '43', '1', '1', E'中分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '43' AND ctrl_ordr = '1');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '43', '2', '2', E'小分類', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '43' AND ctrl_ordr = '2');
+
+-- vol_cd_rnd_flg
+INSERT INTO c_ctrl_set_mst (:insert_field_set) SELECT '44', E'体積バーコード　まるめ', '0', '3', '0', '0', '0', '0', '5', E'', '0', :cmn_set WHERE NOT EXISTS (:sub_query_1 = '44');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '44', '1', '0', E'四捨五入', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '44' AND ctrl_ordr = '1');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '44', '2', '1', E'切り上げ', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '44' AND ctrl_ordr = '2');
+INSERT INTO c_ctrl_sub_mst (:insert_field_sub) SELECT '44', '3', '2', E'切り捨て', '5', :cmn_set WHERE NOT EXISTS (:sub_query_2 = '44' AND ctrl_ordr = '3');
+
+
+COMMIT;

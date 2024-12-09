@@ -1,0 +1,23 @@
+[
+    uuid(2ba2234f-d8e7-c02e-448b-0e2e3215643b),
+    version(1.0)
+]
+interface RpcIdlSnd
+{
+    typedef [context_handle] void* CONTEXT_HANDLE_SND;
+
+    typedef struct DRW_DATA_SND
+    {
+        unsigned long drwCmd;
+    } DRW_DATA_SND;
+
+    CONTEXT_HANDLE_SND OpenSnd(
+        [in] handle_t hBinding,
+        [in, ptr] DRW_DATA_SND* pdData);
+
+    void DrwDataSnd(
+        [in] CONTEXT_HANDLE_SND hContext);
+
+    void CloseSnd(
+        [in, out] CONTEXT_HANDLE_SND* phContext);
+}

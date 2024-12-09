@@ -1,0 +1,6 @@
+-- 初期値用ファイル(バージョンアップでは反映されない)
+
+\set insert_field 'comp_cd, stre_cd, mac_no, sale_date, last_sale_date, ins_datetime, upd_datetime, cnt_json_data'
+
+-- p_regcounter_log
+INSERT INTO p_regcounter_log (:insert_field) values (:COMP,:STRE,:MACNO,'2024-1-1 12:00:00','2024-1-1 12:00:00','now','now','{"key": 1, "print_no": 1, "receipt_no": 1, "str_open_flg": 1, "rcpt_print_no": 0, "str_close_flg": 0}');

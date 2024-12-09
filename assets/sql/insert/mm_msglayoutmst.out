@@ -1,0 +1,104 @@
+﻿-- c_msglayout_mst 
+
+\set insert_field 'comp_cd, stre_cd, msggrp_cd, ins_datetime, upd_datetime, status, send_flg, upd_user, upd_system, msg_typ, msg_cd, target_typ'
+
+-- comp_cd, stre_cd, msggrp_cd, ins_datetime, upd_datetime, status, send_flg, upd_user, upd_system
+\set cmn_set ' :COMP, :STRE, :GRP, \'now\', \'now\', \'0\', \'0\', \'999999\', \'2\' '
+
+\set sub_query 'SELECT msggrp_cd FROM c_msglayout_mst WHERE comp_cd = :COMP AND stre_cd = :STRE AND msggrp_cd = :GRP '
+
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '1', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '1');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '2', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '2');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '3', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '3');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '4', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '4');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '5', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '5');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '6', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '6');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '7', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '7');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '8', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '8');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '9', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '9');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '10', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '10');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '11', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '11');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '12', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '12');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '13', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '13');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '14', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '14');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '15', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '15');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '16', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '16');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '17', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '17');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '18', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '18');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '19', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '19');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '20', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '20');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '21', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '21');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '22', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '22');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '23', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '23');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '24', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '24');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '25', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '25');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '26', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '26');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '27', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '27');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '28', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '28');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '29', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '29');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '30', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '30');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '31', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '31');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '32', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '32');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '33', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '33');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '34', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '34');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '35', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '35');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '36', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '36');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '37', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '37');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '38', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '38');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '39', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '39');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '40', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '40');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '41', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '41');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '42', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '42');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '43', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '43');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '44', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '44');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '45', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '45');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '46', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '46');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '47', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '47');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '48', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '48');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '49', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '49');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '50', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '50');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '51', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '51');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '52', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '52');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '53', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '53');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '54', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '54');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '55', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '55');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '56', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '56');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '57', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '57');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '58', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '58');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '59', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '59');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '60', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '60');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '61', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '61');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '62', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '62');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '63', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '63');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '64', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '64');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '65', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '65');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '66', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '66');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '67', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '67');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '68', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '68');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '69', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '69');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '70', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '70');
+
+-- FIP
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '100', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '100');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '101', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '101');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '102', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '102');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '103', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '103');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '104', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '104');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '105', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '105');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '106', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '106');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '107', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '107');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '108', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '108');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '109', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '109');
+
+-- COLOR DISP
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '200', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '200');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '201', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '201');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '202', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '202');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '203', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '203');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '204', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '204');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '205', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '205');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '206', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '206');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '207', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '207');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '208', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '208');
+INSERT INTO c_msglayout_mst (:insert_field) SELECT :cmn_set, '209', '0', '0' WHERE NOT EXISTS (:sub_query AND msg_typ = '209');
+

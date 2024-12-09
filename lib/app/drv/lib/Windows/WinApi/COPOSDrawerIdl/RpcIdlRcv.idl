@@ -1,0 +1,24 @@
+[
+    uuid(3acc5643-3ef4-be93-6b80-0805533b5c12),
+    version(1.0)
+]
+interface RpcIdlRcv
+{
+    typedef [context_handle] void* CONTEXT_HANDLE_RCV;
+
+    typedef struct DRW_DATA_RCV
+    {
+        unsigned long drwStat;
+        unsigned long drwError;
+    } DRW_DATA_RCV;
+
+    CONTEXT_HANDLE_RCV OpenRcv(
+        [in] handle_t hBinding,
+        [in, ptr] DRW_DATA_RCV* pdData);
+
+    void DrwDataRcv(
+        [in] CONTEXT_HANDLE_RCV hContext);
+
+    void CloseRcv(
+        [in, out] CONTEXT_HANDLE_RCV* phContext);
+}

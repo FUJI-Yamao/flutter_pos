@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ソース ファイル">
+      <UniqueIdentifier>{e75ebb83-159b-4352-81f5-4f2890035ab2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="インターフェース">
+      <UniqueIdentifier>{ccfff8ec-be34-4753-8aed-cca997c6e198}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="COpos">
+      <UniqueIdentifier>{96037653-ab50-4492-9b03-0f6482ff0f8b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="OposSystem">
+      <UniqueIdentifier>{bf23249b-1af8-4689-90a8-09da00b0143f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\COPOSDrawerIdl\RpcIdlRcv.h">
+      <Filter>インターフェース</Filter>
+    </ClInclude>
+    <ClInclude Include="..\COPOSDrawerIdl\RpcIdlSnd.h">
+      <Filter>インターフェース</Filter>
+    </ClInclude>
+    <ClInclude Include="RpcManager.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="RpcUser.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="..\COpos\COposDrw.h">
+      <Filter>COpos</Filter>
+    </ClInclude>
+    <ClInclude Include="OPOSDrawer.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="..\OposSystem\NonCopyable.h">
+      <Filter>OposSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\OposSystem\OposDebug.h">
+      <Filter>OposSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\OposSystem\OposDefs.h">
+      <Filter>OposSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\OposSystem\Singleton.h">
+      <Filter>OposSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\OposSystem\stdafx.h">
+      <Filter>OposSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\OposSystem\TaskManager.h">
+      <Filter>OposSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\OposSystem\Console.h">
+      <Filter>OposSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\OposSystem\IRpc.h">
+      <Filter>OposSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\OposSystem\RemoteProc.h">
+      <Filter>OposSystem</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\COPOSDrawerIdl\RpcIdlRcv_c.c">
+      <Filter>インターフェース</Filter>
+    </ClCompile>
+    <ClCompile Include="..\COPOSDrawerIdl\RpcIdlSnd_s.c">
+      <Filter>インターフェース</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="RpcManager.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="RpcUser.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="..\OposSystem\OposDebug.cpp">
+      <Filter>OposSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\OposSystem\Singleton.cpp">
+      <Filter>OposSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\OposSystem\TaskManager.cpp">
+      <Filter>OposSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\OposSystem\RemoteProc.cpp">
+      <Filter>OposSystem</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

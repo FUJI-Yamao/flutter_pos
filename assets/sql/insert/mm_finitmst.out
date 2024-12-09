@@ -1,0 +1,498 @@
+BEGIN;
+TRUNCATE c_finit_mst;
+
+\set insert_field 'finit_grp_cd, finit_cd, set_tbl_name, set_tbl_typ, finit_dsp_chk_div, freq_dsp_chk_div, freq_ope_mode, rmst_freq_dsp_chk_div, default_file_name, offline_chk_flg, seq_name, freq_csrv_cnct_skip, freq_csrc_cust_real_skip, freq_csrv_cnct_key, freq_csrv_del_oth_stre, svr_div '
+
+-- offline_chk_flg, seq_name, freq_csrv_cnct_skip, freq_csrc_cust_real_skip, freq_csrv_cnct_key, freq_csrv_del_oth_stre, svr_div
+\set cmn_set  ' \'1\', \'\', \'1\', \'1\', \'\', \'0\', \'0\' '
+\set cmn_set2 ' \'1\', \'\', \'0\', \'1\', \'\', \'0\', \'0\' '
+\set cmn_set3 ' \'1\', \'\', \'1\', \'1\', \'none\', \'0\', \'0\' '
+\set cmn_set4 ' \'1\', \'\', \'1\', \'0\', \'\', \'0\', \'0\' '
+\set cmn_set5 ' \'1\', \'c_reserv_log_s0\', \'1\', \'1\', \'\', \'0\', \'0\' '
+\set sub_query 'SELECT finit_cd FROM c_finit_mst WHERE '
+
+-- 備考
+-- finit_dsp_chk_div ファイル初期化条件   0 = 表示 999 = 非表示
+-- freq_dsp_chk_div  ファイルリクエスト条件   0 = 表示 999 = 非表示
+-- rmst_freq_dsp_chk_div  開設でのファイルリクエスト条件  0 = 表示 999 = 非表示
+-- default_file_name 初期化時のデフォルトデータ. ただし, MS仕様でそのテーブルを初期化したとき, または, 全初期したときのみ実行.
+INSERT INTO c_finit_mst (:insert_field) SELECT '1', '1', 'c_reginfo_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '1' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '1', '2', 'c_reginfo_grp_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '1' AND finit_cd = '2');
+INSERT INTO c_finit_mst (:insert_field) SELECT '1', '3', 'c_stre_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '1' AND finit_cd = '3');
+INSERT INTO c_finit_mst (:insert_field) SELECT '1', '4', 'c_comp_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '1' AND finit_cd = '4');
+INSERT INTO c_finit_mst (:insert_field) SELECT '1', '5', 'c_openclose_mst', '0', '0', '100', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '1' AND finit_cd = '5');
+INSERT INTO c_finit_mst (:insert_field) SELECT '1', '6', 'c_regcnct_sio_mst', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '1' AND finit_cd = '6');
+INSERT INTO c_finit_mst (:insert_field) SELECT '1', '7', 'c_sio_mst', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '1' AND finit_cd = '7');
+INSERT INTO c_finit_mst (:insert_field) SELECT '1', '8', 'c_connect_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '1' AND finit_cd = '8');
+INSERT INTO c_finit_mst (:insert_field) SELECT '2', '1', 'c_openclose_mst', '0', '999', '200', '0', '200', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '2' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '3', '1', 'counter', '1', '999', '0', '6', '0', '', :cmn_set2 WHERE NOT EXISTS (:sub_query finit_grp_cd = '3' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '4', '1', 'c_grp_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '4' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '4', '2', 'c_cls_mst', '0', '0', '0', '0', '0', 'ms_cls.out', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '4' AND finit_cd = '2');
+INSERT INTO c_finit_mst (:insert_field) SELECT '4', '3', 'c_liqrcls_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '4' AND finit_cd = '3');
+INSERT INTO c_finit_mst (:insert_field) SELECT '4', '4', 'c_sub1_cls_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '4' AND finit_cd = '4');
+INSERT INTO c_finit_mst (:insert_field) SELECT '4', '5', 'c_sub2_cls_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '4' AND finit_cd = '5');
+INSERT INTO c_finit_mst (:insert_field) SELECT '5', '1', 'c_plu_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '5' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '5', '2', 'c_scanplu_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '5' AND finit_cd = '2');
+INSERT INTO c_finit_mst (:insert_field) SELECT '5', '3', 'c_caseitem_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '5' AND finit_cd = '3');
+INSERT INTO c_finit_mst (:insert_field) SELECT '5', '4', 'c_producer_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '5' AND finit_cd = '4');
+INSERT INTO c_finit_mst (:insert_field) SELECT '5', '5', 'c_setitem_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '5' AND finit_cd = '5');
+INSERT INTO c_finit_mst (:insert_field) SELECT '5', '6', 'c_attrib_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '5' AND finit_cd = '6');
+INSERT INTO c_finit_mst (:insert_field) SELECT '5', '7', 'c_attribitem_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '5' AND finit_cd = '7');
+INSERT INTO c_finit_mst (:insert_field) SELECT '5', '8', 'p_notfplu_off_tbl', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '5' AND finit_cd = '8');
+--INSERT INTO c_finit_mst (:insert_field) SELECT '6', '1', 'p_promsch_mst', '0', '37', '37', '0', '37', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '6' AND finit_cd = '1');
+--INSERT INTO c_finit_mst (:insert_field) SELECT '6', '2', 'p_promitem_mst', '0', '37', '37', '0', '37', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '6' AND finit_cd = '2');
+INSERT INTO c_finit_mst (:insert_field) SELECT '6', '3', 's_brgn_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '6' AND finit_cd = '3');
+INSERT INTO c_finit_mst (:insert_field) SELECT '6', '4', 's_bdlsch_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '6' AND finit_cd = '4');
+INSERT INTO c_finit_mst (:insert_field) SELECT '6', '5', 's_bdlitem_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '6' AND finit_cd = '5');
+INSERT INTO c_finit_mst (:insert_field) SELECT '6', '6', 's_stmsch_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '6' AND finit_cd = '6');
+INSERT INTO c_finit_mst (:insert_field) SELECT '6', '7', 's_stmitem_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '6' AND finit_cd = '7');
+INSERT INTO c_finit_mst (:insert_field) SELECT '6', '8', 's_clssch_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '6' AND finit_cd = '8');
+INSERT INTO c_finit_mst (:insert_field) SELECT '6', '9', 's_plu_point_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '6' AND finit_cd = '9');
+INSERT INTO c_finit_mst (:insert_field) SELECT '6', '10', 's_subtsch_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '6' AND finit_cd = '10');
+INSERT INTO c_finit_mst (:insert_field) SELECT '6', '11', 'c_plan_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '6' AND finit_cd = '11');
+INSERT INTO c_finit_mst (:insert_field) SELECT '6', '12', 's_svs_sch_mst', '0', '0', '2', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '6' AND finit_cd = '12');
+-- p_prom*はこの中で最後にくるようにする（先にやるとトリガーの影響を受けてしまうため）
+INSERT INTO c_finit_mst (:insert_field) SELECT '6', '13', 'p_promsch_mst', '0', '37', '37', '0', '37', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '6' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '6', '14', 'p_promitem_mst', '0', '37', '37', '0', '37', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '6' AND finit_cd = '2');
+INSERT INTO c_finit_mst (:insert_field) SELECT '8', '5', 's_svr_staffauth_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '8' AND finit_cd = '5');
+INSERT INTO c_finit_mst (:insert_field) SELECT '7', '1', 'c_tax_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '7' AND finit_cd = '1');
+--INSERT INTO c_finit_mst (:insert_field) SELECT '7', '2', 'mm_rept_taxchg.ini', '1', '0', '0', '34', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '7' AND finit_cd = '2'); /* 仕様削除 */
+INSERT INTO c_finit_mst (:insert_field) SELECT '8', '1', 'c_staff_mst', '0', '0', '0', '0', '0', 'ms_staff.out', :cmn_set3 WHERE NOT EXISTS (:sub_query finit_grp_cd = '8' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '8', '2', 'c_staffauth_mst', '0', '0', '0', '0', '0', 'ms_auth.out', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '8' AND finit_cd = '2');
+INSERT INTO c_finit_mst (:insert_field) SELECT '8', '3', 'c_keyauth_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '8' AND finit_cd = '3');
+INSERT INTO c_finit_mst (:insert_field) SELECT '8', '4', 'c_menuauth_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '8' AND finit_cd = '4');
+INSERT INTO c_finit_mst (:insert_field) SELECT '8', '6', 'c_operationauth_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '8' AND finit_cd = '6');
+INSERT INTO c_finit_mst (:insert_field) SELECT '9', '1', 'c_staffopen_mst', '0', '0', '200', '0', '200', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '9' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '9', '2', 'staffopen_inf', '1', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '9' AND finit_cd = '2');
+INSERT INTO c_finit_mst (:insert_field) SELECT '10', '1', 'c_img_mst', '0', '0', '0', '0', '0', '', :cmn_set3 WHERE NOT EXISTS (:sub_query finit_grp_cd = '10' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '10', '2', 'c_msg_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '10' AND finit_cd = '2');
+INSERT INTO c_finit_mst (:insert_field) SELECT '10', '3', 'c_msgsch_layout_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '10' AND finit_cd = '3');
+INSERT INTO c_finit_mst (:insert_field) SELECT '10', '4', 'c_keyopt_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '10' AND finit_cd = '4');
+INSERT INTO c_finit_mst (:insert_field) SELECT '10', '5', 'c_keyfnc_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '10' AND finit_cd = '5');
+INSERT INTO c_finit_mst (:insert_field) SELECT '10', '6', 'c_msglayout_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '10' AND finit_cd = '6');
+INSERT INTO c_finit_mst (:insert_field) SELECT '10', '7', 'c_keykind_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '10' AND finit_cd = '7');
+INSERT INTO c_finit_mst (:insert_field) SELECT '10', '8', 'c_keykind_grp_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '10' AND finit_cd = '8');
+INSERT INTO c_finit_mst (:insert_field) SELECT '10', '9', 'c_keyopt_set_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '10' AND finit_cd = '9');
+INSERT INTO c_finit_mst (:insert_field) SELECT '10', '10', 'c_keyopt_sub_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '10' AND finit_cd = '10');
+INSERT INTO c_finit_mst (:insert_field) SELECT '10', '11', 'c_msgsch_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '10' AND finit_cd = '11');
+INSERT INTO c_finit_mst (:insert_field) SELECT '10', '12', 'c_msglayout_set_mst', '0', '0', '0', '0', '0', 'mm_msglayout_set_mst.out', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '10' AND finit_cd = '12');
+INSERT INTO c_finit_mst (:insert_field) SELECT '11', '1', 'c_preset_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '11' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '12', '1', 'c_trm_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '12' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '12', '2', 'c_instre_mst', '0', '0', '0', '0', '0', 'ms_instre.out', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '12' AND finit_cd = '2');
+INSERT INTO c_finit_mst (:insert_field) SELECT '12', '3', 'c_crdt_demand_tbl', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '12' AND finit_cd = '3');
+INSERT INTO c_finit_mst (:insert_field) SELECT '12', '4', 'mbrreal.ini', '1', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '12' AND finit_cd = '4');
+INSERT INTO c_finit_mst (:insert_field) SELECT '12', '5', 'c_trm_set_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '12' AND finit_cd = '5');
+INSERT INTO c_finit_mst (:insert_field) SELECT '12', '6', 'c_trm_sub_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '12' AND finit_cd = '6');
+INSERT INTO c_finit_mst (:insert_field) SELECT '12', '7', 'c_trm_menu_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '12' AND finit_cd = '7');
+INSERT INTO c_finit_mst (:insert_field) SELECT '12', '8', 'c_trm_tag_grp_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '12' AND finit_cd = '8');
+INSERT INTO c_finit_mst (:insert_field) SELECT '12', '9', 'c_caldr_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '12' AND finit_cd = '9');
+--INSERT INTO c_finit_mst (:insert_field) SELECT '12', '10', 'c_rfm_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '12' AND finit_cd = '10');
+INSERT INTO c_finit_mst (:insert_field) SELECT '12', '11', 'c_dialog_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '12' AND finit_cd = '11');
+INSERT INTO c_finit_mst (:insert_field) SELECT '12', '12', 'c_dialog_ex_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '12' AND finit_cd = '12');
+INSERT INTO c_finit_mst (:insert_field) SELECT '12', '13', 'c_fmttyp_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '12' AND finit_cd = '13');
+INSERT INTO c_finit_mst (:insert_field) SELECT '12', '14', 'c_barfmt_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '12' AND finit_cd = '14');
+INSERT INTO c_finit_mst (:insert_field) SELECT '12', '15', 'c_trm_rsrv_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '12' AND finit_cd = '15');
+INSERT INTO c_finit_mst (:insert_field) SELECT '12', '16', 'c_pntsch_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '12' AND finit_cd = '16');
+INSERT INTO c_finit_mst (:insert_field) SELECT '12', '17', 'c_pntschgrp_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '12' AND finit_cd = '17');
+INSERT INTO c_finit_mst (:insert_field) SELECT '12', '18', 'c_ctrl_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '12' AND finit_cd = '18');
+INSERT INTO c_finit_mst (:insert_field) SELECT '12', '19', 'c_trm_plan_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '12' AND finit_cd = '19');
+INSERT INTO c_finit_mst (:insert_field) SELECT '12', '20', 's_nathldy_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '12' AND finit_cd = '20');
+INSERT INTO c_finit_mst (:insert_field) SELECT '12', '21', 'c_ctrl_set_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '12' AND finit_cd = '21');
+INSERT INTO c_finit_mst (:insert_field) SELECT '12', '22', 'c_ctrl_sub_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '12' AND finit_cd = '22');
+INSERT INTO c_finit_mst (:insert_field) SELECT '12', '23', 'c_trm_chk_mst', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '12' AND finit_cd = '23');
+INSERT INTO c_finit_mst (:insert_field) SELECT '12', '24', 'c_stropncls_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '12' AND finit_cd = '24');
+INSERT INTO c_finit_mst (:insert_field) SELECT '12', '25', 'c_stropncls_set_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '12' AND finit_cd = '25');
+INSERT INTO c_finit_mst (:insert_field) SELECT '12', '26', 'c_stropncls_sub_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '12' AND finit_cd = '26');
+INSERT INTO c_finit_mst (:insert_field) SELECT '12', '27', 'c_operation_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '12' AND finit_cd = '27');
+INSERT INTO c_finit_mst (:insert_field) SELECT '13', '1', 'c_cust_mst', '0', '0', '2', '0', '2', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '13' AND finit_cd = '1');
+--INSERT INTO c_finit_mst (:insert_field) SELECT '13', '2', 'm_cust_log', '0', '999', '2', '0', '2', '', :cmn_set2 WHERE NOT EXISTS (:sub_query finit_grp_cd = '13' AND finit_cd = '2'); /* テーブルなし */
+INSERT INTO c_finit_mst (:insert_field) SELECT '13', '3', 'c_zipcode_mst', '0', '999', '2', '0', '999', '', :cmn_set4 WHERE NOT EXISTS (:sub_query finit_grp_cd = '13' AND finit_cd = '3');
+INSERT INTO c_finit_mst (:insert_field) SELECT '13', '4', 'c_cust_jdg_mst', '0', '0', '2', '0', '2', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '13' AND finit_cd = '4'); --@@@
+INSERT INTO c_finit_mst (:insert_field) SELECT '13', '5', 's_cust_ttl_tbl', '0', '0', '306', '0', '306', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '13' AND finit_cd = '5');
+INSERT INTO c_finit_mst (:insert_field) SELECT '13', '6', 's_cust_loy_tbl', '0', '0', '306', '0', '306', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '13' AND finit_cd = '6');
+INSERT INTO c_finit_mst (:insert_field) SELECT '13', '7', 's_cust_cpn_tbl', '0', '0', '306', '0', '306', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '13' AND finit_cd = '7');
+INSERT INTO c_finit_mst (:insert_field) SELECT '13', '8', 's_cust_stp_tbl', '0', '0', '306', '0', '306', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '13' AND finit_cd = '8');
+INSERT INTO c_finit_mst (:insert_field) SELECT '14', '1', 'c_zipcode_mst', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '14' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '15', '1', 'c_batrepo_mst', '0', '0', '0', '0', '0', '', :cmn_set2 WHERE NOT EXISTS (:sub_query finit_grp_cd = '15' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '16', '1', 'c_histlog_mst', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '16' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '16', '2', 'c_histlog_chg_cnt', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '16' AND finit_cd = '2');
+INSERT INTO c_finit_mst (:insert_field) SELECT '16', '3', 'c_tmp_log', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '16' AND finit_cd = '3'); /* テーブル名称変更 */
+INSERT INTO c_finit_mst (:insert_field) SELECT '16', '4', 'c_prcchg_mst', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '16' AND finit_cd = '4');
+--INSERT INTO c_finit_mst (:insert_field) SELECT '16', '5', 'p_prcchg_mst', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '16' AND finit_cd = '5');
+INSERT INTO c_finit_mst (:insert_field) SELECT '16', '6', 'hist_ctrl_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '16' AND finit_cd = '6');
+INSERT INTO c_finit_mst (:insert_field) SELECT '16', '7', 'histlog_skip_num', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '16' AND finit_cd = '7');
+INSERT INTO c_finit_mst (:insert_field) SELECT '17', '1', 'receipt.bmp', '2', '0', '0', '10', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '17' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '17', '2', 'l_receipt.bmp', '2', '0', '0', '10', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '17' AND finit_cd = '2');
+INSERT INTO c_finit_mst (:insert_field) SELECT '17', '3', 'stamp1.bmp', '2', '0', '0', '10', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '17' AND finit_cd = '3');
+INSERT INTO c_finit_mst (:insert_field) SELECT '17', '4', 'anvsrywk.bmp', '2', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '17' AND finit_cd = '4');
+INSERT INTO c_finit_mst (:insert_field) SELECT '17', '5', 'anvsry01.bmp', '2', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '17' AND finit_cd = '5');
+INSERT INTO c_finit_mst (:insert_field) SELECT '17', '6', 'anvsry02.bmp', '2', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '17' AND finit_cd = '6');
+INSERT INTO c_finit_mst (:insert_field) SELECT '17', '7', 'anvsry03.bmp', '2', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '17' AND finit_cd = '7');
+INSERT INTO c_finit_mst (:insert_field) SELECT '17', '8', 'anvsry04.bmp', '2', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '17' AND finit_cd = '8');
+INSERT INTO c_finit_mst (:insert_field) SELECT '17', '9', 'anvsry05.bmp', '2', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '17' AND finit_cd = '9');
+INSERT INTO c_finit_mst (:insert_field) SELECT '17', '10', 'spltckt.bmp', '2', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '17' AND finit_cd = '10');
+INSERT INTO c_finit_mst (:insert_field) SELECT '17', '11', 'spltti00.bmp', '2', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '17' AND finit_cd = '11');
+INSERT INTO c_finit_mst (:insert_field) SELECT '17', '12', 'spltti01.bmp', '2', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '17' AND finit_cd = '12');
+INSERT INTO c_finit_mst (:insert_field) SELECT '17', '13', 'spltti02.bmp', '2', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '17' AND finit_cd = '13');
+INSERT INTO c_finit_mst (:insert_field) SELECT '17', '14', 'spltti03.bmp', '2', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '17' AND finit_cd = '14');
+INSERT INTO c_finit_mst (:insert_field) SELECT '17', '15', 'spltti04.bmp', '2', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '17' AND finit_cd = '15');
+INSERT INTO c_finit_mst (:insert_field) SELECT '17', '16', 'spltti05.bmp', '2', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '17' AND finit_cd = '16');
+INSERT INTO c_finit_mst (:insert_field) SELECT '17', '17', 'mnytcktwk.bmp', '2', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '17' AND finit_cd = '17');
+INSERT INTO c_finit_mst (:insert_field) SELECT '17', '18', 'promtcktwk.bmp', '2', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '17' AND finit_cd = '18');
+INSERT INTO c_finit_mst (:insert_field) SELECT '17', '19', 'vmctcktwk.bmp', '2', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '17' AND finit_cd = '19');
+INSERT INTO c_finit_mst (:insert_field) SELECT '17', '20', 'spltti06.bmp', '2', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '17' AND finit_cd = '20');
+INSERT INTO c_finit_mst (:insert_field) SELECT '17', '21', 'spltti07.bmp', '2', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '17' AND finit_cd = '21');
+INSERT INTO c_finit_mst (:insert_field) SELECT '17', '22', 'spltti08.bmp', '2', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '17' AND finit_cd = '22');
+INSERT INTO c_finit_mst (:insert_field) SELECT '17', '23', 'mas_receipt.bmp', '2', '999', '0', '10', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '17' AND finit_cd = '23');
+INSERT INTO c_finit_mst (:insert_field) SELECT '17', '24', 'mas_l_receipt.bmp', '2', '999', '0', '10', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '17' AND finit_cd = '24');
+INSERT INTO c_finit_mst (:insert_field) SELECT '17', '25', 'mas_stamp1.bmp', '2', '999', '0', '10', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '17' AND finit_cd = '25');
+INSERT INTO c_finit_mst (:insert_field) SELECT '17', '26', 'request_drw.bmp', '2', '0', '0', '10', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '17' AND finit_cd = '26');
+INSERT INTO c_finit_mst (:insert_field) SELECT '17', '27', 'void_reason.bmp', '2', '0', '0', '10', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '17' AND finit_cd = '27');
+INSERT INTO c_finit_mst (:insert_field) SELECT '17', '28', 'refund_reason.bmp', '2', '0', '0', '10', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '17' AND finit_cd = '28');
+INSERT INTO c_finit_mst (:insert_field) SELECT '17', '29', 'cancel_reason.bmp', '2', '0', '0', '10', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '17' AND finit_cd = '29');
+INSERT INTO c_finit_mst (:insert_field) SELECT '17', '30', 'all_refund_reason.bmp', '2', '0', '0', '10', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '17' AND finit_cd = '30');
+INSERT INTO c_finit_mst (:insert_field) SELECT '17', '31', 'rfm_receipt.bmp', '2', '0', '0', '10', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '17' AND finit_cd = '31');
+INSERT INTO c_finit_mst (:insert_field) SELECT '18', '1', 'spec', '1', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '18' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '19', '1', 'c_crdt_demand_tbl', '0', '0', '1', '0', '1', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '19' AND finit_cd = '1');
+
+INSERT INTO c_finit_mst (:insert_field) SELECT '19', '2', 'crdt', '1', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '19' AND finit_cd = '2');
+INSERT INTO c_finit_mst (:insert_field) SELECT '20', '1', 'ini_hq_set', '1', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '20' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '21', '1', 'hqhist_cd_down', '1', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '21' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '21', '2', 'hqhist_cd_up', '1', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '21' AND finit_cd = '2');
+INSERT INTO c_finit_mst (:insert_field) SELECT '22', '1', 'xxxxxxreceipt.bmp', '2', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '22' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '22', '2', 'xxxxxxl_receipt.bmp', '2', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '22' AND finit_cd = '2');
+INSERT INTO c_finit_mst (:insert_field) SELECT '22', '3', 'xxxxxxstamp1.bmp', '2', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '22' AND finit_cd = '3');
+INSERT INTO c_finit_mst (:insert_field) SELECT '22', '4', 'xxxxxxanvsrywk.bmp', '2', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '22' AND finit_cd = '4');
+INSERT INTO c_finit_mst (:insert_field) SELECT '22', '5', 'xxxxxxanvsry01.bmp', '2', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '22' AND finit_cd = '5');
+INSERT INTO c_finit_mst (:insert_field) SELECT '22', '6', 'xxxxxxanvsry02.bmp', '2', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '22' AND finit_cd = '6');
+INSERT INTO c_finit_mst (:insert_field) SELECT '22', '7', 'xxxxxxanvsry03.bmp', '2', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '22' AND finit_cd = '7');
+INSERT INTO c_finit_mst (:insert_field) SELECT '22', '8', 'xxxxxxanvsry04.bmp', '2', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '22' AND finit_cd = '8');
+INSERT INTO c_finit_mst (:insert_field) SELECT '22', '9', 'xxxxxxanvsry05.bmp', '2', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '22' AND finit_cd = '9');
+INSERT INTO c_finit_mst (:insert_field) SELECT '22', '10', 'xxxxxxspltckt.bmp', '2', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '22' AND finit_cd = '10');
+INSERT INTO c_finit_mst (:insert_field) SELECT '22', '11', 'xxxxxxspltti00.bmp', '2', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '22' AND finit_cd = '11');
+INSERT INTO c_finit_mst (:insert_field) SELECT '22', '12', 'xxxxxxspltti01.bmp', '2', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '22' AND finit_cd = '12');
+INSERT INTO c_finit_mst (:insert_field) SELECT '22', '13', 'xxxxxxspltti02.bmp', '2', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '22' AND finit_cd = '13');
+INSERT INTO c_finit_mst (:insert_field) SELECT '22', '14', 'xxxxxxspltti03.bmp', '2', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '22' AND finit_cd = '14');
+INSERT INTO c_finit_mst (:insert_field) SELECT '22', '15', 'xxxxxxspltti04.bmp', '2', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '22' AND finit_cd = '15');
+INSERT INTO c_finit_mst (:insert_field) SELECT '22', '16', 'xxxxxxspltti05.bmp', '2', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '22' AND finit_cd = '16');
+INSERT INTO c_finit_mst (:insert_field) SELECT '22', '17', 'xxxxxxmnytcktwk.bmp', '2', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '22' AND finit_cd = '17');
+INSERT INTO c_finit_mst (:insert_field) SELECT '22', '18', 'xxxxxxpromtcktwk.bmp', '2', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '22' AND finit_cd = '18');
+INSERT INTO c_finit_mst (:insert_field) SELECT '22', '19', 'xxxxxxvmctcktwk.bmp', '2', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '22' AND finit_cd = '19');
+INSERT INTO c_finit_mst (:insert_field) SELECT '22', '20', 'xxxxxxspltti06.bmp', '2', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '22' AND finit_cd = '20');
+INSERT INTO c_finit_mst (:insert_field) SELECT '22', '21', 'xxxxxxspltti07.bmp', '2', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '22' AND finit_cd = '21');
+INSERT INTO c_finit_mst (:insert_field) SELECT '22', '22', 'xxxxxxspltti08.bmp', '2', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '22' AND finit_cd = '22');
+INSERT INTO c_finit_mst (:insert_field) SELECT '22', '23', 'xxxxxxrequest_drw.bmp', '2', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '22' AND finit_cd = '23');
+INSERT INTO c_finit_mst (:insert_field) SELECT '22', '24', 'xxxxxxvoid_reason.bmp', '2', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '22' AND finit_cd = '24');
+INSERT INTO c_finit_mst (:insert_field) SELECT '22', '25', 'xxxxxxrefund_reason.bmp', '2', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '22' AND finit_cd = '25');
+INSERT INTO c_finit_mst (:insert_field) SELECT '22', '26', 'xxxxxxcancel_reason.bmp', '2', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '22' AND finit_cd = '26');
+INSERT INTO c_finit_mst (:insert_field) SELECT '22', '27', 'xxxxxxall_refund_reason.bmp', '2', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '22' AND finit_cd = '27');
+INSERT INTO c_finit_mst (:insert_field) SELECT '22', '28', 'xxxxxxrfm_receipt.bmp', '2', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '22' AND finit_cd = '28');
+INSERT INTO c_finit_mst (:insert_field) SELECT '23', '1', 'anvsrywk.bmp', '2', '999', '12', '10', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '23' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '23', '2', 'anvsry01.bmp', '2', '999', '12', '10', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '23' AND finit_cd = '2');
+INSERT INTO c_finit_mst (:insert_field) SELECT '23', '3', 'anvsry02.bmp', '2', '999', '12', '10', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '23' AND finit_cd = '3');
+INSERT INTO c_finit_mst (:insert_field) SELECT '23', '4', 'anvsry03.bmp', '2', '999', '12', '10', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '23' AND finit_cd = '4');
+INSERT INTO c_finit_mst (:insert_field) SELECT '23', '5', 'anvsry04.bmp', '2', '999', '12', '10', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '23' AND finit_cd = '5');
+INSERT INTO c_finit_mst (:insert_field) SELECT '23', '6', 'anvsry05.bmp', '2', '999', '12', '10', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '23' AND finit_cd = '6');
+INSERT INTO c_finit_mst (:insert_field) SELECT '23', '7', 'spltckt.bmp', '2', '999', '12', '10', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '23' AND finit_cd = '7');
+INSERT INTO c_finit_mst (:insert_field) SELECT '23', '8', 'spltti00.bmp', '2', '999', '12', '10', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '23' AND finit_cd = '8');
+INSERT INTO c_finit_mst (:insert_field) SELECT '23', '9', 'spltti01.bmp', '2', '999', '12', '10', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '23' AND finit_cd = '9');
+INSERT INTO c_finit_mst (:insert_field) SELECT '23', '10', 'spltti02.bmp', '2', '999', '12', '10', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '23' AND finit_cd = '10');
+INSERT INTO c_finit_mst (:insert_field) SELECT '23', '11', 'spltti03.bmp', '2', '999', '12', '10', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '23' AND finit_cd = '11');
+INSERT INTO c_finit_mst (:insert_field) SELECT '23', '12', 'spltti04.bmp', '2', '999', '12', '10', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '23' AND finit_cd = '12');
+INSERT INTO c_finit_mst (:insert_field) SELECT '23', '13', 'mas_anvsrywk.bmp', '2', '999', '12', '10', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '23' AND finit_cd = '13');
+INSERT INTO c_finit_mst (:insert_field) SELECT '23', '14', 'mas_anvsry01.bmp', '2', '999', '12', '10', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '23' AND finit_cd = '14');
+INSERT INTO c_finit_mst (:insert_field) SELECT '23', '15', 'mas_anvsry02.bmp', '2', '999', '12', '10', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '23' AND finit_cd = '15');
+INSERT INTO c_finit_mst (:insert_field) SELECT '23', '16', 'mas_anvsry03.bmp', '2', '999', '12', '10', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '23' AND finit_cd = '16');
+INSERT INTO c_finit_mst (:insert_field) SELECT '23', '17', 'mas_anvsry04.bmp', '2', '999', '12', '10', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '23' AND finit_cd = '17');
+INSERT INTO c_finit_mst (:insert_field) SELECT '23', '18', 'mas_anvsry05.bmp', '2', '999', '12', '10', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '23' AND finit_cd = '18');
+INSERT INTO c_finit_mst (:insert_field) SELECT '23', '19', 'mas_spltckt.bmp', '2', '999', '12', '10', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '23' AND finit_cd = '19');
+INSERT INTO c_finit_mst (:insert_field) SELECT '23', '20', 'mas_spltti00.bmp', '2', '999', '12', '10', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '23' AND finit_cd = '20');
+INSERT INTO c_finit_mst (:insert_field) SELECT '23', '21', 'mas_spltti01.bmp', '2', '999', '12', '10', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '23' AND finit_cd = '21');
+INSERT INTO c_finit_mst (:insert_field) SELECT '23', '22', 'mas_spltti02.bmp', '2', '999', '12', '10', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '23' AND finit_cd = '22');
+INSERT INTO c_finit_mst (:insert_field) SELECT '23', '23', 'mas_spltti03.bmp', '2', '999', '12', '10', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '23' AND finit_cd = '23');
+INSERT INTO c_finit_mst (:insert_field) SELECT '23', '24', 'mas_spltti04.bmp', '2', '999', '12', '10', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '23' AND finit_cd = '24');
+INSERT INTO c_finit_mst (:insert_field) SELECT '23', '25', 'promtcktwk.bmp', '2', '999', '12', '10', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '23' AND finit_cd = '25');
+INSERT INTO c_finit_mst (:insert_field) SELECT '23', '26', 'vmctcktwk.bmp', '2', '999', '12', '10', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '23' AND finit_cd = '26');
+INSERT INTO c_finit_mst (:insert_field) SELECT '23', '27', 'spltti06.bmp', '2', '999', '12', '10', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '23' AND finit_cd = '27');
+INSERT INTO c_finit_mst (:insert_field) SELECT '23', '28', 'spltti07.bmp', '2', '999', '12', '10', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '23' AND finit_cd = '28');
+INSERT INTO c_finit_mst (:insert_field) SELECT '23', '29', 'mas_promtcktwk.bmp', '2', '999', '12', '10', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '23' AND finit_cd = '29');
+INSERT INTO c_finit_mst (:insert_field) SELECT '23', '30', 'mas_vmctcktwk.bmp', '2', '999', '12', '10', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '23' AND finit_cd = '30');
+INSERT INTO c_finit_mst (:insert_field) SELECT '23', '31', 'mas_spltti06.bmp', '2', '999', '12', '10', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '23' AND finit_cd = '31');
+INSERT INTO c_finit_mst (:insert_field) SELECT '23', '32', 'mas_spltti07.bmp', '2', '999', '12', '10', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '23' AND finit_cd = '32');
+INSERT INTO c_finit_mst (:insert_field) SELECT '23', '33', 'spltti08.bmp', '2', '999', '12', '10', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '23' AND finit_cd = '33');
+INSERT INTO c_finit_mst (:insert_field) SELECT '23', '34', 'mas_spltti08.bmp', '2', '999', '12', '10', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '23' AND finit_cd = '34');
+INSERT INTO c_finit_mst (:insert_field) SELECT '23', '35', 'spltti05.bmp', '2', '999', '12', '10', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '23' AND finit_cd = '35');
+INSERT INTO c_finit_mst (:insert_field) SELECT '25', '1', 'spcificftp', '1', '0', '5', '8', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '25' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '26', '1', 'c_preset_img_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '26' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '26', '2', 'img_preset', '2', '0', '0', '7', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '26' AND finit_cd = '2');
+INSERT INTO c_finit_mst (:insert_field) SELECT '26', '3', 'colordspmsg_img', '2', '0', '211', '40', '211', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '26' AND finit_cd = '3');
+--INSERT INTO c_finit_mst (:insert_field) SELECT '27', '1', 'c_header_log', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '27' AND finit_cd = '1');	/* 27 => 95に移動 */
+--INSERT INTO c_finit_mst (:insert_field) SELECT '27', '2', 'c_data_log', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '27' AND finit_cd = '2');	/* 27 => 95に移動 */
+--INSERT INTO c_finit_mst (:insert_field) SELECT '27', '3', 'c_status_log', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '27' AND finit_cd = '3');	/* 27 => 95に移動 */
+--INSERT INTO c_finit_mst (:insert_field) SELECT '27', '4', 'c_void_log_01', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '27' AND finit_cd = '4');	/* 27 => 95に移動 */
+--INSERT INTO c_finit_mst (:insert_field) SELECT '27', '5', 'c_ej_log', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '27' AND finit_cd = '5');	/* 27 => 95に移動 */
+--INSERT INTO c_finit_mst (:insert_field) SELECT '27', '6', 'c_report_cnt', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '27' AND finit_cd = '6');	/* 27 => 95に移動 */
+--INSERT INTO c_finit_mst (:insert_field) SELECT '27', '7', 'item_log.normal', '1', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '27' AND finit_cd = '7');	/* 27 => 95に移動 */
+--INSERT INTO c_finit_mst (:insert_field) SELECT '27', '8', 'item_log.off', '1', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '27' AND finit_cd = '8');	/* 27 => 95に移動 */
+--INSERT INTO c_finit_mst (:insert_field) SELECT '27', '9', 'rdly_deal', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '27' AND finit_cd = '9'); /* テーブルなし */
+--INSERT INTO c_finit_mst (:insert_field) SELECT '27', '10', 'rdly_flow', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '27' AND finit_cd = '10'); /* テーブルなし */
+--INSERT INTO c_finit_mst (:insert_field) SELECT '27', '12', 'rdly_acr', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '27' AND finit_cd = '12'); /* テーブルなし */
+--INSERT INTO c_finit_mst (:insert_field) SELECT '27', '13', 'rdly_class', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '27' AND finit_cd = '13'); /* テーブルなし */
+--INSERT INTO c_finit_mst (:insert_field) SELECT '27', '14', 'rdly_plu', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '27' AND finit_cd = '14'); /* テーブルなし */
+--INSERT INTO c_finit_mst (:insert_field) SELECT '27', '17', 'rdly_prom', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '27' AND finit_cd = '17'); /* テーブルなし */
+--INSERT INTO c_finit_mst (:insert_field) SELECT '27', '26', 'counter', '1', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '27' AND finit_cd = '26');	/* 27 => 95に移動 */
+--INSERT INTO c_finit_mst (:insert_field) SELECT '27', '27', 'TmpRegsData', '1', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '27' AND finit_cd = '27'); 	/* 27 => 95に移動 */
+--INSERT INTO c_finit_mst (:insert_field) SELECT '27', '28', 'drawchk_cash_log', '1', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '27' AND finit_cd = '28');	/* 27 => 95に移動 */
+--INSERT INTO c_finit_mst (:insert_field) SELECT '27', '29', 'c_status_log', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '27' AND finit_cd = '29'); /* テーブル重複 */
+--INSERT INTO c_finit_mst (:insert_field) SELECT '27', '30', 'rdly_deal_hour', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '27' AND finit_cd = '30'); /* テーブルなし */
+--INSERT INTO c_finit_mst (:insert_field) SELECT '27', '31', 'rdly_class_hour', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '27' AND finit_cd = '31'); /* テーブルなし */
+--INSERT INTO c_finit_mst (:insert_field) SELECT '27', '32', 'rdly_plu_hour', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '27' AND finit_cd = '32'); /* テーブルなし */
+--INSERT INTO c_finit_mst (:insert_field) SELECT '27', '33', 'upd_file', '1', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '27' AND finit_cd = '33');	/* 27 => 95に移動 */
+--INSERT INTO c_finit_mst (:insert_field) SELECT '27', '34', 'rdly_deal', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '27' AND finit_cd = '34'); 	/* 27 => 95に移動 */
+--INSERT INTO c_finit_mst (:insert_field) SELECT '27', '35', 'rdly_deal_hour', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '27' AND finit_cd = '35'); 	/* 27 => 95に移動 */
+--INSERT INTO c_finit_mst (:insert_field) SELECT '27', '36', 'rdly_flow', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '27' AND finit_cd = '36'); 	/* 27 => 95に移動 */
+--INSERT INTO c_finit_mst (:insert_field) SELECT '27', '37', 'rdly_acr', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '27' AND finit_cd = '37'); 	/* 27 => 95に移動 */
+--INSERT INTO c_finit_mst (:insert_field) SELECT '27', '38', 'rdly_class', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '27' AND finit_cd = '38'); 	/* 27 => 95に移動 */
+--INSERT INTO c_finit_mst (:insert_field) SELECT '27', '39', 'rdly_class_hour', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '27' AND finit_cd = '39'); 	/* 27 => 95に移動 */
+--INSERT INTO c_finit_mst (:insert_field) SELECT '27', '40', 'rdly_plu', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '27' AND finit_cd = '40'); 	/* 27 => 95に移動 */
+--INSERT INTO c_finit_mst (:insert_field) SELECT '27', '41', 'rdly_plu_hour', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '27' AND finit_cd = '41'); 	/* 27 => 95に移動 */
+--INSERT INTO c_finit_mst (:insert_field) SELECT '27', '42', 'rdly_dsc', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '27' AND finit_cd = '42'); 	/* 27 => 95に移動 */
+--INSERT INTO c_finit_mst (:insert_field) SELECT '27', '43', 'rdly_prom', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '27' AND finit_cd = '43'); 	/* 27 => 95に移動 */
+--INSERT INTO c_finit_mst (:insert_field) SELECT '27', '44', 'wk_que', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '27' AND finit_cd = '44');	/* 27 => 95に移動 */
+--INSERT INTO c_finit_mst (:insert_field) SELECT '27', '45', 'backup.normal', '1', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '27' AND finit_cd = '45');	/* 27 => 95に移動 */
+--INSERT INTO c_finit_mst (:insert_field) SELECT '28', '1', 'rdly_deal', '0', '999', '200', '0', '200', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '28' AND finit_cd = '1'); /* テーブルなし */
+--INSERT INTO c_finit_mst (:insert_field) SELECT '28', '2', 'rdly_flow', '0', '999', '200', '0', '200', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '28' AND finit_cd = '2'); /* テーブルなし */
+--INSERT INTO c_finit_mst (:insert_field) SELECT '28', '4', 'rdly_acr', '0', '999', '200', '0', '200', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '28' AND finit_cd = '4'); /* テーブルなし */
+--INSERT INTO c_finit_mst (:insert_field) SELECT '28', '5', 'rdly_class', '0', '999', '200', '0', '200', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '28' AND finit_cd = '5'); /* テーブルなし */
+--INSERT INTO c_finit_mst (:insert_field) SELECT '28', '6', 'rdly_plu', '0', '999', '200', '0', '200', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '28' AND finit_cd = '6'); /* テーブルなし */
+--INSERT INTO c_finit_mst (:insert_field) SELECT '28', '7', 'rdly_prom', '0', '999', '200', '0', '200', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '28' AND finit_cd = '7'); /* テーブルなし */
+--INSERT INTO c_finit_mst (:insert_field) SELECT '28', '8', 'rdly_deal_hour', '0', '999', '200', '0', '200', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '28' AND finit_cd = '8'); /* テーブルなし */
+--INSERT INTO c_finit_mst (:insert_field) SELECT '28', '9', 'rdly_class_hour', '0', '999', '200', '0', '200', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '28' AND finit_cd = '9'); /* テーブルなし */
+--INSERT INTO c_finit_mst (:insert_field) SELECT '28', '10', 'rdly_plu_hour', '0', '999', '200', '0', '200', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '28' AND finit_cd = '10'); /* テーブルなし */
+INSERT INTO c_finit_mst (:insert_field) SELECT '29', '11', 'c_header_log', '0', '999', '200', '36', '200', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '29' AND finit_cd = '11');
+INSERT INTO c_finit_mst (:insert_field) SELECT '29', '12', 'c_data_log', '0', '999', '200', '36', '200', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '29' AND finit_cd = '12');
+INSERT INTO c_finit_mst (:insert_field) SELECT '29', '13', 'c_ej_log', '0', '999', '200', '36', '200', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '29' AND finit_cd = '13');
+INSERT INTO c_finit_mst (:insert_field) SELECT '29', '14', 'c_void_log_01', '0', '999', '200', '0', '200', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '29' AND finit_cd = '14');
+INSERT INTO c_finit_mst (:insert_field) SELECT '29', '15', 'c_status_log', '0', '999', '200', '36', '200', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '29' AND finit_cd = '15');
+INSERT INTO c_finit_mst (:insert_field) SELECT '30', '1', 'c_report_cnt', '0', '999', '11', '0', '11', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '30' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '31', '1', 'ejnl', '1', '0', '200', '0', '200', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '31' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '34', '1', 'ftp_backup_txt', '1', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '34' AND finit_cd = '1');
+--INSERT INTO c_finit_mst (:insert_field) SELECT '34', '2', 'ftp_backup', '1', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '34' AND finit_cd = '2');
+--INSERT INTO c_finit_mst (:insert_field) SELECT '34', '3', 'ftp_backup', '1', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '34' AND finit_cd = '3');
+--INSERT INTO c_finit_mst (:insert_field) SELECT '34', '4', 'ftp_cd_bkup_file', '1', '999', '8', '14', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '34' AND finit_cd = '4');
+INSERT INTO c_finit_mst (:insert_field) SELECT '34', '2', 'ftp_cd_bkup_file', '1', '999', '8', '14', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '34' AND finit_cd = '2');
+INSERT INTO c_finit_mst (:insert_field) SELECT '34', '3', 'ftp_backup_jnl', '1', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '34' AND finit_cd = '3');
+INSERT INTO c_finit_mst (:insert_field) SELECT '35', '1', 'readdata_ret_inf', '1', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '35' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '36', '1', 'netwlpr_inf', '1', '0', '6', '11', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '36' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '37', '1', 'taxchg_ret_inf', '1', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '37' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '38', '1', 'upd_err_inf', '1', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '38' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '39', '1', 'c_maker_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '39' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '40', '1', 'mobile_file', '1', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '40' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '41', '1', 'c_batprcchg_mst', '0', '0', '100', '12', '100', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '41' AND finit_cd = '1');
+--INSERT INTO c_finit_mst (:insert_field) SELECT '41', '1', 'p_prcchg_sch_mst', '0', '0', '100', '12', '100', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '41' AND finit_cd = '1');
+--INSERT INTO c_finit_mst (:insert_field) SELECT '41', '2', 'p_prcchg_item_mst', '0', '0', '100', '12', '100', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '41' AND finit_cd = '2');
+INSERT INTO c_finit_mst (:insert_field) SELECT '42', '1', 'memo', '1', '0', '999', '15', '999', '', :cmn_set2 WHERE NOT EXISTS (:sub_query finit_grp_cd = '42' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '42', '2', 'c_memo_mst', '0', '0', '9', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '42' AND finit_cd = '2');
+INSERT INTO c_finit_mst (:insert_field) SELECT '42', '3', 'c_memosnd_mst', '0', '0', '9', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '42' AND finit_cd = '3');
+INSERT INTO c_finit_mst (:insert_field) SELECT '43', '1', 'version.ini', '1', '0', '10', '17', '999', '', :cmn_set2 WHERE NOT EXISTS (:sub_query finit_grp_cd = '43' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '43', '2', 'mac_info.ini', '1', '0', '10', '17', '999', '', :cmn_set2 WHERE NOT EXISTS (:sub_query finit_grp_cd = '43' AND finit_cd = '2');
+INSERT INTO c_finit_mst (:insert_field) SELECT '43', '3', 'csvbkup.ini', '1', '0', '10', '17', '999', '', :cmn_set2 WHERE NOT EXISTS (:sub_query finit_grp_cd = '43' AND finit_cd = '3');
+INSERT INTO c_finit_mst (:insert_field) SELECT '43', '4', 'fjss.ini', '1', '0', '10', '17', '999', '', :cmn_set2 WHERE NOT EXISTS (:sub_query finit_grp_cd = '43' AND finit_cd = '4');
+INSERT INTO c_finit_mst (:insert_field) SELECT '43', '5', 'specificftp.ini', '1', '0', '10', '17', '999', '', :cmn_set2 WHERE NOT EXISTS (:sub_query finit_grp_cd = '43' AND finit_cd = '5');
+INSERT INTO c_finit_mst (:insert_field) SELECT '43', '6', 'sys_param.ini', '1', '0', '10', '17', '999', '', :cmn_set2 WHERE NOT EXISTS (:sub_query finit_grp_cd = '43' AND finit_cd = '6');
+INSERT INTO c_finit_mst (:insert_field) SELECT '43', '7', 'eat_in.ini', '1', '0', '10', '17', '999', '', :cmn_set2 WHERE NOT EXISTS (:sub_query finit_grp_cd = '43' AND finit_cd = '7');
+INSERT INTO c_finit_mst (:insert_field) SELECT '43', '8', 'hqftp.ini', '1', '0', '10', '17', '999', '', :cmn_set2 WHERE NOT EXISTS (:sub_query finit_grp_cd = '43' AND finit_cd = '8');
+INSERT INTO c_finit_mst (:insert_field) SELECT '43', '9', 'hqhist.ini', '1', '0', '10', '17', '999', '', :cmn_set2 WHERE NOT EXISTS (:sub_query finit_grp_cd = '43' AND finit_cd = '9');
+INSERT INTO c_finit_mst (:insert_field) SELECT '43', '10', 'hqprod.ini', '1', '0', '10', '17', '999', '', :cmn_set2 WHERE NOT EXISTS (:sub_query finit_grp_cd = '43' AND finit_cd = '10');
+INSERT INTO c_finit_mst (:insert_field) SELECT '43', '11', 'hq_set.ini', '1', '0', '10', '17', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '43' AND finit_cd = '11');
+--INSERT INTO c_finit_mst (:insert_field) SELECT '43', '12', 'taxchg_reserve.ini', '1', '0', '10', '17', '999', '', :cmn_set2 WHERE NOT EXISTS (:sub_query finit_grp_cd = '43' AND finit_cd = '12'); /* 仕様削除 */
+INSERT INTO c_finit_mst (:insert_field) SELECT '43', '13', 'plan.tar.gz', '1', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '43' AND finit_cd = '13');
+INSERT INTO c_finit_mst (:insert_field) SELECT '43', '14', 'plan_file', '1', '999', '10', '17', '999', '', :cmn_set2 WHERE NOT EXISTS (:sub_query finit_grp_cd = '43' AND finit_cd = '14');
+INSERT INTO c_finit_mst (:insert_field) SELECT '44', '1', 'non_act', '1', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '44' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '53', '1', 'KCSRCVMK', '1', '302', '23', '19', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '53' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '54', '1', 'movie_info.ini', '1', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '54' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '54', '2', 'qs_movie_start_dsp.ini', '1', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '54' AND finit_cd = '2');
+INSERT INTO c_finit_mst (:insert_field) SELECT '54', '3', 'qcashier.ini', '1', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '54' AND finit_cd = '3');
+INSERT INTO c_finit_mst (:insert_field) SELECT '54', '4', 'speeza.ini', '1', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '54' AND finit_cd = '4');
+INSERT INTO c_finit_mst (:insert_field) SELECT '54', '5', 'qc_start_dsp.ini', '1', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '54' AND finit_cd = '5');
+INSERT INTO c_finit_mst (:insert_field) SELECT '54', '6', 'speeza_com.ini', '1', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '54' AND finit_cd = '6');
+INSERT INTO c_finit_mst (:insert_field) SELECT '54', '7', 'self_image', '2', '999', '13', '16', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '54' AND finit_cd = '7');
+INSERT INTO c_finit_mst (:insert_field) SELECT '54', '8', 'self_gif', '1', '999', '13', '16', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '54' AND finit_cd = '8');
+INSERT INTO c_finit_mst (:insert_field) SELECT '54', '9', 'self_wav', '1', '999', '13', '16', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '54' AND finit_cd = '9');
+INSERT INTO c_finit_mst (:insert_field) SELECT '54', '10', 'self_verini', '1', '999', '13', '16', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '54' AND finit_cd = '10');
+--INSERT INTO c_finit_mst (:insert_field) SELECT '54', '11', 'mst_read_date', '1', '999', '13', '22', '999', '', :cmn_set2 WHERE NOT EXISTS (:sub_query finit_grp_cd = '54' AND finit_cd = '11');
+INSERT INTO c_finit_mst (:insert_field) SELECT '54', '12', 'fself_content', '1', '999', '999', '16', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '54' AND finit_cd = '12');
+--INSERT INTO c_finit_mst (:insert_field) SELECT '54', '13', 'f_self_content.ini', '1', '999', '999', '31', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '54' AND finit_cd = '13');
+INSERT INTO c_finit_mst (:insert_field) SELECT '54', '14', 'f_self_img.ini', '1', '999', '999', '31', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '54' AND finit_cd = '14');
+INSERT INTO c_finit_mst (:insert_field) SELECT '55', '1', 'log/ssps', '1', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '55' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '55', '2', 'ssps_csv_txt', '1', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '55' AND finit_cd = '2');
+INSERT INTO c_finit_mst (:insert_field) SELECT '55', '3', 'spqc_txt', '1', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '55' AND finit_cd = '3');
+INSERT INTO c_finit_mst (:insert_field) SELECT '56', '1', 'spqc_txt', '1', '999', '210', '28', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '56' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '57', '1', 'cm_logo', '2', '0', '0', '21', '999', '', :cmn_set2 WHERE NOT EXISTS (:sub_query finit_grp_cd = '57' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '58', '1', 'rsv_custreal.ini', '1', '303', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '58' AND finit_cd = '1');
+--INSERT INTO c_finit_mst (:insert_field) SELECT '59', '1', 'c_reserv_tbl', '0', '304', '205', '0', '205', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '59' AND finit_cd = '1');
+--INSERT INTO c_finit_mst (:insert_field) SELECT '59', '2', 'c_reserv_log', '0', '304', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '59' AND finit_cd = '2');
+--INSERT INTO c_finit_mst (:insert_field) SELECT '59', '3', 'c_reserv_log', '0', '304', '205', '0', '205', '', :cmn_set5 WHERE NOT EXISTS (:sub_query finit_grp_cd = '59' AND finit_cd = '3');
+INSERT INTO c_finit_mst (:insert_field) SELECT '59', '1', 'c_header_log_reserv_01', '0', '304', '205', '0', '205', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '59' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '59', '2', 'c_data_log_reserv_01', '0', '304', '205', '0', '205', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '59' AND finit_cd = '2');
+INSERT INTO c_finit_mst (:insert_field) SELECT '59', '3', 'c_status_log_reserv_01', '0', '304', '205', '0', '205', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '59' AND finit_cd = '3');
+INSERT INTO c_finit_mst (:insert_field) SELECT '59', '4', 'c_header_log_reserv', '0', '304', '205', '0', '205', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '59' AND finit_cd = '4');
+INSERT INTO c_finit_mst (:insert_field) SELECT '59', '5', 'c_data_log_reserv', '0', '304', '205', '0', '205', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '59' AND finit_cd = '5');
+INSERT INTO c_finit_mst (:insert_field) SELECT '59', '6', 'c_status_log_reserv', '0', '304', '205', '0', '205', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '59' AND finit_cd = '6');
+--INSERT INTO c_finit_mst (:insert_field) SELECT '59', '4', 'c_itemlog_reserv', '0', '304', '205', '0', '205', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '59' AND finit_cd = '4');
+--INSERT INTO c_finit_mst (:insert_field) SELECT '59', '5', 'c_ttllog_reserv', '0', '304', '205', '0', '205', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '59' AND finit_cd = '5');
+--INSERT INTO c_finit_mst (:insert_field) SELECT '59', '6', 'c_bdllog_reserv', '0', '304', '205', '0', '205', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '59' AND finit_cd = '6');
+--INSERT INTO c_finit_mst (:insert_field) SELECT '59', '7', 'c_stmlog_reserv', '0', '304', '205', '0', '205', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '59' AND finit_cd = '7');
+--INSERT INTO c_finit_mst (:insert_field) SELECT '59', '8', 'c_crdt_actual_log_reserv', '0', '304', '205', '0', '205', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '59' AND finit_cd = '8');
+INSERT INTO c_finit_mst (:insert_field) SELECT '59', '9', 'reserv_ini', '1', '304', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '59' AND finit_cd = '9');
+INSERT INTO c_finit_mst (:insert_field) SELECT '59', '10', 'reserv_bkup', '1', '999', '205', '24', '205', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '59' AND finit_cd = '10');
+INSERT INTO c_finit_mst (:insert_field) SELECT '60', '1', 'image.ini', '1', '305', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '60' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '61', '1', 'p_pbchg_balance_tbl', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '61' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '61', '2', 'p_pbchg_stre_tbl', '0', '0', '25', '0', '25', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '61' AND finit_cd = '2');
+INSERT INTO c_finit_mst (:insert_field) SELECT '61', '3', 'p_pbchg_corp_tbl', '0', '0', '25', '0', '25', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '61' AND finit_cd = '3');
+INSERT INTO c_finit_mst (:insert_field) SELECT '61', '4', 'p_pbchg_ncorp_tbl', '0', '0', '25', '0', '25', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '61' AND finit_cd = '4');
+INSERT INTO c_finit_mst (:insert_field) SELECT '61', '5', 'p_pbchg_ntte_tbl', '0', '0', '25', '0', '25', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '61' AND finit_cd = '5');
+INSERT INTO c_finit_mst (:insert_field) SELECT '62', '1', 'c_pbchg_log', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '62' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '62', '2', 'c_pbchg_log_01', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '62' AND finit_cd = '2');
+--INSERT INTO c_finit_mst (:insert_field) SELECT '62', '2', 'c_pbchg_log_01', '0', '0', '206', '0', '1', 'c_pbchg_log_01_s0', '1', '1', '', '0', '0', '' ;
+INSERT INTO c_finit_mst (:insert_field) SELECT '62', '3', 'c_pbchg_bkup', '1', '999', '206', '27', '206', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '62' AND finit_cd = '3');
+INSERT INTO c_finit_mst (:insert_field) SELECT '63', '1', 'pbchg_ini', '1', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '63' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '64', '1', 'pbchg_check', '1', '0', '206', '25', '206', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '64' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '65', '1', 'wiz_ini', '1', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '65' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '66', '1', 'wiz_tran', '1', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '66' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '67', '1', 'spec_chg', '1', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '67' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '68', '1', 'cam_avi', '1', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '68' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '69', '1', 'c_divide_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '69' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '69', '2', 'c_divide2_mst', '0', '0', '308', '0', '308', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '69' AND finit_cd = '2');
+INSERT INTO c_finit_mst (:insert_field) SELECT '71', '1', 'qcjc', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '71' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '74', '1', 'quick_make', '1', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '74' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '75', '1', 'hq_plan_update', '1', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '75' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '75', '2', '24_plan_file', '1', '999', '27', '33', '999', '', :cmn_set2 WHERE NOT EXISTS (:sub_query finit_grp_cd = '75' AND finit_cd = '2');
+--INSERT INTO c_finit_mst (:insert_field) SELECT '75', '3', 'taxchg_reserve_ini', '1', '0', '27', '31', '27', '', :cmn_set2 WHERE NOT EXISTS (:sub_query finit_grp_cd = '75' AND finit_cd = '3'); /* 仕様削除 */
+--INSERT INTO c_finit_mst (:insert_field) SELECT '76', '1', 'add_parts.ini', '1', '0', '0', '31', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '76' AND finit_cd = '1'); /* 仕様削除 */
+INSERT INTO c_finit_mst (:insert_field) SELECT '77', '1', 'set_option.ini', '1', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '77' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '78', '1', 'lottery.ini', '1', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '78' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '79', '1', 'error_gui_ini', '1', '999', '0', '20', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '79' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '79', '2', 'error_ct_ini', '1', '999', '0', '20', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '79' AND finit_cd = '2');
+INSERT INTO c_finit_mst (:insert_field) SELECT '79', '3', 'sst1_img', '2', '999', '0', '20', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '79' AND finit_cd = '3');
+INSERT INTO c_finit_mst (:insert_field) SELECT '79', '4', 'sst1_2300_img', '2', '999', '0', '20', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '79' AND finit_cd = '4');
+INSERT INTO c_finit_mst (:insert_field) SELECT '80', '1', 'prom_logo', '2', '999', '24', '23', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '80' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '81', '1', 'userid', '1', '999', '26', '29', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '81' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '81', '2', 'userpass', '1', '999', '26', '29', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '81' AND finit_cd = '2');
+INSERT INTO c_finit_mst (:insert_field) SELECT '81', '3', 'compcd', '1', '999', '26', '29', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '81' AND finit_cd = '3');
+INSERT INTO c_finit_mst (:insert_field) SELECT '81', '4', 'url', '1', '999', '26', '29', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '81' AND finit_cd = '4');
+INSERT INTO c_finit_mst (:insert_field) SELECT '82', '1', 'qcashier_ini', '1', '999', '208', '30', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '82' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '83', '1', 'speeza_com.ini', '1', '999', '209', '31', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '83' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '84', '1', 'c_menu_obj_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '84' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '84', '2', 'p_trigger_key_mst', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '84' AND finit_cd = '2');
+INSERT INTO c_finit_mst (:insert_field) SELECT '84', '3', 'c_appl_grp_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '84' AND finit_cd = '3');
+INSERT INTO c_finit_mst (:insert_field) SELECT '84', '4', 'p_appl_mst', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '84' AND finit_cd = '4');
+INSERT INTO c_finit_mst (:insert_field) SELECT '85', '1', 'c_recog_grp_mst', '0', '999', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '85' AND finit_cd = '1');	/* 承認キーの設定値を消したくない */
+--INSERT INTO c_finit_mst (:insert_field) SELECT '85', '1', 'c_recog_grp_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '85' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '85', '2', 'p_recog_mst', '0', '999', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '85' AND finit_cd = '2');
+INSERT INTO c_finit_mst (:insert_field) SELECT '85', '3', 'c_recoginfo_mst', '0', '999', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '85' AND finit_cd = '3');
+--INSERT INTO c_finit_mst (:insert_field) SELECT '85', '3', 'c_recoginfo_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '85' AND finit_cd = '3');
+INSERT INTO c_finit_mst (:insert_field) SELECT '86', '1', 'tpoint_bmp', '2', '0', '28', '35', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '86' AND finit_cd = '1');
+
+INSERT INTO c_finit_mst (:insert_field) SELECT '87', '1', 'c_acct_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '87' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '87', '2', 'c_rank_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '87' AND finit_cd = '2');
+INSERT INTO c_finit_mst (:insert_field) SELECT '87', '3', 'c_cpnhdr_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '87' AND finit_cd = '3');
+INSERT INTO c_finit_mst (:insert_field) SELECT '87', '4', 'c_cpnbdy_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '87' AND finit_cd = '4');
+INSERT INTO c_finit_mst (:insert_field) SELECT '87', '5', 'c_cpn_ctrl_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '87' AND finit_cd = '5');
+INSERT INTO c_finit_mst (:insert_field) SELECT '87', '6', 'c_loystre_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '87' AND finit_cd = '6');
+INSERT INTO c_finit_mst (:insert_field) SELECT '87', '7', 'c_loypln_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '87' AND finit_cd = '7');
+INSERT INTO c_finit_mst (:insert_field) SELECT '87', '8', 'c_loyplu_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '87' AND finit_cd = '8');
+INSERT INTO c_finit_mst (:insert_field) SELECT '87', '9', 'c_loytgt_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '87' AND finit_cd = '9');
+INSERT INTO c_finit_mst (:insert_field) SELECT '87', '10', 'c_mbrcard_mst', '0', '0', '0', '0', '0', 'ms_mbrcard.out', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '87' AND finit_cd = '10');
+INSERT INTO c_finit_mst (:insert_field) SELECT '87', '11', 'c_mbrcard_svs_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '87' AND finit_cd = '11');
+INSERT INTO c_finit_mst (:insert_field) SELECT '87', '12', 'c_stppln_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '87' AND finit_cd = '12');
+INSERT INTO c_finit_mst (:insert_field) SELECT '87', '13', 'std_prom', '2', '0', '0', '46', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '87' AND finit_cd = '13');
+
+INSERT INTO c_finit_mst (:insert_field) SELECT '88', '1', 'c_tcount_mst', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '88' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '89', '1', 'img_coupon', '2', '0', '0', '37', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '89' AND finit_cd = '1');
+
+INSERT INTO c_finit_mst (:insert_field) SELECT '90', '1', 'c_report_mst', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '90' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '90', '2', 'c_report_cond_mst', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '90' AND finit_cd = '2');
+INSERT INTO c_finit_mst (:insert_field) SELECT '90', '3', 'c_report_attr_mst', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '90' AND finit_cd = '3');
+INSERT INTO c_finit_mst (:insert_field) SELECT '90', '4', 'c_report_attr_sub_mst', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '90' AND finit_cd = '4');
+INSERT INTO c_finit_mst (:insert_field) SELECT '90', '5', 'c_report_sql_mst', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '90' AND finit_cd = '5');
+
+INSERT INTO c_finit_mst (:insert_field) SELECT '91', '1', 'c_finit_mst', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '91' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '91', '2', 'c_finit_grp_mst', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '91' AND finit_cd = '2');
+INSERT INTO c_finit_mst (:insert_field) SELECT '91', '3', 'c_set_tbl_name_mst', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '91' AND finit_cd = '3');
+INSERT INTO c_finit_mst (:insert_field) SELECT '91', '4', 'after_vup_freq_txt', '1', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '91' AND finit_cd = '4');
+
+INSERT INTO c_finit_mst (:insert_field) SELECT '92', '1', 'c_cashrecycle_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '92' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '92', '2', 'c_cashrecycle_set_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '92' AND finit_cd = '2');
+INSERT INTO c_finit_mst (:insert_field) SELECT '92', '3', 'c_cashrecycle_sub_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '92' AND finit_cd = '3');
+INSERT INTO c_finit_mst (:insert_field) SELECT '92', '4', 'c_cashrecycle_info_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '92' AND finit_cd = '4');
+INSERT INTO c_finit_mst (:insert_field) SELECT '92', '5', 'cash_recycle_ctrl', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '92' AND finit_cd = '5');
+
+INSERT INTO c_finit_mst (:insert_field) SELECT '93', '1', 's_backyard_grp_mst', '0', '0', '301', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '93' AND finit_cd = '1');
+
+INSERT INTO c_finit_mst (:insert_field) SELECT '94', '1', 'c_wiz_inf_tbl', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '94' AND finit_cd = '1');
+
+INSERT INTO c_finit_mst (:insert_field) SELECT '95', '1', 'c_header_log', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '95' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '95', '2', 'c_data_log', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '95' AND finit_cd = '2');
+INSERT INTO c_finit_mst (:insert_field) SELECT '95', '3', 'c_status_log', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '95' AND finit_cd = '3');
+INSERT INTO c_finit_mst (:insert_field) SELECT '95', '4', 'c_void_log_01', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '95' AND finit_cd = '4');
+INSERT INTO c_finit_mst (:insert_field) SELECT '95', '5', 'c_ej_log', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '95' AND finit_cd = '5');
+INSERT INTO c_finit_mst (:insert_field) SELECT '95', '6', 'c_report_cnt', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '95' AND finit_cd = '6');
+INSERT INTO c_finit_mst (:insert_field) SELECT '95', '7', 'item_log.normal', '1', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '95' AND finit_cd = '7');
+INSERT INTO c_finit_mst (:insert_field) SELECT '95', '8', 'item_log.off', '1', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '95' AND finit_cd = '8');
+INSERT INTO c_finit_mst (:insert_field) SELECT '95', '9', 'counter2', '1', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '95' AND finit_cd = '9');
+INSERT INTO c_finit_mst (:insert_field) SELECT '95', '10', 'TmpRegsData', '1', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '95' AND finit_cd = '10'); 
+INSERT INTO c_finit_mst (:insert_field) SELECT '95', '11', 'drawchk_cash_log', '1', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '95' AND finit_cd = '11');
+INSERT INTO c_finit_mst (:insert_field) SELECT '95', '12', 'upd_file', '1', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '95' AND finit_cd = '12');
+INSERT INTO c_finit_mst (:insert_field) SELECT '95', '13', 'backup.normal', '1', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '95' AND finit_cd = '13');
+
+INSERT INTO c_finit_mst (:insert_field) SELECT '96', '1', 'rdly_deal', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '96' AND finit_cd = '1'); 
+INSERT INTO c_finit_mst (:insert_field) SELECT '96', '2', 'rdly_deal_hour', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '96' AND finit_cd = '2'); 
+INSERT INTO c_finit_mst (:insert_field) SELECT '96', '3', 'rdly_flow', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '96' AND finit_cd = '3'); 
+INSERT INTO c_finit_mst (:insert_field) SELECT '96', '4', 'rdly_acr', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '96' AND finit_cd = '4'); 
+INSERT INTO c_finit_mst (:insert_field) SELECT '96', '5', 'rdly_class', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '96' AND finit_cd = '5'); 
+INSERT INTO c_finit_mst (:insert_field) SELECT '96', '6', 'rdly_class_hour', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '96' AND finit_cd = '6'); 
+INSERT INTO c_finit_mst (:insert_field) SELECT '96', '7', 'rdly_plu', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '96' AND finit_cd = '7'); 
+INSERT INTO c_finit_mst (:insert_field) SELECT '96', '8', 'rdly_plu_hour', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '96' AND finit_cd = '8'); 
+INSERT INTO c_finit_mst (:insert_field) SELECT '96', '9', 'rdly_dsc', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '96' AND finit_cd = '9'); 
+INSERT INTO c_finit_mst (:insert_field) SELECT '96', '10', 'rdly_prom', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '96' AND finit_cd = '10'); 
+INSERT INTO c_finit_mst (:insert_field) SELECT '96', '11', 'rdly_cust', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '96' AND finit_cd = '11'); 
+INSERT INTO c_finit_mst (:insert_field) SELECT '96', '12', 'rdly_svs', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '96' AND finit_cd = '12'); 
+INSERT INTO c_finit_mst (:insert_field) SELECT '96', '13', 'rdly_cdpayflow', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '96' AND finit_cd = '13'); 
+INSERT INTO c_finit_mst (:insert_field) SELECT '96', '14', 'rdly_tax_deal', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '96' AND finit_cd = '14'); 
+INSERT INTO c_finit_mst (:insert_field) SELECT '96', '15', 'rdly_tax_deal_hour', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '96' AND finit_cd = '15'); 
+INSERT INTO c_finit_mst (:insert_field) SELECT '96', '16', 'wk_que', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '96' AND finit_cd = '16');
+
+INSERT INTO c_finit_mst (:insert_field) SELECT '97', '1', 'colorfip15.ini', '1', '211', '999', '31', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '97' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '98', '1', 'jmups_sales_report', '1', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '98' AND finit_cd = '2');
+
+INSERT INTO c_finit_mst (:insert_field) SELECT '99', '1', 'c_passport_info_mst', '0', '0', '999', '0', '999', 'mm_passport_info.out', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '99' AND finit_cd = '1');
+
+INSERT INTO c_finit_mst (:insert_field) SELECT '100', '1', 'webapi_key.ini', '1', '999', '213', '42', '213', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '100' AND finit_cd = '1');
+
+--※コンパイルフラグ SS_CR2 利用時は、コメントをはずしてください、
+--INSERT INTO c_finit_mst (:insert_field) SELECT '101', '1', 'cr2BmpGet', '0', '999', '212', '41', '212', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '101' AND finit_cd = '1');
+--INSERT INTO c_finit_mst (:insert_field) SELECT '102', '1', 'cr2Logo', '0', '999', '214', '43', '214', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '102' AND finit_cd = '1');
+
+INSERT INTO c_finit_mst (:insert_field) SELECT '103', '1', 'PASTCOMP', '3', '301', '10', '44', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '103' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '104', '1', 'overflow_mov_txt', '1', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '104' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '105', '1', 'dpoint_counter', '1', '999', '33', '45', '33', '', :cmn_set2 WHERE NOT EXISTS (:sub_query finit_grp_cd = '105' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '106', '1', 'c_payoperator_mst', '0', '0', '0', '0', '0', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '106' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '107', '1', 'except_cls.ini', '1', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '107' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '108', '1', 'taxfree_data', '3', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '108' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '108', '2', 'taxfree.ini', '1', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '108' AND finit_cd = '2');
+INSERT INTO c_finit_mst (:insert_field) SELECT '108', '3', 'c_liqritem_mst', '0', '0', '307', '0', '307', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '108' AND finit_cd = '3');
+INSERT INTO c_finit_mst (:insert_field) SELECT '108', '4', 'c_liqrtax_mst', '0', '0', '307', '0', '307', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '108' AND finit_cd = '4');
+INSERT INTO c_finit_mst (:insert_field) SELECT '108', '5', 'taxfree_chg.ini', '1', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '108' AND finit_cd = '5');
+INSERT INTO c_finit_mst (:insert_field) SELECT '109', '1', 'spec_bkup', '1', '999', '29', '38', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '109' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '110', '1', 'rpoint.ini', '1', '34', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '110' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '111', '1', 'tpoint.ini', '1', '35', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '111' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '112', '1', 'tpoint_dummy.ini', '1', '36', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '112' AND finit_cd = '1');
+
+INSERT INTO c_finit_mst (:insert_field) SELECT '113', '1', 'c_header_log_floating', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '113' AND finit_cd = '1');
+INSERT INTO c_finit_mst (:insert_field) SELECT '113', '2', 'c_data_log_floating', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '113' AND finit_cd = '2');
+INSERT INTO c_finit_mst (:insert_field) SELECT '113', '3', 'c_status_log_floating', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '113' AND finit_cd = '3');
+INSERT INTO c_finit_mst (:insert_field) SELECT '114', '1', 'c_hitouch_rcv_log', '0', '0', '999', '0', '999', '', :cmn_set WHERE NOT EXISTS (:sub_query finit_grp_cd = '114' AND finit_cd = '1');
+
+\set insert_field 'finit_grp_cd, finit_cd, set_tbl_name, set_tbl_typ, finit_dsp_chk_div, freq_dsp_chk_div, freq_ope_mode, rmst_freq_dsp_chk_div, default_file_name, offline_chk_flg, seq_name, freq_csrv_cnct_skip, freq_csrc_cust_real_skip, freq_csrv_cnct_key, freq_csrv_del_oth_stre, svr_div '
+COMMIT;

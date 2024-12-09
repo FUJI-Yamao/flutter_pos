@@ -1,0 +1,45 @@
+{
+  "screenKind": {
+    "register": {
+      "width": 1024.0,
+      "height": 768.0,
+      "position": 0,
+      "address": "127.0.0.1",
+      "port": 3000
+    },
+    "register2": {
+      "width": 1024.0,
+      "height": 768.0,
+      "position": 1024,
+      "address": "127.0.0.1",
+      "port": 4000
+    },
+    "customer": {
+      "width": 1024.0,
+      "height": 768.0,
+      "position": 1024.0,
+      "address": "127.0.0.1",
+      "port": 5000
+    },
+    "customer_7_1": {
+      "width": 800.0,
+      "height": 480.0,
+      "position": 1024.0,
+      "address": "127.0.0.1",
+      "port": 5000
+    },
+    "customer_7_2": {
+      "width": 800.0,
+      "height": 480.0,
+      "position": 1024.0,
+      "address": "127.0.0.1",
+      "port": 6000
+    }
+  },
+  "ScreenAjustment": {
+    "adjustment": {
+      "linux_top_status_bar": 27,
+      "app_title_bar": 47
+    } 
+  }
+}

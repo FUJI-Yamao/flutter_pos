@@ -1,0 +1,25 @@
+[
+    uuid(af945cc5-d03a-c54c-97bd-ea792a786c4c),
+    version(1.0)
+]
+interface RpcIdlRcv
+{
+    typedef [context_handle] void* CONTEXT_HANDLE_RCV;
+
+    typedef struct PTR_DATA_RCV
+    {
+        unsigned long statCover;
+        unsigned long statPaper;
+        unsigned long error;
+    } PTR_DATA_RCV;
+
+    CONTEXT_HANDLE_RCV OpenRcv(
+        [in] handle_t hBinding,
+        [in, ptr] PTR_DATA_RCV* pdData);
+
+    void PtrDataRcv(
+        [in] CONTEXT_HANDLE_RCV hContext);
+
+    void CloseRcv(
+        [in, out] CONTEXT_HANDLE_RCV* phContext);
+}

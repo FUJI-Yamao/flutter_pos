@@ -1,0 +1,128 @@
+
+-- c_cashrecycle_set_mst, c_cashrecycle_sub_mst
+
+BEGIN;
+TRUNCATE c_cashrecycle_set_mst;
+TRUNCATE c_cashrecycle_sub_mst;
+
+\set insert_field_set ' ins_datetime, upd_datetime, status, send_flg, upd_user, upd_system, code, set_name, dsp_cond, inp_cond, limit_max, limit_min, digits, zero_typ, btn_color, info_comment, info_pic'
+
+\set insert_field_sub ' ins_datetime, upd_datetime, status, send_flg, upd_user, upd_system, code, ordr, data, comment, btn_color'
+
+-- ins_datetime, upd_datetime, status, send_flg, upd_user, upd_system
+\set cmn_set '\'now\', \'now\', \'0\', \'0\', \'999999\', \'2\''
+
+\set sub_query_set 'SELECT * FROM c_cashrecycle_set_mst WHERE code '
+\set sub_query_sub 'SELECT * FROM c_cashrecycle_sub_mst WHERE code '
+
+--btn_often_show
+INSERT INTO c_cashrecycle_set_mst (:insert_field_set) SELECT :cmn_set, '1', E'釣銭情報ボタン常時表示', '0', '1', '2', '0', '0', '0', '5', '', '0' WHERE NOT EXISTS (:sub_query_set = '1');
+INSERT INTO c_cashrecycle_sub_mst (:insert_field_sub) SELECT :cmn_set, '1', '1', '0', E'しない', '5' WHERE NOT EXISTS (:sub_query_sub = '1' AND ordr = '1');
+INSERT INTO c_cashrecycle_sub_mst (:insert_field_sub) SELECT :cmn_set, '1', '2', '1', E'する', '5' WHERE NOT EXISTS (:sub_query_sub = '1' AND ordr = '2');
+
+--btn_color
+INSERT INTO c_cashrecycle_set_mst (:insert_field_set) SELECT :cmn_set, '100', E'釣銭情報ボタン色', '0', '2', '0', '0', '3', '0', '5', '', '0' WHERE NOT EXISTS (:sub_query_set = '100');
+
+--btn_color_alert
+INSERT INTO c_cashrecycle_set_mst (:insert_field_set) SELECT :cmn_set, '200', E'釣銭在高異常通知時ボタン色', '0', '2', '0', '0', '3', '0', '5', '', '0' WHERE NOT EXISTS (:sub_query_set = '200');
+
+--allot_method
+INSERT INTO c_cashrecycle_set_mst (:insert_field_set) SELECT :cmn_set, '300', E'充当方法', '0', '1', '2', '0', '0', '0', '5', '', '0' WHERE NOT EXISTS (:sub_query_set = '300');
+INSERT INTO c_cashrecycle_sub_mst (:insert_field_sub) SELECT :cmn_set, '300', '1', '0', E'店内分散', '5' WHERE NOT EXISTS (:sub_query_sub = '300' AND ordr = '1');
+INSERT INTO c_cashrecycle_sub_mst (:insert_field_sub) SELECT :cmn_set, '300', '2', '1', E'事務所一括', '5' WHERE NOT EXISTS (:sub_query_sub = '300' AND ordr = '2');
+
+--office_cal_unit
+INSERT INTO c_cashrecycle_set_mst (:insert_field_set) SELECT :cmn_set, '400', E'事務所から充当時、単位指定枚数入出金', '0', '1', '2', '0', '0', '0', '5', '', '0' WHERE NOT EXISTS (:sub_query_set = '400');
+INSERT INTO c_cashrecycle_sub_mst (:insert_field_sub) SELECT :cmn_set, '400', '1', '0', E'しない', '5' WHERE NOT EXISTS (:sub_query_sub = '400' AND ordr = '1');
+INSERT INTO c_cashrecycle_sub_mst (:insert_field_sub) SELECT :cmn_set, '400', '2', '1', E'する', '5' WHERE NOT EXISTS (:sub_query_sub = '400' AND ordr = '2');
+
+--office_cal_unit_10000 - office_cal_unit_1
+INSERT INTO c_cashrecycle_set_mst (:insert_field_set) SELECT :cmn_set, '500', E'事務所単位枚数　10000円(0～99)', '1', '0', '99', '0', '2', '0', '5', '', '0' WHERE NOT EXISTS (:sub_query_set = '500');
+INSERT INTO c_cashrecycle_set_mst (:insert_field_set) SELECT :cmn_set, '501', E'事務所単位枚数　5000円(0～99)', '0', '0', '99', '0', '2', '0', '5', '', '0' WHERE NOT EXISTS (:sub_query_set = '501');
+INSERT INTO c_cashrecycle_set_mst (:insert_field_set) SELECT :cmn_set, '502', E'事務所単位枚数　2000円(0～99)', '1', '0', '99', '0', '2', '0', '5', '', '0' WHERE NOT EXISTS (:sub_query_set = '502');
+INSERT INTO c_cashrecycle_set_mst (:insert_field_set) SELECT :cmn_set, '503', E'事務所単位枚数　1000円(0～99)', '0', '0', '99', '0', '2', '0', '5', '', '0' WHERE NOT EXISTS (:sub_query_set = '503');
+INSERT INTO c_cashrecycle_set_mst (:insert_field_set) SELECT :cmn_set, '504', E'事務所単位枚数　500円(0～99)', '0', '0', '99', '0', '2', '0', '5', '', '0' WHERE NOT EXISTS (:sub_query_set = '504');
+INSERT INTO c_cashrecycle_set_mst (:insert_field_set) SELECT :cmn_set, '505', E'事務所単位枚数　100円(0～99)', '0', '0', '99', '0', '2', '0', '5', '', '0' WHERE NOT EXISTS (:sub_query_set = '505');
+INSERT INTO c_cashrecycle_set_mst (:insert_field_set) SELECT :cmn_set, '506', E'事務所単位枚数　50円(0～99)', '0', '0', '99', '0', '2', '0', '5', '', '0' WHERE NOT EXISTS (:sub_query_set = '506');
+INSERT INTO c_cashrecycle_set_mst (:insert_field_set) SELECT :cmn_set, '507', E'事務所単位枚数　10円(0～99)', '0', '0', '99', '0', '2', '0', '5', '', '0' WHERE NOT EXISTS (:sub_query_set = '507');
+INSERT INTO c_cashrecycle_set_mst (:insert_field_set) SELECT :cmn_set, '508', E'事務所単位枚数　5円(0～99)', '0', '0', '99', '0', '2', '0', '5', '', '0' WHERE NOT EXISTS (:sub_query_set = '508');
+INSERT INTO c_cashrecycle_set_mst (:insert_field_set) SELECT :cmn_set, '509', E'事務所単位枚数　1円(0～99)', '0', '0', '99', '0', '2', '0', '5', '', '0' WHERE NOT EXISTS (:sub_query_set = '509');
+
+--allot_ref
+INSERT INTO c_cashrecycle_set_mst (:insert_field_set) SELECT :cmn_set, '600', E'充当基準枚数(判断値選択)', '0', '1', '2', '0', '0', '0', '5', '', '0' WHERE NOT EXISTS (:sub_query_set = '600');
+INSERT INTO c_cashrecycle_sub_mst (:insert_field_sub) SELECT :cmn_set, '600', '1', '0', E'しない', '5' WHERE NOT EXISTS (:sub_query_sub = '600' AND ordr = '1');
+INSERT INTO c_cashrecycle_sub_mst (:insert_field_sub) SELECT :cmn_set, '600', '2', '1', E'充当基準枚数', '5' WHERE NOT EXISTS (:sub_query_sub = '600' AND ordr = '2');
+INSERT INTO c_cashrecycle_sub_mst (:insert_field_sub) SELECT :cmn_set, '600', '3', '2', E'補充基準値(ターミナル)', '5' WHERE NOT EXISTS (:sub_query_sub = '600' AND ordr = '3');
+
+--allot_ref_sht_10000 - allot_ref_sht_1
+INSERT INTO c_cashrecycle_set_mst (:insert_field_set) SELECT :cmn_set, '700', E'充当基準枚数　10000円(0～100)', '1', '0', '100', '0', '3', '0', '5', '', '0' WHERE NOT EXISTS (:sub_query_set = '700');
+INSERT INTO c_cashrecycle_set_mst (:insert_field_set) SELECT :cmn_set, '701', E'充当基準枚数　5000円(0～100)', '0', '0', '100', '0', '3', '0', '5', '', '0' WHERE NOT EXISTS (:sub_query_set = '701');
+INSERT INTO c_cashrecycle_set_mst (:insert_field_set) SELECT :cmn_set, '702', E'充当基準枚数　2000円(0～100)', '1', '0', '100', '0', '3', '0', '5', '', '0' WHERE NOT EXISTS (:sub_query_set = '702');
+INSERT INTO c_cashrecycle_set_mst (:insert_field_set) SELECT :cmn_set, '703', E'充当基準枚数　1000円(0～100)', '0', '0', '100', '0', '3', '0', '5', '', '0' WHERE NOT EXISTS (:sub_query_set = '703');
+INSERT INTO c_cashrecycle_set_mst (:insert_field_set) SELECT :cmn_set, '704', E'充当基準枚数　500円(0～100)', '0', '0', '100', '0', '3', '0', '5', '', '0' WHERE NOT EXISTS (:sub_query_set = '704');
+INSERT INTO c_cashrecycle_set_mst (:insert_field_set) SELECT :cmn_set, '705', E'充当基準枚数　100円(0～100)', '0', '0', '100', '0', '3', '0', '5', '', '0' WHERE NOT EXISTS (:sub_query_set = '705');
+INSERT INTO c_cashrecycle_set_mst (:insert_field_set) SELECT :cmn_set, '706', E'充当基準枚数　50円(0～100)', '0', '0', '100', '0', '3', '0', '5', '', '0' WHERE NOT EXISTS (:sub_query_set = '706');
+INSERT INTO c_cashrecycle_set_mst (:insert_field_set) SELECT :cmn_set, '707', E'充当基準枚数　10円(0～100)', '0', '0', '100', '0', '3', '0', '5', '', '0' WHERE NOT EXISTS (:sub_query_set = '707');
+INSERT INTO c_cashrecycle_set_mst (:insert_field_set) SELECT :cmn_set, '708', E'充当基準枚数　5円(0～100)', '0', '0', '100', '0', '3', '0', '5', '', '0' WHERE NOT EXISTS (:sub_query_set = '708');
+INSERT INTO c_cashrecycle_set_mst (:insert_field_set) SELECT :cmn_set, '709', E'充当基準枚数　1円(0～100)', '0', '0', '100', '0', '3', '0', '5', '', '0' WHERE NOT EXISTS (:sub_query_set = '709');
+--keep_sht
+INSERT INTO c_cashrecycle_set_mst (:insert_field_set) SELECT :cmn_set, '800', E'最低保持枚数(判断値選択)', '0', '1', '2', '0', '0', '0', '5', '', '0' WHERE NOT EXISTS (:sub_query_set = '800');
+INSERT INTO c_cashrecycle_sub_mst (:insert_field_sub) SELECT :cmn_set, '800', '1', '0', E'ニアエンド(ターミナル）＋差分枚数', '5' WHERE NOT EXISTS (:sub_query_sub = '800' AND ordr = '1');
+INSERT INTO c_cashrecycle_sub_mst (:insert_field_sub) SELECT :cmn_set, '800', '2', '1', E'補充基準値(ターミナル)', '5' WHERE NOT EXISTS (:sub_query_sub = '800' AND ordr = '2');
+
+--keep_sht_10000 - keep_sht_1
+INSERT INTO c_cashrecycle_set_mst (:insert_field_set) SELECT :cmn_set, '900', E'最低保持差分枚数　10000円(0～50)', '1', '0', '50', '0', '2', '0', '5', '', '0' WHERE NOT EXISTS (:sub_query_set = '900');
+INSERT INTO c_cashrecycle_set_mst (:insert_field_set) SELECT :cmn_set, '901', E'最低保持差分枚数　5000円(0～50)', '0', '0', '50', '0', '2', '0', '5', '', '0' WHERE NOT EXISTS (:sub_query_set = '901');
+INSERT INTO c_cashrecycle_set_mst (:insert_field_set) SELECT :cmn_set, '902', E'最低保持差分枚数　2000円(0～50)', '1', '0', '50', '0', '2', '0', '5', '', '0' WHERE NOT EXISTS (:sub_query_set = '902');
+INSERT INTO c_cashrecycle_set_mst (:insert_field_set) SELECT :cmn_set, '903', E'最低保持差分枚数　1000円(0～50)', '0', '0', '50', '0', '2', '0', '5', '', '0' WHERE NOT EXISTS (:sub_query_set = '903');
+INSERT INTO c_cashrecycle_set_mst (:insert_field_set) SELECT :cmn_set, '904', E'最低保持差分枚数　500円(0～50)', '0', '0', '50', '0', '2', '0', '5', '', '0' WHERE NOT EXISTS (:sub_query_set = '904');
+INSERT INTO c_cashrecycle_set_mst (:insert_field_set) SELECT :cmn_set, '905', E'最低保持差分枚数　100円(0～50)', '0', '0', '50', '0', '2', '0', '5', '', '0' WHERE NOT EXISTS (:sub_query_set = '905');
+INSERT INTO c_cashrecycle_set_mst (:insert_field_set) SELECT :cmn_set, '906', E'最低保持差分枚数　50円(0～50)', '0', '0', '50', '0', '2', '0', '5', '', '0' WHERE NOT EXISTS (:sub_query_set = '906');
+INSERT INTO c_cashrecycle_set_mst (:insert_field_set) SELECT :cmn_set, '907', E'最低保持差分枚数　10円(0～50)', '0', '0', '50', '0', '2', '0', '5', '', '0' WHERE NOT EXISTS (:sub_query_set = '907');
+INSERT INTO c_cashrecycle_set_mst (:insert_field_set) SELECT :cmn_set, '908', E'最低保持差分枚数　5円(0～50)', '0', '0', '50', '0', '2', '0', '5', '', '0' WHERE NOT EXISTS (:sub_query_set = '908');
+INSERT INTO c_cashrecycle_set_mst (:insert_field_set) SELECT :cmn_set, '909', E'最低保持差分枚数　1円(0～50)', '0', '0', '50', '0', '2', '0', '5', '', '0' WHERE NOT EXISTS (:sub_query_set = '909');
+
+--btn_sht_show
+INSERT INTO c_cashrecycle_set_mst (:insert_field_set) SELECT :cmn_set, '1000', E'充当レジボタン枚数表示', '0', '1', '3', '0', '0', '0', '5', '', '0' WHERE NOT EXISTS (:sub_query_set = '1000');
+INSERT INTO c_cashrecycle_sub_mst (:insert_field_sub) SELECT :cmn_set, '1000', '1', '0', E'充当可能枚数', '5' WHERE NOT EXISTS (:sub_query_sub = '1000' AND ordr = '1');
+INSERT INTO c_cashrecycle_sub_mst (:insert_field_sub) SELECT :cmn_set, '1000', '2', '1', E'在高', '5' WHERE NOT EXISTS (:sub_query_sub = '1000' AND ordr = '2');
+INSERT INTO c_cashrecycle_sub_mst (:insert_field_sub) SELECT :cmn_set, '1000', '3', '2', E'しない', '5' WHERE NOT EXISTS (:sub_query_sub = '1000' AND ordr = '3');
+
+--rcp_prn
+INSERT INTO c_cashrecycle_set_mst (:insert_field_set) SELECT :cmn_set, '1100', E'レジ間移動指示レシート印字内容', '0', '1', '3', '0', '0', '0', '5', '', '0' WHERE NOT EXISTS (:sub_query_set = '1100');
+INSERT INTO c_cashrecycle_sub_mst (:insert_field_sub) SELECT :cmn_set, '1100', '1', '0', E'レジ番号のみ', '5' WHERE NOT EXISTS (:sub_query_sub = '1100' AND ordr = '1');
+INSERT INTO c_cashrecycle_sub_mst (:insert_field_sub) SELECT :cmn_set, '1100', '2', '1', E'レジ番号＋金額', '5' WHERE NOT EXISTS (:sub_query_sub = '1100' AND ordr = '2');
+INSERT INTO c_cashrecycle_sub_mst (:insert_field_sub) SELECT :cmn_set, '1100', '3', '2', E'レジ番号＋枚数＋金額', '5' WHERE NOT EXISTS (:sub_query_sub = '1100' AND ordr = '3');
+
+--conf_stamp_prn
+INSERT INTO c_cashrecycle_set_mst (:insert_field_set) SELECT :cmn_set, '1200', E'確認欄印字', '0', '1', '3', '0', '0', '0', '5', '', '0' WHERE NOT EXISTS (:sub_query_set = '1200');
+INSERT INTO c_cashrecycle_sub_mst (:insert_field_sub) SELECT :cmn_set, '1200', '1', '0', E'事務所のみ', '5' WHERE NOT EXISTS (:sub_query_sub = '1200' AND ordr = '1');
+INSERT INTO c_cashrecycle_sub_mst (:insert_field_sub) SELECT :cmn_set, '1200', '2', '1', E'しない', '5' WHERE NOT EXISTS (:sub_query_sub = '1200' AND ordr = '2');
+INSERT INTO c_cashrecycle_sub_mst (:insert_field_sub) SELECT :cmn_set, '1200', '3', '2', E'する', '5' WHERE NOT EXISTS (:sub_query_sub = '1200' AND ordr = '3');
+
+--staff_input
+INSERT INTO c_cashrecycle_set_mst (:insert_field_set) SELECT :cmn_set, '1400', E'入出金操作時従業員入力', '0', '1', '2', '0', '0', '0', '5', '', '0' WHERE NOT EXISTS (:sub_query_set = '1400');
+INSERT INTO c_cashrecycle_sub_mst (:insert_field_sub) SELECT :cmn_set, '1400', '1', '0', E'しない', '5' WHERE NOT EXISTS (:sub_query_sub = '1400' AND ordr = '1');
+INSERT INTO c_cashrecycle_sub_mst (:insert_field_sub) SELECT :cmn_set, '1400', '2', '1', E'する', '5' WHERE NOT EXISTS (:sub_query_sub = '1400' AND ordr = '2');
+
+--rein_prn
+INSERT INTO c_cashrecycle_set_mst (:insert_field_set) SELECT :cmn_set, '1500', E'再入金指示レシート発行', '0', '1', '2', '0', '0', '0', '5', '', '0' WHERE NOT EXISTS (:sub_query_set = '1500');
+INSERT INTO c_cashrecycle_sub_mst (:insert_field_sub) SELECT :cmn_set, '1500', '1', '0', E'しない', '5' WHERE NOT EXISTS (:sub_query_sub = '1500' AND ordr = '1');
+INSERT INTO c_cashrecycle_sub_mst (:insert_field_sub) SELECT :cmn_set, '1500', '2', '1', E'する', '5' WHERE NOT EXISTS (:sub_query_sub = '1500' AND ordr = '2');
+
+--cin_cncl
+INSERT INTO c_cashrecycle_set_mst (:insert_field_set) SELECT :cmn_set, '1600', E'入金取消禁止', '0', '1', '2', '0', '0', '0', '5', '', '0' WHERE NOT EXISTS (:sub_query_set = '1600');
+INSERT INTO c_cashrecycle_sub_mst (:insert_field_sub) SELECT :cmn_set, '1600', '1', '0', E'する', '5' WHERE NOT EXISTS (:sub_query_sub = '1600' AND ordr = '1');
+INSERT INTO c_cashrecycle_sub_mst (:insert_field_sub) SELECT :cmn_set, '1600', '2', '1', E'しない', '5' WHERE NOT EXISTS (:sub_query_sub = '1600' AND ordr = '2');
+
+--cchg
+INSERT INTO c_cashrecycle_set_mst (:insert_field_set) SELECT :cmn_set, '1700', E'事務所一括時の両替', '1', '1', '2', '0', '0', '0', '5', '', '0' WHERE NOT EXISTS (:sub_query_set = '1700');
+INSERT INTO c_cashrecycle_sub_mst (:insert_field_sub) SELECT :cmn_set, '1700', '1', '0', E'しない', '5' WHERE NOT EXISTS (:sub_query_sub = '1700' AND ordr = '1');
+INSERT INTO c_cashrecycle_sub_mst (:insert_field_sub) SELECT :cmn_set, '1700', '2', '1', E'釣機両替', '5' WHERE NOT EXISTS (:sub_query_sub = '1700' AND ordr = '2');
+
+--man_inout
+INSERT INTO c_cashrecycle_set_mst (:insert_field_set) SELECT :cmn_set, '1800', E'万券入出金', '0', '1', '2', '0', '0', '0', '5', '', '0' WHERE NOT EXISTS (:sub_query_set = '1800');
+INSERT INTO c_cashrecycle_sub_mst (:insert_field_sub) SELECT :cmn_set, '1800', '1', '0', E'しない', '5' WHERE NOT EXISTS (:sub_query_sub = '1800' AND ordr = '1');
+INSERT INTO c_cashrecycle_sub_mst (:insert_field_sub) SELECT :cmn_set, '1800', '2', '1', E'する', '5' WHERE NOT EXISTS (:sub_query_sub = '1800' AND ordr = '2');
+
+COMMIT;

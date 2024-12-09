@@ -1,0 +1,6 @@
+-- 初期値用ファイル(バージョンアップでは反映されない)
+
+\set insert_field 'comp_cd, stre_cd, mac_no, ins_datetime, upd_datetime, start_datetime, end_datetime, mac_addr, ip_addr, brdcast_addr, ip_addr2,  brdcast_addr2, crdt_trm_cd, mac_name'
+
+-- c_reginfo_mst
+INSERT INTO c_reginfo_mst (:insert_field) values (:COMP,:STRE,:MACNO,'now','now','2024-1-1 00:00:00','2024-1-1 06:00:00','mac_addr1', 'ip_addr1', 'brdcast_addr1', 'ip_addr2_1',  'brdcast_addr2_1', '111', 'mac_nameAAA');

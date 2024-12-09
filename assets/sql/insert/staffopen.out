@@ -1,0 +1,6 @@
+-- 初期値用ファイル(バージョンアップでは反映されない)
+
+\set insert_field 'comp_cd, stre_cd, mac_no, cshr_status'
+
+--c_staffopen_mst
+INSERT INTO public.c_staffopen_mst (:insert_field) VALUES (:COMP,:STRE,:MACNO,1);

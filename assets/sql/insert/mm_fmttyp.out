@@ -1,0 +1,99 @@
+-- c_fmttyp_mst
+
+BEGIN;
+TRUNCATE c_fmttyp_mst;
+
+\set insert_field 'ins_datetime, upd_datetime, status, send_flg, upd_user, upd_system, format_typ, disp_flg, format_typ_name'
+
+-- ins_datetime, upd_datetime, status, send_flg, upd_user, upd_system
+\set cmn_set '\'now\', \'now\', \'0\', \'0\', \'999999\', \'2\' '
+
+\set sub_query 'select format_typ FROM c_fmttyp_mst WHERE format_typ = '
+
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '1', '0', E'１３/１２桁NON-PLU' WHERE NOT EXISTS (:sub_query '1');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '2', '0', E'８桁NON-PLU' WHERE NOT EXISTS (:sub_query '2');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '3', '0', E'会員' WHERE NOT EXISTS (:sub_query '3');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '4', '0', E'従業員' WHERE NOT EXISTS (:sub_query '4');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '5', '0', E'重量' WHERE NOT EXISTS (:sub_query '5');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '6', '0', E'雑誌' WHERE NOT EXISTS (:sub_query '6');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '7', '0', E'書籍2段目' WHERE NOT EXISTS (:sub_query '7');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '8', '1', E'クーポン' WHERE NOT EXISTS (:sub_query '8');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '9', '0', E'値下ﾊﾞｰｺｰﾄﾞ1段目' WHERE NOT EXISTS (:sub_query '9');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '10', '0', E'値下ﾊﾞｰｺｰﾄﾞ2段目' WHERE NOT EXISTS (:sub_query '10');
+--INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '11', '0', E'取引ﾚｼｰﾄ管理ﾊﾞｰｺｰﾄﾞ1段目' WHERE NOT EXISTS (:sub_query '11');
+--INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '12', '0', E'取引ﾚｼｰﾄ管理ﾊﾞｰｺｰﾄﾞ2段目' WHERE NOT EXISTS (:sub_query '12');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '13', '1', E'プロモーションバーコード' WHERE NOT EXISTS (:sub_query '13');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '14', '0', E'書籍1段目' WHERE NOT EXISTS (:sub_query '14');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '15', '1', E'クーポンバーコード' WHERE NOT EXISTS (:sub_query '15');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '16', '0', E'衣料ﾊﾞｰｺｰﾄﾞ1段目' WHERE NOT EXISTS (:sub_query '16');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '17', '0', E'衣料ﾊﾞｰｺｰﾄﾞ2段目' WHERE NOT EXISTS (:sub_query '17');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '18', '0', E'生産者' WHERE NOT EXISTS (:sub_query '18');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '19', '1', E'モバイル呼出バーコード' WHERE NOT EXISTS (:sub_query '19');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '20', '0', E'定期刊行物バーコード' WHERE NOT EXISTS (:sub_query '20');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '21', '0', E'カタリナクーポンバーコード' WHERE NOT EXISTS (:sub_query '21');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '22', '0', E'カタリナメーカークーポンバーコード' WHERE NOT EXISTS (:sub_query '22');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '23', '0', E'ITFバーコード' WHERE NOT EXISTS (:sub_query '23');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '24', '1', E'GramXバーコード' WHERE NOT EXISTS (:sub_query '24');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '25', '1', E'値札バーコード1段目' WHERE NOT EXISTS (:sub_query '25');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '26', '1', E'値札バーコード2段目' WHERE NOT EXISTS (:sub_query '26');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '27', '1', E'ギフトバーコード1段目' WHERE NOT EXISTS (:sub_query '27');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '28', '1', E'ギフトバーコード2段目' WHERE NOT EXISTS (:sub_query '28');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '29', '1', E'プリセットバーコード' WHERE NOT EXISTS (:sub_query '29');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '30', '1', E'クーポンバーコード' WHERE NOT EXISTS (:sub_query '30');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '31', '1', E'生鮮13桁NON-PLU' WHERE NOT EXISTS (:sub_query '31');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '32', '0', E'証紙発行番号バーコード' WHERE NOT EXISTS (:sub_query '32');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '33', '0', E'販売期限バーコード1段目' WHERE NOT EXISTS (:sub_query '33');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '34', '0', E'販売期限バーコード2段目' WHERE NOT EXISTS (:sub_query '34');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '35', '0', E'ファンクションキーバーコード' WHERE NOT EXISTS (:sub_query '35');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '36', '1', E'ポイントチケットバーコード' WHERE NOT EXISTS (:sub_query '36');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '37', '1', E'改正薬事法バーコード(説明済み)' WHERE NOT EXISTS (:sub_query '37');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '38', '1', E'改正薬事法バーコード(説明不要)' WHERE NOT EXISTS (:sub_query '38');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '39', '1', E'ポイントチケット値下バーコード' WHERE NOT EXISTS (:sub_query '39');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '40', '0', E'ﾎﾟｲﾝﾄ移行ﾊﾞｰｺｰﾄﾞ1段目' WHERE NOT EXISTS (:sub_query '40');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '41', '0', E'ﾎﾟｲﾝﾄ移行ﾊﾞｰｺｰﾄﾞ2段目' WHERE NOT EXISTS (:sub_query '41');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '42', '0', E'生産者除外ﾊﾞｰｺｰﾄﾞ　　' WHERE NOT EXISTS (:sub_query '42');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '43', '0', E'特典クーポンバーコード' WHERE NOT EXISTS (:sub_query '43');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '44', '0', E'カード忘れクーポンバーコード１段目' WHERE NOT EXISTS (:sub_query '44');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '45', '0', E'カード忘れクーポンバーコード2段目' WHERE NOT EXISTS (:sub_query '45');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '46', '1', E'ｺﾒﾘｷﾞﾌﾄｶｰﾄﾞ' WHERE NOT EXISTS (:sub_query '46');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '47', '1', E'ｺﾒﾘｶｰﾄﾞ（仮ｶｰﾄﾞ）' WHERE NOT EXISTS (:sub_query '47');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '48', '1', E'部門nonPLU' WHERE NOT EXISTS (:sub_query '48');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '49', '1', E'ｸﾗｽnonPLU' WHERE NOT EXISTS (:sub_query '49');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '50', '1', E'名札ﾊﾞｰｺｰﾄﾞ' WHERE NOT EXISTS (:sub_query '50');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '51', '1', E'ﾄﾞｯﾄｺﾑ注文番号' WHERE NOT EXISTS (:sub_query '51');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '52', '1', E'お買い物割引券' WHERE NOT EXISTS (:sub_query '52');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '53', '1', E'社割券' WHERE NOT EXISTS (:sub_query '53');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '54', '1', E'品番バーコード' WHERE NOT EXISTS (:sub_query '54');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '55', '1', E'ギフトバーコード' WHERE NOT EXISTS (:sub_query '55');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '56', '1', E'赤札/値札バーコード1段目' WHERE NOT EXISTS (:sub_query '56');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '57', '1', E'赤札/値札バーコード2段目' WHERE NOT EXISTS (:sub_query '57');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '58', '0', E'予約バーコード' WHERE NOT EXISTS (:sub_query '58');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '59', '0', E'カスタマーカードバーコード' WHERE NOT EXISTS (:sub_query '59');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '60', '0', E'QCashier　商品追加バーコード' WHERE NOT EXISTS (:sub_query '60');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '61', '1', E'クーポン値引（従業員値引）' WHERE NOT EXISTS (:sub_query '61');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '62', '1', E'販売メンテナンスバーコード' WHERE NOT EXISTS (:sub_query '62');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '63', '1', E'サービス券対応バーコード１段目' WHERE NOT EXISTS (:sub_query '63');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '64', '1', E'サービス券対応バーコード２段目' WHERE NOT EXISTS (:sub_query '64');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '67', '0', E'入出金指示バーコード' WHERE NOT EXISTS (:sub_query '67');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '68', '0', E'部門変換用JAN（中分類）' WHERE NOT EXISTS (:sub_query '68');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '69', '0', E'従業員割引バーコード' WHERE NOT EXISTS (:sub_query '69');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '70', '1', E'プレゼントポイントバーコード' WHERE NOT EXISTS (:sub_query '70');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '71', '0', E'販売期限バーコード26桁' WHERE NOT EXISTS (:sub_query '71');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '72', '0', E' Tポイントクーポンバーコード' WHERE NOT EXISTS (:sub_query '72');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '73', '0', E'品券バーコード' WHERE NOT EXISTS (:sub_query '73');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '74', '0', E'企画バーコード' WHERE NOT EXISTS (:sub_query '74');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '75', '0', E'お買物券管理バーコード１段目' WHERE NOT EXISTS (:sub_query '75');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '76', '0', E'お買物券管理バーコード２段目' WHERE NOT EXISTS (:sub_query '76');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '81', '0', E'ZFSP生鮮バーコード' WHERE NOT EXISTS (:sub_query '81');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '87', '0', E'取引ﾚｼｰﾄ管理ﾊﾞｰｺｰﾄﾞ' WHERE NOT EXISTS (:sub_query '87');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '89', '0', E'One to One バーコード' WHERE NOT EXISTS (:sub_query '89');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '90', '0', E'サービス券バーコード' WHERE NOT EXISTS (:sub_query '90');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '91', '0', E'貸瓶付き商品バーコード' WHERE NOT EXISTS (:sub_query '91');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '92', '0', E'貸瓶管理バーコード' WHERE NOT EXISTS (:sub_query '92');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '93', '0', E'掛売バーコード' WHERE NOT EXISTS (:sub_query '93');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '94', '0', E'生産者バーコード２段目' WHERE NOT EXISTS (:sub_query '94');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '97', '0', E'一般売掛バーコード' WHERE NOT EXISTS (:sub_query '97');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '98', '0', E'メンテナンスバーコード' WHERE NOT EXISTS (:sub_query '98');
+INSERT INTO c_fmttyp_mst (:insert_field) SELECT :cmn_set, '99', '0', E'カード忘れバーコード' WHERE NOT EXISTS (:sub_query '99');
+
+COMMIT;

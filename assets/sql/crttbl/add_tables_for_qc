@@ -1,0 +1,17 @@
+-- 登録機から精算機に渡したDBデータを一時格納する為のテーブル
+ 
+-- 実績ヘッダログ(登録機から精算機に渡した一時データ格納用)
+drop table if exists c_header_log_qc cascade;
+CREATE TABLE c_header_log_qc AS SELECT * FROM c_header_log;
+ 
+-- 実績データログ(登録機から精算機に渡した一時データ格納用)
+drop table if exists c_data_log_qc cascade;
+CREATE TABLE c_data_log_qc AS SELECT * FROM c_data_log;
+ 
+-- 実績ステータスログ(登録機から精算機に渡した一時データ格納用)
+drop table if exists c_status_log_qc cascade;
+CREATE TABLE c_status_log_qc AS SELECT * FROM c_status_log;
+ 
+-- 実績ジャーナルデータログ(登録機から精算機に渡した一時データ格納用)
+drop table if exists c_ej_log_qc cascade;
+CREATE TABLE c_ej_log_qc AS SELECT * FROM c_ej_log;

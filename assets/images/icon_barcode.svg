@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="80" height="48" viewBox="0 0 80 48">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="長方形_6953" data-name="長方形 6953" width="32" height="36" fill="#727981"/>
+    </clipPath>
+  </defs>
+  <g id="icon_barcode" transform="translate(-536 -304)">
+    <rect id="長方形_6867" data-name="長方形 6867" width="80" height="48" transform="translate(536 304)" fill="gray" opacity="0"/>
+    <g id="グループ_16700" data-name="グループ 16700" transform="translate(560 310)">
+      <g id="グループ_16699" data-name="グループ 16699" clip-path="url(#clip-path)">
+        <path id="パス_28258" data-name="パス 28258" d="M6.628,25.152H8.55V17.361H6.628c-.266,0-.481.152-.481.339v7.113c0,.187.215.339.481.339" fill="#727981"/>
+        <path id="パス_28259" data-name="パス 28259" d="M25.372,17.361H23.45v7.791h1.922c.266,0,.481-.152.481-.339V17.7c0-.187-.215-.339-.481-.339" fill="#727981"/>
+        <path id="パス_28261" data-name="パス 28261" d="M0,0H2.884V7.791H0Z" transform="translate(13.357 17.361)" fill="#727981"/>
+        <rect id="長方形_6950" data-name="長方形 6950" width="0.961" height="7.791" transform="translate(10.473 17.361)" fill="#727981"/>
+        <path id="パス_28262" data-name="パス 28262" d="M0,0H.961V7.791H0Z" transform="translate(20.566 17.361)" fill="#727981"/>
+        <rect id="長方形_6952" data-name="長方形 6952" width="0.961" height="7.791" transform="translate(17.682 17.361)" fill="#727981"/>
+        <path id="パス_28260" data-name="パス 28260" d="M30,0H2A2,2,0,0,0,0,2V36H2V6.394H30V36h2V2a2,2,0,0,0-2-2M18.862,3.816H13.138a.5.5,0,0,1,0-1h5.724a.5.5,0,0,1,0,1" fill="#727981"/>
+      </g>
+    </g>
+  </g>
+</svg>

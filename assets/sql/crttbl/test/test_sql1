@@ -1,0 +1,8 @@
+\cd assets
+\cd sql
+\cd crttbl
+\i tpr_x_tables
+\i tpr_x_keys
+\cd ../
+\cd insert
+\i mm_acctmst.out

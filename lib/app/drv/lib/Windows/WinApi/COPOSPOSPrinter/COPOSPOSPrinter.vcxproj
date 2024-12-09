@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\COPOSPOSPrinterIdl\RpcIdlRcv.h" />
+    <ClInclude Include="..\COPOSPOSPrinterIdl\RpcIdlSnd.h" />
+    <ClInclude Include="..\COpos\COposPtr.h" />
+    <ClInclude Include="..\OposSystem\Console.h" />
+    <ClInclude Include="..\OposSystem\IRpc.h" />
+    <ClInclude Include="..\OposSystem\NonCopyable.h" />
+    <ClInclude Include="..\OposSystem\OposDebug.h" />
+    <ClInclude Include="..\OposSystem\OposDefs.h" />
+    <ClInclude Include="..\OposSystem\RemoteProc.h" />
+    <ClInclude Include="..\OposSystem\Singleton.h" />
+    <ClInclude Include="..\OposSystem\stdafx.h" />
+    <ClInclude Include="..\OposSystem\TaskManager.h" />
+    <ClInclude Include="..\Opos\Opos.h" />
+    <ClInclude Include="..\Opos\OposBacc.h" />
+    <ClInclude Include="..\Opos\OposBb.h" />
+    <ClInclude Include="..\Opos\OposBdsp.h" />
+    <ClInclude Include="..\Opos\OposBelt.h" />
+    <ClInclude Include="..\Opos\OposBio.h" />
+    <ClInclude Include="..\Opos\OposCacc.h" />
+    <ClInclude Include="..\Opos\OposCash.h" />
+    <ClInclude Include="..\Opos\OposCat.h" />
+    <ClInclude Include="..\Opos\OposChan.h" />
+    <ClInclude Include="..\Opos\OposChk.h" />
+    <ClInclude Include="..\Opos\OposCoin.h" />
+    <ClInclude Include="..\Opos\OposDisp.h" />
+    <ClInclude Include="..\Opos\OposDmon.h" />
+    <ClInclude Include="..\Opos\OposEj.h" />
+    <ClInclude Include="..\Opos\OposEvrw.h" />
+    <ClInclude Include="..\Opos\OposFptr.h" />
+    <ClInclude Include="..\Opos\OposGate.h" />
+    <ClInclude Include="..\Opos\OposGctl.h" />
+    <ClInclude Include="..\Opos\OposGdsp.h" />
+    <ClInclude Include="..\Opos\OposImg.h" />
+    <ClInclude Include="..\Opos\OposIrcg.h" />
+    <ClInclude Include="..\Opos\OposItem.h" />
+    <ClInclude Include="..\Opos\OposKbd.h" />
+    <ClInclude Include="..\Opos\OposLgt.h" />
+    <ClInclude Include="..\Opos\OposLock.h" />
+    <ClInclude Include="..\Opos\OposMicr.h" />
+    <ClInclude Include="..\Opos\OposMotion.h" />
+    <ClInclude Include="..\Opos\OposMsr.h" />
+    <ClInclude Include="..\Opos\OposPcrw.h" />
+    <ClInclude Include="..\Opos\OposPpad.h" />
+    <ClInclude Include="..\Opos\OposPtr.h" />
+    <ClInclude Include="..\Opos\OposPwr.h" />
+    <ClInclude Include="..\Opos\OposRfid.h" />
+    <ClInclude Include="..\Opos\OposRod.h" />
+    <ClInclude Include="..\Opos\OposScal.h" />
+    <ClInclude Include="..\Opos\OposScan.h" />
+    <ClInclude Include="..\Opos\OposScrw.h" />
+    <ClInclude Include="..\Opos\OposSig.h" />
+    <ClInclude Include="..\Opos\OposSpch.h" />
+    <ClInclude Include="..\Opos\OposSply.h" />
+    <ClInclude Include="..\Opos\OposSrec.h" />
+    <ClInclude Include="..\Opos\OposStat.h" />
+    <ClInclude Include="..\Opos\OposTone.h" />
+    <ClInclude Include="..\Opos\OposTot.h" />
+    <ClInclude Include="..\Opos\OposVcap.h" />
+    <ClInclude Include="..\Opos\OposVrcg.h" />
+    <ClInclude Include="CoPtr.h" />
+    <ClInclude Include="mfcafx.h" />
+    <ClInclude Include="MainApp.h" />
+    <ClInclude Include="OPOSPOSPrinter.h" />
+    <ClInclude Include="PrinterAct.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="RpcManager.h" />
+    <ClInclude Include="RpcUser.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\COPOSPOSPrinterIdl\RpcIdlRcv_c.c" />
+    <ClCompile Include="..\COPOSPOSPrinterIdl\RpcIdlSnd_s.c" />
+    <ClCompile Include="..\OposSystem\OposDebug.cpp" />
+    <ClCompile Include="..\OposSystem\RemoteProc.cpp" />
+    <ClCompile Include="..\OposSystem\Singleton.cpp" />
+    <ClCompile Include="..\OposSystem\TaskManager.cpp" />
+    <ClCompile Include="CoPtr.cpp" />
+    <ClCompile Include="MainApp.cpp" />
+    <ClCompile Include="OPOSPOSPrinter.cpp" />
+    <ClCompile Include="RpcManager.cpp" />
+    <ClCompile Include="RpcUser.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Opos\Opos.hi" />
+    <None Include="..\Opos\OposAll.bas" />
+    <None Include="..\Opos\OposBacc.hi" />
+    <None Include="..\Opos\OposBb.hi" />
+    <None Include="..\Opos\OposBdsp.hi" />
+    <None Include="..\Opos\OposBelt.hi" />
+    <None Include="..\Opos\OposBio.hi" />
+    <None Include="..\Opos\OposCacc.hi" />
+    <None Include="..\Opos\OposCash.hi" />
+    <None Include="..\Opos\OposCat.hi" />
+    <None Include="..\Opos\OposChan.hi" />
+    <None Include="..\Opos\OposChk.hi" />
+    <None Include="..\Opos\OposCoin.hi" />
+    <None Include="..\Opos\OposDisp.hi" />
+    <None Include="..\Opos\OposDmon.hi" />
+    <None Include="..\Opos\OposEj.hi" />
+    <None Include="..\Opos\OposEvrw.hi" />
+    <None Include="..\Opos\OposFptr.hi" />
+    <None Include="..\Opos\OposGate.hi" />
+    <None Include="..\Opos\OposGctl.hi" />
+    <None Include="..\Opos\OposGdsp.hi" />
+    <None Include="..\Opos\OposImg.hi" />
+    <None Include="..\Opos\OposIrcg.hi" />
+    <None Include="..\Opos\OposItem.hi" />
+    <None Include="..\Opos\OposKbd.hi" />
+    <None Include="..\Opos\OposLgt.hi" />
+    <None Include="..\Opos\OposLock.hi" />
+    <None Include="..\Opos\OposMicr.hi" />
+    <None Include="..\Opos\OposMotion.hi" />
+    <None Include="..\Opos\OposMsr.hi" />
+    <None Include="..\Opos\OposPcrw.hi" />
+    <None Include="..\Opos\OposPpad.hi" />
+    <None Include="..\Opos\OposPtr.hi" />
+    <None Include="..\Opos\OposPwr.hi" />
+    <None Include="..\Opos\OposRfid.hi" />
+    <None Include="..\Opos\OposRod.hi" />
+    <None Include="..\Opos\OposScal.hi" />
+    <None Include="..\Opos\OposScan.hi" />
+    <None Include="..\Opos\OposScrw.hi" />
+    <None Include="..\Opos\OposSig.hi" />
+    <None Include="..\Opos\OposSpch.hi" />
+    <None Include="..\Opos\OposSply.hi" />
+    <None Include="..\Opos\OposSrec.hi" />
+    <None Include="..\Opos\OposTone.hi" />
+    <None Include="..\Opos\OposTot.hi" />
+    <None Include="..\Opos\OposVcap.hi" />
+    <None Include="..\Opos\OposVrcg.hi" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Printer.rc" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>17.0</VCProjectVersion>
+    <ProjectGuid>{88320A3D-D069-40B3-A358-CFA3C3EA6231}</ProjectGuid>
+    <Keyword>MFCProj</Keyword>
+    <RootNamespace>MFCApp</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+    <UseOfMfc>Dynamic</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+    <UseOfMfc>Dynamic</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+    <UseOfMfc>Dynamic</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+    <UseOfMfc>Dynamic</UseOfMfc>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)\..\dist\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)build\$(Configuration)\$(ProjectName)\</IntDir>
+    <TargetName>PtrRcv</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)\..\dist\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)build\$(Configuration)\$(ProjectName)\</IntDir>
+    <TargetName>PtrRcv</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)\..\dist\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)build\$(Configuration)\$(ProjectName)\</IntDir>
+    <TargetName>PtrRcv</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)\..\dist\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)build\$(Configuration)\$(ProjectName)\</IntDir>
+    <TargetName>PtrRcv</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <AdditionalIncludeDirectories>
+      </AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <AdditionalDependencies>rpcrt4.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>true</ValidateAllParameters>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0411</Culture>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <AdditionalIncludeDirectories>
+      </AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <AdditionalDependencies>rpcrt4.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>true</ValidateAllParameters>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0411</Culture>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <AdditionalIncludeDirectories>
+      </AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>rpcrt4.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>true</ValidateAllParameters>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0411</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <AdditionalIncludeDirectories>
+      </AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>rpcrt4.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>true</ValidateAllParameters>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0411</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

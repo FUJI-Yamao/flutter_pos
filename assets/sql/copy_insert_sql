@@ -1,0 +1,20 @@
+\cd assets
+\cd sql
+\cd copy_ins
+
+\i c_cls_mst.out
+\i c_ctrl_mst.out
+\i c_img_mst.out
+\i c_instre_mst.out
+\i c_keyfnc_mst.out
+\i c_keyopt_mst.out
+\i c_msg_mst.out
+\i c_msglayout_mst.out
+\i c_plu_mst.out
+\i c_tax_mst.out
+\i c_trm_mst.out
+\i s_bdlitem_mst.out
+\i s_bdlsch_mst.out
+\i s_brgn_mst.out
+\i s_clssch_mst.out
+\i c_preset_mst.out

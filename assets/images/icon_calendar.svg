@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48" height="56" viewBox="0 0 48 56">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="長方形_6976" width="18" height="20" fill="#fff"/>
+    </clipPath>
+  </defs>
+  <g id="icon_calendar" transform="translate(-92 -1809)">
+    <rect id="長方形_6975" width="48" height="56" transform="translate(92 1809)" fill="gray" opacity="0"/>
+    <g id="グループ_16760" transform="translate(107 1827)">
+      <g id="グループ_16759" clip-path="url(#clip-path)">
+        <path id="パス_28258" d="M9,12a.984.984,0,1,1,.712-.288A.965.965,0,0,1,9,12M5,12a1,1,0,1,1,.712-1.712A1,1,0,0,1,5,12m8,0a.984.984,0,1,1,.712-.288A.965.965,0,0,1,13,12M9,16a.984.984,0,1,1,.712-.288A.965.965,0,0,1,9,16M5,16a1,1,0,1,1,.712-1.712A1,1,0,0,1,5,16m8,0a.984.984,0,1,1,.712-.288A.965.965,0,0,1,13,16M2,20a1.93,1.93,0,0,1-1.413-.587A1.93,1.93,0,0,1,0,18V4A1.93,1.93,0,0,1,.587,2.587,1.93,1.93,0,0,1,2,2H3V0H5V2h8V0h2V2h1a1.93,1.93,0,0,1,1.413.587A1.93,1.93,0,0,1,18,4V18a2,2,0,0,1-2,2Zm0-2H16V8H2Z" fill="#fff"/>
+      </g>
+    </g>
+  </g>
+</svg>

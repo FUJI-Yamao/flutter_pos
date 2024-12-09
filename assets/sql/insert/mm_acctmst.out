@@ -1,0 +1,59 @@
+-- c_acct_mst
+
+\set insert_field 'start_date, end_date, plus_end_date, ins_datetime, upd_datetime, status, send_flg, upd_user, upd_system, comp_cd, stre_cd, acct_cd, mthr_acct_cd, acct_name, rcpt_prn_flg, prn_seq_no, acct_typ, acct_cal_typ'
+
+-- start_date, end_date, plus_end_date, ins_datetime, upd_datetime, status, send_flg, upd_user, upd_system, comp_cd, stre_cd
+\set cmn_set ' \'2018-01-01 00:00:00\', \'2099-12-31 23:59:59\', \'2099-12-31 23:59:59\', \'now\', \'now\', \'0\', \'0\', \'999999\', \'2\', :COMP, :STRE '
+
+\set sub_query 'SELECT acct_cd FROM c_acct_mst WHERE comp_cd = :COMP AND stre_cd = :STRE '
+
+-- 標準顧客・自社ポイント用[末尾0:##0]
+INSERT INTO c_acct_mst (:insert_field) SELECT :cmn_set, '100', '800', E'今回発生ポイント', '1', '0', '1', '1' WHERE NOT EXISTS (:sub_query AND acct_cd = '100');
+INSERT INTO c_acct_mst (:insert_field) SELECT :cmn_set, '200', '800', E'商品加算ポイント', '1', '0', '1', '0' WHERE NOT EXISTS (:sub_query AND acct_cd = '200');
+INSERT INTO c_acct_mst (:insert_field) SELECT :cmn_set, '300', '800', E'月間購買累計金額', '1', '0', '2', '0' WHERE NOT EXISTS (:sub_query AND acct_cd = '300');
+INSERT INTO c_acct_mst (:insert_field) SELECT :cmn_set, '450', '800', E'来店ポイント', '1', '0', '1', '0' WHERE NOT EXISTS (:sub_query AND acct_cd = '450');
+INSERT INTO c_acct_mst (:insert_field) SELECT :cmn_set, '600', '800', E'スタンプポイント1', '1', '0', '1', '0' WHERE NOT EXISTS (:sub_query AND acct_cd = '600');
+INSERT INTO c_acct_mst (:insert_field) SELECT :cmn_set, '610', '800', E'スタンプポイント2', '1', '0', '1', '0' WHERE NOT EXISTS (:sub_query AND acct_cd = '610');
+INSERT INTO c_acct_mst (:insert_field) SELECT :cmn_set, '620', '800', E'スタンプポイント3', '1', '0', '1', '0' WHERE NOT EXISTS (:sub_query AND acct_cd = '620');
+INSERT INTO c_acct_mst (:insert_field) SELECT :cmn_set, '630', '800', E'スタンプポイント4', '1', '0', '1', '0' WHERE NOT EXISTS (:sub_query AND acct_cd = '630');
+INSERT INTO c_acct_mst (:insert_field) SELECT :cmn_set, '640', '800', E'スタンプポイント5', '1', '0', '1', '0' WHERE NOT EXISTS (:sub_query AND acct_cd = '640');
+INSERT INTO c_acct_mst (:insert_field) SELECT :cmn_set, '650', '800', E'ボーナスポイント', '1', '0', '1', '0' WHERE NOT EXISTS (:sub_query AND acct_cd = '650');
+INSERT INTO c_acct_mst (:insert_field) SELECT :cmn_set, '700', '800', E'曜日倍ポイント', '1', '0', '1', '2' WHERE NOT EXISTS (:sub_query AND acct_cd = '700');
+INSERT INTO c_acct_mst (:insert_field) SELECT :cmn_set, '710', '800', E'商品倍ポイント', '1', '0', '1', '3' WHERE NOT EXISTS (:sub_query AND acct_cd = '710');
+INSERT INTO c_acct_mst (:insert_field) SELECT :cmn_set, '720', '800', E'サービス分類ポイント', '1', '0', '1', '2' WHERE NOT EXISTS (:sub_query AND acct_cd = '720');
+INSERT INTO c_acct_mst (:insert_field) SELECT :cmn_set, '730', '800', E'支払倍ポイント', '1', '0', '1', '4' WHERE NOT EXISTS (:sub_query AND acct_cd = '730');
+INSERT INTO c_acct_mst (:insert_field) SELECT :cmn_set, '740', '800', E'全体倍ポイント', '1', '0', '1', '2' WHERE NOT EXISTS (:sub_query AND acct_cd = '740');
+INSERT INTO c_acct_mst (:insert_field) SELECT :cmn_set, '750', '800', E'新規会員ポイント', '1', '0', '1', '0' WHERE NOT EXISTS (:sub_query AND acct_cd = '750');
+INSERT INTO c_acct_mst (:insert_field) SELECT :cmn_set, '800', '0', E'累計ポイント', '1', '0', '1', '0' WHERE NOT EXISTS (:sub_query AND acct_cd = '800');
+INSERT INTO c_acct_mst (:insert_field) SELECT :cmn_set, '900', '800', E'アンケート謝礼ポイント', '1', '0', '1', '0' WHERE NOT EXISTS (:sub_query AND acct_cd = '900');
+INSERT INTO c_acct_mst (:insert_field) SELECT :cmn_set, '950', '800', E'メーカークーポンポイント', '1', '0', '1', '0' WHERE NOT EXISTS (:sub_query AND acct_cd = '950');
+INSERT INTO c_acct_mst (:insert_field) SELECT :cmn_set, '980', '800', E'生鮮ポイント', '1', '0', '1', '0' WHERE NOT EXISTS (:sub_query AND acct_cd = '980');
+
+-- 楽天ポイント用[末尾:##1]
+INSERT INTO c_acct_mst (:insert_field) SELECT :cmn_set, '101', '801', E'通常ﾎﾟｲﾝﾄ', '1', '0', '1', '1' WHERE NOT EXISTS (:sub_query AND acct_cd = '101');
+INSERT INTO c_acct_mst (:insert_field) SELECT :cmn_set, '201', '801', E'商品加算ポイント', '1', '0', '1', '0' WHERE NOT EXISTS (:sub_query AND acct_cd = '201');
+INSERT INTO c_acct_mst (:insert_field) SELECT :cmn_set, '301', '801', E'ﾎﾟｲﾝﾄ対象金額', '1', '0', '2', '0' WHERE NOT EXISTS (:sub_query AND acct_cd = '301');
+INSERT INTO c_acct_mst (:insert_field) SELECT :cmn_set, '711', '801', E'商品倍ポイント', '1', '0', '1', '3' WHERE NOT EXISTS (:sub_query AND acct_cd = '711');
+INSERT INTO c_acct_mst (:insert_field) SELECT :cmn_set, '721', '801', E'サービス分類ポイント', '1', '0', '1', '2' WHERE NOT EXISTS (:sub_query AND acct_cd = '721');
+INSERT INTO c_acct_mst (:insert_field) SELECT :cmn_set, '741', '801', E'全体倍ポイント', '1', '0', '1', '2' WHERE NOT EXISTS (:sub_query AND acct_cd = '741');
+INSERT INTO c_acct_mst (:insert_field) SELECT :cmn_set, '801', '0', E'獲得予定ﾎﾟｲﾝﾄ', '1', '0', '1', '0' WHERE NOT EXISTS (:sub_query AND acct_cd = '801');
+
+-- Tポイント用[末尾:##2]
+INSERT INTO c_acct_mst (:insert_field) SELECT :cmn_set, '102', '802', E'通常付与ﾎﾟｲﾝﾄ', '1', '0', '1', '0' WHERE NOT EXISTS (:sub_query AND acct_cd = '102');
+INSERT INTO c_acct_mst (:insert_field) SELECT :cmn_set, '202', '802', E'商品加算ﾎﾟｲﾝﾄ', '1', '0', '1', '0' WHERE NOT EXISTS (:sub_query AND acct_cd = '202');
+INSERT INTO c_acct_mst (:insert_field) SELECT :cmn_set, '302', '802', E'ﾎﾟｲﾝﾄ付与対象', '1', '0', '2', '0' WHERE NOT EXISTS (:sub_query AND acct_cd = '302');
+INSERT INTO c_acct_mst (:insert_field) SELECT :cmn_set, '452', '802', E'全体加算ﾎﾟｲﾝﾄ', '1', '0', '1', '0' WHERE NOT EXISTS (:sub_query AND acct_cd = '452');
+INSERT INTO c_acct_mst (:insert_field) SELECT :cmn_set, '712', '802', E'商品倍ﾎﾟｲﾝﾄ', '1', '0', '1', '0' WHERE NOT EXISTS (:sub_query AND acct_cd = '712');
+INSERT INTO c_acct_mst (:insert_field) SELECT :cmn_set, '732', '802', E'支払倍ﾎﾟｲﾝﾄ', '1', '0', '1', '0' WHERE NOT EXISTS (:sub_query AND acct_cd = '732');
+INSERT INTO c_acct_mst (:insert_field) SELECT :cmn_set, '742', '802', E'全体倍ﾎﾟｲﾝﾄ', '1', '0', '1', '0' WHERE NOT EXISTS (:sub_query AND acct_cd = '742');
+INSERT INTO c_acct_mst (:insert_field) SELECT :cmn_set, '802', '0', E'付与ﾎﾟｲﾝﾄ合計', '1', '0', '1', '0' WHERE NOT EXISTS (:sub_query AND acct_cd = '802');
+
+-- dポイント用[末尾:##3]
+INSERT INTO c_acct_mst (:insert_field) SELECT :cmn_set, '103', '803', E'通常進呈ﾎﾟｲﾝﾄ', '0', '0', '1', '1' WHERE NOT EXISTS (:sub_query AND acct_cd = '103');
+INSERT INTO c_acct_mst (:insert_field) SELECT :cmn_set, '303', '803', E'ﾎﾟｲﾝﾄ対象金額', '0', '0', '2', '0' WHERE NOT EXISTS (:sub_query AND acct_cd = '303');
+INSERT INTO c_acct_mst (:insert_field) SELECT :cmn_set, '803', '0', E'進呈ﾎﾟｲﾝﾄ', '0', '0', '1', '0' WHERE NOT EXISTS (:sub_query AND acct_cd = '803');
+INSERT INTO c_acct_mst (:insert_field) SELECT :cmn_set, '999993', '803', E'ﾎﾟｲﾝﾄ修正', '0', '0', '1', '0' WHERE NOT EXISTS (:sub_query AND acct_cd = '999993');
+
+INSERT INTO c_acct_mst (:insert_field) SELECT :cmn_set, '2000', '0', E'ボーナス値引', '0', '0', '2', '0' WHERE NOT EXISTS (:sub_query AND acct_cd = '2000');
+INSERT INTO c_acct_mst (:insert_field) SELECT :cmn_set, '999998', '800', E'買上追加ポイント', '1', '0', '1', '0' WHERE NOT EXISTS (:sub_query AND acct_cd = '999998');
+INSERT INTO c_acct_mst (:insert_field) SELECT :cmn_set, '210', '800', E'ＭＭ加算ポイント', '1', '0', '1', '0' WHERE NOT EXISTS (:sub_query AND acct_cd = '210');

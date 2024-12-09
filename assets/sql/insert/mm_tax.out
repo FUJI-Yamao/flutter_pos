@@ -1,0 +1,19 @@
+-- c_tax_mst
+\set insert_field 'comp_cd, ins_datetime, upd_datetime, status, send_flg, upd_user, upd_system, tax_cd, tax_name, tax_typ, odd_flg, tax_per, mov_cd '
+--	     comp_cd, ins_datetime, upd_datetime, status, send_flg, upd_user, upd_system
+\set cmn_set ' :COMP, \'now\', \'now\', \'0\', \'0\', \'999999\', \'2\' '
+\set sub_query 'SELECT tax_cd FROM c_tax_mst WHERE comp_cd = :COMP ' 
+
+INSERT INTO c_tax_mst (:insert_field) SELECT :cmn_set, '0', E'上位参照', '0', '0', '0.00', '0' WHERE NOT EXISTS(:sub_query AND tax_cd = '0');
+INSERT INTO c_tax_mst (:insert_field) SELECT :cmn_set, '1', E'外税', '0', '2', '8.00', '0' WHERE NOT EXISTS(:sub_query AND tax_cd = '1');
+INSERT INTO c_tax_mst (:insert_field) SELECT :cmn_set, '2', E'内税', '1', '2', '8.00', '0' WHERE NOT EXISTS(:sub_query AND tax_cd = '2');
+INSERT INTO c_tax_mst (:insert_field) SELECT :cmn_set, '3', E'外税', '0', '2', '8.00', '0' WHERE NOT EXISTS(:sub_query AND tax_cd = '3');
+INSERT INTO c_tax_mst (:insert_field) SELECT :cmn_set, '4', E'外税', '0', '2', '8.00', '0' WHERE NOT EXISTS(:sub_query AND tax_cd = '4');
+INSERT INTO c_tax_mst (:insert_field) SELECT :cmn_set, '5', E'外税', '0', '2', '8.00', '0' WHERE NOT EXISTS(:sub_query AND tax_cd = '5');
+INSERT INTO c_tax_mst (:insert_field) SELECT :cmn_set, '6', E'外税', '0', '2', '8.00', '0' WHERE NOT EXISTS(:sub_query AND tax_cd = '6');
+INSERT INTO c_tax_mst (:insert_field) SELECT :cmn_set, '7', E'外税', '0', '2', '8.00', '0' WHERE NOT EXISTS(:sub_query AND tax_cd = '7');
+INSERT INTO c_tax_mst (:insert_field) SELECT :cmn_set, '8', E'外税', '0', '2', '8.00', '0' WHERE NOT EXISTS(:sub_query AND tax_cd = '8');
+--  tax_cd = 9 は対象外のため  2017/05/02
+--  INSERT INTO c_tax_mst (:insert_field) SELECT :cmn_set, '9', E'外税', '0', '2', '8.00', '0' WHERE NOT EXISTS(:sub_query AND tax_cd = '9');
+INSERT INTO c_tax_mst (:insert_field) SELECT :cmn_set,'10', E'非課税', '10', '0', '0.00', '0' WHERE NOT EXISTS(:sub_query AND tax_cd = '10');
+

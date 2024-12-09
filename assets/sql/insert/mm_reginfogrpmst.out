@@ -1,0 +1,20 @@
+--c_reginfo_grp_mst
+\set insert_field 'comp_cd, stre_cd, mac_no, ins_datetime, upd_datetime, status, send_flg, upd_user, upd_system, grp_typ, grp_cd'
+
+-- comp_cd, stre_cd, mac_no, ins_datetime, upd_datetime, status, send_flg, upd_user, upd_system 
+\set cmn_set ' :COMP, :STRE, :MACNO, \'now\', \'now\', \'0\', \'0\', \'999999\', \'2\' '
+
+\set sub_query 'SELECT grp_cd FROM c_reginfo_grp_mst WHERE comp_cd = :COMP AND stre_cd = :STRE AND mac_no = :MACNO'
+
+INSERT INTO c_reginfo_grp_mst (:insert_field) SELECT :cmn_set, '1', '0' WHERE NOT EXISTS (:sub_query AND grp_typ = '1' );
+INSERT INTO c_reginfo_grp_mst (:insert_field) SELECT :cmn_set, '2', '1' WHERE NOT EXISTS (:sub_query AND grp_typ = '2' );
+INSERT INTO c_reginfo_grp_mst (:insert_field) SELECT :cmn_set, '3', '1' WHERE NOT EXISTS (:sub_query AND grp_typ = '3' );
+INSERT INTO c_reginfo_grp_mst (:insert_field) SELECT :cmn_set, '4', '1' WHERE NOT EXISTS (:sub_query AND grp_typ = '4' );
+INSERT INTO c_reginfo_grp_mst (:insert_field) SELECT :cmn_set, '5', '1' WHERE NOT EXISTS (:sub_query AND grp_typ = '5' );
+INSERT INTO c_reginfo_grp_mst (:insert_field) SELECT :cmn_set, '6', '1' WHERE NOT EXISTS (:sub_query AND grp_typ = '6' );
+INSERT INTO c_reginfo_grp_mst (:insert_field) SELECT :cmn_set, '7', '1' WHERE NOT EXISTS (:sub_query AND grp_typ = '7' );
+INSERT INTO c_reginfo_grp_mst (:insert_field) SELECT :cmn_set, '8', '0' WHERE NOT EXISTS (:sub_query AND grp_typ = '8' );
+INSERT INTO c_reginfo_grp_mst (:insert_field) SELECT :cmn_set, '9', '1' WHERE NOT EXISTS (:sub_query AND grp_typ = '9' );
+INSERT INTO c_reginfo_grp_mst (:insert_field) SELECT :cmn_set, '10', '1' WHERE NOT EXISTS (:sub_query AND grp_typ = '10');
+INSERT INTO c_reginfo_grp_mst (:insert_field) SELECT :cmn_set, '11', '1' WHERE NOT EXISTS (:sub_query AND grp_typ = '11');
+INSERT INTO c_reginfo_grp_mst (:insert_field) SELECT :cmn_set, '12', '0' WHERE NOT EXISTS (:sub_query AND grp_typ = '12');

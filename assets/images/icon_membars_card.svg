@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="152" height="112" viewBox="0 0 152 112">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="長方形_8745" data-name="長方形 8745" width="72" height="45" fill="#8096af"/>
+    </clipPath>
+  </defs>
+  <g id="icon_membars_card" transform="translate(-567 -347)">
+    <rect id="長方形_7035" data-name="長方形 7035" width="152" height="112" transform="translate(567 347)" fill="#727981" opacity="0"/>
+    <g id="グループ_19270" data-name="グループ 19270" transform="translate(607 381)">
+      <g id="グループ_19269" data-name="グループ 19269" clip-path="url(#clip-path)">
+        <path id="パス_28848" data-name="パス 28848" d="M69,0H3A3,3,0,0,0,0,3V42a3,3,0,0,0,3,3H69a3,3,0,0,0,3-3V3a3,3,0,0,0-3-3m1,12.466H2V8.422H70Z" fill="#8096af"/>
+      </g>
+    </g>
+  </g>
+</svg>
